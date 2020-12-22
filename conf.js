@@ -1,16 +1,16 @@
 module.exports = {
     "web": {
-        "port": 4001,
+        "port": 8201,
         "host": "0.0.0.0",
-        "basepath": "/myweb"
+        "basepath": "/tankmonitoring"
     },
     "settings": {
-        "appApiUrl" : "http://localhost:4001/myweb",
-        "url": "http://localhost:4001/myweb",
+        "appApiUrl" : "http://localhost:8201/tankmonitoring",
+        "url": "http://localhost:8201/tankmonitoring",
         "boodskap": {
             "apiUrl": "https://dev.boodskap.io/api",
-            "domainKey": "XLOYLUDCHY",
-            "apiKey": "7wqaskN4z31b",
+            "domainKey": "CDZMKBHJUM",
+            "apiKey": "UoHQ46ZNmTZu",
             "mqtt": {
                 "hostName": 'dev.boodskap.io',
                 "portNo": 443,
