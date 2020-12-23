@@ -1,17 +1,10 @@
 {
   "name": "sample-boodskap-project",
   "version": "1.0.0",
-  "description": "",
   "main": "server-web-node.js",
-  "author": {
-    "name": "Saravanan S"
-  },
+  "author": "Saravanan S",
   "contributors": [
-    {
-      "name": "Saravanan S",
-      "email": "saravanans.design@gmail.com",
-      "url": "https://github.com/saravanansdesign"
-    }
+    "Saravanan S <saravanans.design@gmail.com> (https://github.com/saravanansdesign)"
   ],
   "scripts": {
     "start": "node server-web-node.js"
@@ -45,5 +38,15 @@
     "twilio": "^3.45.0",
     "underscore": "^1.10.2",
     "user-agent": "^1.0.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Velmurugan1401/Tank_level_monitoring.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Velmurugan1401/Tank_level_monitoring/issues"
+  },
+  "homepage": "https://github.com/Velmurugan1401/Tank_level_monitoring#readme",
+  "description": ""
 }

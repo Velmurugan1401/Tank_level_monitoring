@@ -96,7 +96,8 @@ Common.prototype.testAction = function (req, res) {
 };
 
 Common.prototype.commonAdd = function (tablename, req, res) {
-
+   
+   
     const self = this;
 
     const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);

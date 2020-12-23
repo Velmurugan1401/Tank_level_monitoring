@@ -1,6 +1,6 @@
 module.exports = {
     "web": {
-        "port": 8201,
+        "port":8201 ,
         "host": "0.0.0.0",
         "basepath": "/tankmonitoring"
     },

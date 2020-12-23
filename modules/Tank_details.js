@@ -13,7 +13,9 @@ Tank.prototype.performAction = function (req,res){
     const self = this;
 
     if(req.params.action === 'insert'){
+        console.log(req.body);
         self.common.commonAdd(self.table.TANK_TABLE,req,res);
+
     }
     else if(req.params.action === 'update'){
         self.common.commonUpdate(self.table.TANK_TABLE,req,res);
