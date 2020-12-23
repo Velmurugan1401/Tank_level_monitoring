@@ -13,12 +13,15 @@ Tankhistory.prototype.performAction = function (req,res){
     const self = this;
 
     if(req.params.action === 'insert'){
+      
+        
         self.common.commonAdd(self.table.TANKHISTORY_TABLE,req,res);
     }
     else if(req.params.action === 'update'){
         self.common.commonUpdate(self.table.TANKHISTORY_TABLE,req,res);
     }
     else if(req.params.action === 'delete'){
+        
         self.common.commonDelete(self.table.TANKHISTORY_TABLE,req,res);
     }
     else if(req.params.action === 'list'){
