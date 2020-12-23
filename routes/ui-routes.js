@@ -72,10 +72,54 @@ UIRoutes.prototype.init = function () {
             basePath: self.app.conf.web.basepath
         });
     });
+    self.router.get('/tankStatus', sessionCheck, function (req, res) {
 
-    self.router.get('/students-registration', sessionCheck, function (req, res) {
+        res.render('home/tankStatus.html', {
+            layout: false,
+            sessionObj: req.session['sessionObj'],
+            config: self.app.conf,
+            basePath: self.app.conf.web.basepath
+        });
+    });
+    self.router.get('/dashboard', sessionCheck, function (req, res) {
 
-        res.render('home/students-registration.html', {
+        res.render('home/dashboard.html', {
+            layout: false,
+            sessionObj: req.session['sessionObj'],
+            config: self.app.conf,
+            basePath: self.app.conf.web.basepath
+        });
+    });
+    self.router.get('/tanks', sessionCheck, function (req, res) {
+
+        res.render('home/managetanks.html', {
+            layout: false,
+            sessionObj: req.session['sessionObj'],
+            config: self.app.conf,
+            basePath: self.app.conf.web.basepath
+        });
+    });
+    self.router.get('/devices', sessionCheck, function (req, res) {
+
+        res.render('home/managedevices.html', {
+            layout: false,
+            sessionObj: req.session['sessionObj'],
+            config: self.app.conf,
+            basePath: self.app.conf.web.basepath
+        });
+    });
+    self.router.get('/users', sessionCheck, function (req, res) {
+
+        res.render('home/users.html', {
+            layout: false,
+            sessionObj: req.session['sessionObj'],
+            config: self.app.conf,
+            basePath: self.app.conf.web.basepath
+        });
+    });
+    self.router.get('/rawmessages', sessionCheck, function (req, res) {
+
+        res.render('home/rawmessages.html', {
             layout: false,
             sessionObj: req.session['sessionObj'],
             config: self.app.conf,
@@ -84,29 +128,7 @@ UIRoutes.prototype.init = function () {
     });
 
 
-    self.router.get('/profile', sessionCheck, function (req, res) {
 
-        console.log(self.app.conf);
-
-        res.render('home/profile.html', {
-            layout: false,
-            sessionObj: req.session['sessionObj'],
-            config: self.app.conf,
-            basePath: self.app.conf.web.basepath
-        });
-    });
-
-
-    self.router.get('/notifications', sessionCheck, function (req, res) {
-
-        res.render('home/notifications.html', {
-            layout: false,
-            sessionObj: req.session['sessionObj'],
-            config: self.app.conf,
-            basePath: self.app.conf.web.basepath
-        });
-    });
-
-
+   
     self.app.use(self.app.conf.web.basepath, self.router);
 };
