@@ -97,9 +97,9 @@ UIRoutes.prototype.init = function () {
     });
 
 
-    self.router.get('/notifications', sessionCheck, function (req, res) {
+    self.router.get('/managetanks', sessionCheck, function (req, res) {
 
-        res.render('home/notifications.html', {
+        res.render('home/managetanks.html', {
             layout: false,
             sessionObj: req.session['sessionObj'],
             config: self.app.conf,
