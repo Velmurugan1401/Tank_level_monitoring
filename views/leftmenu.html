@@ -1,28 +1,39 @@
+<style>
+    .left-sidebar{
+        top:57px;
+        height:82.5%;
+    }
+</style>
 <aside class="left-sidebar">
     <!-- Sidebar scroll-->
     <div class="scroll-sidebar">
         <nav class="sidebar-nav"> 
             <ul class="leftMainMenu" id="sidebarnav">
                 <li class="cam_map">
-                    <a href="javascript:void(0)"><img alt="" src="images/cam_map.svg">
-                        <small>Cam Map</small></a>
+                    <a onclick="loadMainPage('/dashboard')" href="#/dashboard" ><img alt="" >
+                        <small>Dashboard</small></a>
                 </li>
                 <li class="audio">
-                    <a href="javascript:void(0)"><img alt="" src="images/audio.svg">
-                        <small>Audio</small></a>
+                    <a onclick="loadMainPage('/tankStatus')" href="#/tankStatus"><img alt="">
+                        <small>Tank Status</small></a>
                 </li>
+                <label>Administration</label>
                 <li class="alarm_setup">
-                    <a href="javascript:void(0)"><img alt="" src="images/alarm_setup.svg">
-                        <small>Alarm Setup</small></a>
+                    <a onclick="loadMainPage('/tanks')" href="#/managetanks"><img alt="" >
+                        <small>Tanks</small></a>
                 </li>
                 <li class="ptz active">
-                    <a href="javascript:void(0)"><img alt="" src="images/ptz.svg">
-                        <small>PTZ</small>
+                    <a onclick="loadMainPage('/devices')" href="#/managedevices"><img alt="" >
+                        <small>Devices</small>
                     </a>
                 </li>
                 <li class="cam_log">
-                    <a href="javascript:void(0)"><img alt="" src="images/cam_log.svg">
-                        <small>Cam Logs</small></a>
+                    <a onclick="loadMainPage('/users')" href="#/users"><img alt="" >
+                        <small>Users</small></a>
+                </li>
+                <li class="cam_log">
+                    <a onclick="loadMainPage('/rawmessages')" href="#/rawmessages"><img alt="" >
+                        <small>Raw Messages</small></a>
                 </li>
             </ul>
         </nav> 
