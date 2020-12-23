@@ -41,10 +41,10 @@ APIRoutes.prototype.init = function () {
     const self = this;
 
     var sessionCheck = function (req, res, next) {
-        console.log(req.body)
+    
 
         var sessionObj = req.session['sessionObj'];
-                       console.log(sessionObj);   
+                         
         if (sessionObj && sessionObj.token) {
 
 
@@ -61,7 +61,7 @@ APIRoutes.prototype.init = function () {
     self.router.post('/login', function (req, res) {
         var boodskap = new Boodskap(self.app)
         boodskap.login(req,res);
-        
+
 
     });
 
@@ -76,7 +76,7 @@ APIRoutes.prototype.init = function () {
         self.student.performAction(req,res);
     });
     self.router.post('/tank/:action', sessionCheck, function (req, res) {
-        console.log(req.body);
+        
        
         self.tank.performAction(req,res);
     });
