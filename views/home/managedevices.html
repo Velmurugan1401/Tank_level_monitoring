@@ -1,0 +1,83 @@
+<style>
+.d-flex{
+    margin-left: 220px;
+}
+.card{
+    border-radius: 15px;
+}
+.card .card-header{
+    background-color: #0061f2;
+    border-radius: 6px;
+}
+.device-table{
+    background-color: #fff;
+    border-radius: 6px;
+}
+
+</style>
+
+
+
+
+
+<div class="d-flex">
+<div class="container">
+    <div class="manage-devices">
+    <div class="col-md-12">
+      <h1>Manage Devices</h1>
+      <hr>
+    </div>
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+          <div class="col-md">
+            <h5>Total Devices:7</h5>
+          </div>
+          <div class="col-md-auto">
+           <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+          </div>
+        </div>
+    </div>
+    <div class="device-table">
+    <div class="col-md-12">
+        <div class="row">
+          <label>show</label>
+        </div>
+       
+        
+          <table class="table table-bordered responsive no-wrap" id="device_table" cellspacing="0" width="100%">
+            <thead class="t-head">
+              <th scope="col-md">Device Id</th>
+              <th scope="col-md">Device Model</th>   
+              <th scope="col-md">Version</th>
+              <th scope="col-md">Channel</th>
+              <th scope="col-md">Status</th>   
+              <th scope="col-md">Last Reported Time</th>
+              <th scope="col-md">Created Time</th>
+              <th scope="col-md">Action</th>
+                         
+  
+          </thead>
+          <tbody id="device-table">
+            <tr>
+              <td scope="row">TM-BDSKP-003</td>
+              <td>BDSKP</td>
+              <td>1.0.0</td>
+              <td>HTTP</td>
+              <td>NON-REPORTING</td>
+              <td>06/27/2019</td>
+              <td>06/27/2019</td>
+              
+              <td>EDIT</td>
+              
+           </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
