@@ -1,5 +1,5 @@
 
-<link rel="stylesheet" href="../../webapps/css/managetanks.css">
+
     <div class="container-fluid ">
      <div class="row head">
           <div class="col-md-6 coln1">
@@ -11,9 +11,47 @@
         </div>
     <div class="row head1">
       <div class="col-md-6 coln3">
-          <button class="button1"><a href=""class="link">Add Tanks</a></button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          Add Tanks
+        </button>
+        
+        
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <lable>Tank Image</lable><br>
+                <input type="image"><br>
+                <lable>Tank Name</lable>
+                <input type="text"><br>
+                <lable>Tank Type</lable>
+                <input type="text"><br>
+                <lable>Capacity</lable>
+                <input type="number"><br>
+                <lable>Linked Devices</lable>
+                <input type="text"><br>
+                <lable>Updated Time</lable>
+                <input type="text"><br>
+                <lable>Created Time</lable>
+                <input type="text">
+                
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
          <label class="l1">Show</label>
-         <a href="" class="link"><select class=" btn btn-success button2">
+         <a href="" class="link"><select class=" btn butt button2">
            <option>10</option>
            <option>50</option>
            <option>100</option>
@@ -23,7 +61,7 @@
       <div class="col-md-6 coln4 ">
         <!-- <a href="" class="link"></a><i class="fa fa-expand fa-2x" aria-hidden="true"></i></a> -->
         
-        <button class="button1">Search  <i class="fa fa-search" aria-hidden="true"></i></button>
+        <button class="button1"><a href=""class="link">Search  <i class="fa fa-search" aria-hidden="true"></i></a></button>
         <a href=""class="link"><i class="fa fa-refresh fa-spin fa-2x fa-fw " aria-hidden="true"></i></a>
          </button>
          
@@ -40,20 +78,21 @@
           </div>
          
           
-            <table class="table table-bordered responsive no-wrap c1" id="device_table" cellspacing="0" width="100%">
+            <table class="table table-bordered responsive no-wrap c1" id="data_table" cellspacing="0" width="100%">
               <thead class="t-head">
-                <th scope="col-md">Tank Image</th>
-                <th scope="col-md">Tank Name</th>   
-                <th scope="col-md">Tank Type</th>
-                <th scope="col-md">Capacity</th>
-                <th scope="col-md">Linked Devices</th>
-                <th scope="col-md">Updated Time</th>  
-                <th scope="col-md">Created Time</th>
-                <th scope="col-md">Action</th>
+                <tr>
+                <th scope="col-md"class="headcontent">Tank Image</th>
+                <th scope="col-md"class="headcontent">Tank Name</th>   
+                <th scope="col-md"class="headcontent">Tank Type</th>
+                <th scope="col-md"class="headcontent">Capacity</th>
+                <th scope="col-md"class="headcontent">Linked Devices</th>
+                <th scope="col-md"class="headcontent">Updated Time</th>  
+                <th scope="col-md"class="headcontent">Created Time</th>
+                <th scope="col-md"class="headcontent">Action</th>
                            
-    
+              </tr>
             </thead>
-            <tbody id="device-table">
+            <tbody id="data-table">
               <tr>
             
                 <td class="image"><img src="images/tank1.jpg" alt="hi"></td>
@@ -61,8 +100,8 @@
                 <td>large</td>
                 <td>1000 litres</td>
                 <td> <a href="" class="link"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
-                <td><a href="" class="link"><i class="fa fa-calendar" aria-hidden="true"style="font-size:20px;color:blue;"></i></a></td>
-                <td><a href="" class="link"><i class="fa fa-calendar" aria-hidden="true"style="font-size:20px;color:blue;"></i></a></td>
+                <td></td>
+                <td></td>
                 <td> <a href="" class="btn"><i class="fa fa-trash fa-2x " aria-hidden="true"></i></a>
                   <a href="" class="link"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a></td>
             </tr>  
@@ -73,8 +112,8 @@
               <td>large</td>
               <td>1000 litres</td>
               <td> <a href="" class="link"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
-              <td><a href="" class="link"><i class="fa fa-calendar" aria-hidden="true"style="font-size:20px;color:blue;"></i></a>12:44:22</td>
-              <td><a href="" class="link"><i class="fa fa-calendar" aria-hidden="true"style="font-size:20px;color:blue;"></i></a></td>
+              <td></td>
+              <td></td>
               <td><a href="" class="btn"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
                 <a href="" class="link"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a> </td>
           </tr>  
@@ -84,8 +123,8 @@
             <td>large</td>
             <td>1000 litres</td>
             <td> <a href="" class="link"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
-            <td><a href="" class="link"><i class="fa fa-calendar" aria-hidden="true"style="font-size:20px;color:blue;"></i></a></td>
-            <td><a href="" class="link"><i class="fa fa-calendar" aria-hidden="true"style="font-size:20px;color:blue;"></i></a></td>
+            <td></td>
+            <td></td>
             <td><a href="" class="btn"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a> 
               <a href="" class="link"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a></td>
         </tr> 
@@ -95,15 +134,29 @@
           <td>large</td>
           <td>1000 litres</td>
           <td> <a href="" class="link"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
-          <td><a href="" class="link"><i class="fa fa-calendar" aria-hidden="true"style="font-size:20px;color:blue;"></i></a></td>
-          <td><a href="" class="link"><i class="fa fa-calendar" aria-hidden="true"style="font-size:20px;color:blue;"></i></a></td>
+          <td></td>
+          <td></td>
           <td>
             <a href="" class="btn"><i class="fa fa-trash fa-2x " aria-hidden="true"></i></a>
             <a href="" class="link"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>
-            </td>
+          </td>
         </tr> 
           
-              </tbody>
-            </table>
-          </div>
+        </tbody>
+      </table>
+    </div>
+ </div>
 </div>
+
+<div class="container">
+ 
+
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+
+

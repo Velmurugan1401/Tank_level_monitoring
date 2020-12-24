@@ -1,103 +1,107 @@
 <style>
-    .navbar-collapse{
-        background: none;
-        box-shadow: none;
-    }
-    .bg-light {
-        background-color: #ffffff!important;
-    }
-
+  .navbar-collapse{
+      background: none;
+      box-shadow: none;
+  }
+  .bg-light {
+      /* background-color: #ffffff!important; */
+      background-color: #000D47 !important;
+      border-bottom:none !important ;
+  }
 
 .overlay {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0, 0.9);
-  overflow-x: hidden;
-  transition: 0.5s;
+height: 100%;
+width: 0;
+position: fixed;
+z-index: 1;
+top: 0;
+left: 0;
+background-color: rgb(0,0,0);
+background-color: rgba(0,0,0, 0.8);
+overflow-x: hidden;
+transition: 0.5s;
 }
 
 .overlay-content {
-  position: relative;
-  top: 25%;
-  width: 50%;
-  text-align: center;
-  margin-top: 30px;
+position: relative;
+top: 15%;
+width: 50%;
+left:30px;
+/* text-align: center; */
+/* margin-top: 30px; */
 }
 
 .overlay a {
-  padding: 8px;
-  text-decoration: none;
-  font-size: 20px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
+padding: none;
+padding-bottom: 10px;
+text-decoration: none;
+font-size: 15px;
+/* color: #818181; */
+color: white;
+display: block;
+transition: 0.3s;
 }
 
-.overlay a:hover, .overlay a:focus {
-  color: #f1f1f1;
-}
+/* .overlay a:hover, .overlay a:focus {
+color: #f1f1f1;
+} */
 
 .overlay .closebtn {
-  position: absolute;
-  top: 20px;
-  right: 45px;
-  font-size: 60px;
+position: absolute;
+top: 8px;
+/* right: 45px; */
+left:20px;
+font-size: 37px;
 }
 
 </style>
 
 
 <!-- <aside class="left-sidebar"> -->
-    <!-- Sidebar scroll-->
-    
-    <!-- End Sidebar scroll-->
+  <!-- Sidebar scroll-->
+  
+  <!-- End Sidebar scroll-->
 <!-- </aside> -->
 
 <div id="myNav" class="overlay">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <div class="overlay-content">
-        <a onclick="loadMainPage('/dashboard')" href="#/dashboard" ><img alt="" >
-            <small>Dashboard</small></a>
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <img src="images/boodskap-logo.png" style="width:150px;height:42px;padding-left: 15px;
+  position:absolute;left:43px;top:13px;">
 
-        <a onclick="loadMainPage('/tankStatus')" href="#/tankStatus"><img alt="">
-                <small>Tank Status</small></a>
+  <div class="overlay-content">
+    <a href="javascript:void(0)" style="color:#818181;" class="">Home</a>
+      <a onclick="loadMainPage('/dashboard')" href="#/dashboard">Dashboard</a>
 
-        <a onclick="loadMainPage('/tanks')" href="#/managetanks"><img alt="" >
-                    <small>Tanks</small></a>
+      <a style="padding-bottom: 29px;" onclick="loadMainPage('/tankStatus')" href="#/tankStatus">Tank Status</a>
+      <a href="javascript:void(0)" class="" style="color:#818181;">Administration</a>
 
-        <a onclick="loadMainPage('/devices')" href="#/managedevices"><img alt="" >
-                    <small>Devices</small></a>
+      <a onclick="loadMainPage('/tanks')" href="#/managetanks">Tanks</a>
 
-        <a onclick="loadMainPage('/users')" href="#/users"><img alt="" >
-                        <small>Users</small></a>
+      <a onclick="loadMainPage('/devices')" href="#/managedevices">Devices</a>
 
-        <a onclick="loadMainPage('/rawmessages')" href="#/rawmessages"><img alt="" >
-                     <small>Raw Messages</small></a>
+      <a onclick="loadMainPage('/users')" href="#/users">Users</a>
 
-    </div>
+      <a onclick="loadMainPage('/rawmessages')" href="#/rawmessages">Raw Messages</a>
+
   </div>
-  
+</div>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-bottom: 4px solid #08c;">
-    <a class="navbar-brand" href="#">
-        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;
-            <img src="images/boodskap-logo.png">
-        </span></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+  <a class="navbar-brand" href="#">
+      <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;
+          <img src="images/bdskap-logo.png" style="width:150px;height:42px;padding-left: 15px;">
+      </span></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
 </nav>
 
 <script>
-    function openNav() {
-      document.getElementById("myNav").style.width = "20%";
-    }
-    
-    function closeNav() {
-      document.getElementById("myNav").style.width = "0%";
-    }
-    </script>
+  function openNav() {
+    document.getElementById("myNav").style.width = "18%";
+  }
+  
+  function closeNav() {
+    document.getElementById("myNav").style.width = "0%";
+  }
+  </script>
