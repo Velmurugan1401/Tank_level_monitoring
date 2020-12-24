@@ -1,1 +1,52 @@
-<h1 style="margin-left:200px;">Tank Status</h1>
+<style>
+    .button-srch{
+        height:30px;border-radius: 4px;
+        /* margin-top: 5px; */
+    }
+    .live-btn{
+    width: 70px;
+    background-color:darkcyan;
+    height: 30px;
+    border-radius: 4px;
+    color: white;
+    border: none;
+    }
+    .pick{
+        height:30px;border-radius: 4px;
+    }
+    #firstRow{
+        height: 40px;
+        border-bottom: 1px solid black;
+        box-shadow:5px 5px 5px lightslategrey ;
+    }
+   
+</style>
+
+<div class="container-fluid">
+    <div class="row" id="firstRow" style="">
+        <div class="col-md-3" style="">
+            <div style="margin-top: 16px;">
+            <span style="">Tank Status</span>
+            <span>|</span>
+            <span>Total Tanks: </span>
+            <span>2</span>
+        </div>
+        </div>
+        <div class="col-md-9" style="text-align: right;">
+            <button type="button" class="live-btn">Live</button>
+            <input class="pick" data-date-format="mm/dd/yyyy" id="datepicker">
+            <!-- <input type="text" class="button-srch" placeholder="Search Tanks"> -->
+            
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered responsive no-wrap" id="myTable" cellspacing="0" width="100%">
+               
+            </table>
+        </div>
+    </div>
+</div>
+<script src="js/tankstatus.js"></script>
+

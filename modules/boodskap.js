@@ -279,7 +279,7 @@ console.log(dmdl)
         body: JSON.stringify(data),
      }, 
      function (err, res, body) {
-
+              console.log(body);
         if (!err) {
 
             if (res.statusCode === 200) {

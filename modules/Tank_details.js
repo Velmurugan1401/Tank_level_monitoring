@@ -18,6 +18,7 @@ Tank.prototype.performAction = function (req,res){
 
     }
     else if(req.params.action === 'update'){
+        
         self.common.commonUpdate(self.table.TANK_TABLE,req,res);
     }
     else if(req.params.action === 'delete'){
