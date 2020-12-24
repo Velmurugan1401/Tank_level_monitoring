@@ -23,6 +23,8 @@
     <link href="dist/css/fonts/Play-Bold.ttf" rel="stylesheet">
     <link href="dist/css/fonts/Play-Regular.ttf" rel="stylesheet">
     <link href="dist/css/fonts/Playcss2.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/managetanks.css">
+   
 
     <base href="<%=config.url%>/">
 
@@ -81,11 +83,13 @@
 <script src="js/layout.js"></script>
 
 <div id="main-wrapper">
-    <%- include ('leftmenu.html') %>
+   
     <%- include ('header.html') %>
 
     <div class="page-wrapper" id="pageWrapper" style="margin-left:0">
+       
         <%- body %>
+    
     </div>
 
     <%- include ('footer.html') %>

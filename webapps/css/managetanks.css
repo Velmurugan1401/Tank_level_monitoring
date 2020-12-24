@@ -1,10 +1,10 @@
 .image img{
     width:50px; 
 }
-.head{
+/* .head{
     margin-top: 30px;
 
-   }
+   } */
 .head1{
     border-bottom: 3px solid rgb(99, 177, 207);
     padding-bottom: 30px;
@@ -13,7 +13,7 @@
     margin-top: 30px;
 }
 .coln1{
-    padding-bottom: 10px;
+    padding-bottom: 30px;
 }
 .coln2{
     text-align: right;
@@ -39,4 +39,10 @@
 .b1{
     width: 70px;
     border-radius: 5px;
+}
+.buttonn{
+    margin-right: 30px;
+    padding: 3px;
+    border-radius: 6px;
+    
 }

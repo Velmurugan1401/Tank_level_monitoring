@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../webapps/css/managetanks.css">
-    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>my page</title>
-</head>
-<body>
+
+<link rel="stylesheet" href="../../webapps/css/managetanks.css">
     <div class="container-fluid ">
      <div class="row head">
           <div class="col-md-6 coln1">
@@ -20,100 +11,99 @@
         </div>
     <div class="row head1">
       <div class="col-md-6 coln3">
-         <button class="button1">Add Tanks</button>
+          <button class="button1"><a href=""class="link">Add Tanks</a></button>
          <label class="l1">Show</label>
-         <select class="button2">
+         <a href="" class="link"><select class=" btn btn-success button2">
            <option>10</option>
            <option>50</option>
            <option>100</option>
-         </select>
+         </select></a>
          <span>entries</span>
       </div>
-      <div class="col-md-6 coln4">
+      <div class="col-md-6 coln4 ">
+        <!-- <a href="" class="link"></a><i class="fa fa-expand fa-2x" aria-hidden="true"></i></a> -->
+        
         <button class="button1">Search  <i class="fa fa-search" aria-hidden="true"></i></button>
         <a href=""class="link"><i class="fa fa-refresh fa-spin fa-2x fa-fw " aria-hidden="true"></i></a>
          </button>
+         
+         
       </div>
-    </div>
+    
       
     </div>
-    <div class="container">
-      
-      <table class="table c1">
-        <thead>
-        <tr>
-          <th class="tableh">
-            <i class="fa fa-check-square" aria-hidden="true"></i> Tank Image
-          </th>
-          <th class="tableh">
-            Tank Name
-          </th>
-          <th class="tableh">
-            Tank Type
-          </th>
-          <th class="tableh">
-            Capacity
-          </th>
-          <th class="tableh">
-            Linked Devices
-          </th>
-          <th class="tableh">
-            Updated Time 
-          </th>
-          <th class="tableh">
-           Created Time
-          </th>
-          <th class="tableh">
-            Action
-          </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="image"><i class="fa fa-check-square" aria-hidden="true"></i><img src="./css/images/tank1.jpg" alt="hi"></td>
-            <td>tank1</td>
+    
+    <div class="device-table">
+      <div class="col-md-12">
+          <div class="row">
+            
+          </div>
+         
+          
+            <table class="table table-bordered responsive no-wrap c1" id="device_table" cellspacing="0" width="100%">
+              <thead class="t-head">
+                <th scope="col-md">Tank Image</th>
+                <th scope="col-md">Tank Name</th>   
+                <th scope="col-md">Tank Type</th>
+                <th scope="col-md">Capacity</th>
+                <th scope="col-md">Linked Devices</th>
+                <th scope="col-md">Updated Time</th>  
+                <th scope="col-md">Created Time</th>
+                <th scope="col-md">Action</th>
+                           
+    
+            </thead>
+            <tbody id="device-table">
+              <tr>
+            
+                <td class="image"><img src="images/tank1.jpg" alt="hi"></td>
+                <td>tank1<br><a href="" class="link"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
+                <td>large</td>
+                <td>1000 litres</td>
+                <td> <a href="" class="link"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+                <td><a href="" class="link"><i class="fa fa-calendar" aria-hidden="true"style="font-size:20px;color:blue;"></i></a></td>
+                <td><a href="" class="link"><i class="fa fa-calendar" aria-hidden="true"style="font-size:20px;color:blue;"></i></a></td>
+                <td> <a href="" class="btn"><i class="fa fa-trash fa-2x " aria-hidden="true"></i></a>
+                  <a href="" class="link"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a></td>
+            </tr>  
+            <tr>
+              <td class="image"><img src="images/tank1.jpg" alt="hi"></td>
+              
+              <td>tank1 <br><a href="" class="link"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
+              <td>large</td>
+              <td>1000 litres</td>
+              <td> <a href="" class="link"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+              <td><a href="" class="link"><i class="fa fa-calendar" aria-hidden="true"style="font-size:20px;color:blue;"></i></a>12:44:22</td>
+              <td><a href="" class="link"><i class="fa fa-calendar" aria-hidden="true"style="font-size:20px;color:blue;"></i></a></td>
+              <td><a href="" class="btn"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
+                <a href="" class="link"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a> </td>
+          </tr>  
+          <tr>
+            <td class="image"><img src="images/tank1.jpg" alt="hi"></td>
+            <td>tank1<br><a href="" class="link"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
             <td>large</td>
             <td>1000 litres</td>
-            <td>4</td>
-            <td><i class="fa fa-calendar" aria-hidden="true"style="font-size:30px;color:blue;"></i></td>
-            <td><i class="fa fa-calendar" aria-hidden="true"style="font-size:30px;color:blue;"></i></td>
-            <td>7</td>
-        </tr>  
+            <td> <a href="" class="link"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+            <td><a href="" class="link"><i class="fa fa-calendar" aria-hidden="true"style="font-size:20px;color:blue;"></i></a></td>
+            <td><a href="" class="link"><i class="fa fa-calendar" aria-hidden="true"style="font-size:20px;color:blue;"></i></a></td>
+            <td><a href="" class="btn"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a> 
+              <a href="" class="link"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a></td>
+        </tr> 
         <tr>
-          <td class="image"><i class="fa fa-check-square" aria-hidden="true"></i><img src="./css/images/tank1.jpg" alt="hi"></td>
-          <td>tank1</td>
+          <td class="image"><img src="images/tank1.jpg" alt="hi"></td>
+          <td>tank1 <br><a href="" class="link"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
           <td>large</td>
           <td>1000 litres</td>
-          <td>4</td>
-          <td><i class="fa fa-calendar" aria-hidden="true"style="font-size:30px;color:blue;"></i></td>
-          <td><i class="fa fa-calendar" aria-hidden="true"style="font-size:30px;color:blue;"></i></td>
-          <td>7</td>
-      </tr>  
-      <tr>
-        <td class="image"><i class="fa fa-check-square" aria-hidden="true"></i><img src="./css/images/tank1.jpg" alt="hi"></td>
-        <td>tank1</td>
-        <td>large</td>
-        <td>1000 litres</td>
-        <td>4</td>
-        <td><i class="fa fa-calendar" aria-hidden="true"style="font-size:30px;color:blue;"></i></td>
-        <td><i class="fa fa-calendar" aria-hidden="true"style="font-size:30px;color:blue;"></i></td>
-        <td>7</td>
-    </tr> 
-    <tr>
-      <td class="image"><i class="fa fa-check-square" aria-hidden="true"></i><img src="./css/images/tank1.jpg" alt="hi"></td>
-      <td>tank1</td>
-      <td>large</td>
-      <td>1000 litres</td>
-      <td>4</td>
-      <td><i class="fa fa-calendar" aria-hidden="true"style="font-size:30px;color:blue;"></i></td>
-      <td><i class="fa fa-calendar" aria-hidden="true"style="font-size:30px;color:blue;"></i></td>
-      <td>7</td>
-    </tr> 
-      
-
-      </tbody>  
-      </table>
-    </div>
+          <td> <a href="" class="link"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+          <td><a href="" class="link"><i class="fa fa-calendar" aria-hidden="true"style="font-size:20px;color:blue;"></i></a></td>
+          <td><a href="" class="link"><i class="fa fa-calendar" aria-hidden="true"style="font-size:20px;color:blue;"></i></a></td>
+          <td>
+            <a href="" class="btn"><i class="fa fa-trash fa-2x " aria-hidden="true"></i></a>
+            <a href="" class="link"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>
+            </td>
+        </tr> 
+          
+              </tbody>
+            </table>
+          </div>
 </div>
-</body>
-</html>
