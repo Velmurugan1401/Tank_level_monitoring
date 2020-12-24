@@ -1,4 +1,4 @@
-<h1 style="margin-left:200px;">User Management</h1>
+ 
 <link
   rel="stylesheet"
   href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -7,7 +7,7 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 />
-<link rel="stylesheet" href="../../webapps/css/users.css" />
+<link rel="stylesheet" href="css/users.css" />
 <div class="container-fluid">
   <div class="row section1 containflui mt-5 mb-5 p-2">
     <div class="col-md-6">
@@ -23,20 +23,7 @@
   </div>
   <div class="row section2 containflui p-2">
     <div class="col-md-6 mt-2 mb-2"><h3>Users</h3></div>
-    <div class="col-md-6 one" style="text-align:right">
-      <div class="row">
-        <div class="col-md-4">
-          <form class="form-inline mt-2 mb-2">
-            <i class="fa fa-search" aria-hidden="true"></i>
-            <input
-              class="form-control form-control-sm ml-3 w-75"
-              type="text"
-              placeholder="Search"
-              aria-label="Search"
-            />
-          </form>
-        </div>
-        <div class="col-md-4">
+    <div class="col-md-6 one" style="text-align:right">     
           <button
             type="button"
             class="btn btn-primary"
@@ -45,7 +32,6 @@
           >
             <i class="fa fa-user-plus p-2" aria-hidden="true"></i>Add New User
           </button>
-
           <div class="modal" id="myModal">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -119,14 +105,10 @@
                 <!-- </div> -->
               </div>
             </div>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>
-        </div>
+          </div>         
+          <i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>        
       </div>
     </div>
-  </div>
   <div class="containflui">
     <table class="table table-bordered responsive no-wrap" id="data_table" cellspacing="0" width="100%">
      
