@@ -3,7 +3,7 @@ $("#test").click(function(e){
 
     var Tanklevel = $("#one").val();
     var department = $("#two").val();
-    var location = $("#three").val();
+    var location = $("#three").val();   
 
     //Validate
     if(Tanklevel === ""){
