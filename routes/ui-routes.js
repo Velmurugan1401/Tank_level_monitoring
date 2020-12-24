@@ -72,7 +72,7 @@ UIRoutes.prototype.init = function () {
             basePath: self.app.conf.web.basepath
         });
     });
-    self.router.get('/tankStatus',  function (req, res) {
+    self.router.get('/tankStatus', sessionCheck, function (req, res) {
 
         res.render('home/tankStatus.html', {
             layout: false,
