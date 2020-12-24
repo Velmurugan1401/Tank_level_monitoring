@@ -27,7 +27,7 @@ var APIRoutes = function (app,router) {
     this.Tank_status=new Tankstatus(app);
     this.Tank_history=new Tankhistory(app);
     this.Device_details=new Device(app);
-    this.User_details=new Users(app);
+    this.details=new Users(app);
     this.msg=new MSG(app)     
     this.init();
 
@@ -90,9 +90,11 @@ APIRoutes.prototype.init = function () {
         self.Device_details.performAction(req,res);
     }); 
     self.router.post('/user/:action', sessionCheck, function (req, res) {
-        self.User_details.performAction(req,res);
+        console.log(req.body);
+        self.details.performAction(req,res);
     });
     self.router.post('/msg/:action', sessionCheck, function (req, res) {
+
         self.msg.performAction(req,res);
     });
    
