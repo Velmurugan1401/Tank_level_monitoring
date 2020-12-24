@@ -159,7 +159,7 @@ Boodskap.prototype.executeNamedRule = function (ruleName, args, cbk) {
 
 
 Boodskap.prototype.elasticSearch = function (rid, query, cbk) {
-
+console.log(rid)
     const self = this;
 
     var obj = {
@@ -251,7 +251,35 @@ Boodskap.prototype.elasticInsert = function (rid, data, cbk) {
         headers: { 'content-type': 'text/plain' },
         body: JSON.stringify(data),
     }, function (err, res, body) {
+                     console.log("got it"+err)
+        if (!err) {
 
+            if (res.statusCode === 200) {
+                cbk(true, JSON.parse(res.body))
+            } else {
+                self.logger.error("record insert error in platform =>", res.body)
+                cbk(false, JSON.parse(res.body))
+            }
+        } else {
+            self.logger.error("record insert error in platform =>", err)
+            cbk(false, null)
+        }
+
+    });
+};
+Boodskap.prototype.elasticpush = function (rid, did, dmdl, fwver, data, cbk) {
+console.log(rid);
+console.log(dmdl)
+    const self = this;
+    console.log(data)
+        var mid=rid;
+    request.post({
+        uri: self.API_URL + '/push/json/' + self.DOMAIN_KEY+'/'+self.API_KEY +'/'+did+'/'+dmdl+'/'+fwver+'/'+ rid,
+        headers: { 'content-type': 'text/plain' },
+        body: JSON.stringify(data),
+     }, 
+     function (err, res, body) {
+              console.log(body);
         if (!err) {
 
             if (res.statusCode === 200) {

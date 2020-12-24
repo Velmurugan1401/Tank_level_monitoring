@@ -38,8 +38,27 @@ Common.prototype.commonUpdate = function (tablename, req, res) {
 
     const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
 
+    boodskap.elasticUpdate(tablename, req.query._id, req.body.updateData, function (status, result) {
+        console.log(req.body.updateData)
 
-    boodskap.elasticUpdate(tablename, req.body._id, req.body.updateData, function (status, result) {
+
+        if (status) {
+            res.json({ status: true, result: result });
+        } else {
+            res.json({ status: false, message: result });
+
+        }
+    });
+};
+Common.prototype.commonpush = function (tablename, req, res) {
+
+    const self = this;
+
+    const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
+
+
+    boodskap.elasticpush(tablename, req.body.did,req.body.dmdl,req.body.fwver, req.body, function (status, result) {
+        console.log(status)
 
         if (status) {
             res.json({ status: true, result: result });
