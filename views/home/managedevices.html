@@ -1,7 +1,4 @@
 <style>
-.d-flex{
-    margin-left: 220px;
-}
 .card{
     border-radius: 15px;
 }
@@ -9,19 +6,34 @@
     background-color: #0061f2;
     border-radius: 6px;
 }
+.card-header h5,i{
+  color: #fff;
+}
 .device-table{
     background-color: #fff;
     border-radius: 6px;
 }
+.show label,span{
+  padding-left: 20px;
+  padding-top: 20px;
+}
+.button2{
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 80px;
+}
+.button1{
+    border-radius: 6px;
+    width: 150px;
+    height: 40px;
+}
+.data-Tables_filter{
+float: right;
+}
 
 </style>
-
-
-
-
-
-<div class="d-flex">
-<div class="container">
+<div class="container-fluid">
     <div class="manage-devices">
     <div class="col-md-12">
       <h1>Manage Devices</h1>
@@ -41,8 +53,31 @@
     </div>
     <div class="device-table">
     <div class="col-md-12">
-        <div class="row">
-          <label>show</label>
+        <div class="row show">
+          <div class="col-md-6">
+          <label>Show</label>
+         <select class="button2">
+           <option>10</option>
+           <option>50</option>
+           <option>100</option>
+         </select>
+         <span>entries</span>
+        </div>
+        <div class="data-Tables_filter">
+          <div class="col-md-6">
+          <label>Search:</label>
+          <input type="search" class="form-control form-control">
+            
+          </div>
+        </div>
+      <!-- <div class="col-md-6">
+         <div class="input-group button1">
+          <div class="input-group-text " > <i class="fa fa-search" aria-hidden="true"></i></div>
+          <input type="text"  placeholder="Search">
+          <a href=""class="btn b1"><i class="fa fa-refresh fa fa-2x fa-fw " aria-hidden="true"></i></a>
+          <a href=""class="link"><i class="fa fa-expand ico " aria-hidden="true"></i></a>
+        </div>
+      </div> -->
         </div>
        
         
@@ -80,4 +115,3 @@
     </div>
   </div>
   </div>
-</div>
