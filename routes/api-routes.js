@@ -9,7 +9,7 @@ const Tankstatus = require("../modules/Tank_status");
 const Tankhistory = require("../modules/Tank_history");
 const Device = require("../modules/Device_details");
 const Users = require("../modules/User_details");
-
+const MSG=require("../modules/msg")
 
 
 
@@ -28,7 +28,7 @@ var APIRoutes = function (app,router) {
     this.Tank_history=new Tankhistory(app);
     this.Device_details=new Device(app);
     this.User_details=new Users(app);
-
+    this.msg=new MSG(app)     
     this.init();
 
 };
@@ -92,7 +92,9 @@ APIRoutes.prototype.init = function () {
     self.router.post('/user/:action', sessionCheck, function (req, res) {
         self.User_details.performAction(req,res);
     });
-
+    self.router.post('/msg/:action', sessionCheck, function (req, res) {
+        self.msg.performAction(req,res);
+    });
    
 
     self.app.use(self.app.conf.web.basepath,self.router);

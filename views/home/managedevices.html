@@ -1,117 +1,38 @@
-<style>
-.card{
-    border-radius: 15px;
-}
-.card .card-header{
-    background-color: #0061f2;
-    border-radius: 6px;
-}
-.card-header h5,i{
-  color: #fff;
-}
-.device-table{
-    background-color: #fff;
-    border-radius: 6px;
-}
-.show label,span{
-  padding-left: 20px;
-  padding-top: 20px;
-}
-.button2{
-  margin-left: 20px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  width: 80px;
-}
-.button1{
-    border-radius: 6px;
-    width: 150px;
-    height: 40px;
-}
-.data-Tables_filter{
-float: right;
-}
-
-</style>
 <div class="container-fluid">
-    <div class="manage-devices">
+  <div class="row">
     <div class="col-md-12">
-      <h1>Manage Devices</h1>
-      <hr>
+      <div class="manage-devices">
+        <h1>Manage Devices</h1>
+        <hr/>
+
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="row">
+                <div class="col-md">
+                  <h5>Total Devices:7</h5>
+                </div>
+                <div class="col-md-auto">
+                  <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-header">
+  </div>
           <div class="row">
-          <div class="col-md">
-            <h5>Total Devices:7</h5>
+            <div class="col-md-12">
+              <table
+                class="table table-bordered responsive no-wrap"
+                id="manage-device"
+                cellspacing="0"
+                width="100%" style="border-radius: 10px;"
+              ></table>
+            </div>
           </div>
-          <div class="col-md-auto">
-           <i class="fa fa-arrows-alt" aria-hidden="true"></i>
-          </div>
-        </div>
-    </div>
-    <div class="device-table">
-    <div class="col-md-12">
-        <div class="row show">
-          <div class="col-md-6">
-          <label>Show</label>
-         <select class="button2">
-           <option>10</option>
-           <option>50</option>
-           <option>100</option>
-         </select>
-         <span>entries</span>
-        </div>
-        <div class="data-Tables_filter">
-          <div class="col-md-6">
-          <label>Search:</label>
-          <input type="search" class="form-control form-control">
-            
-          </div>
-        </div>
-      <!-- <div class="col-md-6">
-         <div class="input-group button1">
-          <div class="input-group-text " > <i class="fa fa-search" aria-hidden="true"></i></div>
-          <input type="text"  placeholder="Search">
-          <a href=""class="btn b1"><i class="fa fa-refresh fa fa-2x fa-fw " aria-hidden="true"></i></a>
-          <a href=""class="link"><i class="fa fa-expand ico " aria-hidden="true"></i></a>
-        </div>
-      </div> -->
-        </div>
-       
         
-          <table class="table table-bordered responsive no-wrap" id="device_table" cellspacing="0" width="100%">
-            <thead class="t-head">
-              <th scope="col-md">Device Id</th>
-              <th scope="col-md">Device Model</th>   
-              <th scope="col-md">Version</th>
-              <th scope="col-md">Channel</th>
-              <th scope="col-md">Status</th>   
-              <th scope="col-md">Last Reported Time</th>
-              <th scope="col-md">Created Time</th>
-              <th scope="col-md">Action</th>
-                         
-  
-          </thead>
-          <tbody id="device-table">
-            <tr>
-              <td scope="row">TM-BDSKP-003</td>
-              <td>BDSKP</td>
-              <td>1.0.0</td>
-              <td>HTTP</td>
-              <td>NON-REPORTING</td>
-              <td>06/27/2019</td>
-              <td>06/27/2019</td>
-              
-              <td>EDIT</td>
-              
-           </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      </div>
-    </div>
-  </div>
-  </div>
+      
+</div>
+<script src="js/managedevices.js"></script>

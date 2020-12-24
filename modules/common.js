@@ -49,6 +49,24 @@ Common.prototype.commonUpdate = function (tablename, req, res) {
         }
     });
 };
+Common.prototype.commonpush = function (tablename, req, res) {
+
+    const self = this;
+
+    const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
+
+
+    boodskap.elasticpush(tablename, req.body.did,req.body.dmdl,req.body.fwver, req.body, function (status, result) {
+        console.log(status)
+
+        if (status) {
+            res.json({ status: true, result: result });
+        } else {
+            res.json({ status: false, message: result });
+
+        }
+    });
+};
 
 Common.prototype.commonActions = function (tablename,action,req, res) {
 
