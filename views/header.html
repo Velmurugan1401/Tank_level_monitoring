@@ -5,7 +5,7 @@
   }
   .bg-light {
       /* background-color: #ffffff!important; */
-      background-color: #000D47 !important;
+      background-color:midnightblue !important;
       border-bottom:none !important ;
   }
 
@@ -16,8 +16,10 @@ position: fixed;
 z-index: 1;
 top: 0;
 left: 0;
-background-color: rgb(0,0,0);
-background-color: rgba(0,0,0, 0.8);
+/* background-color: rgb(0,0,0); */
+background-color: midnightblue;
+opacity:1.8;
+/* background-color: rgba(0,0,0, 0.8); */
 overflow-x: hidden;
 transition: 0.5s;
 }
@@ -88,8 +90,8 @@ font-size: 37px;
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-bottom: 4px solid #08c;">
   <a class="navbar-brand" href="#">
-      <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;
-          <img src="images/bdskap-logo.png" style="width:150px;height:42px;padding-left: 15px;">
+      <span style="font-size:30px;cursor:pointer;color:white;" onclick="openNav()">&#9776;
+          <img src="images/boodskap-logo.png" style="width:150px;height:42px;padding-left: 15px;">
       </span></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -98,7 +100,7 @@ font-size: 37px;
 
 <script>
   function openNav() {
-    document.getElementById("myNav").style.width = "18%";
+    document.getElementById("myNav").style.width = "15%";
   }
   
   function closeNav() {
