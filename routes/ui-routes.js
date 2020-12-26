@@ -35,7 +35,7 @@ UIRoutes.prototype.init = function () {
         res.redirect(self.app.conf.web.basepath + '/login');
     });
 
-    self.router.get('/login', function (req, res) {
+    self.router.get('/login',function (req, res) {
 
         var sessionObj = req.session ? req.session['sessionObj']:"";
 
@@ -53,7 +53,7 @@ UIRoutes.prototype.init = function () {
 
     //After Login pages
 
-    self.router.get('/main', function (req, res) {
+    self.router.get('/main',function (req, res) {
 
         res.render('home/dashboard.html', {
             layout: '',
@@ -63,7 +63,7 @@ UIRoutes.prototype.init = function () {
         });
     });
 
-    self.router.get('/home', function (req, res) {
+    self.router.get('/home',function (req, res) {
 
         res.render('home/dashboard.html', {
             layout: false,
@@ -72,7 +72,7 @@ UIRoutes.prototype.init = function () {
             basePath: self.app.conf.web.basepath
         });
     });
-    self.router.get('/tankStatus', sessionCheck, function (req, res) {
+    self.router.get('/tankStatus',function (req, res) {
 
         res.render('home/tankStatus.html', {
             layout: false,
@@ -81,7 +81,7 @@ UIRoutes.prototype.init = function () {
             basePath: self.app.conf.web.basepath
         });
     });
-    self.router.get('/dashboard',   function (req, res) {
+    self.router.get('/dashboard',function (req, res) {
 
         res.render('home/dashboard.html', {
             layout: false,
@@ -90,7 +90,7 @@ UIRoutes.prototype.init = function () {
             basePath: self.app.conf.web.basepath
         });
     });
-    self.router.get('/tanks',   function (req, res) {
+    self.router.get('/tanks',function (req, res) {
 
         res.render('home/managetanks.html', {
             layout: false,
@@ -99,7 +99,7 @@ UIRoutes.prototype.init = function () {
             basePath: self.app.conf.web.basepath
         });
     });
-    self.router.get('/devices',   function (req, res) {
+    self.router.get('/devices',function (req, res) {
 
         res.render('home/managedevices.html', {
             layout: false,
@@ -108,7 +108,7 @@ UIRoutes.prototype.init = function () {
             basePath: self.app.conf.web.basepath
         });
     });
-    self.router.get('/users',   function (req, res) {
+    self.router.get('/users',function (req, res) {
 
         res.render('home/users.html', {
             layout: false,
@@ -117,7 +117,7 @@ UIRoutes.prototype.init = function () {
             basePath: self.app.conf.web.basepath
         });
     });
-    self.router.get('/rawmessages',   function (req, res) {
+    self.router.get('/rawmessages',function (req, res) {
 
         res.render('home/rawmessages.html', {
             layout: false,
