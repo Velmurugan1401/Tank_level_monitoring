@@ -193,6 +193,7 @@ var fileds=[
 
     $(document).ready(function() {
         $('#example').DataTable( {
+             
             data: fileds,
             columns: [
                 { title: "Tank Name" },
@@ -203,6 +204,12 @@ var fileds=[
                 { title: "Updated Time" },
                 { title: "Action" }
             ]
-        } );
-    } );
+        });
+    
+        dom:'l<"toolbar">frtip'
+        initcomplete:function(){
+            $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#exampleModal"> Add Tanks</button>');
+        }
+
+   
 

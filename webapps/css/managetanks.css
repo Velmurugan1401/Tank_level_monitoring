@@ -83,4 +83,8 @@
     background-color: blueviolet;
     border-radius: 5px;
 }
+.toolbar
+{
+    float:right;
+}
 
