@@ -55,7 +55,7 @@ UIRoutes.prototype.init = function () {
 
     self.router.get('/main', function (req, res) {
 
-        res.render('home/dashboard.html', {
+        res.render('home/tankStatus.html', {
             layout: '',
             sessionObj: req.session['sessionObj'],
             config: self.app.conf,
@@ -65,7 +65,7 @@ UIRoutes.prototype.init = function () {
 
     self.router.get('/home', function (req, res) {
 
-        res.render('home/dashboard.html', {
+        res.render('home/tankstatus.html', {
             layout: false,
             sessionObj: req.session['sessionObj'],
             config: self.app.conf,
@@ -74,7 +74,7 @@ UIRoutes.prototype.init = function () {
     });
     self.router.get('/tankStatus', sessionCheck, function (req, res) {
 
-        res.render('home/tankStatus.html', {
+        res.render('home/tankstatus.html', {
             layout: false,
             sessionObj: req.session['sessionObj'],
             config: self.app.conf,
