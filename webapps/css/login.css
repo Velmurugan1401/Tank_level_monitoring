@@ -1,4 +1,4 @@
-.con
+ .con
  {
 	 box-shadow: 0px 0px 5px grey;
  }
@@ -12,6 +12,9 @@
  .main1
  {
 	 height:80vh;
+ }
+ .mani{
+	 background-color: blue;
  }
  .fm
  {
@@ -39,3 +42,9 @@
 	 box-shadow:0px 0px 5px grey;
 	 transition: .5s;
  }
+ .con1
+ {
+	 padding-top: 20px;
+	 padding-bottom: 20px;
+	 
+ } 

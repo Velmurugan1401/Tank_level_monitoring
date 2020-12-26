@@ -5,10 +5,15 @@
     margin-top: 30px;
 
    } */
-.head1{
-    border-bottom: 3px solid rgb(163, 24, 182);
-    padding-bottom: 30px;
+.head{
+    border-bottom: 3px solid #1C3FAA82;
+    /* padding-bottom: 30px; */
    }
+   .span{
+       font-weight: bolder;
+       font-size: 15px;
+   }
+   
 .c1{
     margin-top: 30px;
 }
@@ -29,8 +34,9 @@
     border-radius: 6px;
     width: 150px;
     height: 40px;
-    background-color: violet;
-    border: 2px solid white ;
+    background-color: #1C3FAA;
+    border: 2px solid;
+    color:white;
 }
 .button2{
     border-radius: 6px;
@@ -59,7 +65,7 @@
     
 }
 .la{
-  color: blue;
+ 
   padding: 40px;
 }
 .la1{
@@ -73,3 +79,8 @@
 .la3{
     margin-left: 24px;
 }
+.button{
+    background-color: blueviolet;
+    border-radius: 5px;
+}
+
