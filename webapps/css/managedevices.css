@@ -1,0 +1,16 @@
+
+.card{
+    border-radius: 15px;
+}
+.card .card-header{
+    background-color: #0061f2;
+    border-radius: 6px;
+}
+.card-header h5,i{
+  color: #fff;
+}
+.device-table{
+    background-color: #fff;
+    border-radius: 6px;
+}
+
