@@ -77,7 +77,12 @@
 var fileds=[
     [ "DWF", "large", "12220", "ggg", "2011/04/25", "2020/09/08","delete" ],
     [ "Garrett Winters", "Accountant", "Tokyo", "8422", "2011/07/25", "$170,750","kkk" ],
-    [ "Ashton Cox", "Junior Technical Author", "San Francisco", "1562", "2009/01/12", "$86,000","sss" ]
+    [ "Ashton Cox", "Junior Technical Author", "San Francisco", "1562", "2009/01/12", "$86,000","sss" ],
+    [ "DWF", "large", "12220", "ggg", "2011/04/25", "2020/09/08","delete" ],
+    [ "Garrett Winters", "Accountant", "Tokyo", "8422", "2011/07/25", "$170,750","kkk" ],
+    [ "Ashton Cox", "Junior Technical Author", "San Francisco", "1562", "2009/01/12", "$86,000","sss" ],
+
+    
 ];
 
     $(document).ready(function() {
