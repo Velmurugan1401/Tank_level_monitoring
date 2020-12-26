@@ -6,6 +6,7 @@ var Tables = require("../modules/tables");
 var Student = require("../modules/student");
 const Tank = require("../modules/Tank_details");
 const Tankstatus = require("../modules/Tank_status");
+const EventTrigger = require("../modules/event_trigger");
 const Tankhistory = require("../modules/Tank_history");
 const Device = require("../modules/Device_details");
 const Users = require("../modules/User_details");
@@ -25,6 +26,7 @@ var APIRoutes = function (app,router) {
     this.student = new Student(app);
     this.tank=new Tank(app);
     this.Tank_status=new Tankstatus(app);
+    this.event_trigger=new EventTrigger(app);
     this.Tank_history=new Tankhistory(app);
     this.Device_details=new Device(app);
     this.details=new Users(app);
@@ -86,6 +88,9 @@ APIRoutes.prototype.init = function () {
     self.router.post('/tankhistory/:action', sessionCheck, function (req, res) {
         self.Tank_history.performAction(req,res);
     }); 
+    self.router.post('/eventtrigger/:action', sessionCheck, function (req, res) {
+        self.event_trigger.performAction(req,res);
+    });
     self.router.post('/device/:action', sessionCheck, function (req, res) {
         self.Device_details.performAction(req,res);
     }); 
