@@ -1,4 +1,4 @@
-.row .row1 {
+.row1 {
   background-color: white;
   padding-top: 25px;
   border-top-left-radius: 20px;
@@ -9,26 +9,22 @@
   color: mediumblue;
   font-weight: 500;
 }
-.row .row2 {
+.row.row2 {
   background-color: gainsboro;
-  padding-top: 20px;
+  padding-top: 10px;
   padding-left: 20px;
   height: 60px;
-  border-bottom: 1px solid lightgrey;
-  /* height: 60px; */
 }
-.row .row3 {
-  background-color: white;
+.span1 {
+  margin-top: 12px;
+}
+.row3 {
   border-bottom-left-radius: 20px;
   padding-bottom: 70px;
   border-bottom-right-radius: 20px;
+  background-color: white;
   padding-left: 20px;
 }
 .toolbar {
-  float:right;
+  float: right;
 }
-.form-control{
-    width: 120px;
-}
-
-
