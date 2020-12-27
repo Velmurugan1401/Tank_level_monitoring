@@ -91,7 +91,7 @@ APIRoutes.prototype.init = function () {
     self.router.post('/eventtrigger/:action', sessionCheck, function (req, res) {
         self.event_trigger.performAction(req,res);
     });
-    self.router.post('/device/:action', sessionCheck, function (req, res) {
+    self.router.get('/device/:action', sessionCheck, function (req, res) {
         self.Device_details.performAction(req,res);
     }); 
     self.router.post('/user/:action', sessionCheck, function (req, res) {

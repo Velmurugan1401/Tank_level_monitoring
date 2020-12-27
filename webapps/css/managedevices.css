@@ -1,16 +1,30 @@
-
-.card{
-    border-radius: 15px;
+.row1 {
+  background-color: white;
+  padding-top: 25px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 20px;
 }
-.card .card-header{
-    background-color: #0061f2;
-    border-radius: 6px;
+.title-span3 {
+  color: mediumblue;
+  font-weight: 500;
 }
-.card-header h5,i{
-  color: #fff;
+.row.row2 {
+  background-color: gainsboro;
+  padding-top: 10px;
+  padding-left: 20px;
+  height: 60px;
 }
-.device-table{
-    background-color: #fff;
-    border-radius: 6px;
+.span1 {
+  margin-top: 12px;
 }
-
+.row3 {
+  border-bottom-left-radius: 20px;
+  padding-bottom: 70px;
+  border-bottom-right-radius: 20px;
+  background-color: white;
+  padding-left: 20px;
+}
+.toolbar {
+  float: right;
+}

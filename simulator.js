@@ -17,9 +17,7 @@ let obj = {
 
     "tank_level": " ",
     "unit": "gallon",
-
-
-    "power_status": "Active"
+ "power_status": "Active"
 }
 
 
@@ -52,7 +50,7 @@ app.get("/", (req, res) => {
             })
         }
 
-    }, 3000)
+    }, 60000)
 
 
 
