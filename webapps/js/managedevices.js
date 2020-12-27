@@ -97,7 +97,7 @@ $(document).ready(function() {
         dom:'1<"toolbar">frtip',
         initComplete : function(){
             $("div.toolbar").html('<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-plus-square" style="color: black;"aria-hidden="true"></i>Add Devices</button><button type="button" class="btn btn-secondary" data-toggle="modal"><i class="fa fa-refresh" style="color: black;" aria-hidden="true"></i></button>');
-        }
+        },
     } );
 } );
 

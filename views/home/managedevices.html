@@ -1,71 +1,97 @@
 <div class="container-fluid">
-  <div class="row">
+  <div class="row row1">
     <div class="col-md-12">
-      <div class="manage-devices">
-        <h1>Manage Devices</h1>
-        <hr/>
+      <span class="title-span1">Administration</span>
+      <span class="title-span2">|</span>
+      <span class="title-span3">Manage Devices</span>
+    </div>
+  </div>
 
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-header">
-              <div class="row">
-                <div class="col-md">
-                  <h5>Total Devices:7</h5>
-                </div>
-                <!-- <div class="col-md-auto">
+  <div class="row row2">
+    <div class="col-md-6">
+      <span>Total Devices: </span>
+      <span style="font-weight: 500">7</span>
+    </div>
+    <!-- <div class="col-md-6">
                   <i class="fa fa-arrows-alt" aria-hidden="true"></i>
                 </div> -->
-              </div>
-            </div>
-          </div>
+  </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="exampleModalCenter"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Add New Device</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <label for="text">Device Id</label>
+            <input type="text" class="form-control"><br>
+            <label for="text">Device Model</label>
+            <input type="text" class="form-control"><br>
+            <label for="number">Version</label>
+            <input type="text" class="form-control"><br>
+            <label for="text">Channel</label>
+            <input type="text" class="form-control"><br>
+            <label for="text">Status</label>
+            <input type="text" class="form-control">
+          <!-- <lable class="form1">Device Id</lable>
+          <input type="text"class="la1"><br>
+          <lable class="form1" >Device Model</lable>
+          <input type="text"class="la1"><br>
+          <lable class="form1" >Version</lable>
+          <input type="number"class="la1"><br>
+          <lable class="form1">Channel</lable>
+          <input type="text"class="la1"><br>
+          <lable class="form1">status</lable>
+          <input type="text"class="la1"> -->
+          
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Cancel
+          </button>
+          <button type="button" class="btn btn-primary">Add Device</button>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- Button trigger modal
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  Add Devices
-</button>
-
-<!-- Modal -->
- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div> 
-          <div class="row">
-            <div class="col-md-12">
-              <table
-                class="table table-bordered responsive no-wrap"
-                id="manage-device"
-                cellspacing="0"
-                width="100%"
-              >
-              <!-- <div class="input-group-prepend">
+  <div class="row row3">
+    <div class="col-md-12">
+      <table
+        class="table table-bordered responsive no-wrap"
+        id="manage-device"
+        cellspacing="0"
+        width="100%"
+      >
+        <!-- <div class="input-group-prepend">
                 <div class="input-group-text" id="btnGroupAddon"><i class="fa fa-plus-square" style="color: black;"aria-hidden="true"></i>Add Device</div>
               <div class="input-group-prepend">
                   <div class="input-group-text" id="btnGroupAddon"><i class="fa fa-refresh" style="color: black;" aria-hidden="true"></i></div>
           </div>
               </div> -->
-            </table>
-            </div>
-          </div>
-        </div>
-      <!-- end -->
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- end -->
 
 <script src="js/managedevices.js"></script>

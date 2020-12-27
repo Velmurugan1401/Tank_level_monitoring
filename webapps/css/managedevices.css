@@ -1,20 +1,31 @@
-
-.card{
-    border-radius: 15px;
+.row .row1 {
+  background-color: white;
+  padding-top: 25px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 20px;
 }
-.card .card-header{
-    background-color: #0061f2;
-    border-radius: 6px;
+.title-span3 {
+  color: mediumblue;
+  font-weight: 500;
 }
-.card-header h5,i{
-  color: #fff;
+.row .row2 {
+  background-color: gainsboro;
+  padding-top: 20px;
+  padding-left: 20px;
+  height: 60px;
 }
-.device-table{
-    background-color: #fff;
-    border-radius: 6px;
+.row .row3 {
+  background-color: white;
+  border-bottom-left-radius: 20px;
+  padding-bottom: 70px;
+  border-bottom-right-radius: 20px;
 }
-.toolbar{
-    float:right;
+.toolbar {
+  float:right;
+}
+.form-control{
+    width: 120px;
 }
 
 
