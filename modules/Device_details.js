@@ -22,7 +22,8 @@ Device.prototype.performAction = function (req,res){
         self.common.commonDelete(self.table.DEVICE_TABLE,req,res);
     }
     else if(req.params.action === 'list'){
-        self.common.commonSearch(self.table.DEVICE_TABLE,req,res);
+        console.log("now",req.body)
+        self.common.commonDevice(req,res);
     }
     else{
         res.status(401).json({status:false,message:'Invalid Access'})

@@ -30,6 +30,24 @@ Common.prototype.commonSearch = function (tablename, req, res) {
     });
 
 };
+// device=========================================================
+Common.prototype.commonDevice = function ( req, res) {
+
+    const self = this;
+
+    const boodskap = new Boodskap(self.app, req.token);
+
+    boodskap.deviceSearch( function (status, result) {
+
+        if (status) {
+            res.json({ status: true, result: result });
+        } else {
+            res.json({ status: false, message: result });
+
+        }
+    });
+
+};
 
 
 Common.prototype.commonUpdate = function (tablename, req, res) {
