@@ -14,12 +14,15 @@
   padding-top: 20px;
   padding-left: 20px;
   height: 60px;
+  border-bottom: 1px solid lightgrey;
+  /* height: 60px; */
 }
 .row .row3 {
   background-color: white;
   border-bottom-left-radius: 20px;
   padding-bottom: 70px;
   border-bottom-right-radius: 20px;
+  padding-left: 20px;
 }
 .toolbar {
   float:right;
