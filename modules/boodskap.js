@@ -53,12 +53,12 @@ Boodskap.prototype.login = function (req, res) {
                 domainKey: result.domainKey,
                 apiKey: result.apiKey,
             };
-            console.log(sessionObj);
+           
 
 
                           
             req.session['sessionObj'] = sessionObj;
-            console.log(req.session.sessionObj);
+            
 
 
             res.json({ login: true, sessionObj:sessionObj});

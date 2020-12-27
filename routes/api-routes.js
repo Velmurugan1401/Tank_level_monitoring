@@ -46,7 +46,7 @@ APIRoutes.prototype.init = function () {
     
 
         var sessionObj = req.session['sessionObj'];
-          console.log("sessionCheck",sessionObj)               
+                    
         if (sessionObj && sessionObj.token) {
 
 
@@ -78,7 +78,7 @@ APIRoutes.prototype.init = function () {
         self.student.performAction(req,res);
     });
     self.router.post('/tank/:action', sessionCheck, function (req, res) {
-        console.log(req.body)
+      
        
         self.tank.performAction(req,res);
     });
@@ -95,7 +95,7 @@ APIRoutes.prototype.init = function () {
         self.Device_details.performAction(req,res);
     }); 
     self.router.post('/user/:action', sessionCheck, function (req, res) {
-        console.log(req.body)
+       
         self.User_details.performAction(req,res);
     });
     self.router.post('/msg/:action', sessionCheck, function (req, res) {
