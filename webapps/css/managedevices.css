@@ -1,16 +1,30 @@
+ .row1 {
+    background-color:white;
+    padding-top: 25px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px; 
+    padding: 20px;
+  }
+  .title-span3 {
+    color: mediumblue;
+    font-weight: 500;
+  }
+.row.row2 {
+    background-color: gainsboro; 
+    
+  } 
+   .row3 {
+    border-bottom-left-radius: 20px;
+    padding-bottom: 70px;
+    border-bottom-right-radius: 20px;
+    background-color: white;
+    padding-left: 20px;
+  }
+  .toolbar {
+    float:right;
+  }
+ 
 
-.card{
-    border-radius: 15px;
-}
-.card .card-header{
-    background-color: #0061f2;
-    border-radius: 6px;
-}
-.card-header h5,i{
-  color: #fff;
-}
-.device-table{
-    background-color: #fff;
-    border-radius: 6px;
-}
-
+  
+  
+  
