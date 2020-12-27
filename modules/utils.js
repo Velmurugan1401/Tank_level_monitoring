@@ -195,6 +195,28 @@ Utils.prototype.elasticQueryFormatter = function (data) {
     }
 
 };
+// device list======================================================
+
+Utils.prototype.elasticDeviceFormatter = function (data) {
+    console.log("==================",data)
+
+    var resultObj = {
+        total: 0,
+        data: {},
+        
+    }
+        var totalRecords =  data.length;
+       
+ resultObj = {
+            "total": totalRecords,
+            "data": {
+                "data": data
+            }
+        }
+
+        return resultObj;
+
+};
 
 
 Utils.prototype.getCallerIP = function (request) {

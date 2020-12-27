@@ -30,24 +30,24 @@ Common.prototype.commonSearch = function (tablename, req, res) {
     });
 
 };
+// device=========================================================
+Common.prototype.commonDevice = function ( req, res) {
 
-// Common.prototype.commonDevice = function (tablename, req, res) {
+    const self = this;
 
-//     const self = this;
+    const boodskap = new Boodskap(self.app, req.token);
 
-//     const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
+    boodskap.deviceSearch( function (status, result) {
 
-//     boodskap.deviceSearch(tablename, req.body.query, function (status, result) {
+        if (status) {
+            res.json({ status: true, result: result });
+        } else {
+            res.json({ status: false, message: result });
 
-//         if (status) {
-//             res.json({ status: true, result: result });
-//         } else {
-//             res.json({ status: false, message: result });
+        }
+    });
 
-//         }
-//     });
-
-// };
+};
 
 
 Common.prototype.commonUpdate = function (tablename, req, res) {

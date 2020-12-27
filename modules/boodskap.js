@@ -156,31 +156,37 @@ Boodskap.prototype.executeNamedRule = function (ruleName, args, cbk) {
 
     });
 };
-// Boodskap.prototype.deviceSearch= function ( cbk){
-//     request.post({
-//         uri: self.API_URL + '/device/list/' + self.API_TOKEN+"10",
-//         headers: { 'content-type': 'application/json' },
+// Device search API==============================================
+
+Boodskap.prototype.deviceSearch= function ( cbk){
+    const self = this;
+    var d=10;
+   var url=`${self.API_URL}/device/list/${self.API_TOKEN}/${d}`;
+    request.get({
+        uri:url,
       
 
-//     }, function (err, res, body) {
+    }, function (err, res, body) {
 
-//         if (!err) {
+        if (!err) {
+            console.log(body)
 
-//             if (res.statusCode === 200) {
-//                 var resultObj = self.utils.elasticQueryFormatter(JSON.parse(res.body))
-//                 cbk(true, resultObj)
-//             } else {
-//                 self.logger.error("record search error in platform =>", res.body)
-//                 cbk(false, JSON.parse(res.body))
-//             }
-//         } else {
-//             self.logger.error("record search error in platform =>", err)
-//             cbk(false, null)
-//         }
 
-//     });
+            if (res.statusCode === 200) {
+                var resultObj = self.utils.elasticDeviceFormatter(JSON.parse(body))
+                cbk(true, resultObj)
+            } else {
+                self.logger.error("record search error in platform =>", body)
+                cbk(false, JSON.parse(body))
+            }
+        } else {
+            self.logger.error("record search error in platform =>", err)
+            cbk(false, null)
+        }
 
-// }
+    });
+
+}
 
 Boodskap.prototype.elasticSearch = function (rid, query, cbk) {
 console.log(rid)
