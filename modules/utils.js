@@ -146,6 +146,7 @@ Utils.prototype.dbQueryFormatter = function (data) {
 };
 
 Utils.prototype.elasticQueryFormatter = function (data) {
+    console.log("incoming" ,data)
 
     var resultObj = {
         total: 0,
@@ -154,7 +155,7 @@ Utils.prototype.elasticQueryFormatter = function (data) {
     }
 
     if (data.httpCode === 200) {
-
+ s
         var arrayData = JSON.parse(data.result);
 
         var totalRecords = arrayData.hits.total ? arrayData.hits.total.value : 0;
@@ -186,7 +187,7 @@ Utils.prototype.elasticQueryFormatter = function (data) {
             },
             aggregations: aggregations
         }
-
+            console.log("it is return " ,resultObj)                 
         return resultObj;
 
     } else {

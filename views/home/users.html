@@ -8,8 +8,7 @@
           <span class="title-span" style="color: mediumblue;font-weight: 500;">Users</span>
       </div>
     </div>
-  <div class="row section2 containflui p-2" style="height: 60px;
-  border-bottom: 1px solid lightgrey;">
+  <div class="row section2 containflui p-2" style="background-color:#DCDCDC">
     <div class="col-md-3">
       <div style="margin-top: 12px;">
          <span>Total Users: </span>
@@ -19,9 +18,10 @@
     <div class="col-md-9 one" style="text-align:right">     
           <button
             type="button"
-            class="btn btn-primary"
+            class="btn"
             data-toggle="modal"
             data-target="#myModal"
+            style="background-color:#1C3FAA; color: white;"
           >
             <i class="fa fa-user-plus p-2" aria-hidden="true"></i>Add New User
           </button>
@@ -54,11 +54,10 @@
                     aria-label="Lastname"
                   />
                   <input  class="form-control form-control-sm w-100 mt-3" type="tel" id="phone" name="phone"
-               pattern="[0-9]{10}"
                placeholder="Enter your mobile no"
                aria-label="Mobile"
                 class="form-control form-control-sm w-100 mt-3"
-               required>
+              >
                   <input
                     class="form-control form-control-sm w-100 mt-3"
                     type="text"
@@ -80,7 +79,7 @@
                 </div>
 
                 <!-- <div class="modal-footer"> -->
-                <div class="foot">
+                <!-- <div class="foot">
                   <div class="row mb-5">
                     <div class="col-md-2"></div>
                     <div class="col-md-8" style="text-align:center;">
@@ -94,6 +93,10 @@
                     </div>
                     <div class="col-md-2"></div>
                   </div>
+                </div> -->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-success">Add User</button>
                 </div>
                 <!-- </div> -->
               </div>

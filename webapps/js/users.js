@@ -68,17 +68,17 @@ function loadUsersList() {
 
     var fields = [
         {
-            mData: 'first_name',
-            sTitle: 'First Name',
-            sWidth: '20%',
+            mData:'first_name',
+            sTitle:'First Name',
+            sWidth:'20%',
             orderable: false,
             mRender: function (data, type, row) {
                 return data;
             }
         },
         {
-            mData: 'last_name',
-            sTitle: ' Last Name',
+            mData:'last_name',
+            sTitle:'Last Name',
             sWidth: '20%',
             orderable: false,
             mRender: function (data, type, row) {
@@ -87,27 +87,27 @@ function loadUsersList() {
         },
 
         {
-            mData: 'mobile_no',
-            sWidth: '20%',
-            sTitle: 'Mobile No',
+            mData:'mobile_no',
+            sWidth:'20%',
+            sTitle:'Mobile No',
             orderable: false,
             mRender: function (data, type, row) {
                 return data;
             }
         },
         {
-          mData: 'email_id ',
+          mData:'email_id',
           sWidth: '20%',
-          sTitle: 'Email Id',
+          sTitle:'Email Id',
           orderable: false,
           mRender: function (data, type, row) {
               return data;
           }
       },
       {
-        mData: 'location ',
+        mData:'location',
         sWidth: '20%',
-        sTitle: 'Location',
+        sTitle:'Location',
         orderable: false,
         mRender: function (data, type, row) {
             return data;
@@ -189,6 +189,7 @@ function loadUsersList() {
                 "contentType": 'application/json',
                 "type": "POST",
                 "url": sSource,
+               
                 "data": JSON.stringify({"query":queryParams}),
                 success: function (data) {
 
@@ -203,7 +204,11 @@ function loadUsersList() {
                 }
             });
         },
+        // dom:'l<"toolbar">frtip',
+        
         "initComplete": function (settings, json) {
+            // $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-plus-square icons" style="color:white";"aria-hidden="true"></i>Add Tanks</button>');
+      
         }
     };
 
