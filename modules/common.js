@@ -22,45 +22,63 @@ Common.prototype.commonSearch = function (tablename, req, res) {
     boodskap.elasticSearch(tablename, req.body.query, function (status, result) {
 
         if (status) {
-            res.json({ status: true, result: result });
+            res.json({
+                status: true,
+                result: result
+            });
         } else {
-            res.json({ status: false, message: result });
+            res.json({
+                status: false,
+                message: result
+            });
 
         }
     });
 
 };
 // device=========================================================
-Common.prototype.commonDevice = function ( req, res) {
+Common.prototype.commonDevice = function (req, res) {
 
     const self = this;
 
     const boodskap = new Boodskap(self.app, req.token);
 
-    boodskap.deviceSearch( function (status, result) {
+    boodskap.deviceSearch(function (status, result) {
 
         if (status) {
-            res.json({ status: true, result: result });
+            res.json({
+                status: true,
+                result: result
+            });
         } else {
-            res.json({ status: false, message: result });
+            res.json({
+                status: false,
+                message: result
+            });
 
         }
     });
 
 };
 // RAW common=====================
-Common.prototype.RAWMsg = function ( req, res) {
+Common.prototype.RAWMsg = function (req, res) {
 
     const self = this;
 
     const boodskap = new Boodskap(self.app, req.token);
 
-    boodskap.RawMsgSearch( function (status, result) {
+    boodskap.RawMsgSearch(function (status, result) {
 
         if (status) {
-            res.json({ status: true, result: result });
+            res.json({
+                status: true,
+                result: result
+            });
         } else {
-            res.json({ status: false, message: result });
+            res.json({
+                status: false,
+                message: result
+            });
 
         }
     });
@@ -79,9 +97,15 @@ Common.prototype.commonUpdate = function (tablename, req, res) {
 
 
         if (status) {
-            res.json({ status: true, result: result });
+            res.json({
+                status: true,
+                result: result
+            });
         } else {
-            res.json({ status: false, message: result });
+            res.json({
+                status: false,
+                message: result
+            });
 
         }
     });
@@ -93,22 +117,28 @@ Common.prototype.commonpush = function (tablename, req, res) {
     const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
 
 
-    boodskap.elasticpush(tablename, req.body.did,req.body.dmdl,req.body.fwver, req.body, function (status, result) {
+    boodskap.elasticpush(tablename, req.body.did, req.body.dmdl, req.body.fwver, req.body, function (status, result) {
         console.log(status)
 
         if (status) {
-            res.json({ status: true, result: result });
+            res.json({
+                status: true,
+                result: result
+            });
         } else {
-            res.json({ status: false, message: result });
+            res.json({
+                status: false,
+                message: result
+            });
 
         }
     });
 };
 
-Common.prototype.commonActions = function (tablename,action,req, res) {
+Common.prototype.commonActions = function (tablename, action, req, res) {
 
     const self = this;
-    
+
     var sObj = {}
     sObj['data'] = req.body
     sObj['action'] = action
@@ -117,9 +147,15 @@ Common.prototype.commonActions = function (tablename,action,req, res) {
     var boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
     boodskap.executeNamedRule(self.table.COMMON_CRUD_OPERATIONS_RULE, sObj, function (status, result) {
         if (status) {
-            res.json({ status: status, result: result });
+            res.json({
+                status: status,
+                result: result
+            });
         } else {
-            res.json({ status: status, result: result });
+            res.json({
+                status: status,
+                result: result
+            });
         }
 
     })
@@ -140,10 +176,16 @@ Common.prototype.testAction = function (req, res) {
     var boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
     boodskap.executeNamedRule(self.table.TEST_RULE, sObj, function (status, result) {
         if (status) {
-            res.json({ status: status, result: result });
+            res.json({
+                status: status,
+                result: result
+            });
         } else {
 
-            res.json({ status: status, result: result });
+            res.json({
+                status: status,
+                result: result
+            });
         }
 
     })
@@ -151,8 +193,8 @@ Common.prototype.testAction = function (req, res) {
 };
 
 Common.prototype.commonAdd = function (tablename, req, res) {
-   
-   
+
+
     const self = this;
 
     const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
@@ -160,9 +202,15 @@ Common.prototype.commonAdd = function (tablename, req, res) {
     boodskap.elasticInsert(tablename, req.body, function (status, result) {
 
         if (status) {
-            res.json({ status: true, result: result });
+            res.json({
+                status: true,
+                result: result
+            });
         } else {
-            res.json({ status: false, message: result });
+            res.json({
+                status: false,
+                message: result
+            });
 
         }
     });
@@ -174,12 +222,18 @@ Common.prototype.commonDelete = function (tablename, req, res) {
 
     const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
 
-    boodskap.elasticDelete(tablename, req.body._id,function (status, result) {
+    boodskap.elasticDelete(tablename, req.body._id, function (status, result) {
 
-        if(status){
-            res.json({status: true, result: result});
-        }else{
-            res.json({status: false, message: result});
+        if (status) {
+            res.json({
+                status: true,
+                result: result
+            });
+        } else {
+            res.json({
+                status: false,
+                message: result
+            });
         }
     });
 

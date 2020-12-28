@@ -53,21 +53,28 @@ Boodskap.prototype.login = function (req, res) {
                 domainKey: result.domainKey,
                 apiKey: result.apiKey,
             };
-           
 
 
-                          
+
+
             req.session['sessionObj'] = sessionObj;
-            
 
 
-            res.json({ login: true, sessionObj:sessionObj});
-           
+
+            res.json({
+                login: true,
+                sessionObj: sessionObj
+            });
+
 
         } else {
 
             self.clearSession(req)
-            res.json({ login: false, message: 'Error in Authenticating with Platform API', error: result })
+            res.json({
+                login: false,
+                message: 'Error in Authenticating with Platform API',
+                error: result
+            })
         }
     });
 
@@ -86,7 +93,9 @@ Boodskap.prototype.doLogin = function (data, cbk) {
 
     request.post({
         uri: self.API_URL + '/domain/login',
-        headers: { 'content-type': 'application/json' },
+        headers: {
+            'content-type': 'application/json'
+        },
         body: JSON.stringify(data),
     }, function (err, res, body) {
 
@@ -115,7 +124,9 @@ Boodskap.prototype.logout = function (req, cbk) {
 
     request.get({
         uri: self.API_URL + '/domain/logout/' + self.API_TOKEN,
-        headers: { 'content-type': 'application/json' },
+        headers: {
+            'content-type': 'application/json'
+        },
     }, function (err, res, body) {
         req.session.destroy();
         cbk(true);
@@ -133,8 +144,10 @@ Boodskap.prototype.executeNamedRule = function (ruleName, args, cbk) {
         "scriptArgs": args
     };
     request.post({
-        uri: self.API_URL +"/call/v2/execute/rule/"+ self.API_TOKEN,
-        headers: { 'content-type': 'application/json' },
+        uri: self.API_URL + "/call/v2/execute/rule/" + self.API_TOKEN,
+        headers: {
+            'content-type': 'application/json'
+        },
         body: JSON.stringify(templateObj),
     }, function (err, res, body) {
 
@@ -158,13 +171,13 @@ Boodskap.prototype.executeNamedRule = function (ruleName, args, cbk) {
 };
 // Device search API==============================================
 
-Boodskap.prototype.deviceSearch= function ( cbk){
+Boodskap.prototype.deviceSearch = function (cbk) {
     const self = this;
-    var d=10;
-   var url=`${self.API_URL}/device/list/${self.API_TOKEN}/${d}`;
+    var d = 10;
+    var url = `${self.API_URL}/device/list/${self.API_TOKEN}/${d}`;
     request.get({
-        uri:url,
-      
+        uri: url,
+
 
     }, function (err, res, body) {
 
@@ -189,18 +202,18 @@ Boodskap.prototype.deviceSearch= function ( cbk){
 }
 // RAW msg====================================
 
-Boodskap.prototype.RawMsgSearch= function ( cbk){
+Boodskap.prototype.RawMsgSearch = function (cbk) {
     const self = this;
-    var d=100;
-   var url=`${self.API_URL}/message/list/${self.API_TOKEN}/${d}`;
+    var d = 100;
+    var url = `${self.API_URL}/message/list/${self.API_TOKEN}/${d}`;
     request.get({
-        uri:url,
-      
+        uri: url,
+
 
     }, function (err, res, body) {
 
         if (!err) {
-            
+
 
             if (res.statusCode === 200) {
                 var resultObj = self.utils.elasticDeviceFormatter(JSON.parse(body))
@@ -219,7 +232,7 @@ Boodskap.prototype.RawMsgSearch= function ( cbk){
 }
 
 Boodskap.prototype.elasticSearch = function (rid, query, cbk) {
-console.log(rid)
+    console.log(rid)
     const self = this;
 
     var obj = {
@@ -233,7 +246,9 @@ console.log(rid)
 
     request.post({
         uri: self.API_URL + '/elastic/search/query/' + self.API_TOKEN,
-        headers: { 'content-type': 'application/json' },
+        headers: {
+            'content-type': 'application/json'
+        },
         body: JSON.stringify(obj),
 
     }, function (err, res, body) {
@@ -260,7 +275,9 @@ Boodskap.prototype.elasticUpdate = function (rid, rkey, data, cbk) {
 
     request.post({
         uri: self.API_URL + '/record/insert/static/' + self.API_TOKEN + '/' + rid + '/' + rkey,
-        headers: { 'content-type': 'text/plain' },
+        headers: {
+            'content-type': 'text/plain'
+        },
         body: JSON.stringify(data),
     }, function (err, res, body) {
 
@@ -284,20 +301,20 @@ Boodskap.prototype.elasticDelete = function (rid, rkey, cbk) {
     const self = this;
 
     request.delete({
-        uri: self.API_URL + '/record/delete/' + self.API_TOKEN +'/'+rid +'/'+rkey,
+        uri: self.API_URL + '/record/delete/' + self.API_TOKEN + '/' + rid + '/' + rkey,
     }, function (err, res, body) {
 
-        if(!err) {
+        if (!err) {
 
             if (res.statusCode === 200) {
                 cbk(true, JSON.parse(res.body))
             } else {
-                self.logger.error("record delete error in platform =>",res.body)
-                cbk(false,JSON.parse(res.body))
+                self.logger.error("record delete error in platform =>", res.body)
+                cbk(false, JSON.parse(res.body))
             }
-        }else{
-            self.logger.error("record delete error in platform =>",err)
-            cbk(false,null)
+        } else {
+            self.logger.error("record delete error in platform =>", err)
+            cbk(false, null)
         }
 
     });
@@ -308,10 +325,12 @@ Boodskap.prototype.elasticInsert = function (rid, data, cbk) {
 
     request.post({
         uri: self.API_URL + '/record/insert/dynamic/' + self.API_TOKEN + '/' + rid,
-        headers: { 'content-type': 'text/plain' },
+        headers: {
+            'content-type': 'text/plain'
+        },
         body: JSON.stringify(data),
     }, function (err, res, body) {
-                     console.log("got it"+err)
+        console.log("got it" + err)
         if (!err) {
 
             if (res.statusCode === 200) {
@@ -328,30 +347,32 @@ Boodskap.prototype.elasticInsert = function (rid, data, cbk) {
     });
 };
 Boodskap.prototype.elasticpush = function (rid, did, dmdl, fwver, data, cbk) {
-console.log(rid);
-console.log(dmdl)
+    console.log(rid);
+    console.log(dmdl)
     const self = this;
     console.log(data)
-        var mid=rid;
+    var mid = rid;
     request.post({
-        uri: self.API_URL + '/push/json/' + self.DOMAIN_KEY+'/'+self.API_KEY +'/'+did+'/'+dmdl+'/'+fwver+'/'+ rid,
-        headers: { 'content-type': 'text/plain' },
-        body: JSON.stringify(data),
-     }, 
-     function (err, res, body) {
-              console.log(body);
-        if (!err) {
+            uri: self.API_URL + '/push/json/' + self.DOMAIN_KEY + '/' + self.API_KEY + '/' + did + '/' + dmdl + '/' + fwver + '/' + rid,
+            headers: {
+                'content-type': 'text/plain'
+            },
+            body: JSON.stringify(data),
+        },
+        function (err, res, body) {
+            console.log(body);
+            if (!err) {
 
-            if (res.statusCode === 200) {
-                cbk(true, JSON.parse(res.body))
+                if (res.statusCode === 200) {
+                    cbk(true, JSON.parse(res.body))
+                } else {
+                    self.logger.error("record insert error in platform =>", res.body)
+                    cbk(false, JSON.parse(res.body))
+                }
             } else {
-                self.logger.error("record insert error in platform =>", res.body)
-                cbk(false, JSON.parse(res.body))
+                self.logger.error("record insert error in platform =>", err)
+                cbk(false, null)
             }
-        } else {
-            self.logger.error("record insert error in platform =>", err)
-            cbk(false, null)
-        }
 
-    });
+        });
 };
