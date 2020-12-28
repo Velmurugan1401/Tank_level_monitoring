@@ -17,7 +17,7 @@ function loadDeviceList() {
 
     var fields = [
         {
-            mData: 'device_id',
+            mData: 'id',
             sTitle: 'Device Name',
             sWidth: '20%',
             orderable: false,
@@ -26,7 +26,7 @@ function loadDeviceList() {
             }
         },
         {
-            mData: 'device_model',
+            mData: 'modelId',
             sTitle: 'Device Model',
             sWidth: '20%',
             orderable: false,
@@ -36,7 +36,7 @@ function loadDeviceList() {
         },
 
         {
-            mData: 'device_version',
+            mData: 'version',
             sWidth: '20%',
             sTitle: 'Device Version',
             orderable: false,
@@ -45,35 +45,17 @@ function loadDeviceList() {
             }
         },
         {
-            mData: 'power_status',
-            sWidth: '20%',
-            sTitle: 'Power Status',
-            orderable: false,
+            mData: 'registeredStamp',
+            sTitle: 'Reported Time',
+            "className": 'sortingtable',
             mRender: function (data, type, row) {
-                return data;
+                return moment(data).format(DATE_TIME_FORMAT);
             }
         },
-        {
-            mData: 'tank_level',
-            sWidth: '20%',
-            sTitle: 'Tank Level',
-            orderable: false,
-            mRender: function (data, type, row) {
-                return data;
-            }
-        },
-        {
-            mData: 'unit',
-            sWidth: '20%',
-            sTitle: 'Unit',
-            orderable: false,
-            mRender: function (data, type, row) {
-                return data;
-            }
-        },
-       
+        
        
     ];
+    
 
     var queryParams = {
         query: {
@@ -125,19 +107,19 @@ function loadDeviceList() {
             var searchText = oSettings.oPreviousSearch.sSearch.trim();
 
             if (searchText) {
-                queryParams.query['bool']['should'].push({ "wildcard": { "device_id": "*" + searchText + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "device_id": "*" + searchText.toLowerCase() + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "device_id": "*" + searchText.toUpperCase() + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "device_id": "*" + capitalizeFLetter(searchText) + "*" } })
+                queryParams.query['bool']['should'].push({ "wildcard": { "id": "*" + searchText + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "id": "*" + searchText.toLowerCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "id": "*" + searchText.toUpperCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "id": "*" + capitalizeFLetter(searchText) + "*" } })
                 queryParams.query['bool']["minimum_should_match"] = 1;
                 queryParams.query['bool']['should'].push({
                     "match_phrase": {
-                        "device_id.keyword": "*" + searchText + "*"
+                        "id.keyword": "*" + searchText + "*"
                     }
                 })
                 queryParams.query['bool']['should'].push({
                     "match_phrase_prefix": {
-                        "device_id.keyword": {
+                        "id.keyword": {
                             "query": "*" + searchText + "*"
                         }
                     }
@@ -147,7 +129,7 @@ function loadDeviceList() {
             oSettings.jqXHR = $.ajax({
                 "dataType": 'json',
                 "contentType": 'application/json',
-                "type": "GET",
+                "type": "get",
                 "url": sSource,
                 "data": JSON.stringify({"query":queryParams}),
                 success: function (data) {
@@ -165,26 +147,13 @@ function loadDeviceList() {
                 }
             });
         },
-        "initComplete": function (settings, json) {
-        }
+        "dom":'l<"toolbar">frtip',
+initComplete : function() {
+$("div.toolbar").html('<button onclick="myFunction()" class="btn btn-secondary" style="background-color: rgba(28,63,170) !important; color: white;" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-plus-square" style="color: white;"aria-hidden="true"></i> Add Devices</button><button type="button" class="btn btn-secondary" style="background-color: rgba(28,63,170) !important;" data-toggle="modal"><i class="fa fa-refresh" style="color: white;" aria-hidden="true"></i></button>');
+} 
     };
 
     DeviceTable = $("#device_details").DataTable(tableOption);
 }
 
-// $(document).ready(function() {
-//     $('#manage-device').DataTable( {
-//         data: fields,
-//         columns: [
-//             { title: "Device Id" },
-//             { title: "Device Model" },
-//             { title: "Version" },
-//             { title: "Channel" },
-//             { title: "Status" },
-//             { title: "Last Reported Time" },
-//             { title: "Created Time" },
-//             { title: "Action" },
-            
-//         ]
-//     } );
-// } );
+

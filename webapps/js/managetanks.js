@@ -253,8 +253,11 @@ function loadTankList() {
                 }
             });
         },
-        "initComplete": function (settings, json) {
-        }
+        dom:'l<"toolbar">frtip',
+        initComplete :  function() {
+       $("div.toolbar").html('<button onclick="tankDetails()" class="btn button1" data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus-square icons" style="color:white";"aria-hidden="true"></i>Add Tanks</button>');
+   }
+       
     };
 
     TankMasterTable = $("#tank_table").DataTable(tableOption);
