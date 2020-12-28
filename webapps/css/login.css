@@ -3,30 +3,34 @@
 	 box-shadow: 0px 0px 5px grey;
  }
  
-.main1
+/* .main1
 {
 	margin-top: 50px;
 	margin-bottom: 50px;
+} */
+.no-gutters{
+	box-shadow: 5px 5px 16px 6px grey;
 }
  
  .main1
  {
-	 height:80vh;
+	 height:86vh;
  }
  /* .mani{
 	 background-color: #1C3FAA;
  } */
- .log{
-	/* border: 1px solid #1C3FAA; */
- }
+ /* .logo{
+	box-shadow: 5px 5px gray;
+
+}
  .gif{
 	 box-shadow: 5px 0 5px 5px gray;
- }
+ } */
  .fm
  {
 	 margin-top: 60px 40px 30px 40px;
 	
-	 padding: 57px 150px 40px 150px;
+	 padding: 70px 106px 62px 106px;
 	 
  }
  .bord
