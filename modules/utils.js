@@ -155,7 +155,7 @@ Utils.prototype.elasticQueryFormatter = function (data) {
     }
 
     if (data.httpCode === 200) {
- s
+ 
         var arrayData = JSON.parse(data.result);
 
         var totalRecords = arrayData.hits.total ? arrayData.hits.total.value : 0;
