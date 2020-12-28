@@ -120,13 +120,13 @@ border-radius: 3px !important;
     box-shadow: none;
     border-radius: 5px;
     margin-left: 10px;
-    border:2px solid gray;
+    border:1px solid gray;
 }
 .dataTables_length select {
     background-size: 0 2px,100% 1px;
     transition: background 0s ease-out;
     padding-bottom: 5px;
-    border: 2px solid gray;
+    border: 1px solid gray;
 }   
 .page-link {
     display: block;
