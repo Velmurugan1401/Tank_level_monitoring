@@ -1,24 +1,27 @@
  <div class="container-fluid">
-  <div class="row section1 containflui mt-5 mb-5 p-2">
-    <div class="col-md-6">
-      <div class="two">
-        <h3>Manage Users</h3>
+   
+  <div class="row" style="background-color:white;padding-top: 25px;border-top-left-radius: 20px;
+  border-top-right-radius: 20px;padding: 20px;">
+      <div class="col-md-12">
+        <span class="title-span">Administration</span>
+          <span class="title-span">|</span>
+          <span class="title-span" style="color: mediumblue;font-weight: 500;">Users</span>
       </div>
     </div>
-    <div class="col-md-6">
-      <div class="one">
-        <h6>User Management /<b>Manage Users</b></h6>
-      </div>
-    </div>
+  <div class="row section2 containflui p-2" style="background-color:#DCDCDC">
+    <div class="col-md-3">
+      <div style="margin-top: 12px;">
+         <span>Total Users: </span>
+         <span style="font-weight: 500;">7  </span>
   </div>
-  <div class="row section2 containflui p-2">
-    <div class="col-md-6 mt-2 mb-2"><h3>Users</h3></div>
-    <div class="col-md-6 one" style="text-align:right">     
+  </div>
+    <div class="col-md-9 one" style="text-align:right">     
           <button
             type="button"
-            class="btn btn-primary"
+            class="btn"
             data-toggle="modal"
             data-target="#myModal"
+            style="background-color:#1C3FAA; color: white;"
           >
             <i class="fa fa-user-plus p-2" aria-hidden="true"></i>Add New User
           </button>
@@ -51,11 +54,10 @@
                     aria-label="Lastname"
                   />
                   <input  class="form-control form-control-sm w-100 mt-3" type="tel" id="phone" name="phone"
-               pattern="[0-9]{10}"
                placeholder="Enter your mobile no"
                aria-label="Mobile"
                 class="form-control form-control-sm w-100 mt-3"
-               required>
+              >
                   <input
                     class="form-control form-control-sm w-100 mt-3"
                     type="text"
@@ -77,7 +79,7 @@
                 </div>
 
                 <!-- <div class="modal-footer"> -->
-                <div class="foot">
+                <!-- <div class="foot">
                   <div class="row mb-5">
                     <div class="col-md-2"></div>
                     <div class="col-md-8" style="text-align:center;">
@@ -91,6 +93,10 @@
                     </div>
                     <div class="col-md-2"></div>
                   </div>
+                </div> -->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-success">Add User</button>
                 </div>
                 <!-- </div> -->
               </div>
@@ -99,10 +105,12 @@
           <i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>        
       </div>
     </div>
-  <div class="containflui">
-    <table class="table table-bordered responsive no-wrap" id="myTable" cellspacing="0" width="100%">
+  <div class="row" style="background-color:white;border-bottom-left-radius: 20px;padding-bottom: 70px;
+  border-bottom-right-radius: 20px;padding-left: 20px;">
+    <div class="col-md-12">
+          <table class="table table-bordered responsive no-wrap" id="myTable" cellspacing="0" width="100%">
      
-        <thead>
+        <!-- <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">First Name</th>
@@ -174,16 +182,13 @@
               ><i class="fa fa-trash p-2" aria-hidden="true"></i>
             </td>
           </tr>
-        </tbody>
+        </tbody> -->
       </table>
+      </div>
     </div>
   </div>
-</div>
 
 
-<script>
-  $(document).ready( function () {
-    $('#myTable').DataTable();
-    
-} );
-</script>
+
+ 
+<script src="js/users.js"></script>

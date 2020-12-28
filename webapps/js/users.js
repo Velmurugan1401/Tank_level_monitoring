@@ -1,9 +1,9 @@
-var TankStatusTable = null;
-var TankStatus_list = [];
-var startDate = moment().subtract(6, 'days').startOf('day');
-var endDate = moment().endOf('day');
+var UserTable = null;
+var Users_list = [];
+// var startDate = moment().subtract(6, 'days').startOf('day');
+// var endDate = moment().endOf('day');
 $(document).ready(function(){
-    loadTankStatusList();
+    loadUsersList();
 });
 
 //Student Registration API
@@ -59,26 +59,26 @@ $(document).ready(function(){
 // }
 
 //Student List API
-function loadTankStatusList() {
+function loadUsersList() {
 
-    if (TankStatusTable) {
-        TankStatusTable.destroy();
-        $("#StatusTable").html("");
+    if (UserTable) {
+        UserTable.destroy();
+        $("#myTable").html("");
     }
 
     var fields = [
         {
-            mData: 'tank_name',
-            sTitle: 'Tank Name',
-            sWidth: '20%',
+            mData:'first_name',
+            sTitle:'First Name',
+            sWidth:'20%',
             orderable: false,
             mRender: function (data, type, row) {
                 return data;
             }
         },
         {
-            mData: 'location',
-            sTitle: 'Location',
+            mData:'last_name',
+            sTitle:'Last Name',
             sWidth: '20%',
             orderable: false,
             mRender: function (data, type, row) {
@@ -87,49 +87,32 @@ function loadTankStatusList() {
         },
 
         {
-            mData: 'capacity',
-            sWidth: '20%',
-            sTitle: 'Tank Capacity',
+            mData:'mobile_no',
+            sWidth:'20%',
+            sTitle:'Mobile No',
             orderable: false,
             mRender: function (data, type, row) {
                 return data;
             }
         },
         {
-          mData: 'tank_level ',
+          mData: 'email_id',
           sWidth: '20%',
-          sTitle: 'Tank Level',
+          sTitle:'Email Id',
           orderable: false,
           mRender: function (data, type, row) {
               return data;
           }
       },
       {
-        mData: 'device_id',
+        mData: 'location',
         sWidth: '20%',
-        sTitle: ' Device Id ',
+        sTitle:'Location',
         orderable: false,
         mRender: function (data, type, row) {
             return data;
         }
-    },
-        {
-            mData: 'reported_ts',
-            sTitle: 'Reported Time',
-            "className": 'sortingtable',
-            mRender: function (data, type, row) {
-                return moment(data).format(DATE_TIME_FORMAT);
-            }
-        },
-        
-        // {
-        //     sTitle: 'Actions',
-        //     orderable: false,
-        //     mRender: function (data, type, row) {
-        //         var actionsHtml = '<button class="btn btn-default" onclick="deleteStudent()"><i class="fa fa-trash"></i></button>';
-        //         return actionsHtml;
-        //     }
-        // }
+    }, 
     ];
 
     var queryParams = {
@@ -141,7 +124,7 @@ function loadTankStatusList() {
         sort: [{ "created_ts": { "order": "asc" } }]
     };
 
-    TankStatus_list = [];
+    Users_list = [];
 
     var tableOption = {
         fixedHeader: false,
@@ -160,7 +143,7 @@ function loadTankStatusList() {
 
         },
         "bServerSide": true,
-        "sAjaxSource": BASE_PATH+'/tankstatus/list',
+        "sAjaxSource": BASE_PATH+'/user/list',
         "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
 
 
@@ -206,12 +189,13 @@ function loadTankStatusList() {
                 "contentType": 'application/json',
                 "type": "POST",
                 "url": sSource,
+               
                 "data": JSON.stringify({"query":queryParams}),
                 success: function (data) {
 
                     var resultData = data.result.data;
 
-                    TankStatus_list = resultData.data;
+                    Users_list = resultData.data;
 
                     $(".totalCount").html(data.result.total)
 
@@ -220,77 +204,16 @@ function loadTankStatusList() {
                 }
             });
         },
+        // dom:'l<"toolbar">frtip',
+        
         "initComplete": function (settings, json) {
+            // $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-plus-square icons" style="color:white";"aria-hidden="true"></i>Add Tanks</button>');
+      
         }
     };
 
-    TankStatusTable = $("#StatusTable").DataTable(tableOption);
+    UserTable = $("#myTable").DataTable(tableOption);
 }
 
-$(function() {
-    var start = moment().subtract(29, 'days');
-    var end = moment();
-    
-    function cb(start, end) {
-      $('#datePickerrr').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
-    }
 
-    $('#datePickerrr').daterangepicker({
-      startDate: start,
-      endDate: end,
-      ranges: {
-        'Clear': [], //clear doesn't work
-        'Today': [moment(), moment()],
-        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-        'Last 7 days': [moment().subtract(6, 'days'), moment()],
-        'Last 30 days': [moment().subtract(29, 'days'), moment()],
-        'This month': [moment().startOf('month'), moment().endOf('month')],
-        'Last month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-      },
-      locale: {
-          //format: 'Y-m-d',
-          //format: "DD-MM-YYYY",
-          minDate: moment(),
-          cancelLabel: 'Clear',
-          applyLabel: 'Apply',
-                        
-          
-      }
-    }, cb);
-
-    cb(start, end);
-
-  });
  
-  $('#datePickerrr').on('cancel.daterangepicker', function(ev, picker) {
-    $('#datePickerrr').val('');
-    table.draw();
-    });
-
-  $('#datePickerrr').on('apply.daterangepicker', function(ev, picker) {
-   var start = picker.startDate;
-   var end = picker.endDate;
-
-
-  $.fn.dataTable.ext.search.push(
-    function(settings, data, dataIndex) {
-      var min = start;
-      var max = end;
-      //var startDate = new Date(data[10]).format('YYYYMMDD hhmm');
-
-      var date1 = (data[10]).split('/') 
-      var newDate = date1[1] + '/' +date1[0] +'/' +date1[2];  
-      var startDate = new Date(newDate);
-      //alert(startDate);
-
-       
-      if (min == null && max == null) { return true; }
-      if (min == null && startDate <= max) { return true; }
-      if (max == null && startDate >= min) { return true; }
-      if (startDate <= max && startDate >= min) { return true; }
-      return false;
-    }
-  );
-  table.draw();
-  $.fn.dataTable.ext.search.pop();
-    });
