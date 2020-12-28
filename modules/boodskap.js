@@ -219,7 +219,7 @@ Boodskap.prototype.RawMsgSearch= function ( cbk){
 }
 
 Boodskap.prototype.elasticSearch = function (rid, query, cbk) {
-console.log(rid)
+
     const self = this;
 
     var obj = {
@@ -237,11 +237,12 @@ console.log(rid)
         body: JSON.stringify(obj),
 
     }, function (err, res, body) {
+        console.log(body)
 
         if (!err) {
 
             if (res.statusCode === 200) {
-                var resultObj = self.utils.elasticQueryFormatter(JSON.parse(res.body))
+                var resultObj = self.utils.elasticQueryFormatter(JSON.parse(body))
                 cbk(true, resultObj)
             } else {
                 self.logger.error("record search error in platform =>", res.body)
