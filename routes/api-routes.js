@@ -67,7 +67,7 @@ APIRoutes.prototype.init = function () {
 
     });
 
-    self.router.post('/logout', sessionCheck, function (req, res) {
+    self.router.post('/logout',sessionCheck, function (req, res) {
         var sessionObj = req.session['sessionObj'];
         var boodskap = new Boodskap(self.app, sessionObj.token)
         boodskap.logout(req,function (status) {
@@ -78,9 +78,7 @@ APIRoutes.prototype.init = function () {
         self.student.performAction(req,res);
     });
     self.router.post('/tank/:action', sessionCheck, function (req, res) {
-      
-       
-        self.tank.performAction(req,res);
+      self.tank.performAction(req,res);
     });
      self.router.post('/tankstatus/:action', sessionCheck, function (req, res) {
         self.Tank_status.performAction(req,res);
