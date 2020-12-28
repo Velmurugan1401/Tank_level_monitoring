@@ -17,9 +17,7 @@ let obj = {
 
     "tank_level": " ",
     "unit": "gallon",
-
-
-    "power_status": "Active"
+ "power_status": "Active"
 }
 
 

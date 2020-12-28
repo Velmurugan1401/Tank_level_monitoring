@@ -45,7 +45,7 @@ APIRoutes.prototype.init = function () {
     
 
         var sessionObj = req.session['sessionObj'];
-          console.log("sessionCheck",sessionObj)               
+                    
         if (sessionObj && sessionObj.token) {
 
 
@@ -77,25 +77,25 @@ APIRoutes.prototype.init = function () {
         self.student.performAction(req,res);
     });
     self.router.post('/tank/:action', sessionCheck, function (req, res) {
-        console.log(req.body)
+      
        
         self.tank.performAction(req,res);
     });
      self.router.post('/tankstatus/:action', sessionCheck, function (req, res) {
         self.Tank_status.performAction(req,res);
     }); 
-    self.router.post('/tankhistory/:action', sessionCheck, function (req, res) {
+    self.router.get('/tankhistory/:action', sessionCheck, function (req, res) {
         self.Tank_history.performAction(req,res);
     }); 
     self.router.post('/eventtrigger/:action', sessionCheck, function (req, res) {
         self.event_trigger.performAction(req,res);
     });
-    self.router.post('/device/:action', sessionCheck, function (req, res) {
+    self.router.get('/device/:action', sessionCheck, function (req, res) {
         self.Device_details.performAction(req,res);
     }); 
     self.router.post('/user/:action', sessionCheck, function (req, res) {
         console.log(req.body)
-        self.User_details.performAction(req,res);
+        self.details.performAction(req,res);
     });
     self.router.post('/msg/:action', sessionCheck, function (req, res) {
 
