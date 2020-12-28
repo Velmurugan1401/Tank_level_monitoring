@@ -1,5 +1,6 @@
 var TankMasterTable = null;
 var tank_list = [];
+
 // var startDate = moment().subtract(6, 'days').startOf('day');
 // var endDate = moment().endOf('day');
 $(document).ready(function(){
@@ -8,11 +9,11 @@ $(document).ready(function(){
 
 //tank Registration API
 function tankDetails(){
-
+   
     var tank_name = $("#tank_name").val();
     var tank_type = $("#tank_type").val();
     var location = $("#location").val();
-    // var device_id = $("#device_id").val();
+    var device_id = $("#device_id").val();
     var capacity = $("#capacity").val();
     //Validate
     if(tank_name === ""){
@@ -33,6 +34,12 @@ function tankDetails(){
         alert("capacity is Required!");
 
     }
+    else if(device_id === ""){
+
+        alert("Device is Required!");
+
+    }
+
     else{
 
         //Build Input Objects
@@ -40,11 +47,11 @@ function tankDetails(){
             tank_name : tank_name,
             tank_type : tank_type,
             location : location,
-            // device_id : device_id,
+            device_id : device_id,
             capacity : capacity,
             created_ts : new Date().getTime()
         };
-console.log(inputObj);
+
         //Call API
         if(Updateflag == false)
         {
@@ -65,14 +72,18 @@ console.log(inputObj);
                 errorMsg("Tank Insert Failed!");
                 window.location.reload();
             }
+            
         });
+        $("#form1")[0].reset();
     }
-    else {
+
+    else{
         
         $.ajax({
 
             url: BASE_PATH+"/tank/update?_id="+_id,
             data: JSON.stringify(inputObj),
+           
             contentType: "application/json",
             type: 'POST',
             success: function (result) {
@@ -90,8 +101,8 @@ console.log(inputObj);
         });
     }
     }
-}
 
+}
 //tank List API
 function loadTankList() {
 
@@ -159,7 +170,7 @@ function loadTankList() {
             sTitle: 'Actions',
             orderable: false,
             mRender: function (data, type, row) {
-                var actionsHtml = '<button class="btn btn-default" onclick="deleteTank()"><i class="fa fa-trash"></i></button>'+" "+'<button class="btn btn-default" onclick="editTank()"><i class="fa fa-edit"></i></button>';
+                var actionsHtml = '<button class="btn btn-default" onclick="deleteTank(\'' +row["_id"]+'\')"><i class="fa fa-trash"></i></button>'+" "+'<button class="btn btn-default" data-toggle="modal" data-target="#exampleModal" onclick="editTank(\'' +row["_id"]+'\')"><i class="fa fa-edit"></i></button>';
                 return actionsHtml;
             }
         }
@@ -255,7 +266,7 @@ function loadTankList() {
         },
         dom:'l<"toolbar">frtip',
         initComplete :  function() {
-       $("div.toolbar").html('<button onclick="tankDetails()" class="btn button1" data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus-square icons" style="color:white";"aria-hidden="true"></i>Add Tanks</button>');
+       $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus-square icons" style="color:white";"aria-hidden="true"></i>Add Tanks</button>');
    }
        
     };
@@ -265,11 +276,14 @@ function loadTankList() {
 var tank1=null;
 var _id
 var Updateflag = false;
+
 function editTank(id){
     
+ 
     flag=id;
     console.log(flag);
-    Updateflag = true
+    Updateflag = true;
+    
    for(i=0;i<tank_list.length;i++){
        if(tank_list[i]._id==id){
         tank1=tank_list[i];
@@ -284,11 +298,11 @@ _id = id
       console.log(id);
    
 }
-function deleteTank(id){
+function deleteTank(row){
     $.ajax({
 
-        url: BASE_PATH+"/tank/delete?_id="+id,
-        // data: JSON.stringify(inputObj),
+        url: BASE_PATH+"/tank/delete",
+        data: JSON.stringify({_id:row}),
         contentType: "application/json",
         type: 'POST',
         success: function (result) {

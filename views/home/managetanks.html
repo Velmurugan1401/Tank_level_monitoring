@@ -11,65 +11,57 @@
           <div class="col-md-6 coln1">
              <span class="span1">Total Tanks:</span>
              <span>4</span>
+             
           </div>
         <div class="col-md-6 coln2">
-            <h6><span class="span">Tanks Management</span>/Manage tanks</h6><br>
-            <a href=""class="link"><i class="fa fa-refresh fa-spin fa-2x fa-fw " aria-hidden="true"></i></a>
-            <button type="button" class="btn button1" data-toggle="modal" data-target="#exampleModal">
-              Add Tanks
-            </button>
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content"> <p style="text-align: center;font-weight: 700;font-size: 15px;">Add New Tank</p>
-                  <div class="modal-header">
-                  
-                    <form id="tankForm" action="javascript:void(0);">
-                      <!-- <lable class="la">Tank Image</lable>
-                    <input type="image"class="la"><br> -->
-                    <lable class="la">Tank Name</lable>
-                    <input type="text" id="tank_name" class="la3"><br>
-                    <lable class="la" >Tank Type</lable>
-                    <input type="text" id="tank_type" class="la2"><br>
-                    <lable class="la" >Capacity</lable>
-                    <input type="number" id="capacity" class="la2"><br>
-                    <lable class="la">Location</lable>
-                    <input type="text" id="location" class="la2"><br>
-                    <!-- <lable class="la">Device Name</lable>
-                    <input type="text" id="device_id" class="la1"><br> -->
-                   
-                  </form>
+          <input class="pick" data-date-format="mm/dd/yyyy" type="date" id="datePickerrr">
+            <!-- <a href=""class="btn but"><i class="fa fa-refresh   fa-fw "style=" color:white;" aria-hidden="true"></i></a> -->
+            <a href=""class="btn but"><i class="fa fa-expand" style=" color:white;" aria-hidden="true"></i></a>
+          </div>
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                 <div class="modal-dialog" role="document">
+                   <div class="modal-content"> <p style="text-align: center;font-weight: 700;font-size: 15px;"></p>
+                    <div class="modal-header">
+                      Add New Tank
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  
-                
-              
-                  
-          </div>
-          </div>
-          </div>
-          </div>
-       
-  </div>
-  
-  <div class="row">
-           <div class="col-md-12">
-          
-              <table class="table table-bordered responsive no-wrap c1 "id="tank_table" cellspacing="0" width="100%"  ></table>
-
-              </table>
+                  <div class="modal-body">
+                    <form action="javascript:void(0);" id="form1">
+                      <lable class="la">Tank Name</lable>
+                      <input type="text" id="tank_name" class="la3"><br>
+                      <lable class="la">Tank Type</lable>
+                      <input type="text" id="tank_type" class="la2"><br>
+                      <lable class="la" >Capacity</lable>
+                      <input type="number" id="capacity" class="la2"><br>
+                      <lable class="la">Location</lable>
+                      <input type="text" id="location" class="la1"><br>
+                      <!-- <lable class="la">Device Name</lable>
+                      <input type="text" id="device_id" class="la1"><br>
+                      -->
+                     </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    <button type="button" onclick="tankDetails()" class="btn btn-success">Add Tank</button>
+                  </div>
             </div>
       </div>
     </div>
   </div>
   
-     
+      <div class="row roo" >
+          <div class="col-md-12">
+           
+              <table class="table table-bordered responsive no-wrap c1 "id="tank_table" cellspacing="0" width="100%"  ></table> </table>
+          </div>
+      </div>
 </div>
 
     
     
-
+        
  
 
 

@@ -45,6 +45,7 @@ function loadDeviceList() {
                 return data;
             }
         },
+       
         {
             mData: 'registeredStamp',
             sTitle: 'Reported Time',
