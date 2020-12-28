@@ -96,7 +96,7 @@ function loadUsersList() {
             }
         },
         {
-          mData:'email_id',
+          mData: 'email_id',
           sWidth: '20%',
           sTitle:'Email Id',
           orderable: false,
@@ -105,7 +105,7 @@ function loadUsersList() {
           }
       },
       {
-        mData:'location',
+        mData: 'location',
         sWidth: '20%',
         sTitle:'Location',
         orderable: false,

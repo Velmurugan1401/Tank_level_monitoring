@@ -49,6 +49,24 @@ Common.prototype.commonDevice = function ( req, res) {
     });
 
 };
+// RAW common=====================
+Common.prototype.RAWMsg = function ( req, res) {
+
+    const self = this;
+
+    const boodskap = new Boodskap(self.app, req.token);
+
+    boodskap.RawMsgSearch( function (status, result) {
+
+        if (status) {
+            res.json({ status: true, result: result });
+        } else {
+            res.json({ status: false, message: result });
+
+        }
+    });
+
+};
 
 
 Common.prototype.commonUpdate = function (tablename, req, res) {

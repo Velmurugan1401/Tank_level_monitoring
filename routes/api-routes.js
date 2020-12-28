@@ -85,7 +85,7 @@ APIRoutes.prototype.init = function () {
      self.router.post('/tankstatus/:action', sessionCheck, function (req, res) {
         self.Tank_status.performAction(req,res);
     }); 
-    self.router.post('/tankhistory/:action', sessionCheck, function (req, res) {
+    self.router.get('/tankhistory/:action', sessionCheck, function (req, res) {
         self.Tank_history.performAction(req,res);
     }); 
     self.router.post('/eventtrigger/:action', sessionCheck, function (req, res) {
@@ -95,7 +95,7 @@ APIRoutes.prototype.init = function () {
         self.Device_details.performAction(req,res);
     }); 
     self.router.post('/user/:action', sessionCheck, function (req, res) {
-       
+        console.log(req.body)
         self.details.performAction(req,res);
     });
     self.router.post('/msg/:action', sessionCheck, function (req, res) {
