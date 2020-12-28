@@ -1,62 +1,11 @@
 var TankStatusTable = null;
 var TankStatus_list = [];
-var startDate = moment().subtract(6, 'days').startOf('day');
-var endDate = moment().endOf('day');
+
 $(document).ready(function(){
     loadTankStatusList();
 });
 
-//Student Registration API
-// function studentRegistration(){
 
-//     var sname = $("#sname").val();
-//     var department = $("#department").val();
-//     var location = $("#location").val();
-
-//     //Validate
-//     if(sname === ""){
-
-//         alert("Student Name is Required!");
-
-//     }else if(department === ""){
-
-//         alert("Department is Required!");
-
-//     }else if(location === ""){
-
-//         alert("Location is Required!");
-
-//     }else{
-
-//         //Build Input Objects
-//         var inputObj = {
-//             sname : sname,
-//             location : location,
-//             department : department,
-//             created_ts : new Date().getTime()
-//         };
-
-//         //Call API
-//         $.ajax({
-//             url: BASE_PATH+"/student/insert",
-//             data: JSON.stringify(inputObj),
-//             contentType: "application/json",
-//             type: 'POST',
-//             success: function (result) {
-
-//                 //Success -> Show Alert & Refresh the page
-//                 successMsg("Registration Completed Successfully!");
-//                 loadTankDeviceList();
-//             },
-//             error: function (e) {
-
-//                 //Error -> Show Error Alert & Reset the form
-//                 errorMsg("Registration Failed!");
-//                 window.location.reload();
-//             }
-//         });
-//     }
-// }
 
 //Student List API
 function loadTankStatusList() {

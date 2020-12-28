@@ -9,11 +9,11 @@ const EventTrigger = require("../modules/event_trigger");
 const Tankhistory = require("../modules/Tank_history");
 const Device = require("../modules/Device_details");
 const Users = require("../modules/User_details");
-const MSG=require("../modules/msg")
+const MSG = require("../modules/msg")
 
 
 
-var APIRoutes = function (app,router) {
+var APIRoutes = function (app, router) {
 
     this.app = app;
     this.router = router;
@@ -42,18 +42,20 @@ APIRoutes.prototype.init = function () {
     const self = this;
 
     var sessionCheck = function (req, res, next) {
-    
+
 
         var sessionObj = req.session['sessionObj'];
-                    
+
         if (sessionObj && sessionObj.token) {
 
 
             next();
 
-        }
-        else {
-            res.status(401).json({status:false,message:'Unauthorized Access'})
+        } else {
+            res.status(401).json({
+                status: false,
+                message: 'Unauthorized Access'
+            })
         }
     };
 
@@ -61,48 +63,50 @@ APIRoutes.prototype.init = function () {
 
     self.router.post('/login', function (req, res) {
         var boodskap = new Boodskap(self.app)
-        boodskap.login(req,res);
+        boodskap.login(req, res);
 
 
     });
 
-    self.router.post('/logout', sessionCheck, function (req, res) {
+    self.router.post('/logout',sessionCheck, function (req, res) {
         var sessionObj = req.session['sessionObj'];
         var boodskap = new Boodskap(self.app, sessionObj.token)
-        boodskap.logout(req,function (status) {
-            res.json({status:true});
+        boodskap.logout(req, function (status) {
+            res.json({
+                status: true
+            });
         });
     });
     self.router.post('/student/:action', sessionCheck, function (req, res) {
-        self.student.performAction(req,res);
+        self.student.performAction(req, res);
     });
     self.router.post('/tank/:action', sessionCheck, function (req, res) {
-      
-       
-        self.tank.performAction(req,res);
+
+
+        self.tank.performAction(req, res);
     });
-     self.router.post('/tankstatus/:action', sessionCheck, function (req, res) {
-        self.Tank_status.performAction(req,res);
-    }); 
+    self.router.post('/tankstatus/:action', sessionCheck, function (req, res) {
+        self.Tank_status.performAction(req, res);
+    });
     self.router.get('/tankhistory/:action', sessionCheck, function (req, res) {
-        self.Tank_history.performAction(req,res);
-    }); 
+        self.Tank_history.performAction(req, res);
+    });
     self.router.post('/eventtrigger/:action', sessionCheck, function (req, res) {
-        self.event_trigger.performAction(req,res);
+        self.event_trigger.performAction(req, res);
     });
     self.router.get('/device/:action', sessionCheck, function (req, res) {
-        self.Device_details.performAction(req,res);
-    }); 
+        self.Device_details.performAction(req, res);
+    });
     self.router.post('/user/:action', sessionCheck, function (req, res) {
         console.log(req.body)
-        self.details.performAction(req,res);
+        self.details.performAction(req, res);
     });
     self.router.post('/msg/:action', sessionCheck, function (req, res) {
 
-        self.msg.performAction(req,res);
+        self.msg.performAction(req, res);
     });
-   
 
-    self.app.use(self.app.conf.web.basepath,self.router);
+
+    self.app.use(self.app.conf.web.basepath, self.router);
 
 };

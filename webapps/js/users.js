@@ -1,64 +1,123 @@
 var UserTable = null;
 var Users_list = [];
+var key="";
+var flag=false;
 // var startDate = moment().subtract(6, 'days').startOf('day');
 // var endDate = moment().endOf('day');
 $(document).ready(function(){
     loadUsersList();
 });
 
-//Student Registration API
-// function studentRegistration(){
+//User insert API
+ 
+function loadUser(){
 
-//     var sname = $("#sname").val();
-//     var department = $("#department").val();
-//     var location = $("#location").val();
+    var first_name = $("#name1").val();
+    var last_name = $("#name2").val();
+    var mobile_no = $("#mobile").val();
+    var email_id = $("emaill").val();
+    var location = $("#loc").val();
+     
 
-//     //Validate
-//     if(sname === ""){
+    //Validate
+    if(first_name === ""){
 
-//         alert("Student Name is Required!");
+        alert("First  Name is Required!");
 
-//     }else if(department === ""){
+    }else if(last_name === ""){
 
-//         alert("Department is Required!");
+        alert("Last name is Required!");
 
-//     }else if(location === ""){
+    }
+    else if(mobile_no === ""){
 
-//         alert("Location is Required!");
+        alert("Mobile number  is Required!");
 
-//     }else{
+    }
+    else if(email_id === ""){
 
-//         //Build Input Objects
-//         var inputObj = {
-//             sname : sname,
-//             location : location,
-//             department : department,
-//             created_ts : new Date().getTime()
-//         };
+        alert("Email id is Required!");
 
-//         //Call API
-//         $.ajax({
-//             url: BASE_PATH+"/student/insert",
-//             data: JSON.stringify(inputObj),
-//             contentType: "application/json",
-//             type: 'POST',
-//             success: function (result) {
+    }
+    
+    else if(location === ""){
 
-//                 //Success -> Show Alert & Refresh the page
-//                 successMsg("Registration Completed Successfully!");
-//                 loadTankDeviceList();
-//             },
-//             error: function (e) {
+        alert("Location is Required!");
 
-//                 //Error -> Show Error Alert & Reset the form
-//                 errorMsg("Registration Failed!");
-//                 window.location.reload();
-//             }
-//         });
-//     }
-// }
+    }else{
 
-//Student List API
+        //Build Input Objects
+        var inputObj = {
+            first_name:first_name,
+            last_name:last_name,
+            mobile_no:mobile_no,
+            email_id:email_id,
+            location:location
+                        
+        };
+         
+
+        //Call API
+        if(flag == false)
+        {
+        $.ajax({
+            url: BASE_PATH+"/user/insert",
+            data: JSON.stringify(inputObj),
+            contentType: "application/json",
+            type: 'POST',
+            success: function (result) {
+
+                //Success -> Show Alert & Refresh the page
+                successMsg("User Added Successfully!");
+                loadUsersList();
+            },
+            error: function (e) {
+
+                //Error -> Show Error Alert & Reset the form
+                errorMsg(" User not created!");
+                window.location.reload();
+            }
+        });
+    }
+
+    else if(flag==true) {
+        var first_name = $("#name1").val();
+        var last_name = $("#name2").val();
+        var mobile_no = $("#mobile").val();
+        var email_id = $("emaill").val();
+        var location = $("#loc").val();
+    var updateData = {
+        first_name:first_name,
+        last_name:last_name,
+        mobile_no:mobile_no,
+        email_id:email_id,
+        location:location
+    };
+
+        $.ajax({
+
+            url: BASE_PATH+"/user/update",
+            data:JSON.stringify({_id:key,updateData}),
+            contentType: "application/json",
+            type: 'POST',
+            success: function (result) {    
+                //Success -> Show Alert & Refresh the page
+                successMsg("Update Completed Successfully!");
+                loadUsersList();
+            },
+            error: function (e) {
+    
+                //Error -> Show Error Alert & Reset the form
+                errorMsg("Update Failed!");
+                window.location.reload();
+            }
+        });
+    }
+    }
+} 
+ 
+
+//User List API
 function loadUsersList() {
 
     if (UserTable) {
@@ -113,6 +172,14 @@ function loadUsersList() {
             return data;
         }
     }, 
+    {
+        sTitle: 'Actions',
+        orderable: false,
+        mRender: function (data, type, row) {
+            var actionsHtml = '<button class="btn btn-default"  onclick="deleteUser(\'' + row._id+ '\')"><i class="fa fa-trash"></i></button>'+'<button class="btn btn-default"  data-toggle="modal" data-target="#myModal" onclick="editUser(\'' + row._id+ '\')"><i class="fa fa-pencil edit"></i>';
+            return actionsHtml;
+        }
+    }
     ];
 
     var queryParams = {
@@ -165,10 +232,10 @@ function loadUsersList() {
             var searchText = oSettings.oPreviousSearch.sSearch.trim();
 
             if (searchText) {
-                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + searchText + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + searchText.toLowerCase() + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + searchText.toUpperCase() + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + capitalizeFLetter(searchText) + "*" } })
+                queryParams.query['bool']['should'].push({ "wildcard": { "first_name": "*" + searchText + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "first_name": "*" + searchText.toLowerCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "first_name": "*" + searchText.toUpperCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "first_name": "*" + capitalizeFLetter(searchText) + "*" } })
                 queryParams.query['bool']["minimum_should_match"] = 1;
                 queryParams.query['bool']['should'].push({
                     "match_phrase": {
@@ -204,11 +271,9 @@ function loadUsersList() {
                 }
             });
         },
-        // dom:'l<"toolbar">frtip',
-        
+               
         "initComplete": function (settings, json) {
-            // $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-plus-square icons" style="color:white";"aria-hidden="true"></i>Add Tanks</button>');
-      
+               
         }
     };
 
@@ -216,4 +281,52 @@ function loadUsersList() {
 }
 
 
+ //update details 
+
+var user1=null;
+var _id
+ 
+function editUser(id)
+{    
+    key=id;
+    flag=true;
+    console.log(flag);
+   
+   for(i=0;i<Users_list.length;i++)
+   {
+       if(Users_list[i]._id==id)
+       {
+        user1=Users_list[i];
+         
+          $("#name1").val(user1.name1);
+          $("#name2").val(user1.name2);
+          $("#mobile").val(user1.mobile);
+          $("emaill").val(user1.emaill);
+          $("#loc").val(user1.loc);
+        
+       }
+   }
+     
+}
+//delete user details
+function deleteUser(row)
+{
+    console.log(row);
+    $.ajax({
+       url:BASE_PATH+'/user/delete',
+       data:{_id:row},
+       type:'POST',
+       success:function()
+       {                          
+          successMsg('deleted successfully');
+          loadUsersList();
+       },
+       error:function()
+       {
+           // console.log(e);
+           errorMsg("deletion failed");
+          // window.location.reload();
+       }
+    });
+}
  
