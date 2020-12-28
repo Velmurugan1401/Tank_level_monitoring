@@ -69,7 +69,7 @@ APIRoutes.prototype.init = function () {
 
     });
 
-    self.router.post('/logout', sessionCheck, function (req, res) {
+    self.router.post('/logout',sessionCheck, function (req, res) {
         var sessionObj = req.session['sessionObj'];
         var boodskap = new Boodskap(self.app, sessionObj.token)
         boodskap.logout(req, function (status) {
