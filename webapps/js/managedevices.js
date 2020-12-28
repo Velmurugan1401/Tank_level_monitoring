@@ -8,6 +8,7 @@ $(document).ready(function(){
 })
 
 
+
 function loadDeviceList() {
 
     if (DeviceTable) {
@@ -52,7 +53,14 @@ function loadDeviceList() {
                 return moment(data).format(DATE_TIME_FORMAT);
             }
         },
-        
+        // {
+        //     sTitle: 'Actions',
+        //     orderable: false,
+        //     mRender: function (data, type, row) {
+        //         var actionsHtml = '<button class="btn btn-default" onclick="deleteDevice(\'' + row.id + '\')"><i class="fa fa-trash"></i></button>'+" "+'<button class="btn btn-default" onclick="editDevice(\'' + row._id + '\')"><i class="fa fa-edit"></i></button>';
+        //         return actionsHtml;
+        //     }
+        // }
        
     ];
     
@@ -147,13 +155,9 @@ function loadDeviceList() {
                 }
             });
         },
-        "dom":'l<"toolbar">frtip',
-initComplete : function() {
-$("div.toolbar").html('<button onclick="myFunction()" class="btn btn-secondary" style="background-color: rgba(28,63,170) !important; color: white;" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-plus-square" style="color: white;"aria-hidden="true"></i> Add Devices</button><button type="button" class="btn btn-secondary" style="background-color: rgba(28,63,170) !important;" data-toggle="modal"><i class="fa fa-refresh" style="color: white;" aria-hidden="true"></i></button>');
-} 
+      
     };
 
     DeviceTable = $("#device_details").DataTable(tableOption);
 }
-
 
