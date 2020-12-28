@@ -1,7 +1,9 @@
 var TankStatusTable = null;
 var TankStatus_list = [];
-// var startDate = moment().subtract(6, 'days').startOf('day');
-// var endDate = moment().endOf('day');
+
+var startDate = moment().subtract(6, 'days').startOf('day');
+var endDate = moment().endOf('day');
+
 $(document).ready(function(){
     loadTankStatusList();
 });
@@ -105,7 +107,7 @@ function loadTankStatusList() {
           }
       },
       {
-        mData: 'device_id  ',
+        mData: 'device_id',
         sWidth: '20%',
         sTitle: ' Device Id ',
         orderable: false,
@@ -182,19 +184,19 @@ function loadTankStatusList() {
             var searchText = oSettings.oPreviousSearch.sSearch.trim();
 
             if (searchText) {
-                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + searchText + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + searchText.toLowerCase() + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + searchText.toUpperCase() + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + capitalizeFLetter(searchText) + "*" } })
+                queryParams.query['bool']['should'].push({ "wildcard": { "tank_name": "*" + searchText + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "tank_name": "*" + searchText.toLowerCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "tank_name": "*" + searchText.toUpperCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "tank_name": "*" + capitalizeFLetter(searchText) + "*" } })
                 queryParams.query['bool']["minimum_should_match"] = 1;
                 queryParams.query['bool']['should'].push({
                     "match_phrase": {
-                        "location.keyword": "*" + searchText + "*"
+                        "tank_name.keyword": "*" + searchText + "*"
                     }
                 })
                 queryParams.query['bool']['should'].push({
                     "match_phrase_prefix": {
-                        "location.keyword": {
+                        "tank_name.keyword": {
                             "query": "*" + searchText + "*"
                         }
                     }
@@ -213,7 +215,7 @@ function loadTankStatusList() {
 
                     TankStatus_list = resultData.data;
 
-                    $(".totalCount").html(data.result.total)
+                    $("#total").html(data.result.total)
 
                     resultData['draw'] = oSettings.iDraw;
                     fnCallback(resultData);
