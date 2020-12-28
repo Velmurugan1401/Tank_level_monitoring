@@ -94,7 +94,7 @@ columns: [
 ],
 dom:'l<"toolbar">frtip',
 initComplete : function() {
-$("div.toolbar").html('<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-plus-square" style="color: black;"aria-hidden="true"></i>Add Devices</button><button type="button" class="btn btn-secondary" data-toggle="modal"><i class="fa fa-refresh" style="color: black;" aria-hidden="true"></i></button>');
+$("div.toolbar").html('<button type="button" class="btn btn-secondary" style="background-color: rgba(28,63,170) !important; color: white;" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-plus-square" style="color: white;"aria-hidden="true"></i> Add Devices</button><button type="button" class="btn btn-secondary" style="background-color: rgba(28,63,170) !important;" data-toggle="modal"><i class="fa fa-refresh" style="color: white;" aria-hidden="true"></i></button>');
 }
 });
 });
