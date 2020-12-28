@@ -10,15 +10,16 @@ $(document).ready(function(){
 
 //User insert API
  
-function loadUser(){
-
+function loadUser()
+{
+     
     var first_name = $("#name1").val();
     var last_name = $("#name2").val();
     var mobile_no = $("#mobile").val();
     var email_id = $("emaill").val();
-    var location = $("#loc").val();
-     
+    var location = $("#loc").val();    
 
+    console.log(first_name);
     //Validate
     if(first_name === ""){
 
@@ -47,12 +48,13 @@ function loadUser(){
     }else{
 
         //Build Input Objects
-        var inputObj = {
-            first_name:first_name,
-            last_name:last_name,
-            mobile_no:mobile_no,
-            email_id:email_id,
-            location:location
+        var inputObj = 
+        {
+            first_name: first_name,
+            last_name: last_name,
+            mobile_no: mobile_no,
+            email_id: email_id,
+            location: location
                         
         };
          
@@ -80,12 +82,14 @@ function loadUser(){
         });
     }
 
-    else if(flag==true) {
+    else if(flag==true) 
+    {
         var first_name = $("#name1").val();
         var last_name = $("#name2").val();
         var mobile_no = $("#mobile").val();
         var email_id = $("emaill").val();
         var location = $("#loc").val();
+
     var updateData = {
         first_name:first_name,
         last_name:last_name,
@@ -271,9 +275,9 @@ function loadUsersList() {
                 }
             });
         },
-               
+            "dom":'l<"toolbar">frtip',   
         "initComplete": function (settings, json) {
-               
+            $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button><i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>');   
         }
     };
 
@@ -297,12 +301,12 @@ function editUser(id)
        if(Users_list[i]._id==id)
        {
         user1=Users_list[i];
-         
-          $("#name1").val(user1.name1);
-          $("#name2").val(user1.name2);
-          $("#mobile").val(user1.mobile);
-          $("emaill").val(user1.emaill);
-          $("#loc").val(user1.loc);
+         console.log(user1);
+          $("#name1").val(user1.first_name);
+          $("#name2").val(user1.last_name);
+          $("#mobile").val(user1.mobile_no);        
+          $("#loc").val(user1.location);
+          $("#emaill").val(user1.email_id);
         
        }
    }
