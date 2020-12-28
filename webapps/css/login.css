@@ -13,17 +13,20 @@
  {
 	 height:80vh;
  }
- .mani{
+ /* .mani{
 	 background-color: #1C3FAA;
- }
+ } */
  .log{
 	/* border: 1px solid #1C3FAA; */
+ }
+ .gif{
+	 box-shadow: 5px 0 5px 5px gray;
  }
  .fm
  {
 	 margin-top: 60px 40px 30px 40px;
 	
-	 padding: 57px 150px 55px 150px;
+	 padding: 57px 150px 40px 150px;
 	 
  }
  .bord
