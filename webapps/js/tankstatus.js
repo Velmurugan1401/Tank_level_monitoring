@@ -105,7 +105,7 @@ function loadTankStatusList() {
           }
       },
       {
-        mData: 'device_id  ',
+        mData: 'device_id',
         sWidth: '20%',
         sTitle: ' Device Id ',
         orderable: false,
@@ -213,7 +213,7 @@ function loadTankStatusList() {
 
                     TankStatus_list = resultData.data;
 
-                    $(".totalCount").html(data.result.total)
+                    $("#total").html(data.result.total)
 
                     resultData['draw'] = oSettings.iDraw;
                     fnCallback(resultData);
