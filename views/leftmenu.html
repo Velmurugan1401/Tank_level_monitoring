@@ -1,77 +1,109 @@
 <style>
-    .sidebar-nav>ul>li>a{
-      color:white !important;
-    }
-    
-    /* .sidebar-nav>ul>li>{
-      color:black !important;
-      background-color: white;
-      border-top-left-radius: 14px;
-      border-bottom-left-radius: 14px;
-    } */
-    
-    .sidebar-nav>ul>li a:hover{
-    background-color: rgba(59,130,246,0.5);
-    border-top-left-radius: 14px;
-    border-bottom-left-radius: 14px;
-    opacity: 0.5;
-    color: white;
-    /* height:40px; */
-    } 
-    .left-sidebar{
-      padding-top: 0px;
-      height: 90%;
-    }
-    .sidebar-nav{
-      padding-left: 30px;
-    }
-   
-    </style>
-    
-    
-<aside class="left-sidebar" style="background-color: rgba(28,63,170);">
-      <!-- Sidebar scroll-->
-    <div class="scroll-sidebar">
-        <nav class="sidebar-nav"> 
-           <ul class="leftMainMenu" id="sidebarnav">
-               <li class="bd-logo" style="border-bottom: 1px solid darkgrey;margin-bottom: 30px;padding-bottom: 15px;">
-                  <img src="images/boodskap-logo.png" style="width:150px;height:42px;">
-              
-              </li>
-              <li class="home-page">
-                <span style="padding-left: 18px;font-weight: bold;color: cornflowerblue;">Home</span>
-              </li>
-                  <li class="dashboard">
-                      <a onclick="loadMainPage('/dashboard')" href="#/dashboard">Dashboard</a>
-                  </li>
-    
-                  <li class="tank-status">
-                      <a onclick="loadMainPage('/tankstatus')" href="#/tankstatus">Tank Status</a>
-                  </li>
-    
-                  <li class="home-page" style="margin-top: 20px;">
-                    <span style="padding-left: 18px;font-weight: bold;color: cornflowerblue;">Administration</span>
-                  </li>
-    
-                  <li class="manage-tanks">
-                      <a onclick="loadMainPage('/tanks')" href="#/managetanks">Tanks</a>
-                  </li>
-    
-                  <li class="manage-devices">
-                      <a onclick="loadMainPage('/devices')" href="#/managedevices">Devices</a>
-                  </li>
-    
-                  <li class="users">
-                      <a onclick="loadMainPage('/users')" href="#/users">Users</a>
-                  </li>
-    
-                  <li class="raw-messages">
-                    <a onclick="loadMainPage('/rawmessages')" href="#/rawmessages">Raw Messages</a>
+  .sidebar-nav>ul>li> a{
+    color:white !important;
+  }
+  
+  /* .activ{
+    color:red !important;
+    background-color: white;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+  } */
+  
+
+ .sidebar-nav>ul>li a:hover{
+  background-color: rgba(59,130,246,0.5);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius:20px;
+  opacity: 0.5;
+  color: white;
+  /* height:40px; */
+  } 
+  .left-sidebar{
+    padding-top: 0px;
+    height: unset !important;
+    background-color: rgba(28,63,170);
+  }
+  .sidebar-nav{
+    padding-left: 30px;
+  }
+  .logo-cls{
+      width:150px;height:42px;
+  }
+  
+ 
+  .home-page-span,.admin-page-span{
+      padding-left: 18px;font-weight: bold;color: cornflowerblue !important;
+  }
+  
+ 
+  </style>
+  
+  
+<aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+  <div class="scroll-sidebar">
+      <nav class="sidebar-nav"> 
+         <ul class="leftMainMenu" id="sidebarnav">
+             <li class="bd-logo" style="border-bottom: 1px solid darkgrey;margin-bottom: 30px;padding-bottom: 20px;">
+                <img src="images/boodskap-logo.png" class="logo-cls">
+            
+            </li>
+            <li class="home-page">
+              <span class="home-page-span">Home</span>
+              <!-- <a href="javascript:void(0)" style="font-weight: bold;color: cornflowerblue !important;">Home</a> -->
+            </li>
+                <li class="dashboard">
+                    <a onclick="loadMainPage('/dashboard')" href="#/dashboard">
+                      <i class="fa fa-tachometer" style="color:white;font-size: 17px;vertical-align: unset;" aria-hidden="true"></i>Dashboard</a>
                 </li>
-              </ul>
-          </nav> 
-          <!-- End Sidebar navigation -->
-      </div>
-      <!-- End Sidebar scroll-->
-    </aside>
+  
+                <li class="tank-status">
+                    <a onclick="loadMainPage('/tankstatus')" href="#/tankstatus">
+                      <i class="fa fa-microchip" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Tank Status</a>
+                </li>
+  
+                <li class="admin-page" style="margin-top: 20px;">
+                  <span class="admin-page-span">Administration</span>
+                </li>
+  
+                <li class="manage-tanks" >
+                    <a onclick="loadMainPage('/tanks')" href="#/managetanks">
+                      <i class="fa fa-microchip" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Tanks</a>
+                </li>
+  
+                <li class="manage-devices">
+                    <a onclick="loadMainPage('/devices')" href="#/managedevices">
+                      <i class="fa fa-microchip" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Devices</a>
+                </li>
+  
+                <li class="users" >
+                    <a onclick="loadMainPage('/users')" href="#/users">
+                      <i class="fa fa-users"  style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Users</a>
+                </li>
+  
+                <li class="raw-messages">
+                  <a onclick="loadMainPage('/rawmessages')" href="#/rawmessages">
+                    <i class="fa fa-envelope" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Raw Messages</a>
+              </li>
+            </ul>
+        </nav> 
+        <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+  </aside>
+
+<script>
+
+// $(".sidebar-nav>ul>li").click(function() {
+//   alert("hi");
+//     if ($(".sidebar-nav>ul>li").hasClass("activ")) {
+//        $("li").removeClass("activ");
+//        $(this).addClass("activ");
     
+// } else {
+//     $(this).addClass("activ");
+//    }
+// });
+
+</script>

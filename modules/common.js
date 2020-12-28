@@ -20,6 +20,7 @@ Common.prototype.commonSearch = function (tablename, req, res) {
     const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
 
     boodskap.elasticSearch(tablename, req.body.query, function (status, result) {
+        console.log("now start",result)
 
         if (status) {
             res.json({ status: true, result: result });
@@ -38,6 +39,24 @@ Common.prototype.commonDevice = function ( req, res) {
     const boodskap = new Boodskap(self.app, req.token);
 
     boodskap.deviceSearch( function (status, result) {
+
+        if (status) {
+            res.json({ status: true, result: result });
+        } else {
+            res.json({ status: false, message: result });
+
+        }
+    });
+
+};
+// RAW common=====================
+Common.prototype.RAWMsg = function ( req, res) {
+
+    const self = this;
+
+    const boodskap = new Boodskap(self.app, req.token);
+
+    boodskap.RawMsgSearch( function (status, result) {
 
         if (status) {
             res.json({ status: true, result: result });
