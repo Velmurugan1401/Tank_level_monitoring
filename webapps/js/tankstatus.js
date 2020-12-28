@@ -1,62 +1,18 @@
 var TankStatusTable = null;
 var TankStatus_list = [];
-var startDate = moment().subtract(6, 'days').startOf('day');
-var endDate = moment().endOf('day');
+// var startDate = moment().subtract(6, 'days').startOf('day');
+// var endDate = moment().endOf('day');
+
+// $('.dropdown-menu a').on('click', function(){  
+//    $('.dropdown-toggle').html($(this).html());    
+// })
+
 $(document).ready(function(){
     loadTankStatusList();
+    
 });
 
-//Student Registration API
-// function studentRegistration(){
 
-//     var sname = $("#sname").val();
-//     var department = $("#department").val();
-//     var location = $("#location").val();
-
-//     //Validate
-//     if(sname === ""){
-
-//         alert("Student Name is Required!");
-
-//     }else if(department === ""){
-
-//         alert("Department is Required!");
-
-//     }else if(location === ""){
-
-//         alert("Location is Required!");
-
-//     }else{
-
-//         //Build Input Objects
-//         var inputObj = {
-//             sname : sname,
-//             location : location,
-//             department : department,
-//             created_ts : new Date().getTime()
-//         };
-
-//         //Call API
-//         $.ajax({
-//             url: BASE_PATH+"/student/insert",
-//             data: JSON.stringify(inputObj),
-//             contentType: "application/json",
-//             type: 'POST',
-//             success: function (result) {
-
-//                 //Success -> Show Alert & Refresh the page
-//                 successMsg("Registration Completed Successfully!");
-//                 loadTankDeviceList();
-//             },
-//             error: function (e) {
-
-//                 //Error -> Show Error Alert & Reset the form
-//                 errorMsg("Registration Failed!");
-//                 window.location.reload();
-//             }
-//         });
-//     }
-// }
 
 //Student List API
 function loadTankStatusList() {
@@ -122,14 +78,20 @@ function loadTankStatusList() {
             }
         },
         
-        // {
-        //     sTitle: 'Actions',
-        //     orderable: false,
-        //     mRender: function (data, type, row) {
-        //         var actionsHtml = '<button class="btn btn-default" onclick="deleteStudent()"><i class="fa fa-trash"></i></button>';
-        //         return actionsHtml;
-        //     }
-        // }
+        {
+            sTitle: 'Actions',
+            orderable: false,
+            mRender: function (data, type, row) {
+                var actionsHtml = '<div class="dropdown"><button type="button" class="btn btn-primary dropdown-toggle"  style="background-color:rgba(28,63,170);border:unset;" data-toggle="dropdown">Actions</button>'
+                +' <div class="dropdown-menu">'
+                +'  <a class="dropdown-item" href="#">Link / Unlink Device</a>'
+                +'  <a class="dropdown-item" href="#">Single Tank Snapshot</a>'
+                +'  <a class="dropdown-item" href="#">Delete</a>'
+                +' </div>'
+                +'</div>';
+                return actionsHtml;
+            }
+        }
     ];
 
     var queryParams = {
@@ -227,70 +189,16 @@ function loadTankStatusList() {
     TankStatusTable = $("#StatusTable").DataTable(tableOption);
 }
 
-$(function() {
-    var start = moment().subtract(29, 'days');
-    var end = moment();
+
+
     
-    function cb(start, end) {
-      $('#datePickerrr').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
+
+    function profilelogout() {
+      $("#profileCard").css('display','block');
     }
-
-    $('#datePickerrr').daterangepicker({
-      startDate: start,
-      endDate: end,
-      ranges: {
-        'Clear': [], //clear doesn't work
-        'Today': [moment(), moment()],
-        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-        'Last 7 days': [moment().subtract(6, 'days'), moment()],
-        'Last 30 days': [moment().subtract(29, 'days'), moment()],
-        'This month': [moment().startOf('month'), moment().endOf('month')],
-        'Last month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-      },
-      locale: {
-          //format: 'Y-m-d',
-          //format: "DD-MM-YYYY",
-          minDate: moment(),
-          cancelLabel: 'Clear',
-          applyLabel: 'Apply',
-                        
-          
-      }
-    }, cb);
-
-    cb(start, end);
-
-  });
- 
-  $('#datePickerrr').on('cancel.daterangepicker', function(ev, picker) {
-    $('#datePickerrr').val('');
-    table.draw();
-    });
-
-  $('#datePickerrr').on('apply.daterangepicker', function(ev, picker) {
-   var start = picker.startDate;
-   var end = picker.endDate;
-
-
-  $.fn.dataTable.ext.search.push(
-    function(settings, data, dataIndex) {
-      var min = start;
-      var max = end;
-      //var startDate = new Date(data[10]).format('YYYYMMDD hhmm');
-
-      var date1 = (data[10]).split('/') 
-      var newDate = date1[1] + '/' +date1[0] +'/' +date1[2];  
-      var startDate = new Date(newDate);
-      //alert(startDate);
-
-       
-      if (min == null && max == null) { return true; }
-      if (min == null && startDate <= max) { return true; }
-      if (max == null && startDate >= min) { return true; }
-      if (startDate <= max && startDate >= min) { return true; }
-      return false;
-    }
-  );
-  table.draw();
-  $.fn.dataTable.ext.search.pop();
-    });
+   
+  //   function logout(){
+  //     alert("logout");
+  //    Cookies.remove('myweb_cookie')
+  //    document.location=BASE_PATH+'/login';
+  //  }
