@@ -15,21 +15,20 @@
                 <div class="modal-content"> <p style="text-align: center;font-weight: 700;font-size: 15px;">Add New Tank</p>
                   <div class="modal-header">
                   
-                    <form>
+                    <form id="tankForm" action="javascript:void(0);" onsubmit="tankDetails()">
                       <!-- <lable class="la">Tank Image</lable>
                     <input type="image"class="la"><br> -->
                     <lable class="la">Tank Name</lable>
-                    <input type="text"class="la3"><br>
+                    <input type="text" id="tank_name" class="la3"><br>
                     <lable class="la" >Tank Type</lable>
-                    <input type="text"class="la2"><br>
+                    <input type="text" id="tank_type" class="la2"><br>
                     <lable class="la" >Capacity</lable>
-                    <input type="number"class="la2"><br>
-                    <lable class="la">Linked Devices</lable>
-                    <input type="text"class="la1"><br>
-                    <lable class="la">Updated Time</lable>
-                    <input type="text"class="la1"><br>
-                    <lable class="la">Created Time</lable>
-                    <input type="text"class="la1">
+                    <input type="number" id="capacity" class="la2"><br>
+                    <lable class="la">Location</lable>
+                    <input type="text" id="location" class="la2"><br>
+                    <!-- <lable class="la">Device Name</lable>
+                    <input type="text" id="device_id" class="la1"><br> -->
+                   
                   </form>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
@@ -40,7 +39,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">Add Tank</button>
+                    <button type="submit" class="btn btn-success">Add Tank</button>
                   </div>
               
                   
@@ -53,7 +52,8 @@
   
   <div class="row">
            <div class="col-md-12">
-              <table class="table table-bordered responsive no-wrap c1 "id="example" cellspacing="0" width="100%"  ></table>
+            <h1>Tank Master Table</h1>
+              <table class="table table-bordered responsive no-wrap c1 "id="tank_table" cellspacing="0" width="100%"  ></table>
 
               </table>
             </div>
@@ -62,13 +62,11 @@
 
     
     
-        
+
  
 
 
 <script src="js/managetanks.js"></script>
-<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+
 
 

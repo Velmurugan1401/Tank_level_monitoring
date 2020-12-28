@@ -159,7 +159,7 @@ Boodskap.prototype.executeNamedRule = function (ruleName, args, cbk) {
 
 
 Boodskap.prototype.elasticSearch = function (rid, query, cbk) {
-console.log(rid)
+
     const self = this;
 
     var obj = {

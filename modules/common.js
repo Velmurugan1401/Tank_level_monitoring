@@ -138,7 +138,7 @@ Common.prototype.commonDelete = function (tablename, req, res) {
 
     const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
 
-    boodskap.elasticDelete(tablename, req.body._id,function (status, result) {
+    boodskap.elasticDelete(tablename, req.query._id,function (status, result) {
 
         if(status){
             res.json({status: true, result: result});
