@@ -18,6 +18,10 @@
 .span1 {
   margin-top: 12px;
 }
+.ico {
+  border-radius: 48%;
+  background-color: #1c3faa;
+}
 .row3 {
   border-bottom-left-radius: 20px;
   padding-bottom: 70px;
@@ -25,6 +29,54 @@
   background-color: white;
   padding-left: 20px;
 }
+.paging_simple_numbers .pagination .paginate_button.active a,
+.paging_simple_numbers .pagination .paginate_button:hover a {
+  color: #fff !important;
+  background-color: rgba(28, 63, 170) !important;
+  background: rgba(28, 63, 170) !important;
+  border-color: rgba(28, 63, 170) !important;
+  border-radius: 3px !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  border: none !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  border: none !important;
+}
+.modal-title {
+  color: #1c3faa;
+  font-weight: bolder;
+}
+.modal-footer .btn2 {
+  background-color: #1c3faa;
+  color: white;
+}
+.lab {
+  padding: 40px;
+}
+.lab3 {
+  margin-left: 30px;
+}
+.lab1 {
+  margin-left: 42px;
+  margin-top: 10px;
+  align-items: center;
+}
+.lab2 {
+  margin-top: 10px;
+  align-items: center;
+}
+.lab8 {
+  margin-left: 34px;
+  margin-top: 10px;
+  align-items: center;
+}
+.lab9 {
+  margin-left: 50px;
+  margin-top: 10px;
+  align-items: center;
+}
+
 .toolbar {
   float: right;
 }
