@@ -1,20 +1,109 @@
-var charttwo = echarts.init(document.getElementById("main"));
+var myChart = echarts.init(document.getElementById('main'));
 option = {
- xAxis: {
-   type: 'category',
-   data: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JULY']
- },
- yAxis: {
-   type: 'value'
- },
- series: [{
-   data: [820, 932, 901, 934, 1290, 1330, 1320],
-   type: 'line',
-   smooth: true
- }]
+    color: ['#3398DB'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            data: ['Avadi', 'Porur', 'Egmore', 'Puzhal', 'Manali', 'T.nagar', 'Otteri'],
+            axisTick: {
+                alignWithLabel: true
+            }
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Consumption Level',
+            type: 'bar',
+            barWidth: '60%',
+        //   data:(100/maxValue) * value,
+            data: [10, 52, 200, 334, 390, 330, 220]
+        }
+    ]
+};
+myChart.setOption(option);
+var chart = echarts.init(document.getElementById("local"));
+option = {
+    title: {
+        text: 'Tank Events',
+        subtext: 'Alert Counts',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: ['All Level', 'High Level', 'Low Level'   ]
+    },
+    series: [
+        {
+            name: 'Alert Counts',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+                {value: 335, name: 'All Level'},
+                {value: 310, name: 'High Level'},
+                {value: 234, name: 'Low Level'},
+             
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
 };
 
-charttwo.setOption(option);
-var chart = echarts.init(document.getElementById("local"));
-
 chart.setOption(option);
+
+var myChart = echarts.init(document.getElementById('graph'));
+option = {
+    legend: {},
+    tooltip: {},
+    dataset: {
+        dimensions: ['product', 'Yesterday', 'Last 7 Days', 'Last 30 days'],
+        source: [
+            {product: 'Avadi', 'Yesterday': 43.3, 'Last 7 Days': 85.8, 'Last 30 days': 93.7},
+            {product: 'Porur', 'Yesterday': 83.1, 'Last 7 Days': 73.4, 'Last 30 days': 55.1},
+            {product: 'Egmore', 'Yesterday': 86.4, 'Last 7 Days': 65.2, 'Last 30 days': 82.5},
+            {product: 'Puzhal', 'Yesterday': 72.4, 'Last 7 Days': 53.9, 'Last 30 days': 39.1},
+            {product: 'Manali', 'Yesterday': 72.4, 'Last 7 Days': 53.9, 'Last 30 days': 39.1},
+            {product: 'T.nagar', 'Yesterday': 72.4, 'Last 7 Days': 53.9, 'Last 30 days': 39.1},
+            {product: 'Otteri', 'Yesterday': 72.4, 'Last 7 Days': 53.9, 'Last 30 days': 39.1}
+        ]
+    },
+    xAxis: {type: 'category'},
+    yAxis: {},
+    // Declare several bar series, each will be mapped
+    // to a column of dataset.source by default.
+    series: [
+        {type: 'bar'},
+        {type: 'bar'},
+        {type: 'bar'}
+         
+    ]
+};
+myChart.setOption(option);

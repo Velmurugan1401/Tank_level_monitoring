@@ -96,16 +96,20 @@ padding-left: 20px;
 }
 .la1{
     margin-top: 10px;
+    margin-left: 40px;
     
 }
 .la2{
-    margin-left: 35px;
+    margin-left: 31px;
     margin-top: 10px;
 }
 .la3{
     margin-left: 24px;
 }
-
+.la4{
+    margin-left: 35px;
+    margin-top: 10px;
+}
 .toolbar
 {
     float:right;
@@ -154,3 +158,9 @@ border-radius: 3px !important;
     border: 2px solid;
     color:white;
 }
+@media screen and (max-width: 1036px) {
+    #tank_table {
+        overflow-x: scroll;
+        width: 350px;
+    }
+  }
