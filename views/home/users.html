@@ -1,188 +1,126 @@
- <div class="container-fluid">
-   
-  <div class="row" style="background-color:white;padding-top: 25px;border-top-left-radius: 20px;
-  border-top-right-radius: 20px;padding: 20px;">
-      <div class="col-md-12">
-        <span class="title-span">Administration</span>
-          <span class="title-span">|</span>
-          <span class="title-span" style="color: mediumblue;font-weight: 500;">Users</span>
-      </div>
-    </div>
-  <div class="row section2 containflui p-2" style="background-color:#DCDCDC">
-    <div class="col-md-3">
-      <div style="margin-top: 12px;">
-         <span>Total Users: </span>
-         <span style="font-weight: 500;">7  </span>
-  </div>
-  </div>
-    <div class="col-md-9 one" style="text-align:right">     
-          <!-- <button
-            type="button"
-            class="btn"
-            data-toggle="modal"
-            data-target="#myModal"
-            style="background-color:#1C3FAA; color: white;"
-          >
-            <i class="fa fa-user-plus p-2" aria-hidden="true"></i>Add New User
-          </button> -->
-          <div class="modal" id="myModal">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <img
-                    src="images/adduser.svg"
-                    height="80px"
-                    width="100px"
-                  />
-                  <h4 class="modal-title">Hi ! New one</h4>
-                  <button type="button" class="close" data-dismiss="modal">
-                    &times;
-                  </button>
-                </div>
-
-              <div class="modal-body" style="text-align: center">
-                <form id="myForm" action="javascript:void(0);" onsubmit="loadUser()">
-                  <input
-                    class="form-control form-control-sm w-100 mt-3"
-                    type="text"
-                    placeholder="Enter Your first name"
-                    aria-label="Firstname"
-                    id="name1"
-                  />
-                  <input
-                    class="form-control form-control-sm w-100 mt-3"
-                    type="text"
-                    placeholder="Enter Your last name"
-                    aria-label="Lastname"
-                    id="name2"
-                  />
-                  <input  class="form-control form-control-sm w-100 mt-3" type="tel" id="phone"  
-               placeholder="Enter your mobile no"
-               aria-label="Mobile"
-                class="form-control form-control-sm w-100 mt-3"
-              >
-                  <input
-                    class="form-control form-control-sm w-100 mt-3"
-                    type="text"
-                    placeholder="Enter Your location"
-                    aria-label="Location"
-                    id="loc"
-                  />
-                  <input
-                    class="form-control form-control-sm w-100 mt-3"
-                    type="email"
-                    placeholder="Enter Your email"
-                    aria-label="Email"
-                    id="emaill"
-                  />
-                  <input
-                    class="form-control form-control-sm w-100 mt-3"
-                    type="password"
-                    placeholder="Enter Your password"
-                    aria-label="Password"
-                    id="pwd"
-                  />
-                  <button type="button" class="btn btn-primary" data-dismiss="modal" >Close</button>
-                  <button type="submit" class="btn btn-success" id="sub">Add User</button>
-              </form>
-            </div> 
-                <!-- <div class="modal-footer">
-                  <button type="button" class="btn btn-primary" data-dismiss="modal" >Close</button>
-                  <button type="button" class="btn btn-success" id="sub">Add User</button>
-                </div> -->
-            
-                <!-- </div> -->
-              </div>
-            </div>
-          </div>  
-                 
-          <!-- <i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>         -->
-      </div>
-    </div>
-  <div class="row" style="background-color:white;border-bottom-left-radius: 20px;padding-bottom: 70px;
-  border-bottom-right-radius: 20px;padding-left: 20px;">
+<div class="container-fluid">
+  <div
+    class="row"
+    style="
+      background-color: white;
+      padding-top: 25px;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      padding: 20px;
+    "
+  >
     <div class="col-md-12">
-          <table class="table table-bordered table-responsive no-wrap" id="myTable" cellspacing="0" width="100%">
-     
-        <!-- <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Location</th>
-            <th scope="col">Mobile No</th>
-            <th scope="col">Email Id</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Larry</td>
-            <td>James</td>
-            <td>Australia</td>
-            <td>9876543210</td>
-            <td>james@gmail.com</td>
-            <td>
-              <i class="fa fa-pencil-square-o p-2" aria-hidden="true"></i
-              ><i class="fa fa-trash p-2" aria-hidden="true"></i>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Larry</td>
-            <td>James</td>
-            <td>Australia</td>
-            <td>9876543210</td>
-            <td>james@gmail.com</td>
-            <td>
-              <i class="fa fa-pencil-square-o p-2" aria-hidden="true"></i
-              ><i class="fa fa-trash p-2" aria-hidden="true"></i>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>James</td>
-            <td>Australia</td>
-            <td>9876543210</td>
-            <td>james@gmail.com</td>
-            <td>
-              <i class="fa fa-pencil-square-o p-2" aria-hidden="true"></i
-              ><i class="fa fa-trash p-2" aria-hidden="true"></i>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Tom</td>
-            <td>James</td>
-            <td>Australia</td>
-            <td>9876543210</td>
-            <td>james@gmail.com</td>
-            <td>
-              <i class="fa fa-pencil-square-o p-2" aria-hidden="true"></i
-              ><i class="fa fa-trash p-2" aria-hidden="true"></i>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Jerryy</td>
-            <td>James</td>
-            <td>Australia</td>
-            <td>9876543210</td>
-            <td>james@gmail.com</td>
-            <td>
-              <i class="fa fa-pencil-square-o p-2" aria-hidden="true"></i
-              ><i class="fa fa-trash p-2" aria-hidden="true"></i>
-            </td>
-          </tr>
-        </tbody> -->
-      </table>
+      <span class="title-span">Administration</span>
+      <span class="title-span">|</span>
+      <span class="title-span" style="color: mediumblue; font-weight: 500"
+        >Users</span
+      >
+    </div>
+  </div>
+  <div class="row section2 containflui p-2" style="background-color: #dcdcdc">
+    <div class="col-md-3">
+      <div style="margin-top: 12px">
+        <span>Total Users: </span>
+        <span style="font-weight: 500">7 </span>
+      </div>
+    </div>
+    <div class="col-md-9 one" style="text-align: right">
+      <div class="modal" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <img src="images/adduser.svg" height="80px" width="100px" />
+              <h4 class="modal-title">Hi ! New one</h4>
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+
+            <div class="modal-body" style="text-align: center">
+              <form id="form1" action="javascript:void(0);">
+                <input
+                  class="form-control form-control-sm w-100 mt-3"
+                  type="text"
+                  placeholder="Enter Your first name"
+                  aria-label="Firstname"
+                  id="name1"
+                />
+                <input
+                  class="form-control form-control-sm w-100 mt-3"
+                  type="text"
+                  placeholder="Enter Your last name"
+                  aria-label="Lastname"
+                  id="name2"
+                />
+                <input
+                  class="form-control form-control-sm w-100 mt-3"
+                  type="tel"
+                  placeholder="Enter your mobile no"
+                  aria-label="Mobile"
+                  class="form-control form-control-sm w-100 mt-3"
+                />
+                <input
+                  class="form-control form-control-sm w-100 mt-3"
+                  type="text"
+                  placeholder="Enter Your location"
+                  aria-label="Location"
+                  id="loc"
+                />
+                <input
+                  class="form-control form-control-sm w-100 mt-3"
+                  type="email"
+                  placeholder="Enter Your email"
+                  aria-label="Email"
+                  id="emaill"
+                />
+                <input
+                  class="form-control form-control-sm w-100 mt-3"
+                  type="password"
+                  placeholder="Enter Your password"
+                  aria-label="Password"
+                  id="pwd"
+                />
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-success"
+                  id="sub"
+                  onclick="loadUser()"
+                >
+                  Add User
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+  <div
+    class="row"
+    style="
+      background-color: white;
+      border-bottom-left-radius: 20px;
+      padding-bottom: 70px;
+      border-bottom-right-radius: 20px;
+      padding-left: 20px;
+    "
+  >
+    <div class="col-md-12">
+      <table
+        class="table table-bordered table-responsive no-wrap"
+        id="myTable"
+        cellspacing="0"
+        width="100%"
+      ></table>
+    </div>
+  </div>
+</div>
 
-
-
- 
 <script src="js/users.js"></script>

@@ -2,15 +2,13 @@ var Utils = require("../modules/utils");
 var Boodskap = require("../modules/boodskap");
 var Commons = require("../modules/common");
 var Tables = require("../modules/tables");
-
 var Student = require("../modules/student");
 const Tank = require("../modules/Tank_details");
 const Tankstatus = require("../modules/Tank_status");
-// const EventTrigger = require("../modules/event_trigger");
+const EventTrigger = require("../modules/event_trigger");
 const Tankhistory = require("../modules/Tank_history");
 const Device = require("../modules/Device_details");
 const Users = require("../modules/User_details");
-const Events = require("../modules/event");
 const MSG = require("../modules/msg")
 
 
@@ -25,14 +23,13 @@ var APIRoutes = function (app, router) {
     this.common = new Commons(app);
     this.table = new Tables(app);
     this.student = new Student(app);
-    this.tank = new Tank(app);
-    this.Tank_status = new Tankstatus(app);
-    // this.event_trigger=new EventTrigger(app);
-    this.Tank_history = new Tankhistory(app);
-    this.Device_details = new Device(app);
-    this.details = new Users(app);
-    this.events = new Events(app);
-    this.msg = new MSG(app)
+    this.tank=new Tank(app);
+    this.Tank_status=new Tankstatus(app);
+    this.event_trigger=new EventTrigger(app);
+    this.Tank_history=new Tankhistory(app);
+    this.Device_details=new Device(app);
+    this.details=new Users(app);
+    this.msg=new MSG(app)     
     this.init();
 
 };
@@ -104,10 +101,7 @@ APIRoutes.prototype.init = function () {
         console.log(req.body)
         self.details.performAction(req, res);
     });
-    self.router.post('/event/:action', sessionCheck, function (req, res) {
-        console.log(req.body)
-        self.events.performAction(req, res);
-    });
+
     self.router.post('/msg/:action', sessionCheck, function (req, res) {
 
         self.msg.performAction(req, res);
