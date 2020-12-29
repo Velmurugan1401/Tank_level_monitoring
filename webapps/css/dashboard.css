@@ -1,6 +1,4 @@
-.container-fluid{
-    background-color: rgb(241, 245, 248) !important;
-}
+
 /* .tank span{
    padding-top: 20px;
 } */
@@ -12,6 +10,9 @@
     margin-left: 10px;
     padding-top: 50px;
 }
+/* .fa-2x{
+    margin-bottom: 90px;
+} */
 .one{
     box-shadow: 0 1px 2px rgba(0,0,0,0.15);
     transition: box-shadow 0.3s ease-in-out;
