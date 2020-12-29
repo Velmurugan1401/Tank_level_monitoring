@@ -190,11 +190,7 @@ function loadTankStatusList() {
     TankStatusTable = $("#StatusTable").DataTable(tableOption);
 }
 
-
-
-    
-
-    function profilelogout() {
+function profilelogout() {
       $("#profileCard").css('display','block');
     }
    
