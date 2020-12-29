@@ -40,8 +40,8 @@
                   </button>
                 </div>
 
-              <div class="modal-body" style="text-align: center">
-                <form action="javascript:void(0);" onsubmit="loadUser()">
+              <div class="modal-body"  style="text-align: center">
+                <form id="form1" action="javascript:void(0);" >
                   <input
                     class="form-control form-control-sm w-100 mt-3"
                     type="text"
@@ -56,7 +56,7 @@
                     aria-label="Lastname"
                     id="name2"
                   />
-                  <input  class="form-control form-control-sm w-100 mt-3" type="tel" id="phone" name="phone"
+                  <input  class="form-control form-control-sm w-100 mt-3" type="tel" 
                placeholder="Enter your mobile no"
                aria-label="Mobile"
                 class="form-control form-control-sm w-100 mt-3"
@@ -84,7 +84,7 @@
                     id="pwd"
                   />
                   <button type="button" class="btn btn-primary" data-dismiss="modal" >Close</button>
-                  <button type="submit" class="btn btn-success" id="sub">Add User</button>
+                  <button type="submit" class="btn btn-success" id="sub"onclick="loadUser()">Add User</button>
               </form>
             </div> 
                 <!-- <div class="modal-footer">
