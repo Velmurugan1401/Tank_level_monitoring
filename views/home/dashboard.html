@@ -1,6 +1,6 @@
 
-<div class="container-fluid">
-  <div class="row" style="background-color:white;padding-top: 25px;border-top-left-radius: 20px;
+<div class="container-fluid dash " style="background-color: rgb(241, 245, 248);">
+  <div class="row" style="  padding-top: 25px;border-top-left-radius: 20px;
                           border-top-right-radius: 20px;padding: 20px; border-bottom: 1px solid gainsboro;">
         <div class="col-md-12">
           <span class="title-span"></pan>
@@ -9,91 +9,62 @@
         </div>
   </div>
  
-  <div class="row second" style="background-color: white; padding-top: 70px ;">
-      <div class="col-md-3">
-        <div class="card ">
-            <div class="card-header"><i class="fa fa-tablet fa-2x" aria-hidden="true"></i></div>
-            <div class="card-body">
-              <p class="card-text">10</p>
-              <p class="card-text">Total Tanks </p>
-            </div>
-          </div>
+  <div class="row rname" style=" padding-top: 70px ;">
+      <div class="col-lg bg-white ml-3 tank" >
+        <div class="user"><i class="fa fa-tablet fa-2x" aria-hidden="true"></i></div>
+       <div> TOTAL TANKS</div>
       </div>
-      <div class="col-md-3">
-       <div class="card ">
-            <div class="card-header"> <i class="fa fa-user-o fa-2x" aria-hidden="true"></i></div>
-            <div class="card-body">
-              <p>100</p>
-              <p class="card-text">Total Users</p>
-            </div>
-          </div>
+      <div class="col-lg  bg-white ml-3 tank">
+       
+            <div class="user"> <i class="fa fa-user-o fa-2x" aria-hidden="true"></i></div>
+            <div>TOTAL USERS</div>
     </div>
-    <div class="col-md-3">
-       <div class="card ">
-            <div class="card-header">
-              <i class="fa fa-television fa-2x" aria-hidden="true"></i>
+          <div class="col-lg bg-white ml-3 tank">
+       
+            <div class="user"><i class="fa fa-television fa-2x" aria-hidden="true"></i></div>
+            <div>TOTAL DEVICES</div>
             </div>
-            <div class="card-body">
-              <p class="card-text">5</p>
-              <p class="card-text">Total Devices</p>
-            </div>
-          </div>
-    </div>
-    <div class="col-md-3">
-       <div class="card ">
-            <div class="card-header"><i class="fa fa-calendar-o fa-2x" aria-hidden="true"></i></div>
-            <div class="card-body">
-              <p class="card-text">3 </p>
-              <p class="card-text">Total Events </p>
-            </div>
-          </div>
+    <div class="col-lg bg-white ml-3 tank">
+       
+            <div class="user"><i class="fa fa-calendar-o fa-2x" aria-hidden="true"></i></div>
+            <div>TOTAL EVENTS</div>
     </div>
   </div>
-  <div class="row three" style="background-color: white;">
-      <div class="col-md-6">
-        <div class="card bg-light mb-3" >
-            <div class="card-header">header</div>
-            <div class="card-body " >
-              <div id="local" style="width: 500px; height: 300px;">
 
-              </div>  
-            </div>
-          </div>
+  <div class="row three" >
+  
+      <div class="col-md-6">
+        
+        <div id="local" style="width: 500px; height: 300px;">
+            
+        </div>
       </div>
       <div class="col-md-6">
-        <div class="card bg-light mb-3">
-            <div class="card-header">header</div>
-            <div class="card-body">
+        <h4>Water Consumption levels</h4>
+        <div id="main" style="width: 500px; height: 300px;">
+             
+            </div>
+          </div>
+    </div>
+    <div class="row">
+  
+      <div class="col-md-6">
+        <h4>Water Consumption By Days</h4>
+        <div id="graph" style="width: 600px; height: 400px;">
+            
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div id="main" style="width: 500px; height: 300px;">
              
             </div>
           </div>
     </div>
   </div>
-  <div class="row roe" style="height: 50px;background-color: blue;">
-   
-  </div>
-</div>
-<script src="../../node_modules/echarts/dist/echarts.js"></script>
+   <script src="js/dashboard.js"></script> 
   
-<script type="text/javascript">
-  var charttwo = echarts.init(document.getElementById("local"));
-  option = {
-    xAxis: {
-      type: 'category',
-      data: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JULY']
-    },
-    yAxis: {
-      type: 'value'
-    },
-    series: [{
-      data: [820, 932, 901, 934, 1290, 1330, 1320],
-      type: 'line',
-      smooth: true
-    }]
-  };
-  
-  charttwo.setOption(option);
-</script>
+
+ 
 
 <!-- <script>
   var myChart = echarts.init(document.getElementById('main'));
