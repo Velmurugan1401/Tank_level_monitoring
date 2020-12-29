@@ -68,7 +68,8 @@
 .three{
     margin-top: 80px;
 }
-.row .tank{
+.tank:hover{
+    box-shadow: 20px blue;
     background-color: white;
     margin-left: 10px;
     padding-top: 50px;
