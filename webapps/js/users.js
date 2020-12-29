@@ -69,6 +69,10 @@ function loadUser() {
             contentType: "application/json",
             type: 'POST',
             success: function (result) {
+                console.log(result);
+                $("#name1,#name2,#mobile,#emaill,#loc").val('');
+                $("#myModal").css('display','none');
+                $(".modal-backdrop").remove();
 
                 //Success -> Show Alert & Refresh the page
                 successMsg("User Added Successfully!");
@@ -110,13 +114,13 @@ function loadUser() {
             success: function (result) {
                 //Success -> Show Alert & Refresh the page
                 $("#name1,#name2,#mobile,#emaill,#loc").val('');
-                $("#myModal").css('display', 'none');
+                $("#myModal").css('display','none');
                 $(".modal-backdrop").remove();
 
                 successMsg("Update Completed Successfully!");
 
-                // loadUsersList();
-                window.location.reload();
+                loadUsersList();
+                // window.location.reload();
             },
             error: function (e) {
 
