@@ -1,6 +1,7 @@
 var TankMasterTable = null;
 var tank_list = [];
-
+var key;
+var flag = false;
 // var startDate = moment().subtract(6, 'days').startOf('day');
 // var endDate = moment().endOf('day');
 $(document).ready(function(){
@@ -77,7 +78,7 @@ function tankDetails(){
             }
             
         });
-        
+        $("#form1")[0].reset();
     }
 
     else{
@@ -105,7 +106,7 @@ function tankDetails(){
                 window.location.reload();
             }
         });
-    }
+    } flag = false;
     }
 
 }
@@ -250,7 +251,8 @@ function loadTankList() {
                             "query": "*" + searchText + "*"
                         }
                     }
-                });
+                });      
+
             }
 
             oSettings.jqXHR = $.ajax({
@@ -329,7 +331,4 @@ function deleteTank(row){
     });
 }
 
-$(document).ready(function() {
-    
-} );
 
