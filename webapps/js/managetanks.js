@@ -89,7 +89,7 @@ function tankDetails(){
             contentType: "application/json",
             type: 'POST',
             success: function (result) {
-    alert("hai");
+    // alert("hai");
     $("#tank_name,#tank_type,#location,#device_id,#capacity").val('');
     $("#exampleModal").css('display','none')
     $(".modal-backdrop").remove();
