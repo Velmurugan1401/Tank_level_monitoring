@@ -10,40 +10,107 @@ let mid = 1000;
 let fwver = "3";
 let dmdl = "2";
 let did = "";
-
+j = [90, 100, 95, 98, 94, 93, 97, 92, 100, 95];
 // define object filed
 
-let obj = {
+let obj = [{
 
-    "tank_level": " ",
-    "unit": "gallon",
-    "power_status": "Active"
-}
+        "capacity": "5000",
+        "tank_level": " ",
+        "unit": "gallon",
+        "power_status": "Active"
+    }, {
+
+        "capacity": "8000",
+        "tank_level": " ",
+        "unit": "gallon",
+        "power_status": "Active"
+    }, {
+
+        "capacity": "10000",
+        "tank_level": " ",
+        "unit": "gallon",
+        "power_status": "Active"
+    }, {
+
+        "capacity": "7000",
+        "tank_level": " ",
+        "unit": "gallon",
+        "power_status": "Active"
+    }, {
+
+        "capacity": "5000",
+        "tank_level": " ",
+        "unit": "gallon",
+        "power_status": "Active"
+    }, {
+
+        "capacity": "10000",
+        "tank_level": " ",
+        "unit": "gallon",
+        "power_status": "Active"
+    }, {
+
+        "capacity": "5000",
+        "tank_level": " ",
+        "unit": "gallon",
+        "power_status": "Active"
+    },
+    {
+
+        "capacity": "6000",
+        "tank_level": " ",
+        "unit": "gallon",
+        "power_status": "Active"
+    }, {
+
+        "capacity": "9000",
+        "tank_level": " ",
+        "unit": "gallon",
+        "power_status": "Active"
+    }, {
+
+        "capacity": "5000",
+        "tank_level": " ",
+        "unit": "gallon",
+        "power_status": "Active"
+    }
+]
 
 // cron.schedule for every 3 minits
-
-cron.schedule('*/3 * * * * *', function () {
+cron.schedule('0 */1 * * * *', function () {
     // send continiously in 10 device values 
 
-    for (var i = 1; i <= 10; i++) {
-        did = "SAMPLE_DEV_10" + i;
-        obj.tank_level = Math.floor(Math.random() * (5000 - 80) + 80);
-        console.log(obj, did);
+    for (i = 0; i <= 9; i++) {
+        j[i] = j[i] + 510;
+        obj[i].tank_level = j[i];
+        //    condition chacking tank level 
+        if (obj[i].capacity <= obj[i].tank_level) {
+            j[i] = 90;
+        }
+        var did = "SAMP_DEV_10" + i;
+        console.log(did, obj[i])
 
         //  ruquest post used to push msg to msg table
         let url = `${API_URL}/push/json/${DOMAIN_KEY}/${API_KEY}/${did}/${dmdl}/${fwver}/${mid}`;
         request.post({
             uri: url,
+
             headers: {
                 'Content-Type': 'application/json'
+
             },
-            body: JSON.stringify(obj)
+            body: JSON.stringify(obj[i])
 
             // display the response 
         }, function (err, res, body) {
+
             let json = JSON.parse(body);
+            console.log(json);
+
         })
     }
+
 
 }, )
 
