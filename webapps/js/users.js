@@ -223,16 +223,16 @@ function loadUsersList() {
 
       if (searchText) {
         queryParams.query["bool"]["should"].push({
-          wildcard: { location: "*" + searchText + "*" },
+          wildcard: { first_name: "*" + searchText + "*" },
         });
         queryParams.query["bool"]["should"].push({
-          wildcard: { location: "*" + searchText.toLowerCase() + "*" },
+          wildcard: { first_name: "*" + searchText.toLowerCase() + "*" },
         });
         queryParams.query["bool"]["should"].push({
-          wildcard: { location: "*" + searchText.toUpperCase() + "*" },
+          wildcard: { first_name: "*" + searchText.toUpperCase() + "*" },
         });
         queryParams.query["bool"]["should"].push({
-          wildcard: { location: "*" + capitalizeFLetter(searchText) + "*" },
+          wildcard: { first_name: "*" + capitalizeFLetter(searchText) + "*" },
         });
         queryParams.query["bool"]["minimum_should_match"] = 1;
         queryParams.query["bool"]["should"].push({
@@ -294,17 +294,11 @@ function loadUsersList() {
         },
       });
     },
-    // dom: 'l<"toolbar">frtip',
-    // initComplete: function (settings, json) {
-    //     $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button><i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>');
-    // },
-
     dom: 'l<"toolbar">frtip',
     initComplete: function () {
       $("div.toolbar").html(
         '<input class="pick" data-date-format="mm/dd/yyyy" id="datePickerrr" type="date"> <button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button><i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>'
       );
-      // $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button><i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>');
     },
   };
 
