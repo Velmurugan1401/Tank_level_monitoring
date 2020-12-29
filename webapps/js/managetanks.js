@@ -5,6 +5,7 @@ var tank_list = [];
 // var endDate = moment().endOf('day');
 $(document).ready(function(){
     loadTankList();
+    
 });
 
 //tank Registration API
@@ -170,7 +171,7 @@ function loadTankList() {
             sTitle: 'Actions',
             orderable: false,
             mRender: function (data, type, row) {
-                var actionsHtml = '<button class="btn btn-default" onclick="deleteTank(\'' +row["_id"]+'\')"><i class="fa fa-trash"></i></button>'+" "+'<button class="btn btn-default" data-toggle="modal" data-target="#exampleModal" onclick="editTank(\'' +row["_id"]+'\')"><i class="fa fa-edit"></i></button>';
+                var actionsHtml = '<button class="btn btn-default" onclick="deleteTank(\'' +row["_id"]+'\')"><i class="fa fa-trash icon"  ></i></button>'+" "+'<button class="btn btn-default" data-toggle="modal" data-target="#exampleModal" onclick="editTank(\'' +row["_id"]+'\')"><i class="fa fa-edit"></i></button>';
                 return actionsHtml;
             }
         }
@@ -189,7 +190,7 @@ function loadTankList() {
 
     var tableOption = {
         fixedHeader: false,
-        responsive: false,
+        responsive: true,
         paging: true,
         searching: true,
         aaSorting: [[3, 'desc']],
@@ -266,8 +267,9 @@ function loadTankList() {
         },
         dom:'l<"toolbar">frtip',
         initComplete :  function() {
-       $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus-square icons" style="color:white";"aria-hidden="true"></i>Add Tanks</button>');
+       $("div.toolbar").html('<input class="pick" data-date-format="mm/dd/yyyy" id="datePickerrr" type="date"><button type="button" class="btn button1" data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus-square icons" style="color:white";"aria-hidden="true"></i>Add Tanks</button>');
    }
+ 
        
     };
 
@@ -320,5 +322,7 @@ function deleteTank(row){
     });
 }
 
-
+$(document).ready(function() {
+    
+} );
 
