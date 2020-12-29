@@ -2,61 +2,17 @@ var TankStatusTable = null;
 var TankStatus_list = [];
 // var startDate = moment().subtract(6, 'days').startOf('day');
 // var endDate = moment().endOf('day');
+
+// $('.dropdown-menu a').on('click', function(){  
+//    $('.dropdown-toggle').html($(this).html());    
+// })
+
 $(document).ready(function(){
     loadTankStatusList();
+    
 });
 
-//Student Registration API
-// function studentRegistration(){
 
-//     var sname = $("#sname").val();
-//     var department = $("#department").val();
-//     var location = $("#location").val();
-
-//     //Validate
-//     if(sname === ""){
-
-//         alert("Student Name is Required!");
-
-//     }else if(department === ""){
-
-//         alert("Department is Required!");
-
-//     }else if(location === ""){
-
-//         alert("Location is Required!");
-
-//     }else{
-
-//         //Build Input Objects
-//         var inputObj = {
-//             sname : sname,
-//             location : location,
-//             department : department,
-//             created_ts : new Date().getTime()
-//         };
-
-//         //Call API
-//         $.ajax({
-//             url: BASE_PATH+"/student/insert",
-//             data: JSON.stringify(inputObj),
-//             contentType: "application/json",
-//             type: 'POST',
-//             success: function (result) {
-
-//                 //Success -> Show Alert & Refresh the page
-//                 successMsg("Registration Completed Successfully!");
-//                 loadTankDeviceList();
-//             },
-//             error: function (e) {
-
-//                 //Error -> Show Error Alert & Reset the form
-//                 errorMsg("Registration Failed!");
-//                 window.location.reload();
-//             }
-//         });
-//     }
-// }
 
 //Student List API
 function loadTankStatusList() {
@@ -105,7 +61,7 @@ function loadTankStatusList() {
           }
       },
       {
-        mData: 'device_id  ',
+        mData: 'device_id',
         sWidth: '20%',
         sTitle: ' Device Id ',
         orderable: false,
@@ -122,14 +78,20 @@ function loadTankStatusList() {
             }
         },
         
-        // {
-        //     sTitle: 'Actions',
-        //     orderable: false,
-        //     mRender: function (data, type, row) {
-        //         var actionsHtml = '<button class="btn btn-default" onclick="deleteStudent()"><i class="fa fa-trash"></i></button>';
-        //         return actionsHtml;
-        //     }
-        // }
+        {
+            sTitle: 'Actions',
+            orderable: false,
+            mRender: function (data, type, row) {
+                var actionsHtml = '<div class="dropdown"><button type="button" class="btn btn-primary dropdown-toggle"  style="background-color:rgba(28,63,170);border:unset;" data-toggle="dropdown">Actions</button>'
+                +' <div class="dropdown-menu">'
+                +'  <a class="dropdown-item" href="#">Link / Unlink Device</a>'
+                +'  <a class="dropdown-item" href="#">Single Tank Snapshot</a>'
+                +'  <a class="dropdown-item" href="#">Delete</a>'
+                +' </div>'
+                +'</div>';
+                return actionsHtml;
+            }
+        }
     ];
 
     var queryParams = {
@@ -182,19 +144,19 @@ function loadTankStatusList() {
             var searchText = oSettings.oPreviousSearch.sSearch.trim();
 
             if (searchText) {
-                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + searchText + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + searchText.toLowerCase() + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + searchText.toUpperCase() + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + capitalizeFLetter(searchText) + "*" } })
+                queryParams.query['bool']['should'].push({ "wildcard": { "tank_name": "*" + searchText + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "tank_name": "*" + searchText.toLowerCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "tank_name": "*" + searchText.toUpperCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "tank_name": "*" + capitalizeFLetter(searchText) + "*" } })
                 queryParams.query['bool']["minimum_should_match"] = 1;
                 queryParams.query['bool']['should'].push({
                     "match_phrase": {
-                        "location.keyword": "*" + searchText + "*"
+                        "tank_name.keyword": "*" + searchText + "*"
                     }
                 })
                 queryParams.query['bool']['should'].push({
                     "match_phrase_prefix": {
-                        "location.keyword": {
+                        "tank_name.keyword": {
                             "query": "*" + searchText + "*"
                         }
                     }
@@ -213,7 +175,7 @@ function loadTankStatusList() {
 
                     TankStatus_list = resultData.data;
 
-                    $(".totalCount").html(data.result.total)
+                    $("#total").html(data.result.total)
 
                     resultData['draw'] = oSettings.iDraw;
                     fnCallback(resultData);
@@ -227,3 +189,16 @@ function loadTankStatusList() {
     TankStatusTable = $("#StatusTable").DataTable(tableOption);
 }
 
+
+
+    
+
+    function profilelogout() {
+      $("#profileCard").css('display','block');
+    }
+   
+  //   function logout(){
+  //     alert("logout");
+  //    Cookies.remove('myweb_cookie')
+  //    document.location=BASE_PATH+'/login';
+  //  }

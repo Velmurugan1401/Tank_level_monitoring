@@ -3,26 +3,35 @@
 	 box-shadow: 0px 0px 5px grey;
  }
  
-.main1
+/* .main1
 {
 	margin-top: 50px;
 	margin-bottom: 50px;
+} */
+.no-gutters{
+	box-shadow: 5px 5px 16px 6px grey;
 }
  
  .main1
  {
-	 height:80vh;
+	 height:86vh;
  }
- .mani{
-	 background-color: blue;
- }
+ /* .mani{
+	 background-color: #1C3FAA;
+ } */
+ /* .logo{
+	box-shadow: 5px 5px gray;
+
+}
+ .gif{
+	 box-shadow: 5px 0 5px 5px gray;
+ } */
  .fm
  {
-	 margin-top: 50px;
-	 margin-bottom:30px;
-	 margin-left: 40px;
-	 margin-right: 40px;
-	 padding: 10px;
+	 margin-top: 60px 40px 30px 40px;
+	
+	 padding: 70px 106px 62px 106px;
+	 
  }
  .bord
  {

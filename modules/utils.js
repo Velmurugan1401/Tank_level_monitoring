@@ -146,6 +146,7 @@ Utils.prototype.dbQueryFormatter = function (data) {
 };
 
 Utils.prototype.elasticQueryFormatter = function (data) {
+    console.log("incoming" ,data)
 
     var resultObj = {
         total: 0,
@@ -154,7 +155,7 @@ Utils.prototype.elasticQueryFormatter = function (data) {
     }
 
     if (data.httpCode === 200) {
-
+ 
         var arrayData = JSON.parse(data.result);
 
         var totalRecords = arrayData.hits.total ? arrayData.hits.total.value : 0;
@@ -186,7 +187,7 @@ Utils.prototype.elasticQueryFormatter = function (data) {
             },
             aggregations: aggregations
         }
-
+            console.log("it is return " ,resultObj)                 
         return resultObj;
 
     } else {
@@ -198,7 +199,7 @@ Utils.prototype.elasticQueryFormatter = function (data) {
 // device list======================================================
 
 Utils.prototype.elasticDeviceFormatter = function (data) {
-    console.log("==================",data)
+    // console.log("==================",data.data)
 
     var resultObj = {
         total: 0,
@@ -206,17 +207,20 @@ Utils.prototype.elasticDeviceFormatter = function (data) {
         
     }
         var totalRecords =  data.length;
-       
+        // var arrayData = JSON.parse(data.result);
+       var raw=data;
+
  resultObj = {
             "total": totalRecords,
             "data": {
-                "data": data
+                "data": raw
             }
         }
 
         return resultObj;
 
 };
+// RAW msg==========================
 
 
 Utils.prototype.getCallerIP = function (request) {

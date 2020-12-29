@@ -5,7 +5,7 @@
     }
     .live-btn{
     width: 60px;
-    background-color:darkcyan;
+    background-color:rgba(28,63,170);
     height: 24px;
     border-radius: 4px;
     color: white;
@@ -13,45 +13,99 @@
     margin-top: 8px;
     }
     .pick{
-        height:23px;border-radius: 4px;
+        border-radius: 4px;border: 1px solid gray;
     }
     #firstRow{
         height: 60px;
         border-bottom: 1px solid lightgrey;
         /* box-shadow:5px 5px 5px lightslategrey ; */
     }
+    .paging_simple_numbers .pagination .paginate_button.active a, .paging_simple_numbers .pagination .paginate_button:hover a{
+        color: #fff !important;
+    background-color: rgba(28,63,170) !important;
+    background: rgba(28,63,170) !important;
+    border-color: rgba(28,63,170) !important;
+    border-radius: 3px !important;
+    }
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover{
+            border: none !important;
+    }
+    .dataTables_wrapper .dataTables_paginate .paginate_button{
+        border: none !important;
+    }
+    .profile{
+        background-color: gray;
+        color: white;
+        width: 30px;
+        height: 30px;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 20px;
+    position: fixed;
+    right: 80px;top: 42px;
+    }
+    #profileCard{
+        width: 80px;
+        position: absolute;
+        height: 68px;
+        right: 3px;
+        top: 35px;
+        background-color: rgba(28,63,170);
+        color: white;
+        border-radius: 4px;
+    }
    
 </style>
 
 
 
-<div class="container-fluid">
+<div class="container-fluid" style="">
     <div class="row" style="background-color:white;padding-top: 25px;border-top-left-radius: 20px;
-    border-top-right-radius: 20px;padding: 20px;">
-        <div class="col-md-12">
-          <span class="title-span">Home</pan>
-            <span class="title-span">|</span>
-            <span class="title-span" style="color: mediumblue;font-weight: 500;">Tank Status</span>
-        </div>
-      </div>
+                border-top-right-radius: 20px;padding: 20px;">
+                    <div class="col-md-6">
+                      <span class="title-span" style="color: grey;font-weight: 500;">Home</pan>
+                        <span class="title-span" style="margin-left: 5px;margin-right: 5px;">
+                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        </span>
+                        <span class="title-span" style="color: mediumblue;font-weight: 500;">Tank Status</span>
+                    </div>
+
+                    <div class="col-md-6" style="text-align: right;">
+                         <div class="profile">
+                            <i class="fa fa-user" aria-hidden="true" onclick="profilelogout()"></i>
+                                <div class="card" id="profileCard" style="display: none;">
+                                   <div class="card-body" style="padding-left: 0px;padding-top: 10px;padding-right: 0px;">
+                                      <ul class="list-unstyled" style="font-size: 14px;">
+                                        <li>Profile</li> 
+                                        <li><a onclick="logout()">logout</a></li>
+                                        <!-- <p onclick="logout()">logout</p> -->
+                                    </ul>
+                                   
+                                </div>
+                            </div>
+
+                            
+                        </div> 
+                    </div>
+                  </div>
       <!-- <hr> -->
    <div class="row" id="firstRow" style="background-color:gainsboro;padding-top: 10px;padding-left: 20px;">
         <div class="col-md-3" style="">
             <div style="margin-top: 12px;">
                <span>Total Tanks: </span>
-               <span style="font-weight: 500;">2</span>
+               <span id="total" style="font-weight: 500;"></span>
         </div>
         </div>
         <div class="col-md-9" style="text-align: right;">
-            <button type="button" class="live-btn">Live</button>
-            <input class="pick" data-date-format="mm/dd/yyyy" id="datepicker">
-            <!-- <input type="text" class="button-srch" placeholder="Search Tanks"> -->
+            <!-- <button type="button" class="live-btn">Live</button>
+            <input class="pick" data-date-format="mm/dd/yyyy" id="datePickerrr"> -->
+           
             
         </div>
     </div>
 
-    <div class="row" style="background-color:white;border-bottom-left-radius: 20px;padding-bottom: 70px;
-    border-bottom-right-radius: 20px;padding-left: 20px;">
+    <div class="row" style="background-color:white;border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;padding-left: 20px;height: 350px;">
         <div class="col-md-12">
             <table class="table table-bordered responsive no-wrap" id="StatusTable" cellspacing="0" width="100%">
                
