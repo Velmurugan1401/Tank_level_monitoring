@@ -61,7 +61,9 @@ function tankDetails(){
             contentType: "application/json",
             type: 'POST',
             success: function (result) {
-
+                $("#exampleModal").css('display','none')
+                $(".modal-backdrop").remove();
+                // alert("hai");
                 //Success -> Show Alert & Refresh the page
                 successMsg("Tank Insert Successfully!");
                 loadTankList();
@@ -74,7 +76,7 @@ function tankDetails(){
             }
             
         });
-        $("#form1")[0].reset();
+        
     }
 
     else{
@@ -87,7 +89,10 @@ function tankDetails(){
             contentType: "application/json",
             type: 'POST',
             success: function (result) {
-    
+    alert("hai");
+    $("#tank_name,#tank_type,#location,#device_id,#capacity").val('');
+    $("#exampleModal").css('display','none')
+    $(".modal-backdrop").remove();
                 //Success -> Show Alert & Refresh the page
                 successMsg("Update Completed Successfully!");
                 loadTankList();
@@ -189,7 +194,7 @@ function loadTankList() {
 
     var tableOption = {
         fixedHeader: false,
-        responsive: false,
+        responsive: true,
         paging: true,
         searching: true,
         aaSorting: [[3, 'desc']],
@@ -226,19 +231,19 @@ function loadTankList() {
             var searchText = oSettings.oPreviousSearch.sSearch.trim();
 
             if (searchText) {
-                queryParams.query['bool']['should'].push({ "wildcard": { "tank_name": "*" + searchText + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "tank_name": "*" + searchText.toLowerCase() + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "tank_name": "*" + searchText.toUpperCase() + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "tank_name": "*" + capitalizeFLetter(searchText) + "*" } })
+                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + searchText + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + searchText.toLowerCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + searchText.toUpperCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + capitalizeFLetter(searchText) + "*" } })
                 queryParams.query['bool']["minimum_should_match"] = 1;
                 queryParams.query['bool']['should'].push({
                     "match_phrase": {
-                        "tank_name.keyword": "*" + searchText + "*"
+                        "location.keyword": "*" + searchText + "*"
                     }
                 })
                 queryParams.query['bool']['should'].push({
                     "match_phrase_prefix": {
-                        "tank_name.keyword": {
+                        "location.keyword": {
                             "query": "*" + searchText + "*"
                         }
                     }
