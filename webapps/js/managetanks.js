@@ -162,6 +162,7 @@ function loadTankList() {
         {
             mData: 'created_ts',
             sTitle: 'Created Time',
+           
             "className": 'sortingtable',
             mRender: function (data, type, row) {
                 return moment(data).format(DATE_TIME_FORMAT);
@@ -170,6 +171,7 @@ function loadTankList() {
         {
             sTitle: 'Actions',
             orderable: false,
+           
             mRender: function (data, type, row) {
                 var actionsHtml = '<button class="btn btn-default" onclick="deleteTank(\'' +row["_id"]+'\')"><i class="fa fa-trash icon"  ></i></button>'+" "+'<button class="btn btn-default" data-toggle="modal" data-target="#exampleModal" onclick="editTank(\'' +row["_id"]+'\')"><i class="fa fa-edit"></i></button>';
                 return actionsHtml;
