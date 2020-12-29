@@ -18,11 +18,21 @@ padding-left: 20px;
    } */
 .head{
     background-color:gainsboro;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-bottom: 10px;
     /* border-bottom: 3px solid #1C3FAA82; */
     /* padding-bottom: 30px; */
    }
+   .pick{
+       margin-left: 10px;
+       margin-right: 10px;
+       height: 33px;
+   }
    .span1{
-       padding-left: 20px;
+       padding-left: -2px;
+       font-weight: bold;
+
    }
    .span{
        font-weight: bolder;
@@ -74,37 +84,87 @@ padding-left: 20px;
     border-radius: 6px;
     
 }
-.t-head{
-    background-color: rgb(153, 40, 153);
-}
+
+
 .headcontent{
     color:white;
 }
-.butt{
-    background-color: violet;
-    
-}
+
 .la{
  
   padding: 40px;
 }
 .la1{
     margin-top: 10px;
+    margin-left: 40px;
     
 }
 .la2{
-    margin-left: 35px;
+    margin-left: 31px;
     margin-top: 10px;
 }
 .la3{
     margin-left: 24px;
 }
-.button{
-    background-color: blueviolet;
-    border-radius: 5px;
+.la4{
+    margin-left: 35px;
+    margin-top: 10px;
 }
 .toolbar
 {
     float:right;
 }
-
+.paging_simple_numbers .pagination .paginate_button.active a, .paging_simple_numbers .pagination .paginate_button:hover a{
+    color: #fff !important;
+background-color: rgba(28,63,170) !important;
+background: rgba(28,63,170) !important;
+border-color: rgba(28,63,170) !important;
+border-radius: 3px !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover{
+        border: none !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button{
+    border: none !important;
+}
+.dataTables_filter input {
+    background-size: 0 2px,100% 1px;
+    transition: background 0s ease-out;
+    float: none;
+    box-shadow: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    border:1px solid gray;
+}
+.dataTables_length select {
+    background-size: 0 2px,100% 1px;
+    transition: background 0s ease-out;
+    padding-bottom: 5px;
+    border: 1px solid gray;
+}   
+.page-link {
+    display: block;
+    margin-left: -1px;
+    line-height: 1.25;
+    color:#1C3FAA;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+.button2{
+    border-radius: 6px;
+    width: 50px;
+    height: 40px;
+    background-color: #1C3FAA;
+    border: 2px solid;
+    color:white;
+}
+@media screen and (max-width: 1036px) {
+    #tank_table {
+        overflow-x: scroll;
+        width: 350px;
+    }
+  }
+ .btn:not(:disabled):not(.disabled), .navbar-toggler:not(:disabled):not(.disabled), .page-link:not(:disabled):not(.disabled), summary {
+    cursor: pointer;
+    margin-top: 5px;
+}

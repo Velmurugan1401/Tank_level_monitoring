@@ -11,14 +11,17 @@
           <div class="col-md-6 coln1">
              <span class="span1">Total Tanks:</span>
              <span>4</span>
+             
           </div>
         <div class="col-md-6 coln2">
-         
-            <a href=""class="btn"><i class="fa fa-refresh fa-spin fa-2x fa-fw "style="color:black" aria-hidden="true"></i></a>
-            <a href=""class="btn but"><i class="fa fa-expand" style="  color:white;" aria-hidden="true"></i></a>
+            <!-- <a href=""class="btn but"><i class="fa fa-refresh   fa-fw "style=" color:white;" aria-hidden="true"></i></a> -->
+            <button class="btn but" onclick="openFullscreen()"><i class="fa fa-expand" style=" color:white;" aria-hidden="true"></i></button>
           </div>
+          
+          
               <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                  <div class="modal-dialog" role="document">
+
                    <div class="modal-content"> <p style="text-align: center;font-weight: 700;font-size: 15px;"></p>
                     <div class="modal-header">
                       Add New Tank
@@ -27,33 +30,36 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <form>
+                    <form action="javascript:void(0);" id="form1">
                       <lable class="la">Tank Name</lable>
-                      <input type="text"class="la3"><br>
-                      <lable class="la" >Tank Type</lable>
-                      <input type="text"class="la2"><br>
+                      <input type="text" id="tank_name" class="la3"><br>
+                      <lable class="la">Tank Type</lable>
+                      <input type="text" id="tank_type" class="la2"><br>
                       <lable class="la" >Capacity</lable>
-                      <input type="number"class="la2"><br>
-                      <lable class="la">Linked Devices</lable>
-                      <input type="text"class="la1"><br>
-                      <lable class="la">Updated Time</lable>
-                      <input type="text"class="la1"><br>
-                      <lable class="la">Created Time</lable>
-                      <input type="text"class="la1">
+                      <input type="number" id="capacity" class="la4"><br>
+                      <lable class="la">Location</lable>
+                      <input type="text" id="location" class="la2"><br>
+                      <!-- <lable class="la">Device Name</lable>
+                      <input type="text" id="device_id" class="la1"><br>
+                      -->
                      </form>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">Add Tank</button>
+                    <button type="button" onclick="tankDetails()" class="btn btn-success">Add Tank</button>
                   </div>
+                  
             </div>
       </div>
     </div>
   </div>
   
       <div class="row roo" >
-          <div class="col-md-12">
-              <table class="table table-bordered responsive no-wrap c1 "id="example" cellspacing="0" width="100%"  ></table> </table>
+          <div class="col-md-12 col-sm-12 col-lg-12">
+           
+              <table class="display table table-bordered responsive"id="tank_table" width="100%"  ></table> 
+            <!-- <input class="pick" data-date-format="mm/dd/yyyy" type="date" id="datePickerrr"> -->
+             
           </div>
       </div>
 </div>
@@ -65,8 +71,34 @@
 
 
 <script src="js/managetanks.js"></script>
+
 <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+<script>
+  /* Get the documentElement (<html>) to display the page in fullscreen */
+  var elem = document.documentElement;
 
+  /* View in fullscreen */
+  function openFullscreen() {
+      if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+      } else if (elem.webkitRequestFullscreen) { /* Safari */
+          elem.webkitRequestFullscreen();
+      } else if (elem.msRequestFullscreen) { /* IE11 */
+          elem.msRequestFullscreen();
+      }
+  }
+
+  /* Close fullscreen */
+  function closeFullscreen() {
+      if (document.exitFullscreen) {
+          document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) { /* Safari */
+          document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) { /* IE11 */
+          document.msExitFullscreen();
+      }
+  }
+</script>
 

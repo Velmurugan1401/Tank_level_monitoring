@@ -16,7 +16,7 @@
   </div>
   </div>
     <div class="col-md-9 one" style="text-align:right">     
-          <button
+          <!-- <button
             type="button"
             class="btn"
             data-toggle="modal"
@@ -24,7 +24,7 @@
             style="background-color:#1C3FAA; color: white;"
           >
             <i class="fa fa-user-plus p-2" aria-hidden="true"></i>Add New User
-          </button>
+          </button> -->
           <div class="modal" id="myModal">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -40,7 +40,8 @@
                   </button>
                 </div>
 
-                <div class="modal-body" style="text-align: center">
+              <div class="modal-body" style="text-align: center">
+                <form action="javascript:void(0);" onsubmit="loadUser()">
                   <input
                     class="form-control form-control-sm w-100 mt-3"
                     type="text"
@@ -82,17 +83,20 @@
                     aria-label="Password"
                     id="pwd"
                   />
-                </div>
-                
-                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" >Close</button>
+                  <button type="submit" class="btn btn-success" id="sub">Add User</button>
+              </form>
+            </div> 
+                <!-- <div class="modal-footer">
                   <button type="button" class="btn btn-primary" data-dismiss="modal" >Close</button>
                   <button type="button" class="btn btn-success" id="sub">Add User</button>
-                </div>
+                </div> -->
+            
                 <!-- </div> -->
               </div>
             </div>
           </div>         
-          <i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>        
+          <!-- <i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>         -->
       </div>
     </div>
   <div class="row" style="background-color:white;border-bottom-left-radius: 20px;padding-bottom: 70px;

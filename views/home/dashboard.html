@@ -1,1 +1,118 @@
-<h1 style="margin-left:200px;">Dashboard</h1>
+
+<div class="container-fluid dash " style="background-color: rgb(241, 245, 248);">
+  <div class="row" style="  padding-top: 25px;border-top-left-radius: 20px;
+                          border-top-right-radius: 20px;padding: 20px; border-bottom: 1px solid gainsboro;">
+        <div class="col-md-12">
+          <span class="title-span"></pan>
+            <span class="title-span">Home|</span>
+            <span class="title-span" style="color: mediumblue;font-weight: 500;">Dashboard</span>
+        </div>
+  </div>
+ 
+  <div class="row rname" style=" padding-top: 70px ;">
+      <div class="col-lg bg-white ml-3 tank" >
+        <div class="user"><i class="fa fa-tablet fa-2x" aria-hidden="true"></i></div>
+       <div> TOTAL TANKS</div>
+      </div>
+      <div class="col-lg  bg-white ml-3 tank">
+       
+            <div class="user"> <i class="fa fa-user-o fa-2x" aria-hidden="true"></i></div>
+            <div>TOTAL USERS</div>
+    </div>
+          <div class="col-lg bg-white ml-3 tank">
+       
+            <div class="user"><i class="fa fa-television fa-2x" aria-hidden="true"></i></div>
+            <div>TOTAL DEVICES</div>
+            </div>
+    <div class="col-lg bg-white ml-3 tank">
+       
+            <div class="user"><i class="fa fa-calendar-o fa-2x" aria-hidden="true"></i></div>
+            <div>TOTAL EVENTS</div>
+    </div>
+  </div>
+
+  <div class="row three" >
+  
+      <div class="col-md-6">
+        
+        <div id="local" style="width: 500px; height: 300px;">
+            
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h4>Water Consumption levels</h4>
+        <div id="main" style="width: 500px; height: 300px;">
+             
+            </div>
+          </div>
+    </div>
+    <div class="row">
+  
+      <div class="col-md-6">
+        <h4>Water Consumption By Days</h4>
+        <div id="graph" style="width: 600px; height: 400px;">
+            
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div id="main" style="width: 500px; height: 300px;">
+             
+            </div>
+          </div>
+    </div>
+  </div>
+   <script src="js/dashboard.js"></script> 
+  
+
+ 
+
+<!-- <script>
+  var myChart = echarts.init(document.getElementById('main'));
+ var option = {
+  tooltip: {
+      trigger: 'axis',
+      axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+          type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+      }
+  },
+  legend: {
+      data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎', '百度', '谷歌', '必应', '其他']
+  },
+  grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+  },
+  xAxis: [
+      {
+          type: 'category',
+          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+      }
+  ],
+  yAxis: [
+      {
+          type: 'value'
+      }
+  ],
+  series: [
+     
+      {
+          name: 'vvv',
+          type: 'bar',
+          stack: 'gg',
+          data: [120, 132, 101, 134, 90, 230, 210]
+      },
+   
+      {
+          name: 'location',
+          type: 'bar',
+          stack: 'hhh',
+          data: [150, 232, 201, 154, 190, 330, 410]
+      },
+     
+   
+  ]
+};
+myChart.setOption(option);
+</script> -->
