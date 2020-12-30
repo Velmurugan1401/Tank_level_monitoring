@@ -1,5 +1,7 @@
 var DeviceTable = null;
 var device_list = [];
+var devicecount;
+var device;
 // var startDate = moment().subtract(6, 'days').startOf('day');
 // var endDate = moment().endOf('day');
 
@@ -148,7 +150,8 @@ function loadDeviceList() {
                     var resultData = data.result.data;
 
                     device_list = resultData.data;
-
+                    devicecount = resultData.data;
+                    device = resultData.data;
                     $(".totalCount").html(data.result.total)
 
                     resultData['draw'] = oSettings.iDraw;
@@ -162,3 +165,5 @@ function loadDeviceList() {
     DeviceTable = $("#device_details").DataTable(tableOption);
 }
 
+$("#totaldevice").append(`<p>` +devicecount.length+ `</p>`);
+$("#total").append(`<span>` +device.length+ `</span>`);

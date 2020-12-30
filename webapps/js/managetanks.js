@@ -1,6 +1,7 @@
 var TankMasterTable = null;
 var tank_list = [];
-
+var tankcount;
+var totalcount;
 var startDate = moment().subtract(6, 'days').startOf('day');
 var endDate = moment().endOf('day');
 $(document).ready(function () {
@@ -197,7 +198,7 @@ function loadTankList() {
 
     var tableOption = {
         fixedHeader: false,
-        responsive: true,
+        responsive: false,
         paging: true,
         searching: true,
         aaSorting: [[3, 'desc']],
@@ -265,8 +266,9 @@ function loadTankList() {
                     var resultData = data.result.data;
 
                     tank_list = resultData.data;
-
-                    $(".totalCount").html(data.result.total)
+                    tankcount= resultData.data;
+                    totalcount= resultData.data;
+                    $("#totalCount").html(data.result.total)
 
                     resultData['draw'] = oSettings.iDraw;
                     fnCallback(resultData);
@@ -329,5 +331,5 @@ function deleteTank(row) {
         }
     });
 }
-
-
+$("#totaltank").append(`<p>`+ tankcount.length+`</p>`);
+$("#total").append(`<span>`+ totalcount.length+`</span>`);
