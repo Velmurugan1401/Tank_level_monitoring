@@ -77,3 +77,10 @@ input[type="password"]:focus {
   text-transform: capitalize;
   font-size: 33px;
 }
+@media (min-width:320px) and (max-width:849px)
+{
+  .sideblue
+  {
+    display: none; 
+  }
+}
