@@ -2,7 +2,9 @@ var UserTable = null;
 var Users_list = [];
 var usercount;
 var key;
+var count;
 var flag = false;
+var usercount;
 // var startDate = moment().subtract(6, 'days').startOf('day');
 // var endDate = moment().endOf('day');
 $(document).ready(function () {
@@ -370,4 +372,5 @@ function deleteUser(row) {
         }
     });
 }
-$("#totaluser").append(`<p>`+ usercount.length+`</p>`);
+// $("#totaluser").append(`<p>`+ usercount.length+`</p>`);
+$("#total").append(`<span>`+ count.length+`</span>`);
