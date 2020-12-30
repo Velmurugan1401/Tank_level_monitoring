@@ -2,8 +2,8 @@ var UserTable = null;
 var Users_list = [];
 var key;
 var flag = false;
-// var startDate = moment().subtract(6, 'days').startOf('day');
-// var endDate = moment().endOf('day');
+var startDate = moment().subtract(6, 'days').startOf('day');
+var endDate = moment().endOf('day');
 $(document).ready(function () {
     loadUsersList();
 });
@@ -295,8 +295,6 @@ function loadUsersList() {
                     }
                 });
             }
-
-
             oSettings.jqXHR = $.ajax({
                 "dataType": 'json',
                 "contentType": 'application/json',
