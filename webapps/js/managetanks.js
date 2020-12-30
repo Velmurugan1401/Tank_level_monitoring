@@ -77,7 +77,7 @@ function tankDetails() {
             }
             
         });
-        $("#form1")[0].reset();
+       
     }
 
     else{
