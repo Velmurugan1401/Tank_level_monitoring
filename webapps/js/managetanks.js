@@ -54,57 +54,58 @@ function tankDetails() {
         };
 
         //Call API
-        if (Updateflag == false) {
-            $.ajax({
-                url: BASE_PATH + "/tank/insert",
-                data: JSON.stringify(inputObj),
-                contentType: "application/json",
-                type: 'POST',
-                success: function (result) {
-                    $("#exampleModal").css('display', 'none')
-                    $(".modal-backdrop").remove();
-                    // alert("hai");
-                    //Success -> Show Alert & Refresh the page
-                    successMsg("Tank Insert Successfully!");
-                    loadTankList();
-                },
-                error: function (e) {
+        if(Updateflag == false)
+        {
+        $.ajax({
+            url: BASE_PATH+"/tank/insert",
+            data: JSON.stringify(inputObj),
+            contentType: "application/json",
+            type: 'POST',
+            success: function (result) {
+                $("#exampleModal").css('display','none')
+                $(".modal-backdrop").remove();
+                // alert("hai");
+                //Success -> Show Alert & Refresh the page
+                successMsg("Tank Insert Successfully!");
+                loadTankList();
+            },
+            error: function (e) {
 
-                    //Error -> Show Error Alert & Reset the form
-                    errorMsg("Tank Insert Failed!");
-                    window.location.reload();
-                }
+                //Error -> Show Error Alert & Reset the form
+                errorMsg("Tank Insert Failed!");
+                window.location.reload();
+            }
+            
+        });
+        $("#form1")[0].reset();
+    }
 
-            });
+    else{
+        
+        $.ajax({
 
-        }
-
-        else {
-
-            $.ajax({
-
-                url: BASE_PATH + "/tank/update?_id=" + _id,
-                data: JSON.stringify(inputObj),
-
-                contentType: "application/json",
-                type: 'POST',
-                success: function (result) {
-                    // alert("hai");
-                    $("#tank_name,#tank_type,#location,#device_id,#capacity").val('');
-                    $("#exampleModal").css('display', 'none')
-                    $(".modal-backdrop").remove();
-                    //Success -> Show Alert & Refresh the page
-                    successMsg("Update Completed Successfully!");
-                    loadTankList();
-                },
-                error: function (e) {
-
-                    //Error -> Show Error Alert & Reset the form
-                    errorMsg("Update Failed!");
-                    window.location.reload();
-                }
-            });
-        }
+            url: BASE_PATH+"/tank/update?_id="+_id,
+            data: JSON.stringify(inputObj),
+           
+            contentType: "application/json",
+            type: 'POST',
+            success: function (result) {
+    // alert("hai");
+    $("#tank_name,#tank_type,#location,#device_id,#capacity").val('');
+    $("#exampleModal").css('display','none')
+    $(".modal-backdrop").remove();
+                //Success -> Show Alert & Refresh the page
+                successMsg("Update Completed Successfully!");
+                loadTankList();
+            },
+            error: function (e) {
+    
+                //Error -> Show Error Alert & Reset the form
+                errorMsg("Update Failed!");
+                window.location.reload();
+            }
+        });
+    } flag = false;
     }
 
 }
@@ -166,6 +167,7 @@ function loadTankList() {
         {
             mData: 'created_ts',
             sTitle: 'Created Time',
+           
             "className": 'sortingtable',
             mRender: function (data, type, row) {
                 return moment(data).format(DATE_TIME_FORMAT);
@@ -174,6 +176,7 @@ function loadTankList() {
         {
             sTitle: 'Actions',
             orderable: false,
+           
             mRender: function (data, type, row) {
                 var actionsHtml = '<button class="btn btn-default" onclick="deleteTank(\'' + row["_id"] + '\')"><i class="fa fa-trash icon"  ></i></button>' + " " + '<button class="btn btn-default" data-toggle="modal" data-target="#exampleModal" onclick="editTank(\'' + row["_id"] + '\')"><i class="fa fa-edit"></i></button>';
                 return actionsHtml;
@@ -247,7 +250,8 @@ function loadTankList() {
                             "query": "*" + searchText + "*"
                         }
                     }
-                });
+                });      
+
             }
 
             oSettings.jqXHR = $.ajax({
@@ -326,7 +330,4 @@ function deleteTank(row) {
     });
 }
 
-$(document).ready(function () {
-
-});
 

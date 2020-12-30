@@ -9,7 +9,6 @@ const EventTrigger = require("../modules/event_trigger");
 const Tankhistory = require("../modules/Tank_history");
 const Device = require("../modules/Device_details");
 const Users = require("../modules/User_details");
-const Events = require("../modules/event");
 const MSG = require("../modules/msg")
 
 
@@ -102,10 +101,7 @@ APIRoutes.prototype.init = function () {
         console.log(req.body)
         self.details.performAction(req, res);
     });
-    self.router.post('/event/:action', sessionCheck, function (req, res) {
-        console.log(req.body)
-        self.events.performAction(req, res);
-    });
+
     self.router.post('/msg/:action', sessionCheck, function (req, res) {
 
         self.msg.performAction(req, res);
