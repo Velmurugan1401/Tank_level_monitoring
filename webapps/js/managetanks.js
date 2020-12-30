@@ -1,56 +1,56 @@
 var TankMasterTable = null;
 var tank_list = [];
 
-// var startDate = moment().subtract(6, 'days').startOf('day');
-// var endDate = moment().endOf('day');
-$(document).ready(function(){
+var startDate = moment().subtract(6, 'days').startOf('day');
+var endDate = moment().endOf('day');
+$(document).ready(function () {
     loadTankList();
-    
+
 });
 
 //tank Registration API
-function tankDetails(){
-   
+function tankDetails() {
+
     var tank_name = $("#tank_name").val();
     var tank_type = $("#tank_type").val();
     var location = $("#location").val();
     var device_id = $("#device_id").val();
     var capacity = $("#capacity").val();
     //Validate
-    if(tank_name === ""){
+    if (tank_name === "") {
 
         alert("Tank Name is Required!");
 
-    }else if(tank_type === ""){
+    } else if (tank_type === "") {
 
         alert("Tankname is Required!");
 
-    }else if(location === ""){
+    } else if (location === "") {
 
         alert("Location is Required!");
 
     }
-    else if(capacity === ""){
+    else if (capacity === "") {
 
         alert("capacity is Required!");
 
     }
-    else if(device_id === ""){
+    else if (device_id === "") {
 
         alert("Device is Required!");
 
     }
 
-    else{
+    else {
 
         //Build Input Objects
         var inputObj = {
-            tank_name : tank_name,
-            tank_type : tank_type,
-            location : location,
-            device_id : device_id,
-            capacity : capacity,
-            created_ts : new Date().getTime()
+            tank_name: tank_name,
+            tank_type: tank_type,
+            location: location,
+            device_id: device_id,
+            capacity: capacity,
+            created_ts: new Date().getTime()
         };
 
         //Call API
@@ -77,7 +77,7 @@ function tankDetails(){
             }
             
         });
-        
+       
     }
 
     else{
@@ -105,7 +105,7 @@ function tankDetails(){
                 window.location.reload();
             }
         });
-    }
+    } flag = false;
     }
 
 }
@@ -155,18 +155,19 @@ function loadTankList() {
                 return data;
             }
         },
-        // {
-        //     mData: 'devive_id',
-        //     sWidth: '20%',
-        //     sTitle: 'Device Name',
-        //     orderable: false,
-        //     mRender: function (data, type, row) {
-        //         return data;
-        //     }
-        // },
+        {
+            mData: 'status',
+            sWidth: '20%',
+            sTitle: 'Status',
+            orderable: false,
+            mRender: function (data, type, row) {
+                return '<a href="" class="link" data-toggle="modal" data-target="#myModal">Link</a>';
+            }
+        },
         {
             mData: 'created_ts',
             sTitle: 'Created Time',
+           
             "className": 'sortingtable',
             mRender: function (data, type, row) {
                 return moment(data).format(DATE_TIME_FORMAT);
@@ -175,8 +176,9 @@ function loadTankList() {
         {
             sTitle: 'Actions',
             orderable: false,
+           
             mRender: function (data, type, row) {
-                var actionsHtml = '<button class="btn btn-default" onclick="deleteTank(\'' +row["_id"]+'\')"><i class="fa fa-trash icon"  ></i></button>'+" "+'<button class="btn btn-default" data-toggle="modal" data-target="#exampleModal" onclick="editTank(\'' +row["_id"]+'\')"><i class="fa fa-edit"></i></button>';
+                var actionsHtml = '<button class="btn btn-default" onclick="deleteTank(\'' + row["_id"] + '\')"><i class="fa fa-trash icon"  ></i></button>' + " " + '<button class="btn btn-default" data-toggle="modal" data-target="#exampleModal" onclick="editTank(\'' + row["_id"] + '\')"><i class="fa fa-edit"></i></button>';
                 return actionsHtml;
             }
         }
@@ -210,7 +212,7 @@ function loadTankList() {
 
         },
         "bServerSide": true,
-        "sAjaxSource": BASE_PATH+'/tank/list',
+        "sAjaxSource": BASE_PATH + '/tank/list',
         "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
 
 
@@ -248,7 +250,8 @@ function loadTankList() {
                             "query": "*" + searchText + "*"
                         }
                     }
-                });
+                });      
+
             }
 
             oSettings.jqXHR = $.ajax({
@@ -256,7 +259,7 @@ function loadTankList() {
                 "contentType": 'application/json',
                 "type": "POST",
                 "url": sSource,
-                "data": JSON.stringify({"query":queryParams}),
+                "data": JSON.stringify({ "query": queryParams }),
                 success: function (data) {
 
                     var resultData = data.result.data;
@@ -270,46 +273,46 @@ function loadTankList() {
                 }
             });
         },
-        dom:'l<"toolbar">frtip',
-        initComplete :  function() {
-       $("div.toolbar").html('<input class="pick" data-date-format="mm/dd/yyyy" id="datePickerrr" type="date"><button type="button" class="btn button1" data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus-square icons" style="color:white";"aria-hidden="true"></i>Add Tanks</button>');
-   }
- 
-       
+        dom: 'l<"toolbar">frtip',
+        initComplete: function () {
+            $("div.toolbar").html('<input class="pick" data-date-format="mm/dd/yyyy" id="datePickerrr" type="date"><button type="button" class="btn button1" data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus-square icons" style="color:white";"aria-hidden="true"></i>Add Tanks</button>');
+        }
+
+
     };
 
     TankMasterTable = $("#tank_table").DataTable(tableOption);
 }
-var tank1=null;
+var tank1 = null;
 var _id
 var Updateflag = false;
 
-function editTank(id){
-    
- 
-    flag=id;
+function editTank(id) {
+
+
+    flag = id;
     console.log(flag);
     Updateflag = true;
-    
-   for(i=0;i<tank_list.length;i++){
-       if(tank_list[i]._id==id){
-        tank1=tank_list[i];
-        $("#tank_name").val(tank1.tank_name);
-        $("#tank_type").val(tank1.tank_type);
-        $("#location").val(tank1.location);
-        $("#capacity").val(tank1.capacity);
-console.log(tank1);
-_id = id
-       }
-   }
-      console.log(id);
-   
+
+    for (i = 0; i < tank_list.length; i++) {
+        if (tank_list[i]._id == id) {
+            tank1 = tank_list[i];
+            $("#tank_name").val(tank1.tank_name);
+            $("#tank_type").val(tank1.tank_type);
+            $("#location").val(tank1.location);
+            $("#capacity").val(tank1.capacity);
+            console.log(tank1);
+            _id = id
+        }
+    }
+    console.log(id);
+
 }
-function deleteTank(row){
+function deleteTank(row) {
     $.ajax({
 
-        url: BASE_PATH+"/tank/delete",
-        data: JSON.stringify({_id:row}),
+        url: BASE_PATH + "/tank/delete",
+        data: JSON.stringify({ _id: row }),
         contentType: "application/json",
         type: 'POST',
         success: function (result) {
@@ -327,7 +330,4 @@ function deleteTank(row){
     });
 }
 
-$(document).ready(function() {
-    
-} );
 

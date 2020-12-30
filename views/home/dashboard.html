@@ -1,118 +1,156 @@
-
 <div class="container-fluid dash " style="background-color: rgb(241, 245, 248);">
   <div class="row" style="  padding-top: 25px;border-top-left-radius: 20px;
                           border-top-right-radius: 20px;padding: 20px; border-bottom: 1px solid gainsboro;">
-        <div class="col-md-12">
-          <span class="title-span"></pan>
-            <span class="title-span">Home|</span>
-            <span class="title-span" style="color: mediumblue;font-weight: 500;">Dashboard</span>
-        </div>
+    <div class="col-md-12">
+      <span class="title-span"></pan>
+        <span class="title-span">Home|</span>
+        <span class="title-span" style="color: mediumblue;font-weight: 500;">Dashboard</span>
+    </div>
   </div>
- 
+
   <div class="row rname" style=" padding-top: 70px ;">
-      <div class="col-lg bg-white ml-3 tank" >
-        <div class="user"><i class="fa fa-tablet fa-2x" aria-hidden="true"></i></div>
-       <div> TOTAL TANKS</div>
-      </div>
-      <div class="col-lg  bg-white ml-3 tank">
-       
-            <div class="user"> <i class="fa fa-user-o fa-2x" aria-hidden="true"></i></div>
-            <div>TOTAL USERS</div>
-    </div>
-          <div class="col-lg bg-white ml-3 tank">
-       
-            <div class="user"><i class="fa fa-television fa-2x" aria-hidden="true"></i></div>
-            <div>TOTAL DEVICES</div>
-            </div>
-    <div class="col-lg bg-white ml-3 tank">
-       
-            <div class="user"><i class="fa fa-calendar-o fa-2x" aria-hidden="true"></i></div>
-            <div>TOTAL EVENTS</div>
-    </div>
-  </div>
 
-  <div class="row three" >
-  
-      <div class="col-md-6">
-        
-        <div id="local" style="width: 500px; height: 300px;">
-            
-        </div>
-      </div>
-      <div class="col-md-6">
-        <h4>Water Consumption levels</h4>
-        <div id="main" style="width: 500px; height: 300px;">
-             
+    <div class="col-lg intro-y col-sm-12 col-md-6">
+      <div class="report-box zoom-in dname">
+        <div class="box ">
+          <div class="flex">
+         
+            <i class="fa fa-user-o fa-2x icon1" aria-hidden="true"></i>
+            <div class="ml-auto">
+              
             </div>
           </div>
-    </div>
-    <div class="row">
-  
-      <div class="col-md-6">
-        <h4>Water Consumption By Days</h4>
-        <div id="graph" style="width: 600px; height: 400px;">
-            
+          <div class="text-3xl font-bold leading-8 mt-6" id="totaluser"></div>
+          <div class="text-base text-gray-600 mt-1">Total Users</div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div id="main" style="width: 500px; height: 300px;">
-             
+    </div>
+    <div class="col-lg intro-y col-sm-12 col-md-6">
+      <div class="report-box zoom-in dname">
+        <div class="box ">
+          <div class="flex">
+            <i class="fa fa-tablet fa-2x icon2" aria-hidden="true"></i>
+            <div class="ml-auto">
+              
             </div>
           </div>
+          <div class="text-3xl font-bold leading-8 mt-6" id="totaltank">1245</div>
+          <div class="text-base text-gray-600 mt-1">Total Tanks</div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="col-lg intro-y col-sm-12 col-md-6">
+      <div class="report-box zoom-in dname">
+        <div class="box ">
+          <div class="flex">
+            <i class="fa fa-calendar-o fa-2x icon3" aria-hidden="true"></i>
+            <div class="ml-auto">
+              
+            </div>
+          </div>
+          <div class="text-3xl font-bold leading-8 mt-6" id="totalevent">5</div>
+          <div class="text-base text-gray-600 mt-1">Total Events</div>
+        </div>
+      </div> 
+    </div>
+      <div class="col-lg intro-y col-sm-12 col-md-6">
+        <div class="report-box zoom-in dname">
+          <div class="box ">
+            <div class="flex">
+              <i class="fa fa-television fa-2x icon4" aria-hidden="true"></i>
+              <div class="ml-auto">
+               
+              </div>
+            </div>
+            <div class="text-3xl font-bold leading-8 mt-6" id="totaldevice">2.145</div>
+            <div class="text-base text-gray-600 mt-1">Total Devices</div>
+          </div>
+        </div>
+      </div> 
+      
+   
+   
+  </div>
+
+  <div class="row three">
+
+    <div class="col-lg chart">
+
+      <div id="local" style="width: 500px; height: 300px;">
+
+      </div>
+    </div>
+    <div class="col-lg dname chart2">
+      <h4 class="text">Water Consumption levels</h4>
+      <div id="main" style="width: 500px; height: 300px;">
+
+      </div>
     </div>
   </div>
-   <script src="js/dashboard.js"></script> 
-  
+  <div class="row three">
 
- 
+    <div class="col-lg chart3">
+      <h4 class="text">Water Consumption By Days</h4>
+      <div id="graph" style="width: 510px; height: 300px;">
 
-<!-- <script>
-  var myChart = echarts.init(document.getElementById('main'));
- var option = {
-  tooltip: {
-      trigger: 'axis',
-      axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-          type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-      }
-  },
-  legend: {
-      data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎', '百度', '谷歌', '必应', '其他']
-  },
-  grid: {
-      left: '3%',
-      right: '4%',
-      bottom: '3%',
-      containLabel: true
-  },
-  xAxis: [
-      {
-          type: 'category',
-          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-      }
-  ],
-  yAxis: [
-      {
-          type: 'value'
-      }
-  ],
-  series: [
-     
-      {
-          name: 'vvv',
-          type: 'bar',
-          stack: 'gg',
-          data: [120, 132, 101, 134, 90, 230, 210]
-      },
-   
-      {
-          name: 'location',
-          type: 'bar',
-          stack: 'hhh',
-          data: [150, 232, 201, 154, 190, 330, 410]
-      },
-     
-   
-  ]
+      </div>
+    </div>
+    <!-- <div class="col-lg dname chart4">
+      <h4  class="text"> Tank Wise Water Consumption </h4>
+      <div id="main1" style="width: 500px; height: 300px;">
+
+      </div> -->
+    </div>
+  </div>
+  <!-- <div class="row">
+
+    <div class="col-lg-6 chart3">
+      <h4>Water Consumption By Days</h4>
+      <div id="graph" style="width: 500px; height: 300px;">
+
+      </div>
+    </div>
+    <div class="col-lg-6 chart4">
+      <div id="main1" style="width: 500px; height: 400px;">
+
+      </div>
+    </div>
+  </div> -->
+
+</div>
+
+<script src="js/dashboard.js"></script>
+
+<script src="js/users.js"></script>
+
+
+<script>
+  var myCharts = echarts.init(document.getElementById('main1'));
+  option = {
+    xAxis: {
+        type: 'category',
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [120, 200, 150, 80, 70, 110, 130],
+        type: 'line',
+        symbol: 'triangle',
+        symbolSize: 20,
+        lineStyle: {
+            color: 'green',
+            width: 4,
+            type: 'dashed'
+        },
+        itemStyle: {
+            borderWidth: 3,
+            borderColor: 'yellow',
+            color: 'blue'
+        }
+    }]
 };
-myChart.setOption(option);
-</script> -->
+myCharts.setOption(option);
+</script>
