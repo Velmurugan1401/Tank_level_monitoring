@@ -129,6 +129,19 @@ margin-right: 20px;
 .text{
     padding-top: 20px;
 }
+.icon1{
+color:hotpink;
+}
+.icon2{
+    color:lightblue;
+
+}
+.icon3{
+    color:orange;
+}
+.icon4{
+  color:greenyellow;  
+}
 /* .roe{
     border-bottom-left-radius: 20px;padding-bottom: 70px;
         border-bottom-right-radius: 20px;
