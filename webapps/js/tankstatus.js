@@ -108,7 +108,7 @@ function loadTankStatusList() {
 
     var tableOption = {
         fixedHeader: false,
-        responsive: true,
+        responsive: false,
         paging: true,
         searching: true,
         aaSorting: [[3, 'desc']],
