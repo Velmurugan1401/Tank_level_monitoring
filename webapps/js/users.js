@@ -311,7 +311,7 @@ function loadUsersList() {
                     Users_list = resultData.data;
 
                     $(".totalCount").html(data.result.total)
-
+                   
                     resultData['draw'] = oSettings.iDraw;
                     fnCallback(resultData);
                 }
@@ -331,6 +331,7 @@ function loadUsersList() {
     };
 
     UserTable = $("#myTable").DataTable(tableOption);
+  
 }
 
 
