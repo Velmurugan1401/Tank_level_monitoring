@@ -1,5 +1,13 @@
-.container-fluid{
-    background-color: rgb(241, 245, 248) !important;
+.user-icon{
+    margin-top: 20px;
+
+}
+.users{
+    margin-top: 80px;
+    font-weight: 600;
+    line-height: 2rem;
+    font-size: 1.875rem;
+    color: rgb(46, 56, 73);
 }
 /* .tank span{
    padding-top: 20px;
@@ -7,10 +15,11 @@
 .three{
     margin-top: 80px;
 }
-.row .tank{
+.tank:hover{
+    box-shadow: 20px blue;
     background-color: white;
     margin-left: 10px;
-    padding-top: 50px;
+  
 }
 .one{
     box-shadow: 0 1px 2px rgba(0,0,0,0.15);
