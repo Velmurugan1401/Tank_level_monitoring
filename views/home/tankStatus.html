@@ -16,9 +16,10 @@
         border-radius: 4px;border: 1px solid gray;
     }
     #firstRow{
-        height: 60px;
+        padding: 10px 20px;
         border-bottom: 1px solid lightgrey;
-        /* box-shadow:5px 5px 5px lightslategrey ; */
+        background-color:gainsboro;
+       
     }
     .paging_simple_numbers .pagination .paginate_button.active a, .paging_simple_numbers .pagination .paginate_button:hover a{
         color: #fff !important;
@@ -54,12 +55,58 @@
         color: white;
         border-radius: 4px;
     }
+    #activeInactiveSelect{
+        height: 34px;
+      border-radius: 4px;
+    padding-left: 2px;
+    padding-right: 7px;
+    margin-right: 5px;
+    }
+    .dataTables_filter input {
+    background-size: 0 2px,100% 1px;
+    transition: background 0s ease-out;
+    float: none;
+    box-shadow: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    border:1px solid gray;
+}
+.dataTables_length select {
+    background-size: 0 2px,100% 1px;
+    transition: background 0s ease-out;
+    padding-bottom: 5px;
+    border: 1px solid gray;
+}
+    
    
+
+    .dropdown-menu.show{
+        left:-60px !important;
+        top:5px !important;
+    }
+    .activ-inactive-coln{
+        text-align: right;
+    }
+    
+    @media screen and (min-width: 340px) and (max-width: 767px) { 
+        .activ-inactive-coln{
+        /* text-align: unset; */
+        /* margin-top: 10px; */
+        position: absolute;
+        right: 8px;
+    }
+    .profile{
+       right: 27px;
+   }
+   #tankStatusCont{
+      margin-left: 13px;
+   }
+    }
 </style>
 
 
 
-<div class="container-fluid" style="">
+<div class="container-fluid" id="tankStatusCont">
     <div class="row" style="background-color:white;padding-top: 25px;border-top-left-radius: 20px;
                 border-top-right-radius: 20px;padding: 20px;">
                     <div class="col-md-6">
@@ -78,7 +125,7 @@
                                       <ul class="list-unstyled" style="font-size: 14px;">
                                         <li>Profile</li> 
                                         <li><a onclick="logout()">logout</a></li>
-                                        <!-- <p onclick="logout()">logout</p> -->
+                                       
                                     </ul>
                                    
                                 </div>
@@ -88,19 +135,24 @@
                         </div> 
                     </div>
                   </div>
-      <!-- <hr> -->
-   <div class="row" id="firstRow" style="background-color:gainsboro;padding-top: 10px;padding-left: 20px;">
-        <div class="col-md-3" style="">
+     
+   <div class="row" id="firstRow" style="">
+        <div class="col-md-2" style="">
             <div style="margin-top: 12px;">
                <span>Total Tanks: </span>
                <span id="total" style="font-weight: 500;"></span>
         </div>
         </div>
-        <div class="col-md-9" style="text-align: right;">
-            <!-- <button type="button" class="live-btn">Live</button>
-            <input class="pick" data-date-format="mm/dd/yyyy" id="datePickerrr"> -->
-           
-            
+        <div class="col-md-10 activ-inactive-coln">
+            <select id="activeInactiveSelect">
+                <option value="0">Active Tanks</option>
+                <option value="1">Inactive Tanks</option>
+            </select>
+         
+            <button type="button" class="btn" style="background-color:rgba(28,63,170);color: white;">
+                <i class="fa fa-refresh" aria-hidden="true"></i>
+          </button>
+                  
         </div>
     </div>
 

@@ -3,12 +3,13 @@ var TankStatus_list = [];
 // var startDate = moment().subtract(6, 'days').startOf('day');
 // var endDate = moment().endOf('day');
 
-// $('.dropdown-menu a').on('click', function(){  
-//    $('.dropdown-toggle').html($(this).html());    
-// })
 
 $(document).ready(function(){
     loadTankStatusList();
+
+   $('.dropdown-menu a').on('click', function(){    
+        $('.dropdown-toggle').html($(this).html());    
+    })
     
 });
 
@@ -82,11 +83,11 @@ function loadTankStatusList() {
             sTitle: 'Actions',
             orderable: false,
             mRender: function (data, type, row) {
-                var actionsHtml = '<div class="dropdown"><button type="button" class="btn btn-primary dropdown-toggle"  style="background-color:rgba(28,63,170);border:unset;" data-toggle="dropdown">Actions</button>'
+                var actionsHtml ='<div class="dropdown"><button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:rgba(28,63,170);border:unset;">Actions</button>'
                 +' <div class="dropdown-menu">'
-                +'  <a class="dropdown-item" href="#">Link / Unlink Device</a>'
-                +'  <a class="dropdown-item" href="#">Single Tank Snapshot</a>'
-                +'  <a class="dropdown-item" href="#">Delete</a>'
+                +' <a class="dropdown-item" href="#" >Link / Unlink Device</a>'
+                +' <a class="dropdown-item" href="#" >Single Tank Snapshot</a>'
+                +' <a class="dropdown-item" href="#" >Delete</a>'
                 +' </div>'
                 +'</div>';
                 return actionsHtml;
@@ -107,7 +108,7 @@ function loadTankStatusList() {
 
     var tableOption = {
         fixedHeader: false,
-        responsive: false,
+        responsive: true,
         paging: true,
         searching: true,
         aaSorting: [[3, 'desc']],
@@ -189,16 +190,8 @@ function loadTankStatusList() {
     TankStatusTable = $("#StatusTable").DataTable(tableOption);
 }
 
-
-
-    
-
-    function profilelogout() {
+function profilelogout() {
       $("#profileCard").css('display','block');
     }
    
-  //   function logout(){
-  //     alert("logout");
-  //    Cookies.remove('myweb_cookie')
-  //    document.location=BASE_PATH+'/login';
-  //  }
+  

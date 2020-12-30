@@ -5,6 +5,7 @@ var tank_list = [];
 // var endDate = moment().endOf('day');
 $(document).ready(function(){
     loadTankList();
+    
 });
 
 //tank Registration API
@@ -61,7 +62,9 @@ function tankDetails(){
             contentType: "application/json",
             type: 'POST',
             success: function (result) {
-
+                $("#exampleModal").css('display','none')
+                $(".modal-backdrop").remove();
+                // alert("hai");
                 //Success -> Show Alert & Refresh the page
                 successMsg("Tank Insert Successfully!");
                 loadTankList();
@@ -74,7 +77,7 @@ function tankDetails(){
             }
             
         });
-        $("#form1")[0].reset();
+        
     }
 
     else{
@@ -87,7 +90,10 @@ function tankDetails(){
             contentType: "application/json",
             type: 'POST',
             success: function (result) {
-    
+    // alert("hai");
+    $("#tank_name,#tank_type,#location,#device_id,#capacity").val('');
+    $("#exampleModal").css('display','none')
+    $(".modal-backdrop").remove();
                 //Success -> Show Alert & Refresh the page
                 successMsg("Update Completed Successfully!");
                 loadTankList();
@@ -161,6 +167,7 @@ function loadTankList() {
         {
             mData: 'created_ts',
             sTitle: 'Created Time',
+           
             "className": 'sortingtable',
             mRender: function (data, type, row) {
                 return moment(data).format(DATE_TIME_FORMAT);
@@ -169,8 +176,9 @@ function loadTankList() {
         {
             sTitle: 'Actions',
             orderable: false,
+           
             mRender: function (data, type, row) {
-                var actionsHtml = '<button class="btn btn-default" onclick="deleteTank(\'' +row["_id"]+'\')"><i class="fa fa-trash"></i></button>'+" "+'<button class="btn btn-default" data-toggle="modal" data-target="#exampleModal" onclick="editTank(\'' +row["_id"]+'\')"><i class="fa fa-edit"></i></button>';
+                var actionsHtml = '<button class="btn btn-default" onclick="deleteTank(\'' +row["_id"]+'\')"><i class="fa fa-trash icon"  ></i></button>'+" "+'<button class="btn btn-default" data-toggle="modal" data-target="#exampleModal" onclick="editTank(\'' +row["_id"]+'\')"><i class="fa fa-edit"></i></button>';
                 return actionsHtml;
             }
         }
@@ -189,7 +197,7 @@ function loadTankList() {
 
     var tableOption = {
         fixedHeader: false,
-        responsive: false,
+        responsive: true,
         paging: true,
         searching: true,
         aaSorting: [[3, 'desc']],
@@ -226,19 +234,19 @@ function loadTankList() {
             var searchText = oSettings.oPreviousSearch.sSearch.trim();
 
             if (searchText) {
-                queryParams.query['bool']['should'].push({ "wildcard": { "tank_name": "*" + searchText + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "tank_name": "*" + searchText.toLowerCase() + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "tank_name": "*" + searchText.toUpperCase() + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "tank_name": "*" + capitalizeFLetter(searchText) + "*" } })
+                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + searchText + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + searchText.toLowerCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + searchText.toUpperCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + capitalizeFLetter(searchText) + "*" } })
                 queryParams.query['bool']["minimum_should_match"] = 1;
                 queryParams.query['bool']['should'].push({
                     "match_phrase": {
-                        "tank_name.keyword": "*" + searchText + "*"
+                        "location.keyword": "*" + searchText + "*"
                     }
                 })
                 queryParams.query['bool']['should'].push({
                     "match_phrase_prefix": {
-                        "tank_name.keyword": {
+                        "location.keyword": {
                             "query": "*" + searchText + "*"
                         }
                     }
@@ -266,8 +274,9 @@ function loadTankList() {
         },
         dom:'l<"toolbar">frtip',
         initComplete :  function() {
-       $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus-square icons" style="color:white";"aria-hidden="true"></i>Add Tanks</button>');
+       $("div.toolbar").html('<input class="pick" data-date-format="mm/dd/yyyy" id="datePickerrr" type="date"><button type="button" class="btn button1" data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus-square icons" style="color:white";"aria-hidden="true"></i>Add Tanks</button>');
    }
+ 
        
     };
 
@@ -320,5 +329,7 @@ function deleteTank(row){
     });
 }
 
-
+$(document).ready(function() {
+    
+} );
 

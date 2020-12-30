@@ -1,73 +1,78 @@
 var UserTable = null;
 var Users_list = [];
-var key="";
-var flag=false;
+var key;
+var flag = false;
 // var startDate = moment().subtract(6, 'days').startOf('day');
 // var endDate = moment().endOf('day');
-$(document).ready(function(){
+$(document).ready(function () {
     loadUsersList();
 });
 
 //User insert API
- 
-function loadUser()
-{
-     
+
+function loadUser() {
+
     var first_name = $("#name1").val();
     var last_name = $("#name2").val();
     var mobile_no = $("#mobile").val();
-    var email_id = $("emaill").val();
-    var location = $("#loc").val();    
+    var email_id = $("#emaill").val();
+    var location = $("#loc").val();
 
-    console.log(first_name);
+
+
+
     //Validate
-    if(first_name === ""){
+    if (first_name === "") {
 
         alert("First  Name is Required!");
 
-    }else if(last_name === ""){
+    } else if (last_name === "") {
 
         alert("Last name is Required!");
 
     }
-    else if(mobile_no === ""){
+    else if (mobile_no === "") {
 
         alert("Mobile number  is Required!");
 
     }
-    else if(email_id === ""){
+    else if (email_id === "") {
 
         alert("Email id is Required!");
 
     }
-    
-    else if(location === ""){
+
+    else if (location === "") {
 
         alert("Location is Required!");
 
-    }else{
+    } else {
 
         //Build Input Objects
-        var inputObj = 
+        var inputObj =
         {
             first_name: first_name,
             last_name: last_name,
             mobile_no: mobile_no,
             email_id: email_id,
             location: location
-                        
-        };
-         
 
-        //Call API
-        if(flag == false)
-        {
+        };
+        console.log("inputObj", inputObj);
+    }
+
+    //Call API
+    if (flag == false) {
         $.ajax({
-            url: BASE_PATH+"/user/insert",
+            url: BASE_PATH + "/user/insert",
             data: JSON.stringify(inputObj),
             contentType: "application/json",
             type: 'POST',
             success: function (result) {
+                console.log(result);
+                // $("#name1,#name2,#mobile,#emaill,#loc").val('');
+                // $("#myModal").css('display','none');
+                // $(".modal-backdrop").remove();
 
                 //Success -> Show Alert & Refresh the page
                 successMsg("User Added Successfully!");
@@ -80,46 +85,55 @@ function loadUser()
                 window.location.reload();
             }
         });
+        $("#form1")[0].reset();
     }
 
-    else if(flag==true) 
-    {
+    else if (flag == true) {
         var first_name = $("#name1").val();
         var last_name = $("#name2").val();
         var mobile_no = $("#mobile").val();
-        var email_id = $("emaill").val();
+        var email_id = $("#emaill").val();
         var location = $("#loc").val();
 
-    var updateData = {
-        first_name:first_name,
-        last_name:last_name,
-        mobile_no:mobile_no,
-        email_id:email_id,
-        location:location
-    };
 
+        var updateData = {
+            first_name: first_name,
+            last_name: last_name,
+            mobile_no: mobile_no,
+            email_id: email_id,
+            location: location
+        };
+        console.log("id", key)
+        console.log("update", updateData);
         $.ajax({
 
-            url: BASE_PATH+"/user/update",
-            data:JSON.stringify({_id:key,updateData}),
+            url: BASE_PATH + "/user/update",
+            data: JSON.stringify({ _id: key, updateData }),
             contentType: "application/json",
             type: 'POST',
-            success: function (result) {    
+            success: function (result) {
                 //Success -> Show Alert & Refresh the page
+                // $("#name1,#name2,#mobile,#emaill,#loc").val('');
+                // $("#myModal").css('display','none');
+                // $(".modal-backdrop").remove();
+
                 successMsg("Update Completed Successfully!");
+
                 loadUsersList();
+                // window.location.reload();
             },
             error: function (e) {
-    
+
                 //Error -> Show Error Alert & Reset the form
                 errorMsg("Update Failed!");
                 window.location.reload();
             }
         });
+        flag = false;
     }
-    }
-} 
- 
+
+}
+
 
 //User List API
 function loadUsersList() {
@@ -131,17 +145,17 @@ function loadUsersList() {
 
     var fields = [
         {
-            mData:'first_name',
-            sTitle:'First Name',
-            sWidth:'20%',
+            mData: 'first_name',
+            sTitle: 'First Name',
+            sWidth: '20%',
             orderable: false,
             mRender: function (data, type, row) {
                 return data;
             }
         },
         {
-            mData:'last_name',
-            sTitle:'Last Name',
+            mData: 'last_name',
+            sTitle: 'Last Name',
             sWidth: '20%',
             orderable: false,
             mRender: function (data, type, row) {
@@ -150,40 +164,40 @@ function loadUsersList() {
         },
 
         {
-            mData:'mobile_no',
-            sWidth:'20%',
-            sTitle:'Mobile No',
+            mData: 'mobile_no',
+            sWidth: '20%',
+            sTitle: 'Mobile No',
             orderable: false,
             mRender: function (data, type, row) {
                 return data;
             }
         },
         {
-          mData: 'email_id',
-          sWidth: '20%',
-          sTitle:'Email Id',
-          orderable: false,
-          mRender: function (data, type, row) {
-              return data;
-          }
-      },
-      {
-        mData: 'location',
-        sWidth: '20%',
-        sTitle:'Location',
-        orderable: false,
-        mRender: function (data, type, row) {
-            return data;
+            mData: 'email_id',
+            sWidth: '20%',
+            sTitle: 'Email Id',
+            orderable: false,
+            mRender: function (data, type, row) {
+                return data;
+            }
+        },
+        {
+            mData: 'location',
+            sWidth: '20%',
+            sTitle: 'Location',
+            orderable: false,
+            mRender: function (data, type, row) {
+                return data;
+            }
+        },
+        {
+            sTitle: 'Actions',
+            orderable: false,
+            mRender: function (data, type, row) {
+                var actionsHtml = '<button class="btn btn-default"  onclick="deleteUser(\'' + row._id + '\')"><i class="fa fa-trash"></i></button>' + '<button class="btn btn-default"  data-toggle="modal" data-target="#myModal" onclick="editUser(\'' + row._id + '\')"><i class="fa fa-pencil edit"></i>';
+                return actionsHtml;
+            }
         }
-    }, 
-    {
-        sTitle: 'Actions',
-        orderable: false,
-        mRender: function (data, type, row) {
-            var actionsHtml = '<button class="btn btn-default"  onclick="deleteUser(\'' + row._id+ '\')"><i class="fa fa-trash"></i></button>'+'<button class="btn btn-default"  data-toggle="modal" data-target="#myModal" onclick="editUser(\'' + row._id+ '\')"><i class="fa fa-pencil edit"></i>';
-            return actionsHtml;
-        }
-    }
     ];
 
     var queryParams = {
@@ -214,7 +228,7 @@ function loadUsersList() {
 
         },
         "bServerSide": true,
-        "sAjaxSource": BASE_PATH+'/user/list',
+        "sAjaxSource": BASE_PATH + '/user/list',
         "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
 
 
@@ -243,6 +257,24 @@ function loadUsersList() {
                 queryParams.query['bool']["minimum_should_match"] = 1;
                 queryParams.query['bool']['should'].push({
                     "match_phrase": {
+                        "first_name.keyword": "*" + searchText + "*"
+                    }
+                })
+                queryParams.query['bool']['should'].push({
+                    "match_phrase_prefix": {
+                        "first_name.keyword": {
+                            "query": "*" + searchText + "*"
+                        }
+                    }
+                });
+
+                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + searchText + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + searchText.toLowerCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + searchText.toUpperCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + capitalizeFLetter(searchText) + "*" } })
+                queryParams.query['bool']["minimum_should_match"] = 1;
+                queryParams.query['bool']['should'].push({
+                    "match_phrase": {
                         "location.keyword": "*" + searchText + "*"
                     }
                 })
@@ -255,13 +287,14 @@ function loadUsersList() {
                 });
             }
 
+
             oSettings.jqXHR = $.ajax({
                 "dataType": 'json',
                 "contentType": 'application/json',
                 "type": "POST",
                 "url": sSource,
-               
-                "data": JSON.stringify({"query":queryParams}),
+
+                "data": JSON.stringify({ "query": queryParams }),
                 success: function (data) {
 
                     var resultData = data.result.data;
@@ -275,9 +308,16 @@ function loadUsersList() {
                 }
             });
         },
-            "dom":'l<"toolbar">frtip',   
-        "initComplete": function (settings, json) {
-            $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button><i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>');   
+        // dom: 'l<"toolbar">frtip',
+        // initComplete: function (settings, json) {
+        //     $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button><i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>');
+        // },
+        
+        dom: 'l<"toolbar">frtip',
+        initComplete: function () {
+          $("div.toolbar").html('<input class="pick" data-date-format="mm/dd/yyyy" id="datePickerrr" type="date"> <button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button><i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>');
+            // $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button><i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>');   
+
         }
     };
 
@@ -285,52 +325,46 @@ function loadUsersList() {
 }
 
 
- //update details 
+//update details 
 
-var user1=null;
+var user1;
 var _id
- 
-function editUser(id)
-{    
-    key=id;
-    flag=true;
+
+function editUser(id) {
+    key = id;
+    flag = true;
     console.log(flag);
-   
-   for(i=0;i<Users_list.length;i++)
-   {
-       if(Users_list[i]._id==id)
-       {
-        user1=Users_list[i];
-         console.log(user1);
-          $("#name1").val(user1.first_name);
-          $("#name2").val(user1.last_name);
-          $("#mobile").val(user1.mobile_no);        
-          $("#loc").val(user1.location);
-          $("#emaill").val(user1.email_id);
-        
-       }
-   }
-     
+    console.log(key);
+
+    for (i = 0; i < Users_list.length; i++) {
+        if (Users_list[i]._id == id) {
+            user1 = Users_list[i];
+            console.log(user1);
+            $("#name1").val(user1.first_name);
+            $("#name2").val(user1.last_name);
+            $("#mobile").val(user1.mobile_no);
+            $("#loc").val(user1.location);
+            $("#emaill").val(user1.email_id);
+
+        }
+    }
+
 }
 //delete user details
-function deleteUser(row)
-{
+function deleteUser(row) {
     console.log(row);
     $.ajax({
-       url:BASE_PATH+'/user/delete',
-       data:{_id:row},
-       type:'POST',
-       success:function()
-       {                          
-          successMsg('deleted successfully');
-          loadUsersList();
-       },
-       error:function()
-       {
-           // console.log(e);
-           errorMsg("deletion failed");
-          // window.location.reload();
-       }
+        url: BASE_PATH + '/user/delete',
+        data: { _id: row },
+        type: 'POST',
+        success: function () {
+            successMsg('deleted successfully');
+            loadUsersList();
+        },
+        error: function () {
+            // console.log(e);
+            errorMsg("deletion failed");
+            // window.location.reload();
+        }
     });
 }
- 
