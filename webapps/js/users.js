@@ -1,7 +1,9 @@
 var UserTable = null;
 var Users_list = [];
 var key;
+var count;
 var flag = false;
+var usercount;
 // var startDate = moment().subtract(6, 'days').startOf('day');
 // var endDate = moment().endOf('day');
 $(document).ready(function () {
@@ -300,7 +302,8 @@ function loadUsersList() {
                     var resultData = data.result.data;
 
                     Users_list = resultData.data;
-
+                    usercount = resultData.data;
+                   count = resultData.data;
                     $(".totalCount").html(data.result.total)
                    
                     resultData['draw'] = oSettings.iDraw;
@@ -369,3 +372,5 @@ function deleteUser(row) {
         }
     });
 }
+$("#totaluser").append(`<p>`+ usercount.length+`</p>`);
+$("#total").append(`<span>`+ count.length+`</span>`);
