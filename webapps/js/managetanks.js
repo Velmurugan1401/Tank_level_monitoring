@@ -324,7 +324,7 @@ function deleteTank(row) {
         contentType: "application/json",
         type: 'POST',
         success: function (result) {
-           
+            $(".modal-backdrop").remove();
 
             //Success -> Show Alert & Refresh the page
             successMsg("Delete Completed Successfully!");
