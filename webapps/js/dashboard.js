@@ -41,8 +41,8 @@ myChart.setOption(option);
 var chart = echarts.init(document.getElementById("local"));
 option = {
     title: {
-        text: 'Tank Events',
-        subtext: 'Alert Counts',
+        // text: 'Tank Events',
+        // subtext: 'Alert Counts',
         left: 'center'
     },
     tooltip: {

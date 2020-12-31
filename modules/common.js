@@ -93,7 +93,7 @@ Common.prototype.commonUpdate = function (tablename, req, res) {
 
     const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
 
-    boodskap.elasticUpdate(tablename, req.query._id, req.body, function (status, result) {
+    boodskap.elasticUpdate(tablename, req.body._id, req.body.updateData, function (status, result) {
         // console.log(req.body.updateData)
 
 
@@ -199,9 +199,9 @@ Common.prototype.commonAdd = function (tablename, req, res) {
     const self = this;
 
     const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
-    console.log(req.body);
-    boodskap.elasticInsert(tablename, req.body, function (status, result) {
-
+  
+    boodskap.elasticInsert(tablename,req.body, function (status, result) {
+        console.log("insert",req.body);
         if (status) {
             res.json({
                 status: true,

@@ -330,8 +330,8 @@ Boodskap.prototype.elasticInsert = function (rid, data, cbk) {
             'content-type': 'text/plain'
         },
         body: JSON.stringify(data),
-    }, function (err, res, body) {
-        console.log("got it" + err)
+    }, 
+     function (err, res, body) {
         if (!err) {
 
             if (res.statusCode === 200) {
@@ -361,7 +361,7 @@ Boodskap.prototype.elasticpush = function (rid, did, dmdl, fwver, data, cbk) {
             body: JSON.stringify(data),
         },
         function (err, res, body) {
-            console.log(body);
+            // console.log(body);
             if (!err) {
 
                 if (res.statusCode === 200) {
