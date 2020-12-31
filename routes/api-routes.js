@@ -98,7 +98,7 @@ APIRoutes.prototype.init = function () {
         self.Device_details.performAction(req, res);
     });
     self.router.post('/user/:action', sessionCheck, function (req, res) {
-        console.log(req.body)
+        console.log("users",req.body)
         self.details.performAction(req, res);
     });
 

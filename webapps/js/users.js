@@ -61,8 +61,9 @@ function loadUser() {
             location: location
 
         };
-        console.log("inputObj", inputObj);
+       
     }
+    console.log("inputObj", inputObj);
 
     //Call API
     if (flag == false) {
@@ -88,22 +89,22 @@ function loadUser() {
                 window.location.reload();
             }
         });
-        $("#form1")[0].reset();
+     
     }
 
     else if (flag == true) {
-        var first_name = $("#name1").val();
-        var last_name = $("#name2").val();
-        var mobile_no = $("#mobile").val();
-        var email_id = $("#emaill").val();
+        var fname = $("#name1").val();
+        var lname = $("#name2").val();
+        var mno = $("#mobile").val();
+        var eid = $("#emaill").val();
         var location = $("#loc").val();
 
 
         var updateData = {
-            first_name: first_name,
-            last_name: last_name,
-            mobile_no: mobile_no,
-            email_id: email_id,
+            first_name: fname,
+            last_name: lname,
+            mobile_no: mno,
+            email_id: eid,
             location: location
         };
         console.log("id", key)
@@ -111,19 +112,19 @@ function loadUser() {
         $.ajax({
 
             url: BASE_PATH + "/user/update",
-            data: JSON.stringify({ _id: key, updateData }),
+            data: JSON.stringify({_id:key,updateData}),
             contentType: "application/json",
             type: 'POST',
             success: function (result) {
-                //Success -> Show Alert & Refresh the page
-                // $("#name1,#name2,#mobile,#emaill,#loc").val('');
-                // $("#myModal").css('display','none');
-                // $(".modal-backdrop").remove();
+                // //Success -> Show Alert & Refresh the page 
+                $("#name1,#name2,#mobile,#emaill,#loc").val('');
+                $("#myModal").css('display','none');
+                $(".modal-backdrop").remove();
 
                 successMsg("Update Completed Successfully!");
 
-                loadUsersList();
-                // window.location.reload();
+                // loadUsersList();
+                window.location.reload();
             },
             error: function (e) {
 
@@ -192,6 +193,14 @@ function loadUsersList() {
             orderable: false,
             mRender: function (data, type, row) {
                 return data;
+            }
+        },
+        {
+            mData: 'created_ts',
+            sTitle: 'Created Time',
+            "className": 'sortingtable',
+            mRender: function (data, type, row) {
+                return moment(data).format(DATE_TIME_FORMAT);
             }
         },
         {
@@ -290,8 +299,6 @@ function loadUsersList() {
                     }
                 });
             }
-
-
             oSettings.jqXHR = $.ajax({
                 "dataType": 'json',
                 "contentType": 'application/json',
@@ -337,13 +344,14 @@ var _id
 
 function editUser(id) {
     key = id;
-    flag = true;
+    flag =true;
     console.log(flag);
     console.log(key);
 
     for (i = 0; i < Users_list.length; i++) {
         if (Users_list[i]._id == id) {
             user1 = Users_list[i];
+            console.log( Users_list[i]);
             console.log(user1);
             $("#name1").val(user1.first_name);
             $("#name2").val(user1.last_name);
@@ -360,7 +368,7 @@ function deleteUser(row) {
     console.log(row);
     $.ajax({
         url: BASE_PATH + '/user/delete',
-        data: { _id: row },
+        data: {_id:row},
         type: 'POST',
         success: function () {
             successMsg('deleted successfully');

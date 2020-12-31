@@ -1,10 +1,89 @@
-<div class="container-fluid">
-<div class="row">
-<div class="col-md-6">
-  <img src="images/boodskap-logo.png" class="logo-cls">
-</div>
-<div class="col-md-6">
+<style>
+  #extraSideNav{
+    display: none;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  #menuIcon{
+    position: absolute;
+    top: -47px;
+    right:20px;
 
+  }
+  #collapseExample>.sidebar-nav>ul>li{
+    margin:unset !important;
+
+  }
+  #logoSideNav{
+    background-color: navy;padding-top: 5px;padding-left: 20px;
+  }
+  @media screen and (min-width: 320px) and (max-width: 767px) { 
+    #extraSideNav{
+    display: block;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  }
+
+</style>
+
+<div class="container-fluid" id="extraSideNav" >
+<div class="row">
+<div class="col-md-6 col-xs-4" id="logoSideNav" >
+  <img src="images/boodskap-logo.png" class="logo-cls">
+  
+</div>
+<div class="col-md-6 col-xs-8">
+  <button class="btn" type="button" data-toggle="collapse" data-target="#collapseExample" id="menuIcon" aria-expanded="false" aria-controls="collapseExample">
+    <i class="fa fa-bars" aria-hidden="true" style="color: black;"></i>
+  </button>
+
+</div>
+<div class="collapse" id="collapseExample">
+      <!-- <div class="scroll-sidebar"> -->
+        <nav class="sidebar-nav"> 
+          <ul class="leftMainMenu" id="sidebarnav">
+              
+             <li class="home-page">
+               <span class="home-page-span">Home</span>
+             
+             </li>
+                 <li class="dashboard">
+                     <a onclick="loadMainPage('/dashboard')" href="#/dashboard">
+                       <i class="fa fa-tachometer" style="color:white;font-size: 17px;vertical-align: unset;" aria-hidden="true"></i>Dashboard</a>
+                 </li>
+   
+                 <li class="tank-status">
+                     <a onclick="loadMainPage('/tankstatus')" href="#/tankstatus">
+                       <i class="fa fa-microchip" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Tank Status</a>
+                 </li>
+   
+                 <li class="admin-page" style="margin-top: 20px;">
+                   <span class="admin-page-span">Administration</span>
+                 </li>
+   
+                 <li class="manage-tanks" >
+                     <a onclick="loadMainPage('/tanks')" href="#/managetanks">
+                       <i class="fa fa-microchip" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Tanks</a>
+                 </li>
+   
+                 <li class="manage-devices">
+                     <a onclick="loadMainPage('/devices')" href="#/managedevices">
+                       <i class="fa fa-microchip" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Devices</a>
+                 </li>
+   
+                 <li class="users" >
+                     <a onclick="loadMainPage('/users')" href="#/users">
+                       <i class="fa fa-users"  style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Users</a>
+                 </li>
+   
+                 <li class="raw-messages">
+                   <a onclick="loadMainPage('/rawmessages')" href="#/rawmessages">
+                     <i class="fa fa-envelope" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Raw Messages</a>
+               </li>
+             </ul>
+           <!-- </div> -->
+         </nav> 
 </div>
 </div>
 </div>

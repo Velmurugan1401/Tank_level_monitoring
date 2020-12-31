@@ -14,6 +14,7 @@ Users.prototype.performAction = function (req,res){
 
     if(req.params.action === 'insert'){
         self.common.commonAdd(self.table.USER_TABLE,req,res);
+        console.log("uiiiii",req.body)
     }
     else if(req.params.action === 'update'){
         self.common.commonUpdate(self.table.USER_TABLE,req,res);
