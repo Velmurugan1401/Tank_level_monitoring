@@ -48,110 +48,110 @@ function tankDetails() {
 
     }
 
-//     else {
+    else {
 
-//         //Build Input Objects
-//         var inputObj = {
-//             tank_name: tank_name,
-//             tank_type: tank_type,
-//             location: location,
-//             device_id: device_id,
-//             capacity: capacity,
-//             created_ts: new Date().getTime()
-//         };
+        //Build Input Objects
+        var inputObj = {
+            tank_name: tank_name,
+            tank_type: tank_type,
+            location: location,
+            device_id: device_id,
+            capacity: capacity,
+            created_ts: new Date().getTime()
+        };
 
-//         if (tank_name === "") {
+        if (tank_name === "") {
 
-//             alert("Tank Name is Required!");
+            alert("Tank Name is Required!");
     
-//         } else if (tank_type === "") {
+        } else if (tank_type === "") {
     
-//             alert("Tankname is Required!");
+            alert("Tankname is Required!");
     
-//         } else if (location === "") {
+        } else if (location === "") {
     
-//             alert("Location is Required!");
+            alert("Location is Required!");
     
-//         }
-//         else if (capacity === "") {
+        }
+        else if (capacity === "") {
     
-//             alert("capacity is Required!");
+            alert("capacity is Required!");
     
-//         }
-//         else if (device_id === "") {
+        }
+        else if (device_id === "") {
     
-//             alert("Device is Required!");
+            alert("Device is Required!");
     
-//         }
+        }
     
-//         else {
+        else {
     
-//             //Build Input Objects
-//             var inputObj = {
-//                 tank_name: tank_name,
-//                 tank_type: tank_type,
-//                 location: location,
-//                 device_id: device_id,
-//                 capacity: capacity,
-//                 created_ts: new Date().getTime()
-//             };
+            //Build Input Objects
+            var inputObj = {
+                tank_name: tank_name,
+                tank_type: tank_type,
+                location: location,
+                device_id: device_id,
+                capacity: capacity,
+                created_ts: new Date().getTime()
+            };
     
-//         //Call API//update change
-//         if(updateflag == false)
-//         {
-//         $.ajax({
-//             url: BASE_PATH+"/tank/insert",
-//             data: JSON.stringify(inputObj),
-//             contentType: "application/json",
-//             type: 'POST',
-//             success: function (result) {
-//                 $("#exampleModal").css('display','none')
-//                 $(".modal-backdrop").remove();
-//                 // alert("hai");
-//                 //Success -> Show Alert & Refresh the page
-//                 successMsg("Tank Insert Successfully!");
-//                 loadTankList();
-//             },
-//             error: function (e) {
+        //Call API//update change
+        if(updateflag == false)
+        {
+        $.ajax({
+            url: BASE_PATH+"/tank/insert",
+            data: JSON.stringify(inputObj),
+            contentType: "application/json",
+            type: 'POST',
+            success: function (result) {
+                $("#exampleModal").css('display','none')
+                $(".modal-backdrop").remove();
+                // alert("hai");
+                //Success -> Show Alert & Refresh the page
+                successMsg("Tank Insert Successfully!");
+                loadTankList();
+            },
+            error: function (e) {
 
-//                 //Error -> Show Error Alert & Reset the form
-//                 errorMsg("Tank Insert Failed!");
-//                 window.location.reload();
-//             }
+                //Error -> Show Error Alert & Reset the form
+                errorMsg("Tank Insert Failed!");
+                window.location.reload();
+            }
             
-//         });
+        });
        
-//     }
+    }
 
-//     else{
+    else{
         
-//         $.ajax({
+        $.ajax({
 
-//             url: BASE_PATH+"/tank/update?_id="+_id,
-//             data: JSON.stringify(inputObj),
+            url: BASE_PATH+"/tank/update?_id="+_id,
+            data: JSON.stringify(inputObj),
            
-//             contentType: "application/json",
-//             type: 'POST',
-//             success: function (result) {
-//     // alert("hai");
-//     $("#tank_name,#tank_type,#location,#device_id,#capacity").val('');
-//     $("#exampleModal").css('display','none')
-//     $(".modal-backdrop").remove();
-//                 //Success -> Show Alert & Refresh the page
-//                 successMsg("Update Completed Successfully!");
-//                 loadTankList();
-//             },
-//             error: function (e) {
+            contentType: "application/json",
+            type: 'POST',
+            success: function (result) {
+    // alert("hai");
+    $("#tank_name,#tank_type,#location,#device_id,#capacity").val('');
+    $("#exampleModal").css('display','none')
+    $(".modal-backdrop").remove();
+                //Success -> Show Alert & Refresh the page
+                successMsg("Update Completed Successfully!");
+                loadTankList();
+            },
+            error: function (e) {
     
-//                 //Error -> Show Error Alert & Reset the form
-//                 errorMsg("Update Failed!");
-//                 window.location.reload();
-//             }
-//         });
-//     } flag = false;
-//     }
+                //Error -> Show Error Alert & Reset the form
+                errorMsg("Update Failed!");
+                window.location.reload();
+            }
+        });
+    } flag = false;
+    }
 
-// }
+}
 //tank List API
 function loadTankList() {
 
@@ -167,7 +167,7 @@ function loadTankList() {
             sWidth: '20%',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return  '<img src="images/tank1.jpg" alt="image"></img>', data;
             }
         },
         {
