@@ -126,12 +126,12 @@ function loadTankList() {
 
     var fields = [
         {
-            mData: 'tank_name',
+            mData: 'tank_name'+""+'location',
             sTitle: 'Tank Name',
             sWidth: '20%',
             orderable: false,
             mRender: function (data, type, row) {
-                return  '<img src="images/storage-tank.png" style="width:20px;height:20px;">' +data;
+                return row.tank_name+""+row.location;
             }
         },
         {
