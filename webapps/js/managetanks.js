@@ -1,6 +1,8 @@
 var TankMasterTable = null;
 var tank_list = [];
+var key;
 
+var Updateflag = false;
 var startDate = moment().subtract(6, 'days').startOf('day');
 var endDate = moment().endOf('day');
 $(document).ready(function () {
@@ -80,12 +82,25 @@ function tankDetails() {
        
     }
 
-    else{
-        
+    else if(Updateflag == true){
+        var tank_name = $("#tank_name").val();
+        var tank_type = $("#tank_type").val();
+        var location = $("#location").val();
+        var device_id = $("#device_id").val();
+        var capacity = $("#capacity").val();
+
+        var updateData  = {
+            tank_name: tank_name,
+            tank_type: tank_type,
+            location: location,
+            device_id: device_id,
+            capacity: capacity,
+            updated_ts : new Date().getTime()
+        };
         $.ajax({
 
-            url: BASE_PATH+"/tank/update?_id="+_id,
-            data: JSON.stringify(inputObj),
+            url: BASE_PATH+"/tank/update",
+            data: JSON.stringify({_id:key,updateData}),
            
             contentType: "application/json",
             type: 'POST',
@@ -265,7 +280,8 @@ function loadTankList() {
                     var resultData = data.result.data;
 
                     tank_list = resultData.data;
-
+                    console.log("new",tank_list.length)
+       console.log("now",tank_list[0].tank_name);
                     $(".totalCount").html(data.result.total)
 
                     resultData['draw'] = oSettings.iDraw;
@@ -283,14 +299,15 @@ function loadTankList() {
 
     TankMasterTable = $("#tank_table").DataTable(tableOption);
 }
-var tank1 = null;
+
+var tank1;
 var _id
-var Updateflag = false;
+
 
 function editTank(id) {
 
-
-    flag = id;
+    key = id;
+    
     console.log(flag);
     Updateflag = true;
 
@@ -302,7 +319,7 @@ function editTank(id) {
             $("#location").val(tank1.location);
             $("#capacity").val(tank1.capacity);
             console.log(tank1);
-            _id = id
+           
         }
     }
     console.log(id);
@@ -329,5 +346,10 @@ function deleteTank(row) {
         }
     });
 }
+for(i=0;i<=tank_list.length;i++){
+    console.log("res",tank_list[i].tank_name)
+   
+    $('#listtank').append('<option>'+tank_list[i].tank_name+`</option>`)
 
+}
 
