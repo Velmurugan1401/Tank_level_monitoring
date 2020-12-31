@@ -1,8 +1,12 @@
 <style>
   #extraSideNav{
-    display: none;
+    /* display: none; */
     padding-left: 0px;
     padding-right: 0px;
+  }
+  #headerRow{
+    background-color: #363636;
+    height: 50px;
   }
   #menuIcon{
     position: absolute;
@@ -15,32 +19,82 @@
 
   }
   #logoSideNav{
-    background-color: navy;padding-top: 5px;padding-left: 20px;
+    padding-top: 5px;padding-left: 20px;position: relative;
   }
+  .profile{
+        background-color: gray;
+        color: white;
+        width: 30px;
+        height: 30px;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 20px;
+    position: absolute;
+    right: 36px;top: 10px;
+    }
+    #profileCard{
+        width: 67px;
+        position: absolute;
+        height: 29px;
+        right: 3px;
+        top: 31px;
+        background-color: rgba(28,63,170);
+        color: white;
+        /* color: black; */
+        border-radius: 4px;
+        /* opacity: 0.9;    */
+         border: 1px solid grey;
+    }
   @media screen and (min-width: 320px) and (max-width: 767px) { 
     #extraSideNav{
     display: block;
     padding-left: 0px;
     padding-right: 0px;
   }
+  #headerRow{
+    background-color: navy;height: unset;
+  }
+  .scroll-sidebar{
+    display: block !important;
+  }
   }
 
 </style>
 
 <div class="container-fluid" id="extraSideNav" >
-<div class="row">
-<div class="col-md-6 col-xs-4" id="logoSideNav" >
-  <img src="images/boodskap-logo.png" class="logo-cls">
+<div class="row" id="headerRow" style="">
+<div class="col-md-6" id="logoSideNav">
+  
+  <img src="images/storage-tank.png" class="logo-cls" style="width:20px;height:20px;position: absolute;top:13px;">
+  <h5 style="color: white;font-weight: 500;padding-top: 0px;position: absolute;left:45px;top:16px;">TANK MONITORING</h5>
   
 </div>
-<div class="col-md-6 col-xs-8">
+<div class="col-md-6" style="position:relative;z-index: 1000;">
+  <!-- <div class="col-md-6" style="text-align: right;z-index: 100;"> -->
+    <div class="profile">
+       <i class="fa fa-user" aria-hidden="true" onclick="profilelogout()"></i>
+           <div class="card" id="profileCard" style="display: none;">
+              <div class="card-body" style="padding-left: 0px;padding-top: 4px;padding-right: 0px;">
+                 <ul class="list-unstyled" style="font-size: 14px;">
+                   <!-- <li>Profile</li>  -->
+                   <li><a onclick="logout()">logout</a></li>
+                  
+               </ul>
+              
+           </div>
+       </div>
+   </div> 
+</div>
+
+
   <button class="btn" type="button" data-toggle="collapse" data-target="#collapseExample" id="menuIcon" aria-expanded="false" aria-controls="collapseExample">
     <i class="fa fa-bars" aria-hidden="true" style="color: black;"></i>
   </button>
 
-</div>
-<div class="collapse" id="collapseExample">
-      <!-- <div class="scroll-sidebar"> -->
+ 
+
+<div class="collapse" id="collapseExample"> 
+       <div class="scroll-sidebar" style="display: none;"> 
         <nav class="sidebar-nav"> 
           <ul class="leftMainMenu" id="sidebarnav">
               
@@ -81,9 +135,8 @@
                    <a onclick="loadMainPage('/rawmessages')" href="#/rawmessages">
                      <i class="fa fa-envelope" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Raw Messages</a>
                </li>
-             </ul>
-           <!-- </div> -->
+             </ul> 
          </nav> 
 </div>
 </div>
-</div>
+</div></div> </div>

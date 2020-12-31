@@ -198,6 +198,7 @@ function loadUsersList() {
                 return data;
             }
         },
+      
         {
             mData: 'created_ts',
             sTitle: 'Created Time',
