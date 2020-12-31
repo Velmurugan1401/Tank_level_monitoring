@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/mrt-logo.svg">
-    <title>Sample Project</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="images/storage-tank.png">
+    <title>Tank Monitoring</title>
 
     <link rel="stylesheet" href="library/plugin/html5-editor/bootstrap-wysihtml5.css" />
     <link href="library/plugin/toast-master/css/jquery.toast.css" rel="stylesheet">
@@ -92,46 +92,25 @@
 
 
 <div id="main-wrapper">
-   <div class="container-fluid p-0" style="background-color: rgba(28,63,170);">
+   <div class="container-fluid p-0" style="background-color: #eeeeee">
 
     <%- include ('header.html') %>
         <div class="row">
             <div class="col-md-2">
-             <%- include ('leftmenu.html') %>
+                <%- include ('leftmenu.html') %>
             </div>
-            <div class="col-md-10" style="padding-left: 18px;">
-               <!-- <div class="row" style="background-color: white;border-top-left-radius: 20px;
-                       border-top-right-radius: 20px;margin-top: 26px;width:1058px;margin-left:15px;padding: 19px;">
-                   <div class="col-md-6">
-                    <span class="title-span" style="color: grey;font-weight: 500;">Home</pan>
-                      <span class="title-span" style="margin-left: 5px;margin-right: 5px;">
-                          <i class="fa fa-angle-right" aria-hidden="true"></i>
-                      </span>
-                      <span class="title-span" style="color: mediumblue;font-weight: 500;">Tank Status</span>
-                     </div>
-
-                   <div class="col-md-6" style="text-align: right;z-index: 100;">
-                       <div class="profile">
-                          <i class="fa fa-user" aria-hidden="true" onclick="profilelogout()"></i>
-                              <div class="card" id="profileCard" style="display: none;">
-                                 <div class="card-body" style="padding-left: 0px;padding-top: 3px;padding-right: 0px;">
-                                    <ul class="list-unstyled" style="font-size: 14px;">
-                                      <!-- <li>Profile</li>  -->
-                                     <!-- <li><a onclick="logout()">logout</a></li>
-                                     </ul>
-                                </div>
-                          </div></div> 
-                  </div></div> -->
+            <div class="col-md-10" style="">
+               
 
 
              <div class="container-fluid page-wrapper"  id="pageWrapper"style="margin-left:0px;padding-left:0px;
-                           background-color: rgba(28,63,170);padding-top:25px;" >
+                           padding-top:25px;" >
                           
-              <div class="container-fluid">
-               
-              </div>
+             <div class="container-fluid">
+                <%- body %>
+              </div> 
               
-                 <%- body %>
+                
                  
           </div>
             </div>

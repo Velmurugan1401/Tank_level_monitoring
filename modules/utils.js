@@ -212,9 +212,9 @@ Utils.prototype.elasticDeviceFormatter = function (data) {
 
  resultObj = {
             "total": totalRecords,
-            "data": {
-                "data": raw
-            }
+            "data": raw
+                
+            
         }
 
         return resultObj;

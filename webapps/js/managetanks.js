@@ -1,3 +1,5 @@
+
+
 var TankMasterTable = null;
 var tank_list = [];
 var tankcount;
@@ -323,6 +325,7 @@ function deleteTank(row) {
         contentType: "application/json",
         type: 'POST',
         success: function (result) {
+            alert("Confirm Delete!");
 
             //Success -> Show Alert & Refresh the page
             successMsg("Delete Completed Successfully!");
