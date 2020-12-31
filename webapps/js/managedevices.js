@@ -165,5 +165,3 @@ function loadDeviceList() {
     DeviceTable = $("#device_details").DataTable(tableOption);
 }
 
-$("#totaldevice").append(`<p>` +devicecount.length+ `</p>`);
-$("#total").append(`<span>` +device.length+ `</span>`);

@@ -8,6 +8,8 @@ var usercount;
 // var startDate = moment().subtract(6, 'days').startOf('day');
 // var endDate = moment().endOf('day');
 $(document).ready(function () {
+  
+
     loadUsersList();
 });
 
@@ -142,10 +144,11 @@ function loadUser() {
 //User List API
 function loadUsersList() {
   
-
     if (UserTable) {
         UserTable.destroy();
+      
         $("#myTable").html("");
+
     }
 
     var fields = [
@@ -313,8 +316,9 @@ function loadUsersList() {
                     Users_list = resultData.data;
                     usercount=resultData.data
                     $(".totalCount").html(data.result.total)
+                 
                    
-                    resultData['draw'] = oSettings.iDraw;
+                    resultData['draw'] = oSettings.iDraw;   
                     fnCallback(resultData);
                 }
             });
@@ -381,5 +385,5 @@ function deleteUser(row) {
         }
     });
 }
-$("#totaluser").append(`<p>`+ usercount.length+`</p>`);
+// $("#totaluser").append(`<p>`+ usercount.length+`</p>`);
 $("#total").append(`<span>`+ count.length+`</span>`);

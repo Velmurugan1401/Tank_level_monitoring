@@ -374,5 +374,4 @@ function deleteTank(row) {
     });
 }
 }
-$("#totaltank").append(`<p>`+ tankcount.length+`</p>`);
-$("#total").append(`<span>`+ totalcount.length+`</span>`);
+
