@@ -354,10 +354,4 @@ function deleteTank(row) {
     });
 }
 }
-for(i=0;i<=tank_list.length;i++){
-    console.log("res",tank_list[i].tank_name)
-   
-    $('#listtank').append('<option>'+tank_list[i].tank_name+`</option>`)
-
-}
 
