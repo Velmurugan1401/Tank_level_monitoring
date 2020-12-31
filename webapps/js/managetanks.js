@@ -13,9 +13,9 @@ $(document).ready(function () {
  function addtank(){
     $("#tank_name,#tank_type,#location,#device_id,#capacity").val('');
  }
- function refreshtank(){
-    loadTankList();
- }
+//  function refreshtank(){
+//     loadTankList();
+//  }
 //tank Registration API
 function tankDetails() {
 
@@ -61,8 +61,9 @@ function tankDetails() {
             created_ts: new Date().getTime()
         };
 
-//       
+
         //Call API//update change
+        var updateflag;
         if(updateflag == false)
         {
         $.ajax({
@@ -129,7 +130,7 @@ function tankDetails() {
         });
     } flag = false;
     }
-
+}
 
 //tank List API
 function loadTankList() {
@@ -146,7 +147,7 @@ function loadTankList() {
             sWidth: '20%',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return row.tank_name;
             }
         },
         {
@@ -177,15 +178,15 @@ function loadTankList() {
                 return data;
             }
         },
-        {
-            mData: 'status',
-            sWidth: '20%',
-            sTitle: 'Linked Devices',
-            orderable: false,
-            mRender: function (data, type, row) {
-                return '<a href="" class="link" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye" aria-hidden="true" style="padding-right:10px;"></i>Link </a>';
-            }
-        },
+        // {
+        //     mData: 'status',
+        //     sWidth: '20%',
+        //     sTitle: 'Linked Devices',
+        //     orderable: false,
+        //     mRender: function (data, type, row) {
+        //         return '<a href="" class="link" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye" aria-hidden="true" style="padding-right:10px;"></i>Link </a>';
+        //     }
+        // },
         {
             mData: 'created_ts',
             sTitle: 'Created Time',
@@ -288,7 +289,7 @@ function loadTankList() {
 
                     tank_list = resultData.data;
                     console.log("new",tank_list.length)
-       console.log("now",tank_list[0].tank_name);
+                 //    console.log("now",tank_list[0].tank_name);
                     $(".totalCount").html(data.result.total)
 
                     resultData['draw'] = oSettings.iDraw;
@@ -353,11 +354,11 @@ function deleteTank(row) {
         }
     });
 }
-}
-for(i=0;i<=tank_list.length;i++){
-    console.log("res",tank_list[i].tank_name)
-   
-    $('#listtank').append('<option>'+tank_list[i].tank_name+`</option>`)
 
-}
+// for(i=0;i<=tank_list.length;i++){
+//     console.log("res",tank_list[i].tank_name)
+   
+//     $('#listtank').append('<option>'+tank_list[i].tank_name+`</option>`)
+
+// }
 
