@@ -1,7 +1,7 @@
 var DeviceTable = null;
-var device_list = [];
-var devicecount;
-var device;
+var device_list=[];
+var device_list2;
+var list=[];
 // var startDate = moment().subtract(6, 'days').startOf('day');
 // var endDate = moment().endOf('day');
 
@@ -19,6 +19,7 @@ function loadDeviceList() {
     }
 
     var fields = [
+        
         {
             mData: 'id',
             sTitle: 'Device Name',
@@ -26,7 +27,9 @@ function loadDeviceList() {
             orderable: false,
             mRender: function (data, type, row) {
                 return data;
+               
             }
+           
         },
         {
             mData: 'modelId',
@@ -98,6 +101,8 @@ function loadDeviceList() {
         "bServerSide": true,
         "sAjaxSource": BASE_PATH+'/device/list',
         "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
+         
+
 
 
             queryParams.query['bool']['must'] = [];
@@ -146,12 +151,18 @@ function loadDeviceList() {
                 success: function (data) {
 
                     console.log(data);
+                    list=data;
+                   
+                    var resultData = data.result;
+                   
+                        device_list2=data.result.data
+                        device_list=data.result.length
+                        console.log(device_list)
+                      
+                    
+                   
+                  
 
-                    var resultData = data.result.data;
-
-                    device_list = resultData.data;
-                    devicecount = resultData.data;
-                    device = resultData.data;
                     $(".totalCount").html(data.result.total)
 
                     resultData['draw'] = oSettings.iDraw;
@@ -163,7 +174,15 @@ function loadDeviceList() {
     };
 
     DeviceTable = $("#device_details").DataTable(tableOption);
+  
 }
 
-$("#totaldevice").append(`<p>` +devicecount.length+ `</p>`);
-$("#total").append(`<span>` +device.length+ `</span>`);
+for(i=0;i<=device_list2.length;i++){
+    console.log("res",device_list2[i].id)
+   
+    $('#listdevice').append('<option>'+device_list2[i].id+`</option>`)
+
+}
+ 
+
+
