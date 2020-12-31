@@ -195,5 +195,9 @@ function profilelogout(event
       $("#profileCard").css('display','block');
       event.preventDefault();
     }
+
+    function refreshTank(){
+        loadTankStatusList();
+    }
    
   
