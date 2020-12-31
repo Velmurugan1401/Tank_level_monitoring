@@ -140,6 +140,7 @@ function loadUser() {
 
 //User List API
 function loadUsersList() {
+  
 
     if (UserTable) {
         UserTable.destroy();
@@ -372,5 +373,5 @@ function deleteUser(row) {
         }
     });
 }
-// $("#totaluser").append(`<p>`+ usercount.length+`</p>`);
+$("#totaluser").append(`<p>`+ usercount.length+`</p>`);
 $("#total").append(`<span>`+ count.length+`</span>`);
