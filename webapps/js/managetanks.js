@@ -60,7 +60,7 @@ function tankDetails() {
             capacity: capacity,
             created_ts: new Date().getTime()
         };
-
+        console.log("inputObj", inputObj);
         //Call API
         if(Updateflag == false)
         {
@@ -92,7 +92,7 @@ function tankDetails() {
         
         $.ajax({
 
-            url: BASE_PATH+"/tank/update?_id="+_id,
+            url: BASE_PATH+"/tank/update_id="+_id,
             data: JSON.stringify(inputObj),
            
             contentType: "application/json",
@@ -166,10 +166,10 @@ function loadTankList() {
         {
             mData: 'status',
             sWidth: '20%',
-            sTitle: 'Linkde Devices',
+            sTitle: 'Linked Devices',
             orderable: false,
             mRender: function (data, type, row) {
-                return '<i class="fa fa-eye" aria-hidden="true" style="padding-right:10px;"></i><a href="" class="link" data-toggle="modal" data-target="#myModal">Link</a>';
+                return '<a href="" class="link" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye" aria-hidden="true" style="padding-right:10px;"></i>Link</a>';
             }
         },
         {
@@ -186,7 +186,7 @@ function loadTankList() {
             orderable: false,
            
             mRender: function (data, type, row) {
-                var actionsHtml = '<button class="btn btn-default" onclick="deleteTank(\'' + row["_id"] + '\')"><i class="fa fa-trash icon"  ></i></button>' + " " + '<button class="btn btn-default" data-toggle="modal" data-target="#exampleModal" onclick="editTank(\'' + row["_id"] + '\')"><i class="fa fa-edit"></i></button>';
+                var actionsHtml = '<button class="btn btn-default" data-target="#deletemodal" data-toggle="modal" onclick="deleteTank(\'' + row["_id"] + '\')"><i class="fa fa-trash icon"  ></i></button>' + " " + '<button class="btn btn-default" data-toggle="modal" data-target="#exampleModal" onclick="editTank(\'' + row["_id"] + '\')"><i class="fa fa-edit"></i></button>';
                 return actionsHtml;
             }
         }
@@ -284,7 +284,7 @@ function loadTankList() {
         },
         dom: 'l<"toolbar">frtip',
         initComplete: function () {
-            $("div.toolbar").html('<input class="pick" data-date-format="mm/dd/yyyy" id="datePickerrr" type="date"><button type="button" class="btn button1" data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus-square icons" style="color:white";"aria-hidden="true"></i>Add Tanks</button>');
+            $("div.toolbar").html('<input class="pick" data-date-format="mm/dd/yyyy" id="datePickerrr" type="date"><button type="button" class="btn button1" onclick=addtank() data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus-square icons" style="color:white";"aria-hidden="true"></i>Add Tanks</button>');
         }
 
 
@@ -325,7 +325,7 @@ function deleteTank(row) {
         contentType: "application/json",
         type: 'POST',
         success: function (result) {
-            alert("Confirm Delete!");
+           
 
             //Success -> Show Alert & Refresh the page
             successMsg("Delete Completed Successfully!");
