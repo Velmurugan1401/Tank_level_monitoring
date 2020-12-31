@@ -1,5 +1,3 @@
-
-
 var TankMasterTable = null;
 var tank_list = [];
 var tankcount;
@@ -26,6 +24,7 @@ function tankDetails() {
     var capacity = $("#capacity").val();
     //Validate
     if (tank_name === "") {
+        if (tank_name === "") showToast(type,title,msg) {
 
         alert("Tank Name is Required!");
 
@@ -99,9 +98,9 @@ function tankDetails() {
             type: 'POST',
             success: function (result) {
     // alert("hai");
-    $("#tank_name,#tank_type,#location,#device_id,#capacity").val('');
-    $("#exampleModal").css('display','none')
-    $(".modal-backdrop").remove();
+              $("#tank_name,#tank_type,#location,#device_id,#capacity").val('');
+              $("#exampleModal").css('display','none')
+              $(".modal-backdrop").remove();
                 //Success -> Show Alert & Refresh the page
                 successMsg("Update Completed Successfully!");
                 loadTankList();
