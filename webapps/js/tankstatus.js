@@ -62,6 +62,15 @@ function loadTankStatusList() {
           }
       },
       {
+        mData: 'status',
+        sWidth: '20%',
+        sTitle: 'Status',
+        orderable: false,
+        mRender: function (data, type, row) {
+            return data;
+        }
+    },
+      {
         mData: 'device_id',
         sWidth: '20%',
         sTitle: ' Device Id ',
@@ -87,7 +96,7 @@ function loadTankStatusList() {
                 +' <div class="dropdown-menu">'
                 +' <a class="dropdown-item" href="#" >Link / Unlink Device</a>'
                 +' <a class="dropdown-item" href="#" >Single Tank Snapshot</a>'
-                +' <a class="dropdown-item" href="#" >Delete</a>'
+                +' <a class="dropdown-item" href="#" onclick= onclick="deleteUser(\'' + row._id + '\')" >Delete</a>'
                 +' </div>'
                 +'</div>';
                 return actionsHtml;
@@ -188,6 +197,26 @@ function loadTankStatusList() {
     };
 
     TankStatusTable = $("#StatusTable").DataTable(tableOption);
+}
+
+// delete=====
+
+function deleteUser(row) {
+    console.log(row);
+    $.ajax({
+        url: BASE_PATH + '/user/delete',
+        data: {_id:row},
+        type: 'POST',
+        success: function () {
+            successMsg('deleted successfully');
+            loadUsersList();
+        },
+        error: function () {
+            // console.log(e);
+            errorMsg("deletion failed");
+            // window.location.reload();
+        }
+    });
 }
 
 function profilelogout(event

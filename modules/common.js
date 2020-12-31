@@ -94,7 +94,7 @@ Common.prototype.commonUpdate = function (tablename, req, res) {
     const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
 
     boodskap.elasticUpdate(tablename, req.body._id, req.body.updateData, function (status, result) {
-        console.log("update",req.body.updateData)
+        // console.log(req.body.updateData)
 
 
         if (status) {

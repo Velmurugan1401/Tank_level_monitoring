@@ -1,5 +1,6 @@
 var UserTable = null;
 var Users_list = [];
+var usercount;
 var key;
 var count;
 var flag = false;
@@ -7,6 +8,8 @@ var usercount;
 // var startDate = moment().subtract(6, 'days').startOf('day');
 // var endDate = moment().endOf('day');
 $(document).ready(function () {
+  
+
     loadUsersList();
 });
 
@@ -140,10 +143,12 @@ function loadUser() {
 
 //User List API
 function loadUsersList() {
-
+  
     if (UserTable) {
         UserTable.destroy();
+      
         $("#myTable").html("");
+
     }
 
     var fields = [
@@ -193,6 +198,7 @@ function loadUsersList() {
                 return data;
             }
         },
+      
         {
             mData: 'created_ts',
             sTitle: 'Created Time',
@@ -309,11 +315,11 @@ function loadUsersList() {
                     var resultData = data.result.data;
 
                     Users_list = resultData.data;
-                    usercount = resultData.data;
-                   count = resultData.data;
+                    usercount=resultData.data
                     $(".totalCount").html(data.result.total)
+                 
                    
-                    resultData['draw'] = oSettings.iDraw;
+                    resultData['draw'] = oSettings.iDraw;   
                     fnCallback(resultData);
                 }
             });
@@ -380,5 +386,5 @@ function deleteUser(row) {
         }
     });
 }
-$("#totaluser").append(`<p>`+ usercount.length+`</p>`);
+// $("#totaluser").append(`<p>`+ usercount.length+`</p>`);
 $("#total").append(`<span>`+ count.length+`</span>`);

@@ -1,3 +1,5 @@
+
+
 var TankMasterTable = null;
 var tank_list = [];
 var tankcount;
@@ -7,9 +9,8 @@ var endDate = moment().endOf('day');
 $(document).ready(function () {
     loadTankList();
 
-
 });
- function addtank(){
+function addtank(){
     $("#tank_name,#tank_type,#location,#device_id,#capacity").val('');
  }
  function refreshtank(){
@@ -30,7 +31,7 @@ function tankDetails() {
 
     } else if (tank_type === "") {
 
-        alert("Tanktype is Required!");
+        alert("Tankname is Required!");
 
     } else if (location === "") {
 
@@ -48,110 +49,74 @@ function tankDetails() {
 
     }
 
-//     else {
+    else {
 
-//         //Build Input Objects
-//         var inputObj = {
-//             tank_name: tank_name,
-//             tank_type: tank_type,
-//             location: location,
-//             device_id: device_id,
-//             capacity: capacity,
-//             created_ts: new Date().getTime()
-//         };
+        //Build Input Objects
+        var inputObj = {
+            tank_name: tank_name,
+            tank_type: tank_type,
+            location: location,
+            device_id: device_id,
+            capacity: capacity,
+            created_ts: new Date().getTime()
+        };
 
-//         if (tank_name === "") {
+        //Call API
+        if(Updateflag == false)
+        {
+        $.ajax({
+            url: BASE_PATH+"/tank/insert",
+            data: JSON.stringify(inputObj),
+            contentType: "application/json",
+            type: 'POST',
+            success: function (result) {
+                $("#exampleModal").css('display','none')
+                $(".modal-backdrop").remove();
+                // alert("hai");
+                //Success -> Show Alert & Refresh the page
+                successMsg("Tank Insert Successfully!");
+                loadTankList();
+            },
+            error: function (e) {
 
-//             alert("Tank Name is Required!");
-    
-//         } else if (tank_type === "") {
-    
-//             alert("Tankname is Required!");
-    
-//         } else if (location === "") {
-    
-//             alert("Location is Required!");
-    
-//         }
-//         else if (capacity === "") {
-    
-//             alert("capacity is Required!");
-    
-//         }
-//         else if (device_id === "") {
-    
-//             alert("Device is Required!");
-    
-//         }
-    
-//         else {
-    
-//             //Build Input Objects
-//             var inputObj = {
-//                 tank_name: tank_name,
-//                 tank_type: tank_type,
-//                 location: location,
-//                 device_id: device_id,
-//                 capacity: capacity,
-//                 created_ts: new Date().getTime()
-//             };
-    
-//         //Call API//update change
-//         if(updateflag == false)
-//         {
-//         $.ajax({
-//             url: BASE_PATH+"/tank/insert",
-//             data: JSON.stringify(inputObj),
-//             contentType: "application/json",
-//             type: 'POST',
-//             success: function (result) {
-//                 $("#exampleModal").css('display','none')
-//                 $(".modal-backdrop").remove();
-//                 // alert("hai");
-//                 //Success -> Show Alert & Refresh the page
-//                 successMsg("Tank Insert Successfully!");
-//                 loadTankList();
-//             },
-//             error: function (e) {
-
-//                 //Error -> Show Error Alert & Reset the form
-//                 errorMsg("Tank Insert Failed!");
-//                 window.location.reload();
-//             }
+                //Error -> Show Error Alert & Reset the form
+                errorMsg("Tank Insert Failed!");
+                window.location.reload();
+            }
             
-//         });
+        });
        
-//     }
+    }
 
-//     else{
+    else{
         
-//         $.ajax({
+        $.ajax({
 
-//             url: BASE_PATH+"/tank/update?_id="+_id,
-//             data: JSON.stringify(inputObj),
+            url: BASE_PATH+"/tank/update?_id="+_id,
+            data: JSON.stringify(inputObj),
            
-//             contentType: "application/json",
-//             type: 'POST',
-//             success: function (result) {
-//     // alert("hai");
-//     $("#tank_name,#tank_type,#location,#device_id,#capacity").val('');
-//     $("#exampleModal").css('display','none')
-//     $(".modal-backdrop").remove();
-//                 //Success -> Show Alert & Refresh the page
-//                 successMsg("Update Completed Successfully!");
-//                 loadTankList();
-//             },
-//             error: function (e) {
+            contentType: "application/json",
+            type: 'POST',
+            success: function (result) {
+    // alert("hai");
+    $("#tank_name,#tank_type,#location,#device_id,#capacity").val('');
+    $("#exampleModal").css('display','none')
+    $(".modal-backdrop").remove();
+                //Success -> Show Alert & Refresh the page
+                successMsg("Update Completed Successfully!");
+                loadTankList();
+            },
+            error: function (e) {
     
-//                 //Error -> Show Error Alert & Reset the form
-//                 errorMsg("Update Failed!");
-//                 window.location.reload();
-//             }
-//         });
-//     } flag = false;
-//     }
+                //Error -> Show Error Alert & Reset the form
+                errorMsg("Update Failed!");
+                window.location.reload();
+            }
+        });
+    } flag = false;
+    }
 
-// }
+}
 //tank List API
 function loadTankList() {
 
@@ -167,7 +132,7 @@ function loadTankList() {
             sWidth: '20%',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return '<img src="images/tank1.jpg" alt="image"></img>',data;
             }
         },
         {
@@ -201,10 +166,10 @@ function loadTankList() {
         {
             mData: 'status',
             sWidth: '20%',
-            sTitle: 'Linked Devices',
+            sTitle: 'Linkde Devices',
             orderable: false,
             mRender: function (data, type, row) {
-                return '<a href="" class="link" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye" aria-hidden="true" style="padding-right:10px;"></i>Link </a>';
+                return '<i class="fa fa-eye" aria-hidden="true" style="padding-right:10px;"></i><a href="" class="link" data-toggle="modal" data-target="#myModal">Link</a>';
             }
         },
         {
@@ -319,7 +284,7 @@ function loadTankList() {
         },
         dom: 'l<"toolbar">frtip',
         initComplete: function () {
-            $("div.toolbar").html('<input class="pick" data-date-format="mm/dd/yyyy" id="datePickerrr" type="date"><button type="button" onclick="addtank()" class="btn button1" data-toggle="modal" data-target="#exampleModal" style="margin-top:0px;"> <i class="fa fa-plus-square icons" style="color:white";"aria-hidden="true"></i>Add Tanks</button>');
+            $("div.toolbar").html('<input class="pick" data-date-format="mm/dd/yyyy" id="datePickerrr" type="date"><button type="button" class="btn button1" data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus-square icons" style="color:white";"aria-hidden="true"></i>Add Tanks</button>');
         }
 
 
@@ -360,6 +325,7 @@ function deleteTank(row) {
         contentType: "application/json",
         type: 'POST',
         success: function (result) {
+            alert("Confirm Delete!");
 
             //Success -> Show Alert & Refresh the page
             successMsg("Delete Completed Successfully!");
@@ -372,7 +338,6 @@ function deleteTank(row) {
             window.location.reload();
         }
     });
-}
 }
 $("#totaltank").append(`<p>`+ tankcount.length+`</p>`);
 $("#total").append(`<span>`+ totalcount.length+`</span>`);
