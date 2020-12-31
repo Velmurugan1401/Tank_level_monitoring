@@ -107,3 +107,57 @@ option = {
     ]
 };
 myChart.setOption(option);
+$(()=>{
+    $.ajax({
+        "dataType": 'json',
+                "contentType": 'application/json',
+                "type": "POST",
+        url:BASE_PATH + '/user/list',
+        success:function(data){
+            var resultData = data.result.data;
+            $("#totaluser").html(data.result.total)
+            
+
+//             $('#totaluser').html('');
+           
+// $("#totaluser").append(`<p>`+ el.length+`</p>`);
+              
+                
+         
+        }
+    })
+})
+$(()=>{
+    $.ajax({
+        "dataType": 'json',
+                "contentType": 'application/json',
+                "type": "get",
+        url:BASE_PATH + '/device/list',
+        success:function(data){
+            var resultData = data.result.data;
+            $("#totaldevice").html(data.result.total)
+            
+
+              
+                
+         
+        }
+    })
+})
+$(()=>{
+    $.ajax({
+        "dataType": 'json',
+                "contentType": 'application/json',
+                "type": "POST",
+        url:BASE_PATH + '/tank/list',
+        success:function(data){
+            var resultData = data.result.data;
+            $("#totaltank").html(data.result.total)
+            
+
+              
+                
+         
+        }
+    })
+})

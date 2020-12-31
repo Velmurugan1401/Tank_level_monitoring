@@ -3,8 +3,8 @@
 .row1 {
   background-color: white;
   padding-top: 25px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   padding: 20px;
 }
 .title-span3 {
@@ -31,9 +31,9 @@
   background-color: #1c3faa;
 }
 .row3 {
-  border-bottom-left-radius: 20px;
+  border-bottom-left-radius: 5px;
   padding-bottom: 70px;
-  border-bottom-right-radius: 20px;
+  border-bottom-right-radius: 5px;
   background-color: white;
   padding-left: 20px;
 }
@@ -50,6 +50,9 @@
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button {
   border: none !important;
+}
+.dataTables_filter input, .dataTables_filter input:focus, .dataTables_length select, .dataTables_length select:focus{
+  background-image: unset;
 }
 .modal-title {
   color: #1c3faa;
