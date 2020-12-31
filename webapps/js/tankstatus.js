@@ -108,7 +108,7 @@ function loadTankStatusList() {
 
     var tableOption = {
         fixedHeader: false,
-        responsive: true,
+        responsive: false,
         paging: true,
         searching: true,
         aaSorting: [[3, 'desc']],
@@ -190,8 +190,10 @@ function loadTankStatusList() {
     TankStatusTable = $("#StatusTable").DataTable(tableOption);
 }
 
-function profilelogout() {
+function profilelogout(event
+    ) {
       $("#profileCard").css('display','block');
+      event.preventDefault();
     }
    
   

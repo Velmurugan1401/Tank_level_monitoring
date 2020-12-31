@@ -4,17 +4,17 @@
         <div class="col-md-12">
           <span class="title-span"></pan>
             <span class="title-span">Administration|</span>
-            <span class="title-span" style="color: mediumblue;font-weight: 500;">Manage Tanks</span>
+            <span class="title-span" style="color: mediumblue;font-weight: 500;">Tanks</span>
         </div>
       </div>
    <div class="row head">
-          <div class="col-md-6 coln1">
+          <div class="col-md-6 coln1" id="total">
              <span class="span1">Total Tanks:</span>
-             <span>4</span>
+             <span style="font-weight: 500;" class="total"></span>
              
           </div>
         <div class="col-md-6 coln2">
-            <!-- <a href=""class="btn but"><i class="fa fa-refresh   fa-fw "style=" color:white;" aria-hidden="true"></i></a> -->
+            <button class="btn but1" style="color:#1C3FAA" onclick="refreshtank()"><i class="fa fa-refresh   fa-fw "style=" color:white;" aria-hidden="true"></i></a> 
             <button class="btn but" onclick="openFullscreen()"><i class="fa fa-expand" style=" color:white;" aria-hidden="true"></i></button>
           </div>
           
@@ -31,14 +31,28 @@
                   </div>
                   <div class="modal-body">
                     <form action="javascript:void(0);" id="form1">
-                      <lable class="la">Tank Name</lable>
+                      <div class="mb-3">
+                        <label for="formGroupExampleInput" class="form-label">Tank Name</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
+                      </div>
+                      <div class="mb-3">
+                        <label for="formGroupExampleInput2" class="form-label">Another label</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
+                      </div>   
+                  <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                      <!-- <lable class="la">Tank Name</lable>
                       <input type="text" id="tank_name" class="la3"><br>
                       <lable class="la">Tank Type</lable>
                       <input type="text" id="tank_type" class="la5"><br>
                       <lable class="la" >Capacity</lable>
                       <input type="number" id="capacity" class="la4"><br>
                       <lable class="la">Location</lable>
-                      <input type="text" id="location" class="la2"><br>
+                      <input type="text" id="location" class="la2"><br> -->
                       <!-- <lable class="la">Device Name</lable>
                       <input type="text" id="device_id" class="la1"><br>
                       -->
@@ -92,7 +106,7 @@
       <div class="row roo" >
           <div class="col-md-12 col-sm-12 col-lg-12">
            
-              <table class="display table table-bordered responsive no-wrap"id="tank_table" width="100%"  ></table> 
+              <table class="table table-bordered table-responsive no-wrap" id="tank_table" width="100%"  ></table> 
             <!-- <input class="pick" data-date-format="mm/dd/yyyy" type="date" id="datePickerrr"> -->
              
           </div>

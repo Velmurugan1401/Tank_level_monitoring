@@ -8,8 +8,14 @@ var endDate = moment().endOf('day');
 $(document).ready(function () {
     loadTankList();
 
-});
 
+});
+ function addtank(){
+    $("#tank_name,#tank_type,#location,#device_id,#capacity").val('');
+ }
+ function refreshtank(){
+    loadTankList();
+ }
 //tank Registration API
 function tankDetails() {
 
@@ -25,7 +31,7 @@ function tankDetails() {
 
     } else if (tank_type === "") {
 
-        alert("Tankname is Required!");
+        alert("Tanktype is Required!");
 
     } else if (location === "") {
 
@@ -55,8 +61,9 @@ function tankDetails() {
             created_ts: new Date().getTime()
         };
 
-        //Call API
-        if(Updateflag == false)
+//       
+        //Call API//update change
+        if(updateflag == false)
         {
         $.ajax({
             url: BASE_PATH+"/tank/insert",
@@ -123,7 +130,7 @@ function tankDetails() {
     } flag = false;
     }
 
-}
+
 //tank List API
 function loadTankList() {
 
@@ -173,10 +180,10 @@ function loadTankList() {
         {
             mData: 'status',
             sWidth: '20%',
-            sTitle: 'Status',
+            sTitle: 'Linked Devices',
             orderable: false,
             mRender: function (data, type, row) {
-                return '<a href="" class="link" data-toggle="modal" data-target="#myModal">Link</a>';
+                return '<a href="" class="link" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye" aria-hidden="true" style="padding-right:10px;"></i>Link </a>';
             }
         },
         {
@@ -212,7 +219,7 @@ function loadTankList() {
 
     var tableOption = {
         fixedHeader: false,
-        responsive: true,
+        responsive: false,
         paging: true,
         searching: true,
         aaSorting: [[3, 'desc']],
@@ -291,7 +298,7 @@ function loadTankList() {
         },
         dom: 'l<"toolbar">frtip',
         initComplete: function () {
-            $("div.toolbar").html('<input class="pick" data-date-format="mm/dd/yyyy" id="datePickerrr" type="date"><button type="button" class="btn button1" data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus-square icons" style="color:white";"aria-hidden="true"></i>Add Tanks</button>');
+            $("div.toolbar").html('<input class="pick" data-date-format="mm/dd/yyyy" id="datePickerrr" type="date"><button type="button" onclick="addtank()" class="btn button1" data-toggle="modal" data-target="#exampleModal" style="margin-top:0px;"> <i class="fa fa-plus-square icons" style="color:white";"aria-hidden="true"></i>Add Tanks</button>');
         }
 
 
@@ -345,6 +352,7 @@ function deleteTank(row) {
             window.location.reload();
         }
     });
+}
 }
 for(i=0;i<=tank_list.length;i++){
     console.log("res",tank_list[i].tank_name)

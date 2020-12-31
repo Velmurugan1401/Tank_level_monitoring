@@ -3,8 +3,8 @@ option = {
     color: ['#3398DB'],
     tooltip: {
         trigger: 'axis',
-        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        axisPointer: {           
+         type: 'shadow'        
         }
     },
     grid: {
@@ -41,8 +41,8 @@ myChart.setOption(option);
 var chart = echarts.init(document.getElementById("local"));
 option = {
     title: {
-        text: 'Tank Events',
-        subtext: 'Alert Counts',
+        // text: 'Tank Events',
+        // subtext: 'Alert Counts',
         left: 'center'
     },
     tooltip: {
@@ -61,9 +61,9 @@ option = {
             radius: '55%',
             center: ['50%', '60%'],
             data: [
-                {value: 335, name: 'All Level'},
-                {value: 310, name: 'High Level'},
-                {value: 234, name: 'Low Level'},
+                {value: 88, name: 'All Level'},
+                {value: 150, name: 'High Level'},
+                {value: 22, name: 'Low Level'},
              
             ],
             emphasis: {

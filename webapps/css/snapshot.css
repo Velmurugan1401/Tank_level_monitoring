@@ -9,3 +9,28 @@
      color: white;
      padding: 10px;
  }
+ .dem
+ {
+     /* background-color:aqua; */
+     margin: 10px;
+     padding-top: 20px;
+ }
+ .demo
+ {
+    margin: 10px;
+ }
+ .btn
+ {
+    padding:10px 15px 10px 15px;
+    margin: 10px;
+ }
+ .btn1
+ {
+     background-color: green;
+     color: white;
+ }
+ .btn2
+{
+    background-color: red;
+    color: white;
+}
