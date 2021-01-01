@@ -8,7 +8,7 @@ var usercount;
 // var startDate = moment().subtract(6, 'days').startOf('day');
 // var endDate = moment().endOf('day');
 $(document).ready(function () {
-  
+
 
     loadUsersList();
 });
@@ -35,27 +35,22 @@ function loadUser() {
 
         alert("Last name is Required!");
 
-    }
-    else if (mobile_no === "") {
+    } else if (mobile_no === "") {
 
         alert("Mobile number  is Required!");
 
-    }
-    else if (email_id === "") {
+    } else if (email_id === "") {
 
         alert("Email id is Required!");
 
-    }
-
-    else if (location === "") {
+    } else if (location === "") {
 
         alert("Location is Required!");
 
     } else {
 
         //Build Input Objects
-        var inputObj =
-        {
+        var inputObj = {
             first_name: first_name,
             last_name: last_name,
             mobile_no: mobile_no,
@@ -63,7 +58,7 @@ function loadUser() {
             location: location
 
         };
-       
+
     }
     console.log("inputObj", inputObj);
 
@@ -91,10 +86,8 @@ function loadUser() {
                 window.location.reload();
             }
         });
-     
-    }
 
-    else if (flag == true) {
+    } else if (flag == true) {
         var fname = $("#name1").val();
         var lname = $("#name2").val();
         var mno = $("#mobile").val();
@@ -114,13 +107,16 @@ function loadUser() {
         $.ajax({
 
             url: BASE_PATH + "/user/update",
-            data: JSON.stringify({_id:key,updateData}),
+            data: JSON.stringify({
+                _id: key,
+                updateData
+            }),
             contentType: "application/json",
             type: 'POST',
             success: function (result) {
                 // //Success -> Show Alert & Refresh the page 
                 $("#name1,#name2,#mobile,#emaill,#loc").val('');
-                $("#myModal").css('display','none');
+                $("#myModal").css('display', 'none');
                 $(".modal-backdrop").remove();
 
                 successMsg("Update Completed Successfully!");
@@ -143,16 +139,15 @@ function loadUser() {
 
 //User List API
 function loadUsersList() {
-  
+
     if (UserTable) {
         UserTable.destroy();
-      
+
         $("#myTable").html("");
 
     }
 
-    var fields = [
-        {
+    var fields = [{
             mData: 'first_name',
             sTitle: 'First Name',
             sWidth: '20%',
@@ -198,7 +193,7 @@ function loadUsersList() {
                 return data;
             }
         },
-      
+
         {
             mData: 'created_ts',
             sTitle: 'Created Time',
@@ -223,7 +218,11 @@ function loadUsersList() {
                 "must": []
             }
         },
-        sort: [{ "created_ts": { "order": "asc" } }]
+        sort: [{
+            "created_ts": {
+                "order": "asc"
+            }
+        }]
     };
 
     Users_list = [];
@@ -233,10 +232,15 @@ function loadUsersList() {
         responsive: false,
         paging: true,
         searching: true,
-        aaSorting: [[3, 'desc']],
+        aaSorting: [
+            [3, 'desc']
+        ],
         "ordering": true,
         iDisplayLength: 10,
-        lengthMenu: [[10, 50, 100], [10, 50, 100]],
+        lengthMenu: [
+            [10, 50, 100],
+            [10, 50, 100]
+        ],
         aoColumns: fields,
         "bProcessing": true,
         "language": {
@@ -256,7 +260,9 @@ function loadUsersList() {
             var keyName = fields[oSettings.aaSorting[0][0]]
 
             var sortingJson = {};
-            sortingJson[keyName['mData']] = { "order": oSettings.aaSorting[0][1] };
+            sortingJson[keyName['mData']] = {
+                "order": oSettings.aaSorting[0][1]
+            };
             queryParams.sort = [sortingJson];
 
             queryParams['size'] = oSettings._iDisplayLength;
@@ -267,10 +273,26 @@ function loadUsersList() {
             var searchText = oSettings.oPreviousSearch.sSearch.trim();
 
             if (searchText) {
-                queryParams.query['bool']['should'].push({ "wildcard": { "first_name": "*" + searchText + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "first_name": "*" + searchText.toLowerCase() + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "first_name": "*" + searchText.toUpperCase() + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "first_name": "*" + capitalizeFLetter(searchText) + "*" } })
+                queryParams.query['bool']['should'].push({
+                    "wildcard": {
+                        "first_name": "*" + searchText + "*"
+                    }
+                });
+                queryParams.query['bool']['should'].push({
+                    "wildcard": {
+                        "first_name": "*" + searchText.toLowerCase() + "*"
+                    }
+                });
+                queryParams.query['bool']['should'].push({
+                    "wildcard": {
+                        "first_name": "*" + searchText.toUpperCase() + "*"
+                    }
+                });
+                queryParams.query['bool']['should'].push({
+                    "wildcard": {
+                        "first_name": "*" + capitalizeFLetter(searchText) + "*"
+                    }
+                })
                 queryParams.query['bool']["minimum_should_match"] = 1;
                 queryParams.query['bool']['should'].push({
                     "match_phrase": {
@@ -285,10 +307,26 @@ function loadUsersList() {
                     }
                 });
 
-                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + searchText + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + searchText.toLowerCase() + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + searchText.toUpperCase() + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + capitalizeFLetter(searchText) + "*" } })
+                queryParams.query['bool']['should'].push({
+                    "wildcard": {
+                        "location": "*" + searchText + "*"
+                    }
+                });
+                queryParams.query['bool']['should'].push({
+                    "wildcard": {
+                        "location": "*" + searchText.toLowerCase() + "*"
+                    }
+                });
+                queryParams.query['bool']['should'].push({
+                    "wildcard": {
+                        "location": "*" + searchText.toUpperCase() + "*"
+                    }
+                });
+                queryParams.query['bool']['should'].push({
+                    "wildcard": {
+                        "location": "*" + capitalizeFLetter(searchText) + "*"
+                    }
+                })
                 queryParams.query['bool']["minimum_should_match"] = 1;
                 queryParams.query['bool']['should'].push({
                     "match_phrase": {
@@ -303,23 +341,26 @@ function loadUsersList() {
                     }
                 });
             }
+               
             oSettings.jqXHR = $.ajax({
                 "dataType": 'json',
                 "contentType": 'application/json',
                 "type": "POST",
                 "url": sSource,
 
-                "data": JSON.stringify({ "query": queryParams }),
+                "data": JSON.stringify({
+                    "query": queryParams
+                }),
                 success: function (data) {
 
                     var resultData = data.result.data;
 
                     Users_list = resultData.data;
-                    usercount=resultData.data
+                    usercount = resultData.data
                     $(".totalCount").html(data.result.total)
-                 
-                   
-                    resultData['draw'] = oSettings.iDraw;   
+
+
+                    resultData['draw'] = oSettings.iDraw;
                     fnCallback(resultData);
                 }
             });
@@ -328,17 +369,17 @@ function loadUsersList() {
         // initComplete: function (settings, json) {
         //     $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button><i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>');
         // },
-        
+
         dom: 'l<"toolbar">frtip',
         initComplete: function () {
-          $("div.toolbar").html('<input class="pick" data-date-format="mm/dd/yyyy" id="datePickerrr" type="date"> <button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button><i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>');
+            $("div.toolbar").html('<input class="pick" data-date-format="mm/dd/yyyy" id="datePickerrr" type="date"> <button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button><i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>');
             // $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button><i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>');   
 
         }
     };
 
     UserTable = $("#myTable").DataTable(tableOption);
-  
+
 }
 
 
@@ -349,14 +390,14 @@ var _id
 
 function editUser(id) {
     key = id;
-    flag =true;
+    flag = true;
     console.log(flag);
     console.log(key);
 
     for (i = 0; i < Users_list.length; i++) {
         if (Users_list[i]._id == id) {
             user1 = Users_list[i];
-            console.log( Users_list[i]);
+            console.log(Users_list[i]);
             console.log(user1);
             $("#name1").val(user1.first_name);
             $("#name2").val(user1.last_name);
@@ -373,7 +414,9 @@ function deleteUser(row) {
     console.log(row);
     $.ajax({
         url: BASE_PATH + '/user/delete',
-        data: {_id:row},
+        data: {
+            _id: row
+        },
         type: 'POST',
         success: function () {
             successMsg('deleted successfully');
@@ -387,4 +430,4 @@ function deleteUser(row) {
     });
 }
 // $("#totaluser").append(`<p>`+ usercount.length+`</p>`);
-$("#total").append(`<span>`+ count.length+`</span>`);
+$("#total").append(`<span>` + count.length + `</span>`);

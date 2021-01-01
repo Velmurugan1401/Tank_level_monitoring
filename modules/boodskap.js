@@ -325,27 +325,27 @@ Boodskap.prototype.elasticInsert = function (rid, data, cbk) {
     const self = this;
 
     request.post({
-        uri: self.API_URL + '/record/insert/dynamic/' + self.API_TOKEN + '/' + rid,
-        headers: {
-            'content-type': 'text/plain'
+            uri: self.API_URL + '/record/insert/dynamic/' + self.API_TOKEN + '/' + rid,
+            headers: {
+                'content-type': 'text/plain'
+            },
+            body: JSON.stringify(data),
         },
-        body: JSON.stringify(data),
-    }, 
-     function (err, res, body) {
-        if (!err) {
+        function (err, res, body) {
+            if (!err) {
 
-            if (res.statusCode === 200) {
-                cbk(true, JSON.parse(res.body))
+                if (res.statusCode === 200) {
+                    cbk(true, JSON.parse(res.body))
+                } else {
+                    self.logger.error("record insert error in platform =>", res.body)
+                    cbk(false, JSON.parse(res.body))
+                }
             } else {
-                self.logger.error("record insert error in platform =>", res.body)
-                cbk(false, JSON.parse(res.body))
+                self.logger.error("record insert error in platform =>", err)
+                cbk(false, null)
             }
-        } else {
-            self.logger.error("record insert error in platform =>", err)
-            cbk(false, null)
-        }
 
-    });
+        });
 };
 Boodskap.prototype.elasticpush = function (rid, did, dmdl, fwver, data, cbk) {
     console.log(rid);

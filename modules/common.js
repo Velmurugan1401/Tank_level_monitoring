@@ -20,7 +20,7 @@ Common.prototype.commonSearch = function (tablename, req, res) {
     const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
 
     boodskap.elasticSearch(tablename, req.body.query, function (status, result) {
-     
+
 
         if (status) {
             res.json({
@@ -94,7 +94,7 @@ Common.prototype.commonUpdate = function (tablename, req, res) {
     const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
 
     boodskap.elasticUpdate(tablename, req.body._id, req.body.updateData, function (status, result) {
-        // console.log(req.body.updateData)
+
 
 
         if (status) {
@@ -199,9 +199,9 @@ Common.prototype.commonAdd = function (tablename, req, res) {
     const self = this;
 
     const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
-  
-    boodskap.elasticInsert(tablename,req.body, function (status, result) {
-        console.log("insert",req.body);
+
+    boodskap.elasticInsert(tablename, req.body, function (status, result) {
+        console.log("insert", req.body);
         if (status) {
             res.json({
                 status: true,
