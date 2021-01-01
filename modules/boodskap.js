@@ -5,6 +5,7 @@ var _ = require('underscore');
 
 var Utils = require("./utils")
 var Tables = require("./tables");
+// const { delete } = require('request');
 
 
 var Boodskap = function (app, token) {
@@ -376,4 +377,93 @@ Boodskap.prototype.elasticpush = function (rid, did, dmdl, fwver, data, cbk) {
             }
 
         });
+};
+
+// for user login========
+
+
+Boodskap.prototype.Userlogin = function (data, cbk) {
+
+    const self = this;
+    console.log(data);
+
+    request.post({
+        uri: self.API_URL + '/user/upsert/' + self.API_TOKEN ,
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(data),
+    }, 
+     function (err, res, body) {
+        if (!err) {
+
+            if (res.statusCode === 200) {
+                cbk(true, JSON.parse(res.body))
+            } else {
+                self.logger.error("record insert error in platform =>", res.body)
+                cbk(false, JSON.parse(res.body))
+            }
+        } else {
+            self.logger.error("record insert error in platform =>", err)
+            cbk(false, null)
+        }
+
+    });
+};
+
+// delete User========
+
+Boodskap.prototype.UserDelete = function (email, cbk) {
+
+    const self = this;
+
+    request.delete({
+        uri: self.API_URL + '/user/delete/' + self.API_TOKEN + '/' + email,
+    }, function (err, res, body) {
+
+        if (!err) {
+
+            if (res.statusCode === 200) {
+                cbk(true, JSON.parse(res.body))
+            } else {
+                self.logger.error("record delete error in platform =>", res.body)
+                cbk(false, JSON.parse(res.body))
+            }
+        } else {
+            self.logger.error("record delete error in platform =>", err)
+            cbk(false, null)
+        }
+
+    });
+};
+
+// list user=======
+
+Boodskap.prototype.Userlist = function (cbk) {
+    const self = this;
+     
+    var size=100;
+
+
+    request.get({
+        uri: self.API_URL + '/user/list/' + self.API_TOKEN + '/'+ size,
+
+    }, function (err, res, body) {
+        console.log(body)
+
+        if (!err) {
+
+            if (res.statusCode === 200) {
+                var resultObj = self.utils.elasticDeviceFormatter(JSON.parse(body))
+                cbk(true, resultObj)
+            } else {
+                self.logger.error("record search error in platform =>", res.body)
+                cbk(false, JSON.parse(res.body))
+            }
+        } else {
+            self.logger.error("record search error in platform =>", err)
+            cbk(false, null)
+        }
+
+    });
 };
