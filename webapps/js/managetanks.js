@@ -26,7 +26,7 @@ function tankDetails() {
     var capacity = $("#capacity").val();
     //Validate
     if (tank_name === "") {
-
+        // showToast("warning", "warning","Tank Name is Required");
         alert("Tank Name is Required!");
 
     } else if (tank_type === "") {
