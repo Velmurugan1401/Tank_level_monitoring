@@ -53,7 +53,7 @@ function loadTankStatusList() {
             }
         },
         {
-          mData: 'tank_level ',
+          mData: 'tank_level',
           sWidth: '20%',
           sTitle: 'Tank Level',
           orderable: false,

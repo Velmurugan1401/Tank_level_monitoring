@@ -192,5 +192,9 @@ border-radius: 3px !important;
 .dataTables_filter input, .dataTables_filter input:focus, .dataTables_length select, .dataTables_length select:focus{
     background-image: unset;
 } 
-/* //api*/
-/* domain */
+.modal-title{
+    color: white;
+}
+.form-control{
+    background-color: #EFEFEF;
+}

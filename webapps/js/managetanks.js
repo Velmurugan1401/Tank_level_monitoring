@@ -1,9 +1,10 @@
-
-
 var TankMasterTable = null;
 var tank_list = [];
 var tankcount;
 var totalcount;
+var key;
+
+var Updateflag = false;
 var startDate = moment().subtract(6, 'days').startOf('day');
 var endDate = moment().endOf('day');
 $(document).ready(function () {
@@ -13,9 +14,9 @@ $(document).ready(function () {
 function addtank(){
     $("#tank_name,#tank_type,#location,#device_id,#capacity").val('');
  }
- function refreshtank(){
-    loadTankList();
- }
+//  function refreshtank(){
+//     loadTankList();
+//  }
 //tank Registration API
 function tankDetails() {
 
@@ -60,7 +61,7 @@ function tankDetails() {
             capacity: capacity,
             created_ts: new Date().getTime()
         };
-
+        console.log("inputObj", inputObj);
         //Call API
         if(Updateflag == false)
         {
@@ -88,12 +89,24 @@ function tankDetails() {
        
     }
 
-    else{
+    else if (Updateflag == true) {
+        var tank_name = $("#tank_name").val();
+        var tank_type = $("#tank_type").val();
+        var location = $("#location").val();
+        var device_id = $("#device_id").val();
+        var capacity = $("#capacity").val();
         
+        var updateData = {
+            tank_name: tank_name,
+            tank_type: tank_type,
+            location: location,
+            device_id: device_id,
+            capacity: capacity
+        };
         $.ajax({
 
-            url: BASE_PATH+"/tank/update?_id="+_id,
-            data: JSON.stringify(inputObj),
+            url: BASE_PATH+"/tank/update",
+            data: JSON.stringify({_id:key,updateData}),
            
             contentType: "application/json",
             type: 'POST',
@@ -127,12 +140,12 @@ function loadTankList() {
 
     var fields = [
         {
-            mData: 'tank_name',
+            mData: 'tank_name'+""+'location',
             sTitle: 'Tank Name',
             sWidth: '20%',
             orderable: false,
             mRender: function (data, type, row) {
-                return '<img src="images/tank1.jpg" alt="image"></img>',data;
+                return row.tank_name+""+row.location;
             }
         },
         {
@@ -166,10 +179,10 @@ function loadTankList() {
         {
             mData: 'status',
             sWidth: '20%',
-            sTitle: 'Linkde Devices',
+            sTitle: 'Linked Devices',
             orderable: false,
             mRender: function (data, type, row) {
-                return '<i class="fa fa-eye" aria-hidden="true" style="padding-right:10px;"></i><a href="" class="link" data-toggle="modal" data-target="#myModal">Link</a>';
+                return '<a href="" class="link" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye" aria-hidden="true" style="padding-right:10px;"></i>Link</a>';
             }
         },
         {
@@ -186,7 +199,7 @@ function loadTankList() {
             orderable: false,
            
             mRender: function (data, type, row) {
-                var actionsHtml = '<button class="btn btn-default" onclick="deleteTank(\'' + row["_id"] + '\')"><i class="fa fa-trash icon"  ></i></button>' + " " + '<button class="btn btn-default" data-toggle="modal" data-target="#exampleModal" onclick="editTank(\'' + row["_id"] + '\')"><i class="fa fa-edit"></i></button>';
+                var actionsHtml = '<button class="btn btn-default" data-target="#deletemodal" data-toggle="modal" onclick="deleteTank(\'' + row["_id"] + '\')"><i class="fa fa-trash icon"  ></i></button>' + " " + '<button class="btn btn-default" data-toggle="modal" data-target="#exampleModal" onclick="editTank(\'' + row["_id"] + '\')"><i class="fa fa-edit"></i></button>';
                 return actionsHtml;
             }
         }
@@ -273,9 +286,9 @@ function loadTankList() {
                     var resultData = data.result.data;
 
                     tank_list = resultData.data;
-                    tankcount= resultData.data;
-                    totalcount= resultData.data;
-                    $("#totalCount").html(data.result.total)
+                    console.log("new",tank_list.length)
+                //   console.log("now",tank_list[0].tank_name);
+                    $(".totalCount").html(data.result.total)
 
                     resultData['draw'] = oSettings.iDraw;
                     fnCallback(resultData);
@@ -284,7 +297,7 @@ function loadTankList() {
         },
         dom: 'l<"toolbar">frtip',
         initComplete: function () {
-            $("div.toolbar").html('<input class="pick" data-date-format="mm/dd/yyyy" id="datePickerrr" type="date"><button type="button" class="btn button1" data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus-square icons" style="color:white";"aria-hidden="true"></i>Add Tanks</button>');
+            $("div.toolbar").html('<input class="pick" data-date-format="mm/dd/yyyy" id="datePickerrr" type="date"><button type="button" class="btn button1" onclick=addtank() data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus-square icons" style="color:white";"aria-hidden="true"></i>Add Tanks</button>');
         }
 
 
@@ -292,15 +305,15 @@ function loadTankList() {
 
     TankMasterTable = $("#tank_table").DataTable(tableOption);
 }
-var tank1 = null;
+var tank1;
 var _id
-var Updateflag = false;
+// var Updateflag = false;
 
 function editTank(id) {
 
-
-    flag = id;
-    console.log(flag);
+    key = id;
+    
+    console.log(key);
     Updateflag = true;
 
     for (i = 0; i < tank_list.length; i++) {
@@ -325,7 +338,7 @@ function deleteTank(row) {
         contentType: "application/json",
         type: 'POST',
         success: function (result) {
-            alert("Confirm Delete!");
+            $(".modal-backdrop").remove();
 
             //Success -> Show Alert & Refresh the page
             successMsg("Delete Completed Successfully!");
