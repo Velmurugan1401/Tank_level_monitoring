@@ -27,8 +27,8 @@ function tankDetails() {
     var capacity = $("#capacity").val();
     //Validate
     if (tank_name === "") {
-        // showToast("warning", "warning","Tank Name is Required");
-        alert("Tank Name is Required!");
+        showToast("warning", "warning","Tank Name is Required");
+        // alert("Tank Name is Required!");
 
     } else if (tank_type === "") {
 
@@ -154,7 +154,7 @@ function loadTankList() {
             sWidth: '20%',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return  data ? data :'-';
             }
         },
         {
@@ -163,7 +163,7 @@ function loadTankList() {
             sWidth: '20%',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return  data ? data :'-';
             }
         },
 
@@ -173,7 +173,7 @@ function loadTankList() {
             sTitle: 'capacity',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return  data ? data :'-';
             }
         },
         {
@@ -282,8 +282,9 @@ function loadTankList() {
                 "url": sSource,
                 "data": JSON.stringify({ "query": queryParams }),
                 success: function (data) {
+                   
 
-                    var resultData = data.result.data;
+                     var resultData = data.result.data;
 
                     tank_list = resultData.data;
                     console.log("new",tank_list.length)
@@ -341,13 +342,13 @@ function deleteTank(row) {
             $(".modal-backdrop").remove();
 
             //Success -> Show Alert & Refresh the page
-            successMsg("Delete Completed Successfully!");
+            successMsg("Tank Deleted Successfully!");
             loadTankList();
         },
         error: function (e) {
 
             //Error -> Show Error Alert & Reset the form
-            errorMsg("Delete Failed!");
+            errorMsg("Tank Delete Failed!");
             window.location.reload();
         }
     });

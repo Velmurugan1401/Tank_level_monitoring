@@ -36,7 +36,7 @@
 } */
 .head
 {
-    background-color:#6A5ACD;
+    background-color:#DCDCDC;
 }
  
 
@@ -47,9 +47,9 @@
     
 }
 .icon
-{
-    padding:3px;
-    font-size: 20px;
+{     
+    font-size: 15px;
+    padding: 2px;
      
 }
 .btn{

@@ -6,7 +6,8 @@
     
   }
   #headerRow{
-    background-color: #38A7FA;
+    /* background-color: #38A7FA; */
+    background-color: #005da2;
     height: 50px;
   }
   #menuIcon{
@@ -29,8 +30,8 @@
     padding-top: 5px;padding-left: 20px;position: relative;
   }
   .profile{
-        background-color: gray;
-        color: white;
+        background-color: white;
+        color:#005da2;
         width: 35px;
         height: 35px;
     border-radius: 22px;
@@ -103,7 +104,7 @@
       <span style="color: white;">Mail@gmail.com</span>
     </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Profile</a>
+    <a class="dropdown-item" onclick="loadMainPage('/profile')" href="#/profile">Profile</a>
     <a class="dropdown-item" href="#">Settings</a>
     <a class="dropdown-item" href="#">Log Out</a>
   </div>

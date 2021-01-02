@@ -12,13 +12,18 @@
     </div>
   </div>
   <div class="row section2 containflui p-2" style="background-color: #dcdcdc">
-    <div class="col-md-3">
+    <div class="col-md-6">
       <div style="margin-top: 12px" id="total">
         <span>Total Users: </span>
         <span style="font-weight: 500" class="totalCount"></span>
       </div>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-6" style="text-align: right;"> 
+
+     
+        <button class="btn but"><i class="fa fa-expand" id="expand"style="color:white" aria-hidden="true"></i></button>
+        <button class="btn but1" onclick="refreshuser()"><i class="fa fa-refresh fa-fw "style=" color:white;" aria-hidden="true"></i></a> 
+    </div>
       <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
@@ -49,7 +54,7 @@
                   <div class="row" style="margin-top:20px;">
                     <div class="col-md-12">
                         <label for="mobile" class="modal-txt">Mobile No *</label>
-                        <input type="number" class="form-control"  id="mobile" placeholder="Mobile No">
+                        <input  type="tel" pattern="[+ 0-9]{14}" required  class="form-control"  id="mobile" placeholder="Mobile No">
                     </div>
                 </div>
                 <div class="row" style="margin-top:20px;">
@@ -74,7 +79,7 @@
 </div>
 
       
-    </div>
+   
   </div>
   <div
     class="row"

@@ -7,10 +7,49 @@ var usercount;
 // var startDate = moment().subtract(6, 'days').startOf('day');
 // var endDate = moment().endOf('day');
 $(document).ready(function () {
-
-
     loadUsersList();
+    
+
+
 });
+$('#expand').click(function(){
+    var elem = document.documentElement;
+    if($(this).hasClass('fa fa-expand')){
+       
+        $(this).removeClass('fa fa-expand');
+        
+        $(this).addClass('fa fa-window-close');
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+          } else if (elem.webkitRequestFullscreen) { /* Safari */
+            elem.webkitRequestFullscreen();
+          } else if (elem.msRequestFullscreen) { /* IE11 */
+            elem.msRequestFullscreen();
+          }
+        // $('#password').attr('type','text');
+          
+      }else{
+       
+        $(this).removeClass('fa fa-window-close');
+        
+        $(this).addClass('fa fa-expand');  
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.webkitExitFullscreen) { /* Safari */
+            document.webkitExitFullscreen();
+          } else if (document.msExitFullscreen) { /* IE11 */
+            document.msExitFullscreen();
+          }
+        
+        // $('#password').attr('type','password');
+      }
+});
+
+function refreshuser()
+{
+    loadUsersList();
+}
+
 
 //User insert API
 
@@ -28,20 +67,25 @@ function loadUser() {
     //Validate
     if (firstname === "") {
 
+        showToast("info", "info","First Name is Required");
+
+
     //     alert("First  Name is Required!");
 
     } else if (lastName === "") {
+        showToast("info", "info","Last Name is Required");
 
     //     alert("Last name is Required!");
 
     }
     else if (primaryPhone === "") {
 
+        showToast("info", "info","Mobile Number is Required");
     //     alert("Mobile number  is Required!");
 
     }
     else if (email === "") {
-
+        showToast("info", "info","Email id is Required");
     //     alert("Email id is Required!");
 
     }
@@ -99,7 +143,6 @@ function loadUser() {
         var mno = $("#mobile").val();
         var eid = $("#emailid").val();
         var roles = $("#role").val();
-
 
         var updateData = {
             firstName: fname,
@@ -161,6 +204,7 @@ function loadUsersList() {
             orderable: false,
             mRender: function (data, type, row) {
                 return row.firstName+" "+row.lastName;
+                return data ? data :'-';
             }
         },
         {
@@ -169,7 +213,7 @@ function loadUsersList() {
             sWidth: '10%',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return  data ? data :'-';
             }
         },
 
@@ -179,7 +223,7 @@ function loadUsersList() {
             sTitle: 'Mobile No',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return  data ? data :'-';
             }
         },
         {
@@ -188,7 +232,7 @@ function loadUsersList() {
             sTitle: 'Email Id',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return  data ? data :'-';
             }
         },
         {
@@ -197,7 +241,7 @@ function loadUsersList() {
             sTitle: 'roles',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return  data ? data :'-';
             }
         },
 
@@ -337,7 +381,7 @@ function loadUsersList() {
                     console.log(resultData);
 
                     Users_list = resultData.data;
-                    usercount = resultData.data
+                    // usercount = resultData?.data
                     $(".totalCount").html(data.result.total)
 
 
@@ -353,7 +397,7 @@ function loadUsersList() {
 
         dom: 'l<"toolbar">frtip',
         initComplete: function () {
-            $("div.toolbar").html('<input class="pick" data-date-format="mm/dd/yyyy" id="datePickerrr" type="date"> <button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button><i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>');
+            $("div.toolbar").html('<input class="pick" data-date-format="mm/dd/yyyy" id="datePickerrr" type="date"> <button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button>');
             // $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button><i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>');   
 
         }
