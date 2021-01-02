@@ -14,8 +14,9 @@
              
           </div>
         <div class="col-md-6 coln2">
-            <button class="btn but1" style="color:#1C3FAA" onclick="refreshtank()"><i class="fa fa-refresh   fa-fw "style=" color:white;" aria-hidden="true"></i></a> 
             <button class="btn but" onclick="openFullscreen()"><i class="fa fa-expand" style=" color:white;" aria-hidden="true"></i></button>
+
+            <button class="btn but1" style="color:#1C3FAA" onclick="refreshtank()"><i class="fa fa-refresh   fa-fw "style=" color:white;" aria-hidden="true"></i></a> 
           </div>
 
             <div class="modal fade" id="exampleModal" role="dialog">
@@ -91,32 +92,25 @@
   <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content modal-div">
-          <div class="modal-header" style="background-color: #009B84;">
-              <h4 class="modal-title user-add-header text-center">Link Device</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
+          
           <div class="modal-body">
               <div class="row">
                   <div class="col-md-12">
-                      <label for="usr" class="modal-txt">Device List</label>
-                      <select class="form-control" id="listdevice"> 
-             
-              </select>
+                      <h4>Do You Want To Delete!</h4>
                   </div>
               </div>
-             
-              </div>
+             </div>
        
           <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-success link-btn" data-dismiss="modal">Link</button>
+              <button onclick="deleteTank()"type="button" class="btn btn-success link-btn" data-dismiss="modal"  id="deletemodal">Delete</button>
           </div>
       </div>
   </div>
 </div>
   </div>
 </div>
-  </div>
+ 
   
       <div class="row roo" >
           <div class="col-md-12">
@@ -127,7 +121,7 @@
           </div>
       </div>
 </div>
-
+</div>
    
     
         

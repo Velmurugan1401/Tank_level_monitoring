@@ -185,7 +185,7 @@ function loadTankList() {
             orderable: false,
            
             mRender: function (data, type, row) {
-                var actionsHtml = '<button class="btn btn-default" data-target="#deletemodal" data-toggle="modal" onclick="deleteTank(\'' + row["_id"] + '\')"><i class="fa fa-trash icon"  ></i></button>' + " " + '<button class="btn btn-default" data-toggle="modal" data-target="#exampleModal" onclick="editTank(\'' + row["_id"] + '\')"><i class="fa fa-edit"></i></button>';
+                var actionsHtml = '<button class="btn btn-default" data-toggle="modal" data-target="#deletemodal"  onclick="deleteTank(\'' + row["_id"] + '\')"><i class="fa fa-trash icon"></i></button>' + " " + '<button class="btn btn-default" data-toggle="modal" data-target="#exampleModal" onclick="editTank(\'' + row["_id"] + '\')"><i class="fa fa-edit"></i></button>';
                 return actionsHtml;
             }
         }
@@ -325,7 +325,7 @@ function deleteTank(row) {
         type: 'POST',
         success: function (result) {
             $(".modal-backdrop").remove();
-
+           
             //Success -> Show Alert & Refresh the page
             successMsg("Delete Completed Successfully!");
             loadTankList();
