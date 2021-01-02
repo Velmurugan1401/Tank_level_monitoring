@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/mrt-logo.svg">
-    <title>Sample Project</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="images/storage-tank.png">
+    <title>Tank Monitoring</title>
 
     <link rel="stylesheet" href="library/plugin/html5-editor/bootstrap-wysihtml5.css" />
     <link href="library/plugin/toast-master/css/jquery.toast.css" rel="stylesheet">
@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="/css/managedevices.css">
     <link rel="stylesheet" href="css/managetanks.css">
     <link rel="stylesheet" href="css/dashboard.css">
+   
 
     
     
@@ -91,20 +92,25 @@
 
 
 <div id="main-wrapper">
-   
-    <div class="container-fluid p-0" style="background-color: rgba(28,63,170);">
+   <div class="container-fluid p-0" style="background-color: #eeeeee">
+
+    <%- include ('header.html') %>
         <div class="row">
             <div class="col-md-2">
-             <%- include ('leftmenu.html') %>
+                <%- include ('leftmenu.html') %>
             </div>
-            <div class="col-md-10" style="padding-left: 0px;">
-             <div class="container-fluid page-wrapper"  id="pageWrapper"style="margin-left:0px;padding-left:0px;
-                           background-color: rgba(28,63,170);padding-top:25px;" >
-              <div class="container-fluid">
+            <div class="col-md-10" style="">
                
-              </div>
+
+
+             <div class="container-fluid page-wrapper"  id="pageWrapper"style="margin-left:0px;padding-left:0px;
+                           padding-top:25px;" >
+                          
+             <div class="container-fluid">
+                <%- body %>
+              </div> 
               
-                 <%- body %>
+                
                  
           </div>
             </div>

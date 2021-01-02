@@ -13,7 +13,7 @@ Msg.prototype.performAction = function (req,res){
     const self = this;
 
     if(req.params.action === 'insert'){
-        console.log(req.body.did)
+        
         self.common.commonpush(self.table.MSG_TABLE,req,res);
     }
     else if(req.params.action === 'update'){

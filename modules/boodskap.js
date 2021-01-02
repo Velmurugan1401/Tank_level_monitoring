@@ -5,6 +5,7 @@ var _ = require('underscore');
 
 var Utils = require("./utils")
 var Tables = require("./tables");
+// const { delete } = require('request');
 
 
 var Boodskap = function (app, token) {
@@ -182,7 +183,7 @@ Boodskap.prototype.deviceSearch = function (cbk) {
     }, function (err, res, body) {
 
         if (!err) {
-            console.log(body)
+           
 
 
             if (res.statusCode === 200) {
@@ -200,27 +201,35 @@ Boodskap.prototype.deviceSearch = function (cbk) {
     });
 
 }
-// RAW msg====================================
-
-Boodskap.prototype.RawMsgSearch = function (cbk) {
+// device
+Boodskap.prototype.devSearch = function (data,cbk) {
+  
     const self = this;
-    var d = 100;
-    var url = `${self.API_URL}/message/list/${self.API_TOKEN}/${d}`;
-    request.get({
-        uri: url,
+    var obj = {
+        
+            "type":"DEVICE",
+        query:JSON.stringify(data)
+    }
+    
 
+    request.post({
+        uri: self.API_URL + '/elastic/search/query/' + self.API_TOKEN,
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(obj),
 
     }, function (err, res, body) {
+      
 
         if (!err) {
 
-
             if (res.statusCode === 200) {
-                var resultObj = self.utils.elasticDeviceFormatter(JSON.parse(body))
-                cbk(true, resultObj)
+                var resultObj = self.utils.elasticQueryFormatter(JSON.parse(body))
+                cbk(true,resultObj)
             } else {
-                self.logger.error("record search error in platform =>", body)
-                cbk(false, JSON.parse(body))
+                self.logger.error("record search error in platform =>", res.body)
+                cbk(false, JSON.parse(res.body))
             }
         } else {
             self.logger.error("record search error in platform =>", err)
@@ -228,11 +237,52 @@ Boodskap.prototype.RawMsgSearch = function (cbk) {
         }
 
     });
+};
+// RAW msg====================================
 
-}
+Boodskap.prototype.MSGSearch = function (rid, query, cbk) {
+  
+    const self = this;
+
+    var obj = {
+        "type": 'MESSAGE',
+        "query": JSON.stringify(query)
+    }
+
+    if (rid) {
+        obj['specId'] = rid;
+    }
+
+    request.post({
+        uri: self.API_URL + '/elastic/search/query/' + self.API_TOKEN,
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(obj),
+
+    }, function (err, res, body) {
+      
+
+        if (!err) {
+
+            if (res.statusCode === 200) {
+                var resultObj = self.utils.elasticQueryFormatter(JSON.parse(body))
+                cbk(true, resultObj)
+            } else {
+                self.logger.error("record search error in platform =>", res.body)
+                cbk(false, JSON.parse(res.body))
+            }
+        } else {
+            self.logger.error("record search error in platform =>", err)
+            cbk(false, null)
+        }
+
+    });
+};
+
 
 Boodskap.prototype.elasticSearch = function (rid, query, cbk) {
-    console.log(rid)
+  
     const self = this;
 
     var obj = {
@@ -252,7 +302,7 @@ Boodskap.prototype.elasticSearch = function (rid, query, cbk) {
         body: JSON.stringify(obj),
 
     }, function (err, res, body) {
-        console.log(body)
+      
 
         if (!err) {
 
@@ -325,13 +375,74 @@ Boodskap.prototype.elasticInsert = function (rid, data, cbk) {
     const self = this;
 
     request.post({
-        uri: self.API_URL + '/record/insert/dynamic/' + self.API_TOKEN + '/' + rid,
+            uri: self.API_URL + '/record/insert/dynamic/' + self.API_TOKEN + '/' + rid,
+            headers: {
+                'content-type': 'text/plain'
+            },
+            body: JSON.stringify(data),
+        },
+        function (err, res, body) {
+            if (!err) {
+
+                if (res.statusCode === 200) {
+                    cbk(true, JSON.parse(res.body))
+                } else {
+                    self.logger.error("record insert error in platform =>", res.body)
+                    cbk(false, JSON.parse(res.body))
+                }
+            } else {
+                self.logger.error("record insert error in platform =>", err)
+                cbk(false, null)
+            }
+
+        });
+};
+Boodskap.prototype.elasticpush = function (rid, did, dmdl, fwver, data, cbk) {
+   
+    const self = this;
+  
+    var mid = rid;
+    request.post({
+            uri: self.API_URL + '/push/json/' + self.DOMAIN_KEY + '/' + self.API_KEY + '/' + did + '/' + dmdl + '/' + fwver + '/' + rid,
+            headers: {
+                'content-type': 'text/plain'
+            },
+            body: JSON.stringify(data),
+        },
+        function (err, res, body) {
+            // console.log(body);
+            if (!err) {
+
+                if (res.statusCode === 200) {
+                    cbk(true, JSON.parse(res.body))
+                } else {
+                    self.logger.error("record insert error in platform =>", res.body)
+                    cbk(false, JSON.parse(res.body))
+                }
+            } else {
+                self.logger.error("record insert error in platform =>", err)
+                cbk(false, null)
+            }
+
+        });
+};
+
+// for user login========
+
+
+Boodskap.prototype.Userlogin = function (data, cbk) {
+
+    const self = this;
+    console.log(data);
+
+    request.post({
+        uri: self.API_URL + '/user/upsert/' + self.API_TOKEN ,
         headers: {
-            'content-type': 'text/plain'
+            'content-type': 'application/json'
         },
         body: JSON.stringify(data),
-    }, function (err, res, body) {
-        console.log("got it" + err)
+    }, 
+     function (err, res, body) {
         if (!err) {
 
             if (res.statusCode === 200) {
@@ -347,33 +458,60 @@ Boodskap.prototype.elasticInsert = function (rid, data, cbk) {
 
     });
 };
-Boodskap.prototype.elasticpush = function (rid, did, dmdl, fwver, data, cbk) {
-    console.log(rid);
-    console.log(dmdl)
+
+// delete User========
+
+Boodskap.prototype.UserDelete = function (email, cbk) {
+
     const self = this;
-    console.log(data)
-    var mid = rid;
-    request.post({
-            uri: self.API_URL + '/push/json/' + self.DOMAIN_KEY + '/' + self.API_KEY + '/' + did + '/' + dmdl + '/' + fwver + '/' + rid,
-            headers: {
-                'content-type': 'text/plain'
-            },
-            body: JSON.stringify(data),
-        },
-        function (err, res, body) {
-            console.log(body);
-            if (!err) {
 
-                if (res.statusCode === 200) {
-                    cbk(true, JSON.parse(res.body))
-                } else {
-                    self.logger.error("record insert error in platform =>", res.body)
-                    cbk(false, JSON.parse(res.body))
-                }
+    request.delete({
+        uri: self.API_URL + '/user/delete/' + self.API_TOKEN + '/' + email,
+    }, function (err, res, body) {
+
+        if (!err) {
+
+            if (res.statusCode === 200) {
+                cbk(true, JSON.parse(res.body))
             } else {
-                self.logger.error("record insert error in platform =>", err)
-                cbk(false, null)
+                self.logger.error("record delete error in platform =>", res.body)
+                cbk(false, JSON.parse(res.body))
             }
+        } else {
+            self.logger.error("record delete error in platform =>", err)
+            cbk(false, null)
+        }
 
-        });
+    });
+};
+
+// list user=======
+
+Boodskap.prototype.Userlist = function (cbk) {
+    const self = this;
+     
+    var size=100;
+
+
+    request.get({
+        uri: self.API_URL + '/user/list/' + self.API_TOKEN + '/'+ size,
+
+    }, function (err, res, body) {
+        console.log(body)
+
+        if (!err) {
+
+            if (res.statusCode === 200) {
+                var resultObj = self.utils.elasticDeviceFormatter(JSON.parse(body))
+                cbk(true, resultObj)
+            } else {
+                self.logger.error("record search error in platform =>", res.body)
+                cbk(false, JSON.parse(res.body))
+            }
+        } else {
+            self.logger.error("record search error in platform =>", err)
+            cbk(false, null)
+        }
+
+    });
 };

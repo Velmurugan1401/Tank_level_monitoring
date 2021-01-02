@@ -53,7 +53,7 @@ function loadTankStatusList() {
             }
         },
         {
-          mData: 'tank_level ',
+          mData: 'tank_level',
           sWidth: '20%',
           sTitle: 'Tank Level',
           orderable: false,
@@ -61,6 +61,15 @@ function loadTankStatusList() {
               return data;
           }
       },
+      {
+        mData: 'status',
+        sWidth: '20%',
+        sTitle: 'Status',
+        orderable: false,
+        mRender: function (data, type, row) {
+            return data;
+        }
+    },
       {
         mData: 'device_id',
         sWidth: '20%',
@@ -86,8 +95,8 @@ function loadTankStatusList() {
                 var actionsHtml ='<div class="dropdown"><button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:rgba(28,63,170);border:unset;">Actions</button>'
                 +' <div class="dropdown-menu">'
                 +' <a class="dropdown-item" href="#" >Link / Unlink Device</a>'
-                +' <a class="dropdown-item" href="#" >Single Tank Snapshot</a>'
-                +' <a class="dropdown-item" href="#" >Delete</a>'
+                +' <a class="dropdown-item" href="#"onclick= onclick="(\'' + row+ '\')" >Single Tank Snapshot</a>'
+                +' <a class="dropdown-item" href="#" onclick= onclick="deleteUser(\'' + row._id + '\')" >Delete</a>'
                 +' </div>'
                 +'</div>';
                 return actionsHtml;
@@ -108,7 +117,7 @@ function loadTankStatusList() {
 
     var tableOption = {
         fixedHeader: false,
-        responsive: true,
+        responsive: false,
         paging: true,
         searching: true,
         aaSorting: [[3, 'desc']],
@@ -190,8 +199,30 @@ function loadTankStatusList() {
     TankStatusTable = $("#StatusTable").DataTable(tableOption);
 }
 
-function profilelogout() {
+// delete=====
+
+function deleteUser(row) {
+    console.log(row);
+    $.ajax({
+        url: BASE_PATH + '/user/delete',
+        data: {_id:row},
+        type: 'POST',
+        success: function () {
+            successMsg('deleted successfully');
+            loadUsersList();
+        },
+        error: function () {
+            // console.log(e);
+            errorMsg("deletion failed");
+            // window.location.reload();
+        }
+    });
+}
+
+function profilelogout(event
+    ) {
       $("#profileCard").css('display','block');
+      event.preventDefault();
     }
    
   

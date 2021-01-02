@@ -146,7 +146,7 @@ Utils.prototype.dbQueryFormatter = function (data) {
 };
 
 Utils.prototype.elasticQueryFormatter = function (data) {
-    console.log("incoming" ,data)
+   
 
     var resultObj = {
         total: 0,
@@ -187,7 +187,7 @@ Utils.prototype.elasticQueryFormatter = function (data) {
             },
             aggregations: aggregations
         }
-            console.log("it is return " ,resultObj)                 
+            // console.log("it is return " ,resultObj)                 
         return resultObj;
 
     } else {
@@ -212,9 +212,9 @@ Utils.prototype.elasticDeviceFormatter = function (data) {
 
  resultObj = {
             "total": totalRecords,
-            "data": {
-                "data": raw
-            }
+            "data": raw
+                
+            
         }
 
         return resultObj;

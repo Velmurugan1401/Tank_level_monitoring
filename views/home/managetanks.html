@@ -1,10 +1,10 @@
 <div class="container-fluid ">
-  <div class="row" style="background-color:white;padding-top: 25px;border-top-left-radius: 20px;
-    border-top-right-radius: 20px;padding: 20px;">
+  <div class="row" style="background-color:white;padding-top: 25px;border-top-left-radius: 5px;
+    border-top-right-radius: 5px;padding: 20px;">
         <div class="col-md-12">
           <span class="title-span"></pan>
             <span class="title-span">Administration|</span>
-            <span class="title-span" style="color: mediumblue;font-weight: 500;">Manage Tanks</span>
+            <span class="title-span" style="color: mediumblue;font-weight: 500;">Tanks</span>
         </div>
       </div>
    <div class="row head">
@@ -14,42 +14,49 @@
              
           </div>
         <div class="col-md-6 coln2">
-            <!-- <a href=""class="btn but"><i class="fa fa-refresh   fa-fw "style=" color:white;" aria-hidden="true"></i></a> -->
+            <button class="btn but1" style="color:#1C3FAA" onclick="refreshtank()"><i class="fa fa-refresh   fa-fw "style=" color:white;" aria-hidden="true"></i></a> 
             <button class="btn but" onclick="openFullscreen()"><i class="fa fa-expand" style=" color:white;" aria-hidden="true"></i></button>
           </div>
-          
-          
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                 <div class="modal-dialog" role="document">
 
-                   <div class="modal-content"> <p style="text-align: center;font-weight: 700;font-size: 15px;"></p>
-                    <div class="modal-header">
-                      Add New Tank
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
+            <div class="modal fade" id="exampleModal" role="dialog">
+              <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content modal-div">
+                      <div class="modal-header" style="background-color: #009B84;">
+                          <h4 class="modal-title user-add-header text-center">Add New Tank</h4>
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      <div class="modal-body">
+                          <div class="row" style="margin-top:20px;">
+                              <div class="col-md-12">
+                                  <label for="usr" class="modal-txt">Tank Name</label>
+                                  <input type="text" class="form-control"  id="tank_name" placeholder="Enter Tank Name">
+                              </div>
+                          </div>
+                          <div class="row" style="margin-top:20px;">
+                            <div class="col-md-12">
+                                <label for="usr" class="modal-txt">Tank Type</label>
+                                <input type="text" class="form-control"  id="tank_type" placeholder="Enter Tank Type">
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:20px;">
+                          <div class="col-md-12">
+                              <label for="usr" class="modal-txt">Capacity</label>
+                              <input type="number" class="form-control"  id="capacity" placeholder="Enter Capacity">
+                          </div>
+                      
+                      <div class="row" style="margin-top:20px;">
+                        <div class="col-md-12">
+                            <label for="usr" class="modal-txt">Location</label>
+                            <input type="text" class="form-control"  id="location" placeholder="Enter Location">
+                        </div>
+                    </div>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          <button onclick="tankDetails()" type="button" class="btn btn-success link-btn" data-dismiss="modal" id="examplemodal">Add Tank</button>
+                      </div>
                   </div>
-                  <div class="modal-body">
-                    <form action="javascript:void(0);" id="form1">
-                      <lable class="la">Tank Name</lable>
-                      <input type="text" id="tank_name" class="la3"><br>
-                      <lable class="la">Tank Type</lable>
-                      <input type="text" id="tank_type" class="la5"><br>
-                      <lable class="la" >Capacity</lable>
-                      <input type="number" id="capacity" class="la4"><br>
-                      <lable class="la">Location</lable>
-                      <input type="text" id="location" class="la2"><br>
-                      <!-- <lable class="la">Device Name</lable>
-                      <input type="text" id="device_id" class="la1"><br>
-                      -->
-                     </form>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                    <button type="button" onclick="tankDetails()" class="btn btn-success">Add Tank</button>
-                  </div>
-                  
-            </div>
       </div>
     </div>
     <!-- Link modal -->
@@ -57,7 +64,7 @@
   <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content modal-div">
-          <div class="modal-header">
+          <div class="modal-header" style="background-color: #009B84;">
               <h4 class="modal-title user-add-header text-center">Link Device</h4>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
@@ -65,49 +72,70 @@
               <div class="row">
                   <div class="col-md-12">
                       <label for="usr" class="modal-txt">Device List</label>
-                      <select class="form-control"> 
-              <option>Device1</option> 
-              <option>Device2</option> 
-              <option>Device3</option> 
-              <option>Device4</option> 
+                      <select class="form-control" id="listdevice"> 
+             
               </select>
                   </div>
               </div>
-              <div class="row" style="margin-top:20px;">
-                  <div class="col-md-12">
-                      <label for="usr" class="modal-txt">Device Id</label>
-                      <input type="text" class="form-control" id="usr">
-                  </div>
+             
               </div>
-          </div>
+       
           <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-success link-btn" data-dismiss="modal">Link</button>
           </div>
       </div>
-
+  </div>
+</div>
+<div class="modal fade" id="deletemodal" role="dialog">
+  <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content modal-div">
+          <div class="modal-header" style="background-color: #009B84;">
+              <h4 class="modal-title user-add-header text-center"></h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-md-12">
+                      <label for="usr" class="modal-txt">Device List</label>
+                      <select class="form-control" id="listdevice"> 
+             
+              </select>
+                  </div>
+              </div>
+             
+              </div>
+       
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success link-btn" data-dismiss="modal">Link</button>
+          </div>
+      </div>
+  </div>
+</div>
   </div>
 </div>
   </div>
   
       <div class="row roo" >
-          <div class="col-md-12 col-sm-12 col-lg-12">
+          <div class="col-md-12">
            
-              <table class="table table-bordered table-responsive no-wrap"id="tank_table" width="100%"  ></table> 
+              <table class="table table-bordered table-responsive no-wrap" id="tank_table" width="100%" ></table> 
             <!-- <input class="pick" data-date-format="mm/dd/yyyy" type="date" id="datePickerrr"> -->
              
           </div>
       </div>
 </div>
 
-    
+   
     
         
  
 
 
 <script src="js/managetanks.js"></script>
-
+<script src="js/managedevices.js"></script>
 <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->

@@ -66,7 +66,7 @@
    padding-top: 20px;
 }
 .three{
-    margin-top: 80px;
+    margin-top: 30px;
 }
 .tank:hover{
     box-shadow: 20px blue;
@@ -89,16 +89,18 @@ background-color: white;
 margin-bottom: 20px;
 border-radius: 6px;
 box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-margin-right: 20px;
+margin-left: 20px;
 }
-.chart2{
+/* .chart2{
     background-color: white;
     margin-bottom: 20px;
     border-radius: 6px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
   
 
-}
+} */
+
+
 /* .fa-2x{
     margin-bottom: 90px;
 } */
@@ -127,8 +129,10 @@ margin-right: 20px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 .text{
-    padding-top: 20px;
+    padding-left: 540px;
+ 
 }
+
 .icon1{
 color:hotpink;
 }
@@ -142,12 +146,36 @@ color:hotpink;
 .icon4{
   color:greenyellow;  
 }
-/* .roe{
-    border-bottom-left-radius: 20px;padding-bottom: 70px;
+.topic{
+    padding-top: 50px;
+}
+/* .topic1{
+    padding-top: 30px;
+    margin-top: 10px;
+} */
+/* @media screen and (max-width: 320px) {
+    .three{
+        padding-top: 30px;
+       
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    body {
+      background-color: lightblue;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    /* [class*="col-"] {
+      width: 100%;
+    }
+  } */
+/* .roe{ */
+    /* border-bottom-left-radius: 20px;padding-bottom: 70px;
         border-bottom-right-radius: 20px;
     background-color:white;
 padding-left: 20px;
-} */
+} */ 
 /* .con{
     background-color: white;
 } */
