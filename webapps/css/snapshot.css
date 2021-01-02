@@ -1,4 +1,4 @@
- 
+/*  
  .title-spa
  {
      padding:10px;
@@ -11,7 +11,7 @@
  }
  .dem
  {
-     /* background-color:aqua; */
+     
      margin: 10px;
      padding-top: 20px;
  }
@@ -33,4 +33,100 @@
 {
     background-color: red;
     color: white;
+} */
+.head
+{
+    background-color:#DCDCDC;
 }
+ 
+
+.refresh
+{
+    background-color:whitesmoke;
+    color: grey;
+    
+}
+.icon
+{     
+    font-size: 15px;
+    padding: 2px;
+     
+}
+.btn{
+    transition: 0.5s;
+    
+    color: grey;
+    
+   
+}
+th
+{
+    color: #009B84;
+}
+.act
+{
+    background-color: #009B84;
+    color: white;
+}
+.btn1
+{
+    background-color: #009B84;
+    color: white;
+}
+.btn2
+{
+    background-color: #009B84;
+    color: white;
+}
+.btn3
+{
+    background-color: #009B84;
+    color: white;
+}
+.content
+{
+    position: relative;
+}
+ .content img{
+     height: 350px;
+ }
+ p{
+     font-size: 14px;
+      
+    }
+ 
+    .car
+    {
+       
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+        border: none;
+    }
+    .car-head
+    {
+        background-color:rgb(228, 230, 232);
+        border-bottom: 3px solid #858C9C;
+    }
+    .cad p{
+  margin-bottom: 18px;
+  font-size: 16px;
+    }
+    .cad h5{
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+    .water
+    {
+        position: absolute;
+        height: 30%;
+        width: 208px;
+        bottom: 44%;
+        left: 50%;
+        background: -webkit-gradient(
+            linear,
+            left top,
+            right top,
+            from(#8ba7e2),
+            to(#4273f0)
+          );
+        margin-left: -99px;
+    }
