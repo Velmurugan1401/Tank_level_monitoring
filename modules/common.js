@@ -269,7 +269,6 @@ Common.prototype.commonDelete = function (tablename, req, res) {
 
 Common.prototype.commonUser = function (req, res) {
 
-    console.log("insert",req.body);
     const self = this;
 
     const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);

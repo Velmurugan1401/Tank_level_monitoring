@@ -46,7 +46,21 @@
                               <label for="usr" class="modal-txt">Capacity</label>
                               <input type="number" class="form-control"  id="capacity" placeholder="Enter Capacity">
                           </div>
-                          <div class="col-md-12"style="margin-top:20px;">
+                        </div>
+                        <div class="row" style="margin-top:20px;">
+                            <div class="col-md-12">
+                                <label for="usr" class="modal-txt">Min Level</label>
+                                <input type="number" class="form-control"  id="min_level" placeholder="Enter Capacity">
+                            </div>
+                          </div>
+                          <div class="row" style="margin-top:20px;">
+                            <div class="col-md-12">
+                                <label for="usr" class="modal-txt">Max Level</label>
+                                <input type="number" class="form-control"  id="max_level" placeholder="Enter Capacity">
+                            </div>
+                          </div>
+                      <div class="row" style="margin-top:20px;">
+                        <div class="col-md-12">
                             <label for="usr" class="modal-txt">Location</label>
                             <input type="text" class="form-control"  id="capacity" placeholder="Enter Location">
                         </div>
@@ -86,7 +100,7 @@
        
           <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-success link-btn" data-dismiss="modal">Link</button>
+              <button onclick="deviceLink()" type="button" class="btn btn-success link-btn" data-dismiss="modal">Link</button>
           </div>
       </div>
   </div>
@@ -102,14 +116,14 @@
           <div class="modal-body">
               <div class="row">
                   <div class="col-md-12">
-                    <h4>Do You Want To Delete!</h4>
+                    <p>Are You Sure Do You Want To Delete This Tank?</p>
                   </div>
               </div>
              </div>
        
           <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button onclick="deletetank()"type="button" class="btn btn-success link-btn" data-dismiss="modal">Delete</button>
+              <button onclick="deleteTank()"type="button" class="btn btn-success link-btn" data-dismiss="modal">Delete</button>
           </div>
       </div>
   </div>
@@ -122,14 +136,10 @@
              
           </div>
       </div>
+      </div>
 </div>
 
 </div>
-    
-        
- 
-
-
 <script src="js/managetanks.js"></script>
 <script src="js/managedevices.js"></script>
 <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

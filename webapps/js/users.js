@@ -99,7 +99,7 @@ function loadUser() {
             lastName: lastName,
             primaryPhone: primaryPhone,
             email: email,
-            roles: roles
+            roles: [roles]
 
         };
 
@@ -110,11 +110,9 @@ function loadUser() {
     if (flag == false) {
         $.ajax({
             url: BASE_PATH + "/user/userinsert",
-            "type": 'POST',
-
-            headers: {
-                'content-type': 'application/json'
-            },
+            "dataType": 'json',
+            "contentType": 'application/json',
+            "type": "POST",
 
             data: JSON.stringify(inputObj),
             success: function (result) {
@@ -125,13 +123,17 @@ function loadUser() {
 
                 //Success -> Show Alert & Refresh the page
                 successMsg("User Added Successfully!");
-                loadUsersList();
+                // loadUsersList();
+                window.location.reload();
+
             },
             error: function (e) {
 
                 //Error -> Show Error Alert & Reset the form
                 errorMsg(" User not created!");
-                window.roles.reload();
+                // window.location.reload();
+                loadUsersList();
+
             }
         });
 
@@ -141,39 +143,41 @@ function loadUser() {
         var mno = $("#mobile").val();
         var eid = $("#emailid").val();
         var roles = $("#role").val();
-    
 
         var updateData = {
             firstName: fname,
             lastName: lname,
             primaryPhone: mno,
             email: eid,
-            roles: roles
+            roles: [roles]
         };
         console.log("id", key)
         console.log("update", updateData);
         $.ajax({
 
             url: BASE_PATH + "/user/userinsert",
-            data: JSON.stringify({updateData}),
-            contentType: "application/json",
-            type: 'POST',
+            "dataType": 'json',
+            "contentType": 'application/json',
+            "type": "POST",
+            data: JSON.stringify(updateData),
             success: function (result) {
                 // //Success -> Show Alert & Refresh the page 
-                $("#name1,#name2,#mobile,#emaill,#loc").val('');
-                $("#myModal").css('display', 'none');
-                $(".modal-backdrop").remove();
+                // $("#name1,#name2,#mobile,#emaill,#loc").val('');
+                // $("#myModal").css('display', 'none');
+                // $(".modal-backdrop").remove();
 
                 successMsg("Update Completed Successfully!");
 
                 // loadUsersList();
-                window.roles.reload();
+                         window.location.reload();
+
             },
             error: function (e) {
 
                 //Error -> Show Error Alert & Reset the form
                 errorMsg("Update Failed!");
-                window.roles.reload();
+             window.location.reload();
+
             }
         });
         flag = false;
@@ -195,10 +199,11 @@ function loadUsersList() {
     var fields = [
         {
             mData: 'firstName',
-            sTitle: 'First Name',
+            sTitle: 'Full Name',
             sWidth: '20%',
             orderable: false,
             mRender: function (data, type, row) {
+                return row.firstName+" "+row.lastName;
                 return data ? data :'-';
             }
         },
@@ -214,7 +219,7 @@ function loadUsersList() {
 
         {
             mData: 'primaryPhone',
-            sWidth: '10%',
+            sWidth: '20%',
             sTitle: 'Mobile No',
             orderable: false,
             mRender: function (data, type, row) {
@@ -223,7 +228,7 @@ function loadUsersList() {
         },
         {
             mData: 'email',
-            sWidth: '10%',
+            sWidth: '20%',
             sTitle: 'Email Id',
             orderable: false,
             mRender: function (data, type, row) {
@@ -232,7 +237,7 @@ function loadUsersList() {
         },
         {
             mData: 'roles',
-            sWidth: '10%',
+            sWidth: '20%',
             sTitle: 'roles',
             orderable: false,
             mRender: function (data, type, row) {
@@ -243,7 +248,7 @@ function loadUsersList() {
         {
             mData: 'created_ts',
             sTitle: 'Created Time',
-            sWidth: '10%',
+            sWidth: '20%',
             "className": 'sortingtable',
             mRender: function (data, type, row) {
                 return moment(data).format(DATE_TIME_FORMAT);
@@ -252,7 +257,6 @@ function loadUsersList() {
         {
             sTitle: 'Actions',
             orderable: false,
-            sWidth: '10%',
             mRender: function (data, type, row) {
                 var actionsHtml = '<button class="btn btn-default"  onclick="deleteUser(\'' + row.email+ '\')"><i class="fa fa-trash"></i></button>' + '<button class="btn btn-default"  data-toggle="modal" data-target="#myModal" onclick="editUser(\'' + row._id + '\')"><i class="fa fa-pencil edit"></i>';
                 return actionsHtml;
@@ -277,7 +281,7 @@ function loadUsersList() {
 
     var tableOption = {
         fixedHeader: false,
-        responsive:false,
+        responsive:true,
         paging: true,
         searching: true,
         aaSorting: [
@@ -420,16 +424,22 @@ function editUser(id) {
             user1 = Users_list[i];
             console.log(Users_list[i]);
             console.log(user1);
-            $("#name1").val(user1.firstName);
-            $("#name2").val(user1.lastName);
+            $("#firstname").val(user1.firstName);
+            $("#lastname").val(user1.lastName);
             $("#mobile").val(user1.primaryPhone);
-            $("#loc").val(user1.roles);
-            $("#emaill").val(user1.email);
+            $("#role").val(user1.roles);
+            $("#emailid").val(user1.email);
 
         }
     }
 
 }
+
+// var user1;
+// function editUser(row) {
+// console.log(row);
+    
+// }
 //delete user details
 function deleteUser(row) {
     

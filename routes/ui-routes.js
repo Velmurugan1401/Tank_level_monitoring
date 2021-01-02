@@ -136,6 +136,15 @@ UIRoutes.prototype.init = function () {
             basePath: self.app.conf.web.basepath
         });
     });
+    self.router.get('/profile',sessionCheck,function (req, res) {
+
+        res.render('home/profile.html', {
+            layout: false,
+            sessionObj: req.session['sessionObj'],
+            config: self.app.conf,
+            basePath: self.app.conf.web.basepath
+        });
+    });
 
 
 
