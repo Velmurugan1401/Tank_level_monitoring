@@ -8,10 +8,17 @@ var usercount;
 // var startDate = moment().subtract(6, 'days').startOf('day');
 // var endDate = moment().endOf('day');
 $(document).ready(function () {
-
-
     loadUsersList();
+    $('#expand').click(function()
+    {
+    });
+
 });
+function refreshuser()
+{
+    loadUsersList();
+}
+
 
 //User insert API
 
