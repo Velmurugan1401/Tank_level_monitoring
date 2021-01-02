@@ -44,7 +44,19 @@
                               <label for="usr" class="modal-txt">Capacity</label>
                               <input type="number" class="form-control"  id="capacity" placeholder="Enter Capacity">
                           </div>
-                      
+                        </div>
+                        <div class="row" style="margin-top:20px;">
+                            <div class="col-md-12">
+                                <label for="usr" class="modal-txt">Min Level</label>
+                                <input type="number" class="form-control"  id="min_level" placeholder="Enter Capacity">
+                            </div>
+                          </div>
+                          <div class="row" style="margin-top:20px;">
+                            <div class="col-md-12">
+                                <label for="usr" class="modal-txt">Max Level</label>
+                                <input type="number" class="form-control"  id="max_level" placeholder="Enter Capacity">
+                            </div>
+                          </div>
                       <div class="row" style="margin-top:20px;">
                         <div class="col-md-12">
                             <label for="usr" class="modal-txt">Location</label>
@@ -58,7 +70,7 @@
                       </div>
                   </div>
       </div>
-    </div>
+    </div></div>
     <!-- Link modal -->
 <div class="modal fade" id="myModal" role="dialog">
   <div class="modal-dialog">
@@ -82,7 +94,7 @@
        
           <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-success link-btn" data-dismiss="modal">Link</button>
+              <button onclick="deviceLink()" type="button" class="btn btn-success link-btn" data-dismiss="modal">Link</button>
           </div>
       </div>
   </div>
@@ -99,7 +111,7 @@
               <div class="row">
                   <div class="col-md-12">
                       <label for="usr" class="modal-txt">Device List</label>
-                      <select class="form-control" id="listdevice"> 
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
              
               </select>
                   </div>
@@ -115,8 +127,8 @@
   </div>
 </div>
   </div>
-</div>
-  </div>
+<!-- </div> -->
+  
   
       <div class="row roo" >
           <div class="col-md-12">
@@ -125,6 +137,7 @@
             <!-- <input class="pick" data-date-format="mm/dd/yyyy" type="date" id="datePickerrr"> -->
              
           </div>
+      </div>
       </div>
 </div>
 
