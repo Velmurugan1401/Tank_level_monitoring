@@ -431,29 +431,26 @@ Boodskap.prototype.elasticpush = function (rid, did, dmdl, fwver, data, cbk) {
 
 
 Boodskap.prototype.Userlogin = function (data,cbk) {
-
     const self = this;
-    console.log("data",data);
 
     request.post({
         uri: self.API_URL + '/user/upsert/' + self.API_TOKEN ,
         headers: {
             'content-type': 'application/json'
         },
-
         body: JSON.stringify(data),
     }, 
      function (err, res, body) {
         if (!err) {
 
             if (res.statusCode === 200) {
-                cbk(true, JSON.parse(body))
+                cbk(true, JSON.parse(res.body))
             } else {
-                self.logger.error("record insert error in platform =>", res.body)
+                 self.logger.error("record insert error in platform =>", res.body)
                 cbk(false, JSON.parse(res.body))
             }
         } else {
-            self.logger.error("record insert error in platform =>", err)
+             self.logger.error("record insert error in platform =>", err)
             cbk(false, null)
         }
 

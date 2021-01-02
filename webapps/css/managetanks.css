@@ -3,7 +3,7 @@
 }
 .but{
     
-    background-color: #005da2;
+    background-color:#005da2;
   
 }
 .but1{
@@ -27,7 +27,7 @@ padding-left: 20px;
     padding-top: 10px;
     padding-left: 20px;
     padding-bottom: 10px;
-    /* border-bottom: 3px solid #1C3FAA82; */
+    /* border-bottom: 3px solid#005da2;82; */
     /* padding-bottom: 30px; */
    }
    .pick{
@@ -127,14 +127,14 @@ padding-left: 20px;
 {
     float:right;
 }
-
-.paging_simple_numbers .pagination .paginate_button.active a, .paging_simple_numbers .pagination .paginate_button:hover a{
+.paging_simple_numbers .pagination .paginate_button.active a, .paging_simple_numbers .pagination .paginate_button:hover a {
     color: #fff !important;
-background-color: rgba(28,63,170) !important;
-background: rgba(28,63,170) !important;
-border-color: rgba(28,63,170) !important;
-border-radius: 3px !important;
+    background-color: #005da2 !important;
+    background: rgb(0 93 162) !important;
+    border-color: rgba(28,63,170) !important;
+    border-radius: 3px !important;
 }
+
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover{
         border: none !important;
 }
@@ -186,7 +186,8 @@ border-radius: 3px !important;
     margin-top: 5px;
 }
 .link{
-    color:#1C3FAA!important;font-size: 12px!important;font-weight: 600;
+    color:#005da2!important;
+    font-size: 12px!important;font-weight: 600;
     text-decoration: underline;
 }
 .dataTables_filter input, .dataTables_filter input:focus, .dataTables_length select, .dataTables_length select:focus{
