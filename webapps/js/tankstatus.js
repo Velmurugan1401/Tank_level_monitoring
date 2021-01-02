@@ -92,14 +92,11 @@ function loadTankStatusList() {
             sTitle: 'Actions',
             orderable: false,
             mRender: function (data, type, row) {
-                var actionsHtml ='<div class="dropdown"><button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:rgba(28,63,170);border:unset;">Actions</button>'
-                +' <div class="dropdown-menu">'
-                +' <a class="dropdown-item" href="#" >Link / Unlink Device</a>'
-                +' <a class="dropdown-item" href="#"onclick= onclick="(\'' + row+ '\')" >Single Tank Snapshot</a>'
-                +' <a class="dropdown-item" href="#" onclick= onclick="deleteUser(\'' + row._id + '\')" >Delete</a>'
-                +' </div>'
-                +'</div>';
-                return actionsHtml;
+              var actionsHtml = '<button class="btn btn-default" data-target=""  data-toggle="modal"style="margin-right:5px;" onclick=""><i class="fa fa-link" aria-hidden="true"></i></button>'
+                          +'<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\')" href="#/snapshot" style="margin-right:5px;"><i class="fa fa-eye" aria-hidden="true"></i></button>'
+                          +'<button class="btn btn-default" data-target="#deletemodal" data-toggle="modal" onclick="deleteTank(\'' + row["_id"] + '\')"><i class="fa fa-trash icon" ></i></button>';
+               
+                          return actionsHtml;
             }
         }
     ];
@@ -136,7 +133,7 @@ function loadTankStatusList() {
         "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
 
 
-            queryParams.query['bool']['must'] = [];
+            queryParams.query['bool']['must'] = [ ];
             queryParams.query['bool']['should'] = [];
             delete queryParams.query['bool']["minimum_should_match"];
 
@@ -219,10 +216,16 @@ function deleteUser(row) {
     });
 }
 
-function profilelogout(event
-    ) {
+function profilelogout(event) {
       $("#profileCard").css('display','block');
       event.preventDefault();
     }
+
+    // function logout(){
+
+    // }
+
+    function snapfunct(){
+        window.location="http://localhost:8201/tankmonitoring/main#/devices";
+    }
    
-  

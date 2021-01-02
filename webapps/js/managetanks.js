@@ -27,7 +27,7 @@ function tankDetails() {
     var capacity = $("#capacity").val();
     //Validate
     if (tank_name === "") {
-
+        // showToast("warning", "warning","Tank Name is Required");
         alert("Tank Name is Required!");
 
     } else if (tank_type === "") {
@@ -154,7 +154,7 @@ function loadTankList() {
             sWidth: '20%',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return  data ? data :'-';
             }
         },
         {
@@ -163,7 +163,7 @@ function loadTankList() {
             sWidth: '20%',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return  data ? data :'-';
             }
         },
 
@@ -173,7 +173,7 @@ function loadTankList() {
             sTitle: 'capacity',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return  data ? data :'-';
             }
         },
         {

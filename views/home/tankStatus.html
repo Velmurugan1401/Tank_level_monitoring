@@ -17,7 +17,7 @@
     }
     #firstRow{
         padding: 10px 20px;
-        border-bottom: 1px solid lightgrey;
+        /* border-bottom: 1px solid lightgrey; */
         background-color:gainsboro;
        
     }
@@ -66,9 +66,9 @@
         left:-60px !important;
         top:5px !important;
     }
-    .activ-inactive-coln{
+    /* .activ-inactive-coln{
         text-align: right;
-    }
+    } */
     
     @media screen and (min-width: 340px) and (max-width: 767px) { 
         .activ-inactive-coln{
@@ -108,14 +108,29 @@
         </div>
         </div>
         <div class="col-md-10 activ-inactive-coln">
-            <select id="activeInactiveSelect">
+            <!-- <select id="activeInactiveSelect">
                 <option value="0">Active Tanks</option>
                 <option value="1">Inactive Tanks</option>
             </select>
-         
-            <button type="button" class="btn" style="background-color:rgba(28,63,170);color: white;">
-                <i class="fa fa-refresh" aria-hidden="true"></i>
-          </button>
+          -->
+          <div class="float-right">
+          <button type="button" class="btn" style="background-color:rgba(28,63,170);color: white;">
+            <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button></div>
+
+<div class="dropdown float-right" style="margin-right: 5px;">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" style="background-color:rgba(28,63,170);border:unset;">Active Tanks</button>
+    <div class="dropdown-menu">
+           <!-- <a class="dropdown-item" href="#" >Link / Unlink Device</a>
+           <a class="dropdown-item" href="#" >Single Tank Snapshot</a>
+           <a class="dropdown-item" href="#" onclick= "" >Delete</a> -->
+           <input type="radio" checked value="Active">Active Tanks<br>
+           <input type="radio" value="Inactive">Inactive Tanks
+         </div>
+     </div>
+
+
+           
                   
         </div>
     </div>
