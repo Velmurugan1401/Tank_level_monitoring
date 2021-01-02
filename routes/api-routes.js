@@ -107,6 +107,11 @@ APIRoutes.prototype.init = function () {
       
         self.details.performAction(req, res);
     });
+    self.router.get('/usersearch/:action', sessionCheck, function (req, res) {
+        console.log("users",req.body)
+        self.details.performAction(req, res);
+    });
+
 
     self.router.post('/msg/:action', sessionCheck, function (req, res) {
 

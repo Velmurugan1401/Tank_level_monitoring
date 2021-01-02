@@ -17,45 +17,50 @@ $(document).ready(function () {
 
 function loadUser() {
 
-    var first_name = $("#name1").val();
-    var last_name = $("#name2").val();
-    var mobile_no = $("#mobile").val();
-    var email_id = $("#emaill").val();
-    var location = $("#loc").val();
+    var firstname = $("#name1").val();
+    var lastName = $("#name2").val();
+    var primaryPhone = $("#mobile").val();
+    var email = $("#emaill").val();
+    var locale = $("#loc").val();
 
 
 
 
     //Validate
-    if (first_name === "") {
+    if (firstname === "") {
 
         alert("First  Name is Required!");
 
-    } else if (last_name === "") {
+    } else if (lastName === "") {
 
         alert("Last name is Required!");
 
-    } else if (mobile_no === "") {
+    }
+    else if (primaryPhone === "") {
 
         alert("Mobile number  is Required!");
 
-    } else if (email_id === "") {
+    }
+    else if (email === "") {
 
         alert("Email id is Required!");
 
-    } else if (location === "") {
+    }
 
-        alert("Location is Required!");
+    else if (locale === "") {
+
+        alert("locale is Required!");
 
     } else {
 
         //Build Input Objects
-        var inputObj = {
-            first_name: first_name,
-            last_name: last_name,
-            mobile_no: mobile_no,
-            email_id: email_id,
-            location: location
+        var inputObj =
+        {
+            firstname: firstname,
+            lastName: lastName,
+            primaryPhone: primaryPhone,
+            email: email,
+            locale: locale
 
         };
 
@@ -65,7 +70,7 @@ function loadUser() {
     //Call API
     if (flag == false) {
         $.ajax({
-            url: BASE_PATH + "/user/insert",
+            url: BASE_PATH + "/user/upsert",
             data: JSON.stringify(inputObj),
             contentType: "application/json",
             type: 'POST',
@@ -83,7 +88,7 @@ function loadUser() {
 
                 //Error -> Show Error Alert & Reset the form
                 errorMsg(" User not created!");
-                window.location.reload();
+                window.locale.reload();
             }
         });
 
@@ -92,25 +97,22 @@ function loadUser() {
         var lname = $("#name2").val();
         var mno = $("#mobile").val();
         var eid = $("#emaill").val();
-        var location = $("#loc").val();
+        var locale = $("#loc").val();
 
 
         var updateData = {
-            first_name: fname,
-            last_name: lname,
-            mobile_no: mno,
-            email_id: eid,
-            location: location
+            firstname: fname,
+            lastName: lname,
+            primaryPhone: mno,
+            email: eid,
+            locale: locale
         };
         console.log("id", key)
         console.log("update", updateData);
         $.ajax({
 
-            url: BASE_PATH + "/user/update",
-            data: JSON.stringify({
-                _id: key,
-                updateData
-            }),
+            url: BASE_PATH + "/user/upsert",
+            data: JSON.stringify({updateData}),
             contentType: "application/json",
             type: 'POST',
             success: function (result) {
@@ -122,13 +124,13 @@ function loadUser() {
                 successMsg("Update Completed Successfully!");
 
                 // loadUsersList();
-                window.location.reload();
+                window.locale.reload();
             },
             error: function (e) {
 
                 //Error -> Show Error Alert & Reset the form
                 errorMsg("Update Failed!");
-                window.location.reload();
+                window.locale.reload();
             }
         });
         flag = false;
@@ -147,8 +149,9 @@ function loadUsersList() {
 
     }
 
-    var fields = [{
-            mData: 'first_name',
+    var fields = [
+        {
+            mData: 'firstName',
             sTitle: 'First Name',
             sWidth: '20%',
             orderable: false,
@@ -157,7 +160,7 @@ function loadUsersList() {
             }
         },
         {
-            mData: 'last_name',
+            mData: 'lastName',
             sTitle: 'Last Name',
             sWidth: '20%',
             orderable: false,
@@ -167,7 +170,7 @@ function loadUsersList() {
         },
 
         {
-            mData: 'mobile_no',
+            mData: 'primaryPhone',
             sWidth: '20%',
             sTitle: 'Mobile No',
             orderable: false,
@@ -176,7 +179,7 @@ function loadUsersList() {
             }
         },
         {
-            mData: 'email_id',
+            mData: 'email',
             sWidth: '20%',
             sTitle: 'Email Id',
             orderable: false,
@@ -185,9 +188,9 @@ function loadUsersList() {
             }
         },
         {
-            mData: 'location',
+            mData: 'address',
             sWidth: '20%',
-            sTitle: 'Location',
+            sTitle: 'locale',
             orderable: false,
             mRender: function (data, type, row) {
                 return data;
@@ -206,7 +209,7 @@ function loadUsersList() {
             sTitle: 'Actions',
             orderable: false,
             mRender: function (data, type, row) {
-                var actionsHtml = '<button class="btn btn-default"  onclick="deleteUser(\'' + row._id + '\')"><i class="fa fa-trash"></i></button>' + '<button class="btn btn-default"  data-toggle="modal" data-target="#myModal" onclick="editUser(\'' + row._id + '\')"><i class="fa fa-pencil edit"></i>';
+                var actionsHtml = '<button class="btn btn-default"  onclick="deleteUser(\'' + row.email+ '\')"><i class="fa fa-trash"></i></button>' + '<button class="btn btn-default"  data-toggle="modal" data-target="#myModal" onclick="editUser(\'' + row._id + '\')"><i class="fa fa-pencil edit"></i>';
                 return actionsHtml;
             }
         }
@@ -249,7 +252,7 @@ function loadUsersList() {
 
         },
         "bServerSide": true,
-        "sAjaxSource": BASE_PATH + '/user/list',
+        "sAjaxSource": BASE_PATH + '/usersearch/list',
         "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
 
 
@@ -273,69 +276,37 @@ function loadUsersList() {
             var searchText = oSettings.oPreviousSearch.sSearch.trim();
 
             if (searchText) {
-                queryParams.query['bool']['should'].push({
-                    "wildcard": {
-                        "first_name": "*" + searchText + "*"
-                    }
-                });
-                queryParams.query['bool']['should'].push({
-                    "wildcard": {
-                        "first_name": "*" + searchText.toLowerCase() + "*"
-                    }
-                });
-                queryParams.query['bool']['should'].push({
-                    "wildcard": {
-                        "first_name": "*" + searchText.toUpperCase() + "*"
-                    }
-                });
-                queryParams.query['bool']['should'].push({
-                    "wildcard": {
-                        "first_name": "*" + capitalizeFLetter(searchText) + "*"
-                    }
-                })
+                queryParams.query['bool']['should'].push({ "wildcard": { "firstname": "*" + searchText + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "firstname": "*" + searchText.toLowerCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "firstname": "*" + searchText.toUpperCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "firstname": "*" + capitalizeFLetter(searchText) + "*" } })
                 queryParams.query['bool']["minimum_should_match"] = 1;
                 queryParams.query['bool']['should'].push({
                     "match_phrase": {
-                        "first_name.keyword": "*" + searchText + "*"
+                        "firstname.keyword": "*" + searchText + "*"
                     }
                 })
                 queryParams.query['bool']['should'].push({
                     "match_phrase_prefix": {
-                        "first_name.keyword": {
+                        "firstname.keyword": {
                             "query": "*" + searchText + "*"
                         }
                     }
                 });
 
-                queryParams.query['bool']['should'].push({
-                    "wildcard": {
-                        "location": "*" + searchText + "*"
-                    }
-                });
-                queryParams.query['bool']['should'].push({
-                    "wildcard": {
-                        "location": "*" + searchText.toLowerCase() + "*"
-                    }
-                });
-                queryParams.query['bool']['should'].push({
-                    "wildcard": {
-                        "location": "*" + searchText.toUpperCase() + "*"
-                    }
-                });
-                queryParams.query['bool']['should'].push({
-                    "wildcard": {
-                        "location": "*" + capitalizeFLetter(searchText) + "*"
-                    }
-                })
+                queryParams.query['bool']['should'].push({ "wildcard": { "locale": "*" + searchText + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "locale": "*" + searchText.toLowerCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "locale": "*" + searchText.toUpperCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "locale": "*" + capitalizeFLetter(searchText) + "*" } })
                 queryParams.query['bool']["minimum_should_match"] = 1;
                 queryParams.query['bool']['should'].push({
                     "match_phrase": {
-                        "location.keyword": "*" + searchText + "*"
+                        "locale.keyword": "*" + searchText + "*"
                     }
                 })
                 queryParams.query['bool']['should'].push({
                     "match_phrase_prefix": {
-                        "location.keyword": {
+                        "locale.keyword": {
                             "query": "*" + searchText + "*"
                         }
                     }
@@ -345,7 +316,7 @@ function loadUsersList() {
             oSettings.jqXHR = $.ajax({
                 "dataType": 'json',
                 "contentType": 'application/json',
-                "type": "POST",
+                "type": "GET",
                 "url": sSource,
 
                 "data": JSON.stringify({
@@ -353,7 +324,8 @@ function loadUsersList() {
                 }),
                 success: function (data) {
 
-                    var resultData = data.result.data;
+                    var resultData = data.result;
+                    console.log(resultData);
 
                     Users_list = resultData.data;
                     usercount = resultData.data
@@ -399,11 +371,11 @@ function editUser(id) {
             user1 = Users_list[i];
             console.log(Users_list[i]);
             console.log(user1);
-            $("#name1").val(user1.first_name);
-            $("#name2").val(user1.last_name);
-            $("#mobile").val(user1.mobile_no);
-            $("#loc").val(user1.location);
-            $("#emaill").val(user1.email_id);
+            $("#name1").val(user1.firstname);
+            $("#name2").val(user1.lastName);
+            $("#mobile").val(user1.primaryPhone);
+            $("#loc").val(user1.locale);
+            $("#emaill").val(user1.email);
 
         }
     }
@@ -414,9 +386,7 @@ function deleteUser(row) {
     console.log(row);
     $.ajax({
         url: BASE_PATH + '/user/delete',
-        data: {
-            _id: row
-        },
+        data: {email:row},
         type: 'POST',
         success: function () {
             successMsg('deleted successfully');
@@ -425,9 +395,9 @@ function deleteUser(row) {
         error: function () {
             // console.log(e);
             errorMsg("deletion failed");
-            // window.location.reload();
+            // window.locale.reload();
         }
     });
 }
-// $("#totaluser").append(`<p>`+ usercount.length+`</p>`);
-$("#total").append(`<span>` + count.length + `</span>`);
+// // $("#totaluser").append(`<p>`+ usercount.length+`</p>`);
+// $("#total").append(`<span>`+ count.length+`</span>`);

@@ -1,4 +1,4 @@
-var Boodskap = require("./boodskap")
+var Boodskap =require("./boodskap")
 var Utils = require("./utils")
 var Table = require("./tables")
 
@@ -261,6 +261,82 @@ Common.prototype.commonDelete = function (tablename, req, res) {
                 status: false,
                 message: result
             });
+        }
+    });
+
+};
+
+
+Common.prototype.commonUser = function (req, res) {
+
+
+    const self = this;
+
+    const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
+  
+    boodskap.Userlogin(req.body, function (status, result) {
+        console.log("insert",req.body);
+        if (status) {
+            res.json({
+                status: true,
+                result: result
+            });
+        } else {
+            res.json({
+                status: false,
+                message: result
+            });
+
+        }
+    });
+};
+
+// user delete========
+
+Common.prototype.commonUserDelete = function (req, res) {
+
+    const self = this;
+
+    const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
+
+    boodskap.UserDelete(req.body.email, function (status, result) {
+
+        if (status) {
+            res.json({
+                status: true,
+                result: result
+            });
+        } else {
+            res.json({
+                status: false,
+                message: result
+            });
+        }
+    });
+
+};
+
+
+Common.prototype.commonUserlist = function (req,res) {
+
+    const self = this;
+
+    const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
+
+    boodskap.Userlist( function (status, result) {
+     
+
+        if (status) {
+            res.json({
+                status: true,
+                result: result
+            });
+        } else {
+            res.json({
+                status: false,
+                message: result
+            });
+
         }
     });
 

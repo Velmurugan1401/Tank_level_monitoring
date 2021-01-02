@@ -22,7 +22,7 @@
          
               <!-- <input class="pick" data-date-format="mm/dd/yyyy" id="datePickerrr"> -->
                 <a class="btn ico" onclick="openFullscreen()"><i class="fa fa-expand" style="color:white;" aria-hidden="true"></i></a>
-                <!-- <a class="btn ico"><i class="fa fa-repeat fa" style="color: white;" aria-hidden="true"></i></a> -->
+                <a class="btn ico" onclick="refreshFunction()"><i class="fa fa-repeat fa" style="color: white;" aria-hidden="true"></i></a>
               </div>
                 </div>
         <!-- Modal -->
@@ -94,6 +94,9 @@
           document.msExitFullscreen();
       }
   }
+  function refreshFunction() {
+    loadDeviceList();
+}
 </script>
 <!-- <script>
   $(function() {
