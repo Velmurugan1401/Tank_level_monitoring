@@ -21,7 +21,7 @@ Common.prototype.commonSearch = function (tablename, req, res) {
 
     boodskap.elasticSearch(tablename, req.body.query, function (status, result) {
 
-
+     
         if (status) {
             res.json({
                 status: true,
