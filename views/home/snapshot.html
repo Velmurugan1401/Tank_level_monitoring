@@ -1,18 +1,28 @@
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" integrity="sha512-oc9+XSs1H243/FRN9Rw62Fn8EtxjEYWHXRvjS43YtueEewbS6ObfXcJNyohjHqVKFPoXXUxwc+q1K7Dee6vv9g==" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" /> -->
-<link rel="stylesheet" href="../../webapps/css/snapshot.css">
-<div class="container-fluid">
-<!--    
-    <div class="row" style="background-color:lightpink;padding-top: 25px;border-top-left-radius: 20px;
-    border-top-right-radius: 20px;padding: 20px;margin-left: 80px;margin-right: 80px;">
-        <div class="col-md-12">
-          <span class="title-span">Home</span>
-            <span class="title-span">|</span>
-            <span class="title-span">Tank Status</span>
-            <span class="title-span">|</span>
-            <span class="title-span" style="color: mediumblue;font-weight: 500;">Single Tank Snap Shot</span>
-        </div>
-      </div> -->
+ <!-- <link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+  crossorigin="anonymous"
+/>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+  integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+  crossorigin="anonymous"
+/>
+<link rel="stylesheet" href="../../webapps/css/snapshot.css" />
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+  crossorigin="anonymous"
+/> -->
+<!-- <div class="container-fluid">
+
+ 
       <div class="row" style="margin-left:20px;">
           <div class="col-md-8" style="background-color: aliceblue;">
             <div class="row header">
@@ -139,4 +149,236 @@
                <img src="../../webapps/images/water-tank-widget-8.png" height="100%" width="100%">
           </div>
       </div>
+</div> -->
+
+<div class="container-fluid">
+  <!--  start header section -->
+  <div class="row p-3 mt-5 head">
+    <div class="col-8">
+      <h5>Tank Snapshot</h5>
+    </div>
+    <div class="col-4">
+      <div class="d-flex" style="justify-content: flex-end">
+        <!-- Actions dropdown -->
+        <div>
+          <button
+            type="button"
+            class="btn act dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Actions
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+        <!-- Refresh button -->
+        <div>
+          <a href="#" class="btn refresh ml-2">
+            <i class="fa fa-refresh icon" aria-hidden="true"></i>Refresh
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End header section -->
+  <!-- start content section -->
+  <div class="row mt-4 mb-5 align-items-start">
+    <!-- start content1 -->
+    <div class="col-lg-4 col-sm-12 col-md-12 content mt-2 text-center">
+      <img
+        src="../../webapps/images/water-tank-widget-8.png"       
+      />
+      <span class="water"></span>
+    </div>
+    <!-- end content1 -->
+    <!-- start content2 -->
+    <div class="col-lg-8 col-sm-12 col-md-12 ">
+      <!-- start overview section -->
+      <div class="row mt-3">
+        <div class="col-12">
+          <div class="card-deck">
+            <div class="card car">
+              <div class="card-header car-head">
+                <h5>Tank Overview</h5>
+              </div>
+              <div class="card-body cad">
+                <div class="row">
+                  <div class="col-6 p-2">
+                    <h5 class="">Name</h5>
+                    <p>Tank 1</p>
+
+                    <h5>Type</h5>
+                    <p>Cylinder</p>
+
+                 
+
+                    <h5>Capacity</h5>
+                    <p>10,00,000</p>
+                  </div>
+                  <div class="col-6 p-2">
+                    <h5>Location</h5>
+                    <p>Chennai</p>
+                    <h5>Min Level</h5>
+                    <p>100</p>
+  
+                    <h5>Max Level</h5>
+                    <p>10,000</p>
+
+                    <!-- <p>Created by</p>
+                    <p>Meow</p> -->
+
+                    <!-- <p>Created Time</p>
+                  <p>24/12/2020</p> -->
+<!-- 
+                    <p>Updated by</p>
+                    <p>Cat</p> -->
+                    <!-- 
+                  <p>Updated Time</p>
+                  <p>26/12/2020</p> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card car">
+              <div class="card-header car-head">
+                <h5>Tank Status</h5>
+              </div>
+              <div class="card-body cad">
+                <div class="row">
+                  <div class="col-8 p-2">
+                    <h5>Tank Level</h5>
+                    <p>15000</p>
+                  </div>
+                  <div class="col-4 p-2">
+                    <h5>Status</h5>
+                    <p>High</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-8 p-2">
+                    <h5>Reported time</h5>
+                    <p>24/12/2020</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-3 p-2">
+                    <button type="button" class="btn btn1">ON</button>
+                  </div>
+                  <div class="col-3 p-2">
+                    <button type="button" class="btn btn2">OFF</button>
+                  </div>
+                  <div class="col-3 p-2">
+                    <button type="button" class="btn btn3">STATUS</button>
+                  </div>
+                  
+ 
+                  
+                </div>
+              </div>
+            </div>
+            <div class="card car">
+              <div class="card-header car-head">
+                <h5>Device Overview</h5>
+              </div>
+              <div class="card-body cad">
+                <div class="row">
+                  <div class="col-6 p-2">
+                    <h5>Device_id</h5>
+                    <p>Simulator_1001</p>
+                    <h5>Linked Time</h5>
+                    <p>24/12/2020</p>
+                  </div>
+                  <div class="col-6 p-2">
+                    <h5>Version</h5>
+                    <p>v1.0.1</p>
+                    <h5>Model</h5>
+                    <p>1.0</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end overview section -->
+      <!-- start table  -->
+      <div class="row mt-5">
+        <div class="col-12">
+          <table class="table" id="example" width="100%">
+            <thead>
+              <tr>
+                <th scope="col">Reported time</th>
+                <th scope="col">Current level</th>
+                <th scope="col">Alerts</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>24/12/2020</td>
+                <td>10000</td>
+                <td>High</td>
+              </tr>
+              <tr>
+                <td>24/12/2020</td>
+                <td>10000</td>
+                <td>High</td>
+              </tr>
+              <tr>
+                <td>24/12/2020</td>
+                <td>10000</td>
+                <td>High</td>
+              </tr>
+              <tr>
+                <td>24/12/2020</td>
+                <td>10000</td>
+                <td>Low</td>
+              </tr>
+              <tr>
+                <td>26/12/2020</td>
+                <td>10000</td>
+                <td>Low</td>
+              </tr>
+              <tr>
+                <td>24/12/2020</td>
+                <td>15000</td>
+                <td>Low</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- end table -->
+    </div>
+    <!-- end content2 -->
+  </div>
+  <!--  end content section -->
 </div>
+ <!-- <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+  crossorigin="anonymous"
+></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js
+"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script> 
+<script>
+  $(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script> -->

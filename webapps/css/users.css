@@ -19,10 +19,7 @@
  {
      padding: 2px;
  }
- .section2 .modal-submit
- {
-     text-align: center;
- }
+  
  #tab
  {
     background-color:white;
@@ -31,4 +28,6 @@
     border-bottom-right-radius: 20px;
     padding-left: 20px;
  }
-  
+ .form-control{
+    background-color: #EFEFEF;
+}

@@ -14,41 +14,46 @@ $(document).ready(function () {
 
 function loadUser() {
 
-    var first_name = $("#name1").val();
-    var last_name = $("#name2").val();
+    
+
+    var first_name = $("#firstname").val();
+    var last_name = $("#lastname").val();
     var mobile_no = $("#mobile").val();
-    var email_id = $("#emaill").val();
-    var location = $("#loc").val();
+    var email_id = $("#emailid").val();
+    var role = $("#role").val();
 
 
 
 
-    //Validate
-    if (first_name === "") {
+    // //Validate
+    // if (first_name === "") {
+    //     errorMsg(" First Name Empty!");
+        // break;
 
-        alert("First  Name is Required!");
+    //     alert("First  Name is Required!");
 
-    } else if (last_name === "") {
+    // } 
+    // else if (last_name === "") {
 
-        alert("Last name is Required!");
+    //     alert("Last name is Required!");
 
-    }
-    else if (mobile_no === "") {
+    // }
+    // else if (mobile_no === "") {
 
-        alert("Mobile number  is Required!");
+    //     alert("Mobile number  is Required!");
 
-    }
-    else if (email_id === "") {
+    // }
+    // else if (email_id === "") {
 
-        alert("Email id is Required!");
+    //     alert("Email id is Required!");
 
-    }
+    // }
 
-    else if (location === "") {
+    // else if (location === "") {
 
-        alert("Location is Required!");
+    //     alert("Location is Required!");
 
-    } else {
+    // } else {
 
         //Build Input Objects
         var inputObj =
@@ -57,11 +62,11 @@ function loadUser() {
             last_name: last_name,
             mobile_no: mobile_no,
             email_id: email_id,
-            location: location
+            role: role
 
         };
         console.log("inputObj", inputObj);
-    }
+    // }
 
     //Call API
     if (flag == false) {
@@ -91,11 +96,12 @@ function loadUser() {
     }
 
     else if (flag == true) {
-        var first_name = $("#name1").val();
-        var last_name = $("#name2").val();
+  
+        var first_name = $("#firstname").val();
+        var last_name = $("#lastname").val();
         var mobile_no = $("#mobile").val();
-        var email_id = $("#emaill").val();
-        var location = $("#loc").val();
+        var email_id = $("#emailid").val();
+        var role = $("#role").val();
 
 
         var updateData = {
@@ -103,7 +109,7 @@ function loadUser() {
             last_name: last_name,
             mobile_no: mobile_no,
             email_id: email_id,
-            location: location
+            role: role
         };
         console.log("id", key)
         console.log("update", updateData);
@@ -184,9 +190,9 @@ function loadUsersList() {
             }
         },
         {
-            mData: 'location',
+            mData: 'role',
             sWidth: '20%',
-            sTitle: 'Location',
+            sTitle: 'Role',
             orderable: false,
             mRender: function (data, type, row) {
                 return data;
@@ -270,7 +276,7 @@ function loadUsersList() {
                     }
                 });
 
-                queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + searchText + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "": "*" + searchText + "*" } });
                 queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + searchText.toLowerCase() + "*" } });
                 queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + searchText.toUpperCase() + "*" } });
                 queryParams.query['bool']['should'].push({ "wildcard": { "location": "*" + capitalizeFLetter(searchText) + "*" } })
@@ -356,7 +362,7 @@ function editUser(id) {
 }
 //delete user details
 function deleteUser(row) {
-    console.log(row);
+    
     $.ajax({
         url: BASE_PATH + '/user/delete',
         data: { _id: row },
@@ -372,5 +378,5 @@ function deleteUser(row) {
         }
     });
 }
-$("#totaluser").append(`<p>`+ usercount.length+`</p>`);
-$("#total").append(`<span>`+ count.length+`</span>`);
+// $("#totaluser").append(`<p>`+ usercount.length+`</p>`);
+// $("#total").append(`<span>`+ count.length+`</span>`);
