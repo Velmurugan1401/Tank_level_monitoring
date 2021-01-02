@@ -72,12 +72,14 @@ function loadDeviceList() {
     
 
     var queryParams = {
+       
         query: {
             "bool": {
                 "must": []
             }
         },
         sort: [{ "created_ts": { "order": "asc" } }]
+        
     };
 
     device_list = [];
@@ -99,13 +101,17 @@ function loadDeviceList() {
 
         },
         "bServerSide": true,
-        "sAjaxSource": BASE_PATH+'/device/list',
+        "sAjaxSource": BASE_PATH+'/devicedetail/listdev',
         "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
          
 
 
 
-            queryParams.query['bool']['must'] = [];
+            queryParams.query['bool']['must'] = [{
+                "match": {
+                    "domainKey": "CDZMKBHJUM"
+                }
+            }];
             queryParams.query['bool']['should'] = [];
             delete queryParams.query['bool']["minimum_should_match"];
 
@@ -145,19 +151,19 @@ function loadDeviceList() {
             oSettings.jqXHR = $.ajax({
                 "dataType": 'json',
                 "contentType": 'application/json',
-                "type": "get",
+                "type": "POST",
                 "url": sSource,
-                "data": JSON.stringify({"query":queryParams}),
+                "data":JSON.stringify({"data":queryParams}),
                 success: function (data) {
 
                     console.log(data);
                     list=data;
                    
-                    var resultData = data.result;
+                    var resultData = data.result.data;
                    
-                        device_list2=data.result.data
-                        device_list=data.result.length
-                        console.log(device_list)
+                       
+                       
+                        console.log(resultData)
                       
                     
                    
@@ -177,12 +183,12 @@ function loadDeviceList() {
   
 }
 
-for(i=0;i<=device_list2.length;i++){
-    console.log("res",device_list2[i].id)
+// for(i=0;i<=device_list2.length;i++){
+//     console.log("res",device_list2[i].id)
    
-    $('#listdevice').append('<option>'+device_list2[i].id+`</option>`)
+//     $('#listdevice').append('<option>'+device_list2[i].id+`</option>`)
 
-}
+// }
  
 
 

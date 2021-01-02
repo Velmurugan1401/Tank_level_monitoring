@@ -24,27 +24,26 @@ function tankDetails() {
     var capacity = $("#capacity").val();
     //Validate
     if (tank_name === "") {
-       
-
-        alert("Tank Name is Required!");
+        showToast("info", "info","Tank Name is Required");
+    // ("Tank Name is Required!");
 
     } else if (tank_type === "") {
 
-        alert("Tankname is Required!");
+        showToast("info", "info","Tank Type is Required");
 
     } else if (location === "") {
 
-        alert("Location is Required!");
+        showToast("info", "info","Location is Required");
 
     }
     else if (capacity === "") {
 
-        alert("capacity is Required!");
+        showToast("info", "info","Capacity is Required");
 
     }
     else if (device_id === "") {
 
-        alert("Device is Required!");
+        
 
     }
 
@@ -69,8 +68,8 @@ function tankDetails() {
             contentType: "application/json",
             type: 'POST',
             success: function (result) {
-                $("#exampleModal").css('display','none')
-                $(".modal-backdrop").remove();
+                // $("#exampleModal").css('display','none')
+                // $(".modal-backdrop").remove();
                 // alert("hai");
                 //Success -> Show Alert & Refresh the page
                 successMsg("Tank Insert Successfully!");
@@ -272,9 +271,9 @@ function loadTankList() {
                     var resultData = data.result.data;
 
                     tank_list = resultData.data;
-                    tankcount= resultData.data;
-                    totalcount= resultData.data;
-                    $("#totalCount").html(data.result.total)
+                    console.log("new",tank_list.length)
+                //   console.log("now",tank_list[0].tank_name);
+                    $(".totalCount").html(data.result.total)
 
                     resultData['draw'] = oSettings.iDraw;
                     fnCallback(resultData);
