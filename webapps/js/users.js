@@ -7,44 +7,9 @@ var usercount;
 // var startDate = moment().subtract(6, 'days').startOf('day');
 // var endDate = moment().endOf('day');
 $(document).ready(function () {
-    loadUsersList();
-    
-
-
+    loadUsersList(); 
 });
-$('#expand').click(function(){
-    var elem = document.documentElement;
-    if($(this).hasClass('fa fa-expand')){
-       
-        $(this).removeClass('fa fa-expand');
-        
-        $(this).addClass('fa fa-window-close');
-        if (elem.requestFullscreen) {
-            elem.requestFullscreen();
-          } else if (elem.webkitRequestFullscreen) { /* Safari */
-            elem.webkitRequestFullscreen();
-          } else if (elem.msRequestFullscreen) { /* IE11 */
-            elem.msRequestFullscreen();
-          }
-        // $('#password').attr('type','text');
-          
-      }else{
-       
-        $(this).removeClass('fa fa-window-close');
-        
-        $(this).addClass('fa fa-expand');  
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-          } else if (document.webkitExitFullscreen) { /* Safari */
-            document.webkitExitFullscreen();
-          } else if (document.msExitFullscreen) { /* IE11 */
-            document.msExitFullscreen();
-          }
-        
-        // $('#password').attr('type','password');
-      }
-});
-
+ 
 function refreshuser()
 {
     loadUsersList();
@@ -393,7 +358,7 @@ function loadUsersList() {
 
         dom: 'l<"toolbar">frtip',
         initComplete: function () {
-            $("div.toolbar").html('<input class="pick" data-date-format="mm/dd/yyyy" id="datePickerrr" type="date"> <button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button>');
+            $("div.toolbar").html('<input id="datepick"> <button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button>');
             // $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button><i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>');   
 
         }
