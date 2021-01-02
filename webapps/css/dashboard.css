@@ -89,16 +89,16 @@ background-color: white;
 margin-bottom: 20px;
 border-radius: 6px;
 box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-margin-right: 20px;
+margin-left: 20px;
 }
-.chart2{
+/* .chart2{
     background-color: white;
     margin-bottom: 20px;
     border-radius: 6px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
   
 
-}
+} */
 
 
 /* .fa-2x{
