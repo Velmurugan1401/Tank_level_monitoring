@@ -269,13 +269,13 @@ Common.prototype.commonDelete = function (tablename, req, res) {
 
 Common.prototype.commonUser = function (req, res) {
 
-
+    console.log("insert",req.body);
     const self = this;
 
     const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
   
     boodskap.Userlogin(req.body, function (status, result) {
-        console.log("insert",req.body);
+      
         if (status) {
             res.json({
                 status: true,
@@ -323,7 +323,7 @@ Common.prototype.commonUserlist = function (req,res) {
 
     const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
 
-    boodskap.Userlist( function (status, result) {
+    boodskap.Userlist( req.body.data,function (status, result) {
      
 
         if (status) {

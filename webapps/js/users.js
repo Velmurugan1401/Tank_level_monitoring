@@ -1,6 +1,5 @@
 var UserTable = null;
 var Users_list = [];
-var usercount;
 var key;
 var count;
 var flag = false;
@@ -60,7 +59,7 @@ function loadUser() {
     var lastName = $("#lastname").val();
     var primaryPhone = $("#mobile").val();
     var email = $("#emailid").val();
-    var role = $("#role").val();
+    var roles = $("#role").val();
 
 
 
@@ -96,11 +95,11 @@ function loadUser() {
         //Build Input Objects
         var inputObj =
         {
-            firstname: firstname,
+            firstName: firstname,
             lastName: lastName,
             primaryPhone: primaryPhone,
             email: email,
-            locale: locale
+            roles: roles
 
         };
 
@@ -110,10 +109,14 @@ function loadUser() {
     //Call API
     if (flag == false) {
         $.ajax({
-            url: BASE_PATH + "/user/upsert",
+            url: BASE_PATH + "/user/userinsert",
+            "type": 'POST',
+
+            headers: {
+                'content-type': 'application/json'
+            },
+
             data: JSON.stringify(inputObj),
-            contentType: "application/json",
-            type: 'POST',
             success: function (result) {
                 console.log(result);
                 // $("#name1,#name2,#mobile,#emaill,#loc").val('');
@@ -128,7 +131,7 @@ function loadUser() {
 
                 //Error -> Show Error Alert & Reset the form
                 errorMsg(" User not created!");
-                window.locale.reload();
+                window.roles.reload();
             }
         });
 
@@ -137,21 +140,21 @@ function loadUser() {
         var lname = $("#name2").val();
         var mno = $("#mobile").val();
         var eid = $("#emaill").val();
-        var locale = $("#loc").val();
+        var roles = $("#loc").val();
 
 
         var updateData = {
-            firstname: fname,
+            firstName: fname,
             lastName: lname,
             primaryPhone: mno,
             email: eid,
-            locale: locale
+            roles: roles
         };
         console.log("id", key)
         console.log("update", updateData);
         $.ajax({
 
-            url: BASE_PATH + "/user/upsert",
+            url: BASE_PATH + "/user/userinsert",
             data: JSON.stringify({updateData}),
             contentType: "application/json",
             type: 'POST',
@@ -164,13 +167,13 @@ function loadUser() {
                 successMsg("Update Completed Successfully!");
 
                 // loadUsersList();
-                window.locale.reload();
+                window.roles.reload();
             },
             error: function (e) {
 
                 //Error -> Show Error Alert & Reset the form
                 errorMsg("Update Failed!");
-                window.locale.reload();
+                window.roles.reload();
             }
         });
         flag = false;
@@ -202,7 +205,7 @@ function loadUsersList() {
         {
             mData: 'lastName',
             sTitle: 'Last Name',
-            sWidth: '20%',
+            sWidth: '10%',
             orderable: false,
             mRender: function (data, type, row) {
                 return data;
@@ -211,7 +214,7 @@ function loadUsersList() {
 
         {
             mData: 'primaryPhone',
-            sWidth: '20%',
+            sWidth: '10%',
             sTitle: 'Mobile No',
             orderable: false,
             mRender: function (data, type, row) {
@@ -220,7 +223,7 @@ function loadUsersList() {
         },
         {
             mData: 'email',
-            sWidth: '20%',
+            sWidth: '10%',
             sTitle: 'Email Id',
             orderable: false,
             mRender: function (data, type, row) {
@@ -228,9 +231,9 @@ function loadUsersList() {
             }
         },
         {
-            mData: 'address',
-            sWidth: '20%',
-            sTitle: 'locale',
+            mData: 'roles',
+            sWidth: '10%',
+            sTitle: 'roles',
             orderable: false,
             mRender: function (data, type, row) {
                 return data;
@@ -240,6 +243,7 @@ function loadUsersList() {
         {
             mData: 'created_ts',
             sTitle: 'Created Time',
+            sWidth: '10%',
             "className": 'sortingtable',
             mRender: function (data, type, row) {
                 return moment(data).format(DATE_TIME_FORMAT);
@@ -248,6 +252,7 @@ function loadUsersList() {
         {
             sTitle: 'Actions',
             orderable: false,
+            sWidth: '10%',
             mRender: function (data, type, row) {
                 var actionsHtml = '<button class="btn btn-default"  onclick="deleteUser(\'' + row.email+ '\')"><i class="fa fa-trash"></i></button>' + '<button class="btn btn-default"  data-toggle="modal" data-target="#myModal" onclick="editUser(\'' + row._id + '\')"><i class="fa fa-pencil edit"></i>';
                 return actionsHtml;
@@ -272,7 +277,7 @@ function loadUsersList() {
 
     var tableOption = {
         fixedHeader: false,
-        responsive: false,
+        responsive:false,
         paging: true,
         searching: true,
         aaSorting: [
@@ -292,11 +297,15 @@ function loadUsersList() {
 
         },
         "bServerSide": true,
-        "sAjaxSource": BASE_PATH + '/usersearch/list',
+        "sAjaxSource": BASE_PATH + '/user/list',
         "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
 
 
-            queryParams.query['bool']['must'] = [];
+            queryParams.query['bool']['must'] = [ {
+                "match": {
+                    "domainKey": "CDZMKBHJUM"
+                }
+            }];
             queryParams.query['bool']['should'] = [];
             delete queryParams.query['bool']["minimum_should_match"];
 
@@ -334,19 +343,19 @@ function loadUsersList() {
                     }
                 });
 
-                queryParams.query['bool']['should'].push({ "wildcard": { "locale": "*" + searchText + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "locale": "*" + searchText.toLowerCase() + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "locale": "*" + searchText.toUpperCase() + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "locale": "*" + capitalizeFLetter(searchText) + "*" } })
+                queryParams.query['bool']['should'].push({ "wildcard": { "roles": "*" + searchText + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "roles": "*" + searchText.toLowerCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "roles": "*" + searchText.toUpperCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "roles": "*" + capitalizeFLetter(searchText) + "*" } })
                 queryParams.query['bool']["minimum_should_match"] = 1;
                 queryParams.query['bool']['should'].push({
                     "match_phrase": {
-                        "locale.keyword": "*" + searchText + "*"
+                        "roles.keyword": "*" + searchText + "*"
                     }
                 })
                 queryParams.query['bool']['should'].push({
                     "match_phrase_prefix": {
-                        "locale.keyword": {
+                        "roles.keyword": {
                             "query": "*" + searchText + "*"
                         }
                     }
@@ -356,15 +365,15 @@ function loadUsersList() {
             oSettings.jqXHR = $.ajax({
                 "dataType": 'json',
                 "contentType": 'application/json',
-                "type": "GET",
+                "type": "POST",
                 "url": sSource,
 
                 "data": JSON.stringify({
-                    "query": queryParams
+                    "data": queryParams
                 }),
                 success: function (data) {
 
-                    var resultData = data.result;
+                    var resultData = data.result.data;
                     console.log(resultData);
 
                     Users_list = resultData.data;
@@ -411,10 +420,10 @@ function editUser(id) {
             user1 = Users_list[i];
             console.log(Users_list[i]);
             console.log(user1);
-            $("#name1").val(user1.firstname);
+            $("#name1").val(user1.firstName);
             $("#name2").val(user1.lastName);
             $("#mobile").val(user1.primaryPhone);
-            $("#loc").val(user1.locale);
+            $("#loc").val(user1.roles);
             $("#emaill").val(user1.email);
 
         }
