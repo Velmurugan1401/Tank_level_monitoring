@@ -257,7 +257,7 @@ function loadTankList() {
 
     var tableOption = {
         fixedHeader: false,
-        responsive: false,
+        responsive: true,
         paging: true,
         searching: true,
         aaSorting: [[3, 'desc']],
