@@ -136,12 +136,12 @@ function loadUser() {
         });
 
     } else if (flag == true) {
-        var fname = $("#name1").val();
-        var lname = $("#name2").val();
+        var fname = $("#firstname").val();
+        var lname = $("#lastname").val();
         var mno = $("#mobile").val();
-        var eid = $("#emaill").val();
-        var roles = $("#loc").val();
-
+        var eid = $("#emailid").val();
+        var roles = $("#role").val();
+    
 
         var updateData = {
             firstName: fname,
@@ -199,7 +199,7 @@ function loadUsersList() {
             sWidth: '20%',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return data ? data :'-';
             }
         },
         {
@@ -208,7 +208,7 @@ function loadUsersList() {
             sWidth: '10%',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return  data ? data :'-';
             }
         },
 
@@ -218,7 +218,7 @@ function loadUsersList() {
             sTitle: 'Mobile No',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return  data ? data :'-';
             }
         },
         {
@@ -227,7 +227,7 @@ function loadUsersList() {
             sTitle: 'Email Id',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return  data ? data :'-';
             }
         },
         {
@@ -236,7 +236,7 @@ function loadUsersList() {
             sTitle: 'roles',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return  data ? data :'-';
             }
         },
 
@@ -377,7 +377,7 @@ function loadUsersList() {
                     console.log(resultData);
 
                     Users_list = resultData.data;
-                    usercount = resultData.data
+                    // usercount = resultData?.data
                     $(".totalCount").html(data.result.total)
 
 
@@ -393,7 +393,7 @@ function loadUsersList() {
 
         dom: 'l<"toolbar">frtip',
         initComplete: function () {
-            $("div.toolbar").html('<input class="pick" data-date-format="mm/dd/yyyy" id="datePickerrr" type="date"> <button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button><i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>');
+            $("div.toolbar").html('<input class="pick" data-date-format="mm/dd/yyyy" id="datePickerrr" type="date"> <button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button>');
             // $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button><i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>');   
 
         }
