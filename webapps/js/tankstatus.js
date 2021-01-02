@@ -134,7 +134,7 @@ function loadTankStatusList() {
         "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
 
 
-            queryParams.query['bool']['must'] = [];
+            queryParams.query['bool']['must'] = [ ];
             queryParams.query['bool']['should'] = [];
             delete queryParams.query['bool']["minimum_should_match"];
 

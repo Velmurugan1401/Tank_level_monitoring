@@ -154,7 +154,7 @@ function loadTankList() {
             sWidth: '20%',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return  data ? data :'-';
             }
         },
         {
@@ -163,7 +163,7 @@ function loadTankList() {
             sWidth: '20%',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return  data ? data :'-';
             }
         },
 
@@ -173,7 +173,7 @@ function loadTankList() {
             sTitle: 'capacity',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return  data ? data :'-';
             }
         },
         {
