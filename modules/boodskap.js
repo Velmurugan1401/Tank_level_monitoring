@@ -431,7 +431,6 @@ Boodskap.prototype.elasticpush = function (rid, did, dmdl, fwver, data, cbk) {
 
 
 Boodskap.prototype.Userlogin = function (data,cbk) {
-console.log("data",data);
     const self = this;
 
     request.post({
