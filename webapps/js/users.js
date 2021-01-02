@@ -9,11 +9,43 @@ var usercount;
 // var endDate = moment().endOf('day');
 $(document).ready(function () {
     loadUsersList();
-    $('#expand').click(function()
-    {
-    });
+    
+
 
 });
+$('#expand').click(function(){
+    var elem = document.documentElement;
+    if($(this).hasClass('fa fa-expand')){
+       
+        $(this).removeClass('fa fa-expand');
+        
+        $(this).addClass('fa fa-window-close');
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+          } else if (elem.webkitRequestFullscreen) { /* Safari */
+            elem.webkitRequestFullscreen();
+          } else if (elem.msRequestFullscreen) { /* IE11 */
+            elem.msRequestFullscreen();
+          }
+        // $('#password').attr('type','text');
+          
+      }else{
+       
+        $(this).removeClass('fa fa-window-close');
+        
+        $(this).addClass('fa fa-expand');  
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.webkitExitFullscreen) { /* Safari */
+            document.webkitExitFullscreen();
+          } else if (document.msExitFullscreen) { /* IE11 */
+            document.msExitFullscreen();
+          }
+        
+        // $('#password').attr('type','password');
+      }
+});
+
 function refreshuser()
 {
     loadUsersList();
@@ -24,11 +56,11 @@ function refreshuser()
 
 function loadUser() {
 
-    var firstname = $("#name1").val();
-    var lastName = $("#name2").val();
+    var firstname = $("#firstname").val();
+    var lastName = $("#lastname").val();
     var primaryPhone = $("#mobile").val();
-    var email = $("#emaill").val();
-    var locale = $("#loc").val();
+    var email = $("#emailid").val();
+    var role = $("#role").val();
 
 
 
@@ -36,20 +68,25 @@ function loadUser() {
     //Validate
     if (firstname === "") {
 
+        showToast("info", "info","First Name is Required");
+
+
     //     alert("First  Name is Required!");
 
     } else if (lastName === "") {
+        showToast("info", "info","Last Name is Required");
 
     //     alert("Last name is Required!");
 
     }
     else if (primaryPhone === "") {
 
+        showToast("info", "info","Mobile Number is Required");
     //     alert("Mobile number  is Required!");
 
     }
     else if (email === "") {
-
+        showToast("info", "info","Email id is Required");
     //     alert("Email id is Required!");
 
     }
