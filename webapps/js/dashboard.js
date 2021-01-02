@@ -1,37 +1,5 @@
-var myChart = echarts.init(document.getElementById('main'));
-option = {
-    color: ['#3398DB'],
-    tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-            type: 'shadow'
-        }
-    },
-    grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
-    },
-    xAxis: [{
-        type: 'category',
-        data: ['Avadi', 'Porur', 'Egmore', 'Puzhal', 'Manali', 'T.nagar', 'Otteri'],
-        axisTick: {
-            alignWithLabel: true
-        }
-    }],
-    yAxis: [{
-        type: 'value'
-    }],
-    series: [{
-        name: 'Consumption Level',
-        type: 'bar',
-        barWidth: '60%',
+var resultData;
 
-        data: [10, 52, 200, 334, 390, 330, 220]
-    }]
-};
-myChart.setOption(option);
 var chart = echarts.init(document.getElementById("local"));
 option = {
     title: {
@@ -193,6 +161,73 @@ $(() => {
             var resultData = data.result.data;
             $("#totaltank").html(data.result.total)
 
+        }
+    })
+})
+// $(() => {
+//     $.ajax({
+//         "dataType": 'json',
+//         "contentType": 'application/json',
+//         "type": "get",
+//         url: BASE_PATH + '/tankhistory/list',
+//         success: function (data) {
+//             var resultData = data.result.data;
+//             // $("#totaltank").html(data.result.total)
+//             console.log(data.result.data[0].data)
+
+
+
+
+
+//         }
+//     })
+// })
+$(() => {
+    $.ajax({
+        "dataType": 'json',
+        "contentType": 'application/json',
+        "type": "POST",
+        url: BASE_PATH + '/tankstatus/list',
+        success: function (data) {
+            
+             resultData = data.result.data.data;
+          var sho=data.result.data.data;
+           console.log(sho[0].capacity)
+           var myChart = echarts.init(document.getElementById('main'));
+var data=[resultData[0].tank_level,resultData[1].capacity,40,50,40,200]
+option = {
+    color: ['#3398DB'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [{
+        type: 'category',
+        data: ['Avadi', 'Porur', 'Egmore', 'Puzhal', 'Manali', 'T.nagar', 'Otteri'],
+        axisTick: {
+            alignWithLabel: true
+        }
+    }],
+    yAxis: [{
+        type: 'value'
+    }],
+    series: [{
+        name: 'Consumption Level',
+        type: 'bar',
+        barWidth: '60%',
+
+        data: data
+    }]
+};
+myChart.setOption(option);
 
 
 

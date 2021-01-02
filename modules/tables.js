@@ -7,7 +7,7 @@ var Tables = function (app) {
     this.EVENT_TRIGGER = 1004;
     this.TANKSTATUS_TABLE = 1003;
     this.DEVICE_TABLE = 1005;
-    this.MSG_TABLE=101;
+    this.MSG_TABLE=1000;
 
 
 };

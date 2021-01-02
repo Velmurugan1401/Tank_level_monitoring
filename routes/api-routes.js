@@ -88,6 +88,9 @@ APIRoutes.prototype.init = function () {
     self.router.post('/tankstatus/:action', sessionCheck, function (req, res) {
         self.Tank_status.performAction(req, res);
     });
+    // MASSAGE TABLE HISTORYS LIST
+
+    
     self.router.get('/tankhistory/:action', sessionCheck, function (req, res) {
         self.Tank_history.performAction(req, res);
     });
@@ -97,8 +100,11 @@ APIRoutes.prototype.init = function () {
     self.router.get('/device/:action', sessionCheck, function (req, res) {
         self.Device_details.performAction(req, res);
     });
+    self.router.post('/devicedetail/:action', sessionCheck, function (req, res) {
+        self.Device_details.performAction(req, res);
+    });
     self.router.post('/user/:action', sessionCheck, function (req, res) {
-        console.log("users",req.body)
+      
         self.details.performAction(req, res);
     });
 

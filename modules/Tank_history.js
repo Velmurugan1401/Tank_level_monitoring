@@ -25,7 +25,7 @@ Tankhistory.prototype.performAction = function (req,res){
         self.common.commonDelete(self.table.TANKHISTORY_TABLE,req,res);
     }
     else if(req.params.action === 'list'){
-        self.common.RAWMsg(req,res);
+        self.common.MsgSearch(self.table.MSG_TABLE,req,res);
     }
     else{
         res.status(401).json({status:false,message:'Invalid Access'})

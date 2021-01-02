@@ -37,6 +37,30 @@ Common.prototype.commonSearch = function (tablename, req, res) {
     });
 
 };
+Common.prototype.commonSearchdev = function ( req, res) {
+
+    const self = this;
+
+    const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
+
+    boodskap.devSearch( req.body.data,function (status, result) {
+
+
+        if (status) {
+            res.json({
+                status: true,
+                result: result
+            });
+        } else {
+            res.json({
+                status: false,
+                message: result
+            });
+
+        }
+    });
+
+};
 // device=========================================================
 Common.prototype.commonDevice = function (req, res) {
 
@@ -61,14 +85,16 @@ Common.prototype.commonDevice = function (req, res) {
     });
 
 };
+
 // RAW common=====================
-Common.prototype.RAWMsg = function (req, res) {
+Common.prototype.MsgSearch = function (tablename, req, res) {
 
     const self = this;
 
-    const boodskap = new Boodskap(self.app, req.token);
+    const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
 
-    boodskap.RawMsgSearch(function (status, result) {
+    boodskap.MSGSearch(tablename, req.body.query, function (status, result) {
+
 
         if (status) {
             res.json({
@@ -119,7 +145,7 @@ Common.prototype.commonpush = function (tablename, req, res) {
 
 
     boodskap.elasticpush(tablename, req.body.did, req.body.dmdl, req.body.fwver, req.body, function (status, result) {
-        console.log(status)
+        // console.log(status)
 
         if (status) {
             res.json({
@@ -201,7 +227,7 @@ Common.prototype.commonAdd = function (tablename, req, res) {
     const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
 
     boodskap.elasticInsert(tablename, req.body, function (status, result) {
-        console.log("insert", req.body);
+        
         if (status) {
             res.json({
                 status: true,
