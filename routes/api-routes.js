@@ -91,7 +91,7 @@ APIRoutes.prototype.init = function () {
     // MASSAGE TABLE HISTORYS LIST
 
     
-    self.router.get('/tankhistory/:action', sessionCheck, function (req, res) {
+    self.router.post('/tankhistory/:action', sessionCheck, function (req, res) {
         self.Tank_history.performAction(req, res);
     });
     self.router.post('/eventtrigger/:action', sessionCheck, function (req, res) {

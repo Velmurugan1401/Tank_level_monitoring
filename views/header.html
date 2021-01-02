@@ -9,6 +9,7 @@
     /* background-color: #38A7FA; */
     background-color: #005da2;
     height: 50px;
+ 
   }
   #menuIcon{
    /* margin-right: 10px;margin-top: -6px; */
@@ -106,7 +107,7 @@
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <a class="dropdown-item" onclick="loadMainPage('/profile')" href="#/profile">Profile</a>
     <a class="dropdown-item" href="#">Settings</a>
-    <a class="dropdown-item" href="#">Log Out</a>
+    <a class="dropdown-item" href="#" onclick="logout()">Log Out</a>
   </div>
 </div>
 
@@ -166,3 +167,4 @@
 </div>
 </div>
 </div></div> </div>
+<script src="js/auth.js"></script>
