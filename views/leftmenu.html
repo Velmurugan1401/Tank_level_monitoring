@@ -30,7 +30,9 @@
   
  
   .home-page-span,.admin-page-span{
-      padding-left: 18px;font-weight: bold;color: cornflowerblue !important;
+      padding-left: 18px;
+      /* font-weight: bold; */
+      color: #b7b3b3;
   }
 </style>
  
@@ -45,13 +47,13 @@
               <span class="home-page-span">Home</span>
               <!-- <a href="javascript:void(0)" style="font-weight: bold;color: cornflowerblue !important;">Home</a> -->
             </li>
-                <li class="dashboard">
+                <li class="dashboard left-list">
                     <a class="" onclick="loadMainPage('/dashboard')" href="#/dashboard">
                       <!-- <i class="fa fa-tachometer" style="color:white;font-size: 17px;vertical-align: unset;" aria-hidden="true"></i>Dashboard</a> -->
                       <img src="images/tachometer.png" style="width:23px;height:23px;">&nbsp;&nbsp;Dashboard</a>
                     </li>
   
-                <li class="tank-status">
+                <li class="tank-status left-list">
                     <a onclick="loadMainPage('/tankstatus')" href="#/tankstatus">
                       <!-- <i class="fa fa-microchip" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Tank Status</a> -->
                       <img src="images/tank-status.png" style="width:23px;height:23px;">&nbsp;&nbsp;Tank Status</a>
@@ -61,25 +63,25 @@
                   <span class="admin-page-span">Administration</span>
                 </li>
   
-                <li class="manage-tanks" >
+                <li class="manage-tanks left-list" >
                     <a onclick="loadMainPage('/tanks')" href="#/managetanks">
                       <!-- <i class="fa fa-microchip" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Tanks</a> -->
                       <img src="images/storage-tank.png" style="width:20px;height:20px;">&nbsp;&nbsp;Tanks</a>
                     </li>
   
-                <li class="manage-devices">
+                <li class="manage-devices left-list">
                     <a onclick="loadMainPage('/devices')" href="#/managedevices">
                       <!-- <i class="fa fa-microchip" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Devices</a> -->
                       <img src="images/motherboard.png" style="width:20px;height:20px;">&nbsp;&nbsp;Devices</a>
                     </li>
   
-                <li class="users" >
+                <li class="users left-list" >
                     <a onclick="loadMainPage('/users')" href="#/users">
                       <!-- <i class="fa fa-users"  style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Users</a> -->
                       <img src="images/users.png" style="width:23px;height:23px;">&nbsp;&nbsp;Users</a>
                     </li>
   
-                <li class="raw-messages">
+                <li class="raw-messages left-list">
                   <a onclick="loadMainPage('/rawmessages')" href="#/rawmessages">
                     <!-- <i class="fa fa-envelope" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i> -->
                     <img src="images/envelope.png" style="width:17px;height:17px;">&nbsp;&nbsp;Raw Messages</a>
@@ -92,14 +94,36 @@
     <!-- End Sidebar scroll-->
   </aside>
   <script>
-    $(".sidebar-nav>ul>li").click(function() {
+//     $(".sidebar-nav>ul>li").click(function() {
  
-    if ($(".sidebar-nav>ul>li a").hasClass("active")) {
-       $("li").removeClass("active");
-       $(".sidebar-nav>ul>li a").addClass("active");
+//     if ($(".sidebar-nav>ul>li a").hasClass("active")) {
+//        $("li").removeClass("active");
+//        $(".sidebar-nav>ul>li a").addClass("active");
     
-} else {
-    $(".sidebar-nav>ul>li a").addClass("active");
-   }
-});
+// } else {
+//     $(".sidebar-nav>ul>li a").addClass("active");
+//    }
+// });
+
+
+
+// $('.sidebar-nav>ul>li a').click(function(){
+       
+//        if($(this).hasClass('active')){
+          
+//          $(this).removeClass('active');
+         
+//          $(this).addClass('active');
+         
+        
+           
+//        }else{
+        
+//          $(this).removeClass('active');
+         
+//          $(this).addClass('active');  
+         
+        
+//        }
+//    });
   </script>
