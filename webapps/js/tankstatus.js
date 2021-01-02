@@ -1,5 +1,6 @@
 var TankStatusTable = null;
 var TankStatus_list = [];
+var deleteDeviceId=null;
 // var startDate = moment().subtract(6, 'days').startOf('day');
 // var endDate = moment().endOf('day');
 
@@ -30,7 +31,7 @@ function loadTankStatusList() {
             sWidth: '20%',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return data ? data : '-';
             }
         },
         {
@@ -39,7 +40,7 @@ function loadTankStatusList() {
             sWidth: '20%',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return data ? data : '-';
             }
         },
 
@@ -49,7 +50,7 @@ function loadTankStatusList() {
             sTitle: 'Tank Capacity',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return data ? data : '-';
             }
         },
         {
@@ -58,7 +59,8 @@ function loadTankStatusList() {
           sTitle: 'Tank Level',
           orderable: false,
           mRender: function (data, type, row) {
-              return data;
+            
+              return data ? data : '-';
           }
       },
       {
@@ -67,7 +69,7 @@ function loadTankStatusList() {
         sTitle: 'Status',
         orderable: false,
         mRender: function (data, type, row) {
-            return data;
+            return data ? data : '-';
         }
     },
       {
@@ -76,7 +78,7 @@ function loadTankStatusList() {
         sTitle: ' Device Id ',
         orderable: false,
         mRender: function (data, type, row) {
-            return data;
+            return data ? data : '-';
         }
     },
         {
@@ -94,8 +96,7 @@ function loadTankStatusList() {
             mRender: function (data, type, row) {
               var actionsHtml = '<button class="btn btn-default" data-target=""  data-toggle="modal"style="margin-right:5px;" onclick=""><i class="fa fa-link" aria-hidden="true"></i></button>'
                           +'<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\')" href="#/snapshot" style="margin-right:5px;"><i class="fa fa-eye" aria-hidden="true"></i></button>'
-                          +'<button class="btn btn-default" data-target="#deletemodal" data-toggle="modal" onclick="deleteTank(\'' + row["_id"] + '\')"><i class="fa fa-trash icon" ></i></button>';
-               
+                          +'<button class="btn btn-default" data-target="#statusDeletemodal" data-toggle="modal" onclick="assignDeleteDeviceId(\'' + row["_id"] + '\')"><i class="fa fa-trash icon" ></i></button>';
                           return actionsHtml;
             }
         }
@@ -198,34 +199,38 @@ function loadTankStatusList() {
 
 // delete=====
 
-function deleteUser(row) {
-    console.log(row);
-    $.ajax({
-        url: BASE_PATH + '/user/delete',
-        data: {_id:row},
-        type: 'POST',
-        success: function () {
-            successMsg('deleted successfully');
-            loadUsersList();
-        },
-        error: function () {
-            // console.log(e);
-            errorMsg("deletion failed");
-            // window.location.reload();
-        }
-    });
-}
 
 function profilelogout(event) {
       $("#profileCard").css('display','block');
       event.preventDefault();
     }
 
-    // function logout(){
+function assignDeleteDeviceId(deviceId){
+    console.log(deviceId);
+    deleteDeviceId = deviceId
+}
 
-    // }
-
-    function snapfunct(){
-        window.location="http://localhost:8201/tankmonitoring/main#/devices";
+    function statusDeleteTank()  {
+        alert(deleteDeviceId)
+        $.ajax({
+    
+            url: BASE_PATH + "/tank/delete",
+            data: JSON.stringify({ _id: deleteDeviceId }),
+            contentType: "application/json",
+            type: 'POST',
+            success: function (result) {
+                $(".modal-backdrop").remove();
+    
+                //Success -> Show Alert & Refresh the page
+                successMsg("Tank Deleted Successfully!");
+                loadTankStatusList();
+            },
+            error: function (e) {
+                //Error -> Show Error Alert & Reset the form
+                errorMsg("Tank Delete Failed!");
+                window.location.reload();
+            }
+        });
     }
+
    
