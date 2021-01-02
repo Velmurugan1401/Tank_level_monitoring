@@ -8,6 +8,39 @@ $(document).ready(function () {
     loadTankList();
 
 });
+$('#expandview').click(function(){
+    var elem = document.documentElement;
+    if($(this).hasClass('fa fa-expand')){
+       
+        $(this).removeClass('fa fa-expand');
+        
+        $(this).addClass('fa fa-compress');
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+          } else if (elem.webkitRequestFullscreen) { /* Safari */
+            elem.webkitRequestFullscreen();
+          } else if (elem.msRequestFullscreen) { /* IE11 */
+            elem.msRequestFullscreen();
+          }
+        // $('#password').attr('type','text');
+          
+      }else{
+       
+        $(this).removeClass('fa fa-compress');
+        
+        $(this).addClass('fa fa-expand');  
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.webkitExitFullscreen) { /* Safari */
+            document.webkitExitFullscreen();
+          } else if (document.msExitFullscreen) { /* IE11 */
+            document.msExitFullscreen();
+          }
+        
+        // $('#password').attr('type','password');
+      }
+});
+
 function addtank(){
     $("#tank_name,#tank_type,#location,#device_id,#capacity").val('');
  }
@@ -184,7 +217,7 @@ function loadTankList() {
             orderable: false,
            
             mRender: function (data, type, row) {
-                var actionsHtml = '<button class="btn btn-default" data-toggle="modal" data-target="#deletemodal"  onclick="deleteTank(\'' + row["_id"] + '\')"><i class="fa fa-trash icon"></i></button>' + " " + '<button class="btn btn-default" data-toggle="modal" data-target="#exampleModal" onclick="editTank(\'' + row["_id"] + '\')"><i class="fa fa-edit"></i></button>';
+                var actionsHtml = '<button class="btn btn-default" data-toggle="modal" data-target="#deletemodal"  ><i class="fa fa-trash icon"></i></button>' + " " + '<button class="btn btn-default" data-toggle="modal" data-target="#exampleModal" onclick="editTank(\'' + row["_id"] + '\')"><i class="fa fa-edit"></i></button>';
                 return actionsHtml;
             }
         }
@@ -282,7 +315,7 @@ function loadTankList() {
         },
         dom: 'l<"toolbar">frtip',
         initComplete: function () {
-            $("div.toolbar").html('<input class="pick" data-date-format="mm/dd/yyyy" id="datePickerrr" type="date"><button type="button" class="btn button1" onclick=addtank() data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus-square icons" style="color:white";"aria-hidden="true"></i>Add Tanks</button>');
+            $("div.toolbar").html('<input class="pick" data-date-format="mm/dd/yyyy" type="date" id="datePickerrr"><button type="button" class="btn button1" onclick=addtank() data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus-square icons" style="color:white";"aria-hidden="true"></i>Add Tanks</button>');
         }
 
 

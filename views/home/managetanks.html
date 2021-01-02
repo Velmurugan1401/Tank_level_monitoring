@@ -4,7 +4,7 @@
         <div class="col-md-12">
           <span class="title-span"></pan>
             <span class="title-span">Administration|</span>
-            <span class="title-span" style="color: mediumblue;font-weight: 500;">Tanks</span>
+            <span class="title-span" style="color: #005da2 ;font-weight: 500;">Tanks</span>
         </div>
       </div>
    <div class="row head">
@@ -14,9 +14,10 @@
              
           </div>
         <div class="col-md-6 coln2">
-            <button class="btn but" onclick="openFullscreen()"><i class="fa fa-expand" style=" color:white;" aria-hidden="true"></i></button>
 
-            <button class="btn but1" style="color:#1C3FAA" onclick="refreshtank()"><i class="fa fa-refresh   fa-fw "style=" color:white;" aria-hidden="true"></i></a> 
+            <button type="button" class="btn but" data-toggle="tooltip" data-placement="bottom" title="Full Screen">
+            <i class="fa fa-expand" id="expandview"style="color:white" aria-hidden="true"></i></button>
+            <button class="btn but1" data-toggle="tooltip" data-placement="bottom" title="Referesh"style="color:#1C3FAA" onclick="refreshtank()"><i class="fa fa-refresh   fa-fw "style=" color:white;" aria-hidden="true"></i></a> 
           </div>
 
             <div class="modal fade" id="exampleModal" role="dialog">
@@ -45,13 +46,12 @@
                               <label for="usr" class="modal-txt">Capacity</label>
                               <input type="number" class="form-control"  id="capacity" placeholder="Enter Capacity">
                           </div>
-                      
-                      <div class="row" style="margin-top:20px;">
-                        <div class="col-md-12">
+                          <div class="col-md-12"style="margin-top:20px;">
                             <label for="usr" class="modal-txt">Location</label>
-                            <input type="text" class="form-control"  id="location" placeholder="Enter Location">
+                            <input type="text" class="form-control"  id="capacity" placeholder="Enter Location">
                         </div>
-                    </div>
+                        
+                     
                       </div>
                       <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -59,7 +59,10 @@
                       </div>
                   </div>
       </div>
+      </div>
     </div>
+   </div>
+    
     <!-- Link modal -->
 <div class="modal fade" id="myModal" role="dialog">
   <div class="modal-dialog">
@@ -92,37 +95,36 @@
   <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content modal-div">
-          
+        <div class="modal-header" style="background-color: #009B84;">
+            <h4 class="modal-title user-add-header text-center"> Delete Tank</h4>
+           
+        </div>
           <div class="modal-body">
               <div class="row">
                   <div class="col-md-12">
-                      <h4>Do You Want To Delete!</h4>
+                    <h4>Do You Want To Delete!</h4>
                   </div>
               </div>
              </div>
        
           <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-success link-btn" data-dismiss="modal">Delete</button>
+              <button onclick="deletetank()"type="button" class="btn btn-success link-btn" data-dismiss="modal">Delete</button>
           </div>
       </div>
   </div>
 </div>
-  </div>
-</div>
- 
-  
-      <div class="row roo" >
+   <div class="row roo" >
           <div class="col-md-12">
            
               <table class="table table-bordered table-responsive no-wrap" id="tank_table" width="100%" ></table> 
-            <!-- <input class="pick" data-date-format="mm/dd/yyyy" type="date" id="datePickerrr"> -->
+            
              
           </div>
       </div>
 </div>
 
-   
+</div>
     
         
  
@@ -133,30 +135,4 @@
 <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
-<script>
-  /* Get the documentElement (<html>) to display the page in fullscreen */
-  var elem = document.documentElement;
-
-  /* View in fullscreen */
-  function openFullscreen() {
-      if (elem.requestFullscreen) {
-          elem.requestFullscreen();
-      } else if (elem.webkitRequestFullscreen) { /* Safari */
-          elem.webkitRequestFullscreen();
-      } else if (elem.msRequestFullscreen) { /* IE11 */
-          elem.msRequestFullscreen();
-      }
-  }
-
-  /* Close fullscreen */
-  function closeFullscreen() {
-      if (document.exitFullscreen) {
-          document.exitFullscreen();
-      } else if (document.webkitExitFullscreen) { /* Safari */
-          document.webkitExitFullscreen();
-      } else if (document.msExitFullscreen) { /* IE11 */
-          document.msExitFullscreen();
-      }
-  }
-</script>
-
+  
