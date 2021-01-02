@@ -93,7 +93,7 @@ function loadTankStatusList() {
             orderable: false,
             mRender: function (data, type, row) {
               var actionsHtml = '<button class="btn btn-default" data-target=""  data-toggle="modal"style="margin-right:5px;" onclick=""><i class="fa fa-link" aria-hidden="true"></i></button>'
-                          +'<button class="btn btn-default"  onclick="" href="" style="margin-right:5px;"><i class="fa fa-eye" aria-hidden="true"></i></button>'
+                          +'<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\')" href="#/snapshot" style="margin-right:5px;"><i class="fa fa-eye" aria-hidden="true"></i></button>'
                           +'<button class="btn btn-default" data-target="#deletemodal" data-toggle="modal" onclick="deleteTank(\'' + row["_id"] + '\')"><i class="fa fa-trash icon" ></i></button>';
                
                           return actionsHtml;
