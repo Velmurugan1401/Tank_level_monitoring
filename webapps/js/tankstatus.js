@@ -14,6 +14,64 @@ $(document).ready(function(){
     
 });
 
+$(function() {
+    var start = moment().subtract(6, 'days').startOf('day');
+    var end = moment().endOf('day');
+  
+    function cb(start, end) {
+      $('#pick').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+    }
+  
+    $('#pick').daterangepicker({
+      startDate: start,
+      endDate: end,
+      ranges: {
+        'Today': [moment(), moment()],
+        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+        'This Month': [moment().startOf('month'), moment().endOf('month')],
+        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+      }
+    }, cb);
+  
+    cb(start, end);
+  
+  });
+  
+  
+  $('#pick').on('apply.daterangepicker', function(ev, picker) {
+   var start = picker.startDate;
+   var end = picker.endDate;
+  
+  
+  $.fn.dataTable.ext.search.push(
+    function(settings, data, dataIndex) {
+
+      var min = start;
+      var max = end;
+      var startDate = new Date(data[1]);
+      
+      if (min == null && max == null) {
+        return true;
+      }
+      if (min == null && startDate <= max) {
+        return true;
+      }
+      if (max == null && startDate >= min) {
+        return true;
+      }
+      if (startDate <= max && startDate >= min) {
+        return true;
+      }
+      return false;
+    }
+  );
+  table.draw();
+  $.fn.dataTable.ext.search.pop();
+  });
+
+
 
 
 //Student List API
@@ -94,9 +152,10 @@ function loadTankStatusList() {
             sTitle: 'Actions',
             orderable: false,
             mRender: function (data, type, row) {
+                console.log(row);
               var actionsHtml = '<button class="btn btn-default" data-target=""  data-toggle="modal"style="margin-right:5px;" onclick=""><i class="fa fa-link" aria-hidden="true"></i></button>'
                           +'<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\')" href="#/snapshot" style="margin-right:5px;"><i class="fa fa-eye" aria-hidden="true"></i></button>'
-                          +'<button class="btn btn-default" data-target="#statusDeletemodal" data-toggle="modal" onclick="assignDeleteDeviceId(\'' + row["_id"] + '\')"><i class="fa fa-trash icon" ></i></button>';
+                          +'<button class="btn btn-default" data-target="#statusDeletemodal" data-toggle="modal" onclick="assignDeleteDeviceId(\'' + row._id + '\')"><i class="fa fa-trash icon" ></i></button>';
                           return actionsHtml;
             }
         }
@@ -108,7 +167,7 @@ function loadTankStatusList() {
                 "must": []
             }
         },
-        sort: [{ "created_ts": { "order": "asc" } }]
+        sort: [{ "created_ts": { "order": "asc" } },{ "tank_name": { "order": "asc" } }]
     };
 
     TankStatus_list = [];
@@ -118,7 +177,7 @@ function loadTankStatusList() {
         responsive: false,
         paging: true,
         searching: true,
-        aaSorting: [[3, 'desc']],
+        aaSorting: [[3, 'desc'],[0,'desc']],
         "ordering": true,
         iDisplayLength: 10,
         lengthMenu: [[10, 50, 100], [10, 50, 100]],
@@ -205,16 +264,17 @@ function profilelogout(event) {
       event.preventDefault();
     }
 
-function assignDeleteDeviceId(deviceId){
-    console.log(deviceId);
-    deleteDeviceId = deviceId
+function assignDeleteDeviceId(row){
+    console.log(row);
+    deleteDeviceId = row
 }
 
     function statusDeleteTank()  {
         alert(deleteDeviceId)
+        console.log(deleteDeviceId);
         $.ajax({
     
-            url: BASE_PATH + "/tank/delete",
+            url: BASE_PATH + "/tankstatus/delete",
             data: JSON.stringify({ _id: deleteDeviceId }),
             contentType: "application/json",
             type: 'POST',
