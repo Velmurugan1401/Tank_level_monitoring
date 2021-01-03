@@ -419,8 +419,7 @@ Boodskap.prototype.elasticpush = function (rid, did, dmdl, fwver, data, cbk) {
 // for user login========
 
 
-Boodskap.prototype.Userlogin = function (data, cbk) {
-
+Boodskap.prototype.Userlogin = function (data,cbk) {
     const self = this;
     // console.log(data);
 
@@ -437,11 +436,11 @@ Boodskap.prototype.Userlogin = function (data, cbk) {
             if (res.statusCode === 200) {
                 cbk(true, JSON.parse(res.body))
             } else {
-                self.logger.error("record insert error in platform =>", res.body)
+                 self.logger.error("record insert error in platform =>", res.body)
                 cbk(false, JSON.parse(res.body))
             }
         } else {
-            self.logger.error("record insert error in platform =>", err)
+             self.logger.error("record insert error in platform =>", err)
             cbk(false, null)
         }
 
@@ -476,14 +475,22 @@ Boodskap.prototype.UserDelete = function (email, cbk) {
 
 // list user=======
 
-Boodskap.prototype.Userlist = function (cbk) {
+Boodskap.prototype.Userlist = function (data,cbk) {
+  
     const self = this;
-     
-    var size=100;
+    var obj = {
+        
+            "type":"USER",
+        query:JSON.stringify(data)
+    }
+    
 
-
-    request.get({
-        uri: self.API_URL + '/user/list/' + self.API_TOKEN + '/'+ size,
+    request.post({
+        uri: self.API_URL + '/elastic/search/query/' + self.API_TOKEN,
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(obj),
 
     }, function (err, res, body) {
         // console.log(body)
@@ -491,8 +498,8 @@ Boodskap.prototype.Userlist = function (cbk) {
         if (!err) {
 
             if (res.statusCode === 200) {
-                var resultObj = self.utils.elasticDeviceFormatter(JSON.parse(body))
-                cbk(true, resultObj)
+                var resultObj = self.utils.elasticQueryFormatter(JSON.parse(body))
+                cbk(true,resultObj)
             } else {
                 self.logger.error("record search error in platform =>", res.body)
                 cbk(false, JSON.parse(res.body))

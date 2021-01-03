@@ -249,6 +249,7 @@ option = {
         axisPointer: {
             type: 'shadow'
         }
+        
     },
     grid: {
         left: '3%',

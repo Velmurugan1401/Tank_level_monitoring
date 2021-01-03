@@ -8,7 +8,38 @@ var list=[];
 $(document).ready(function(){
     loadDeviceList();
 })
-
+$('#ex').click(function(){
+    var elem = document.documentElement;
+    if($(this).hasClass('fa fa-expand')){
+       
+        $(this).removeClass('fa fa-expand');
+        
+        $(this).addClass('fa fa-compress');
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+          } else if (elem.webkitRequestFullscreen) { /* Safari */
+            elem.webkitRequestFullscreen();
+          } else if (elem.msRequestFullscreen) { /* IE11 */
+            elem.msRequestFullscreen();
+          }
+        // $('#password').attr('type','text');
+          
+      }else{
+       
+        $(this).removeClass('fa fa-compress');
+        
+        $(this).addClass('fa fa-expand');  
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.webkitExitFullscreen) { /* Safari */
+            document.webkitExitFullscreen();
+          } else if (document.msExitFullscreen) { /* IE11 */
+            document.msExitFullscreen();
+          }
+        
+        // $('#password').attr('type','password');
+      }
+});
 
 
 function loadDeviceList() {
@@ -161,9 +192,8 @@ function loadDeviceList() {
                    
                     var resultData = data.result.data;
                    
-                       
-                       
-                        console.log(resultData)
+                    device_list2 = resultData.data;
+                    console.log("new",device_list2.length)
                       
                     
                    
@@ -183,12 +213,12 @@ function loadDeviceList() {
   
 }
 
-// for(i=0;i<=device_list2.length;i++){
-//     console.log("res",device_list2[i].id)
+for(i=0;i<=device_list2.length;i++){
+    console.log("res",device_list2[i].id)
    
-//     $('#listdevice').append('<option>'+device_list2[i].id+`</option>`)
+    $('#listdevice').append('<option>'+device_list2[i].id+`</option>`)
 
-// }
+}
  
 
 

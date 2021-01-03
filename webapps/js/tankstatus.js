@@ -1,5 +1,6 @@
 var TankStatusTable = null;
 var TankStatus_list = [];
+var deleteDeviceId=null;
 // var startDate = moment().subtract(6, 'days').startOf('day');
 // var endDate = moment().endOf('day');
 
@@ -12,6 +13,64 @@ $(document).ready(function(){
     })
     
 });
+
+$(function() {
+    var start = moment().subtract(6, 'days').startOf('day');
+    var end = moment().endOf('day');
+  
+    function cb(start, end) {
+      $('#pick').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+    }
+  
+    $('#pick').daterangepicker({
+      startDate: start,
+      endDate: end,
+      ranges: {
+        'Today': [moment(), moment()],
+        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+        'This Month': [moment().startOf('month'), moment().endOf('month')],
+        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+      }
+    }, cb);
+  
+    cb(start, end);
+  
+  });
+  
+  
+  $('#pick').on('apply.daterangepicker', function(ev, picker) {
+   var start = picker.startDate;
+   var end = picker.endDate;
+  
+  
+  $.fn.dataTable.ext.search.push(
+    function(settings, data, dataIndex) {
+
+      var min = start;
+      var max = end;
+      var startDate = new Date(data[1]);
+      
+      if (min == null && max == null) {
+        return true;
+      }
+      if (min == null && startDate <= max) {
+        return true;
+      }
+      if (max == null && startDate >= min) {
+        return true;
+      }
+      if (startDate <= max && startDate >= min) {
+        return true;
+      }
+      return false;
+    }
+  );
+  table.draw();
+  $.fn.dataTable.ext.search.pop();
+  });
+
 
 
 
@@ -30,7 +89,7 @@ function loadTankStatusList() {
             sWidth: '20%',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return data ? data : '-';
             }
         },
         {
@@ -39,7 +98,7 @@ function loadTankStatusList() {
             sWidth: '20%',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return data ? data : '-';
             }
         },
 
@@ -49,7 +108,7 @@ function loadTankStatusList() {
             sTitle: 'Tank Capacity',
             orderable: false,
             mRender: function (data, type, row) {
-                return data;
+                return data ? data : '-';
             }
         },
         {
@@ -58,7 +117,8 @@ function loadTankStatusList() {
           sTitle: 'Tank Level',
           orderable: false,
           mRender: function (data, type, row) {
-              return data;
+            
+              return data ? data : '-';
           }
       },
       {
@@ -67,7 +127,7 @@ function loadTankStatusList() {
         sTitle: 'Status',
         orderable: false,
         mRender: function (data, type, row) {
-            return data;
+            return data ? data : '-';
         }
     },
       {
@@ -76,7 +136,7 @@ function loadTankStatusList() {
         sTitle: ' Device Id ',
         orderable: false,
         mRender: function (data, type, row) {
-            return data;
+            return data ? data : '-';
         }
     },
         {
@@ -92,14 +152,11 @@ function loadTankStatusList() {
             sTitle: 'Actions',
             orderable: false,
             mRender: function (data, type, row) {
-                var actionsHtml ='<div class="dropdown"><button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:rgba(28,63,170);border:unset;">Actions</button>'
-                +' <div class="dropdown-menu">'
-                +' <a class="dropdown-item" href="#" >Link / Unlink Device</a>'
-                +' <a class="dropdown-item" href="#"onclick= onclick="(\'' + row+ '\')" >Single Tank Snapshot</a>'
-                +' <a class="dropdown-item" href="#" onclick= onclick="deleteUser(\'' + row._id + '\')" >Delete</a>'
-                +' </div>'
-                +'</div>';
-                return actionsHtml;
+                console.log(row);
+              var actionsHtml = '<button class="btn btn-default" data-target=""  data-toggle="modal"style="margin-right:5px;" onclick=""><i class="fa fa-link" aria-hidden="true"></i></button>'
+                          +'<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\')" href="#/snapshot" style="margin-right:5px;"><i class="fa fa-eye" aria-hidden="true"></i></button>'
+                          +'<button class="btn btn-default" data-target="#statusDeletemodal" data-toggle="modal" onclick="assignDeleteDeviceId(\'' + row._id + '\')"><i class="fa fa-trash icon" ></i></button>';
+                          return actionsHtml;
             }
         }
     ];
@@ -110,7 +167,7 @@ function loadTankStatusList() {
                 "must": []
             }
         },
-        sort: [{ "created_ts": { "order": "asc" } }]
+        sort: [{ "created_ts": { "order": "asc" } },{ "tank_name": { "order": "asc" } }]
     };
 
     TankStatus_list = [];
@@ -120,7 +177,7 @@ function loadTankStatusList() {
         responsive: false,
         paging: true,
         searching: true,
-        aaSorting: [[3, 'desc']],
+        aaSorting: [[3, 'desc'],[0,'desc']],
         "ordering": true,
         iDisplayLength: 10,
         lengthMenu: [[10, 50, 100], [10, 50, 100]],
@@ -136,7 +193,7 @@ function loadTankStatusList() {
         "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
 
 
-            queryParams.query['bool']['must'] = [];
+            queryParams.query['bool']['must'] = [ ];
             queryParams.query['bool']['should'] = [];
             delete queryParams.query['bool']["minimum_should_match"];
 
@@ -201,28 +258,39 @@ function loadTankStatusList() {
 
 // delete=====
 
-function deleteUser(row) {
-    console.log(row);
-    $.ajax({
-        url: BASE_PATH + '/user/delete',
-        data: {_id:row},
-        type: 'POST',
-        success: function () {
-            successMsg('deleted successfully');
-            loadUsersList();
-        },
-        error: function () {
-            // console.log(e);
-            errorMsg("deletion failed");
-            // window.location.reload();
-        }
-    });
-}
 
-function profilelogout(event
-    ) {
+function profilelogout(event) {
       $("#profileCard").css('display','block');
       event.preventDefault();
     }
+
+function assignDeleteDeviceId(row){
+    console.log(row);
+    deleteDeviceId = row
+}
+
+    function statusDeleteTank()  {
+        alert(deleteDeviceId)
+        console.log(deleteDeviceId);
+        $.ajax({
+    
+            url: BASE_PATH + "/tankstatus/delete",
+            data: JSON.stringify({ _id: deleteDeviceId }),
+            contentType: "application/json",
+            type: 'POST',
+            success: function (result) {
+                $(".modal-backdrop").remove();
+    
+                //Success -> Show Alert & Refresh the page
+                successMsg("Tank Deleted Successfully!");
+                loadTankStatusList();
+            },
+            error: function (e) {
+                //Error -> Show Error Alert & Reset the form
+                errorMsg("Tank Delete Failed!");
+                window.location.reload();
+            }
+        });
+    }
+
    
-  
