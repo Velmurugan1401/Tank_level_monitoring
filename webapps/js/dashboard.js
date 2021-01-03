@@ -50,7 +50,8 @@ chart.setOption(option);
 var myChart = echarts.init(document.getElementById('graph'));
 option = {
     legend: {},
-    tooltip: {},
+    tooltip: {
+    },
     dataset: {
         dimensions: ['product', 'Yesterday', 'Last 7 Days', 'Last 30 days'],
         source: [{
@@ -202,6 +203,7 @@ option = {
         axisPointer: {
             type: 'shadow'
         }
+        
     },
     grid: {
         left: '3%',

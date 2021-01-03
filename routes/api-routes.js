@@ -84,8 +84,10 @@ APIRoutes.prototype.init = function () {
     self.router.post('/tankstatus/:action', sessionCheck, function (req, res) {
         self.Tank_status.performAction(req, res);
     });
-    // MASSAGE TABLE HISTORYS LIST    
-    self.router.get('/tankhistory/:action', sessionCheck, function (req, res) {
+    // MASSAGE TABLE HISTORYS LIST
+
+    
+    self.router.post('/tankhistory/:action', sessionCheck, function (req, res) {
         self.Tank_history.performAction(req, res);
     });
     self.router.post('/eventtrigger/:action', sessionCheck, function (req, res) {
