@@ -1,5 +1,6 @@
 var UserTable = null;
 var Users_list = [];
+var deleteuserid=null;
 var key;
 var count;
 var flag = false;
@@ -14,6 +15,39 @@ function refreshuser()
 {
     loadUsersList();
 }
+
+
+$('#expand').click(function(){
+    var elem = document.documentElement;
+    if($(this).hasClass('fa fa-expand')){
+       
+      $(this).removeClass('fa fa-expand');
+      
+      $(this).addClass('fa fa-compress');
+      
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { /* Safari */
+        elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE11 */
+        elem.msRequestFullscreen();
+    }
+        
+    }else{
+     
+      $(this).removeClass('fa fa-compress');
+      
+      $(this).addClass('fa fa-expand');  
+      
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { /* Safari */
+        document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE11 */
+        document.msExitFullscreen();
+    }
+    }
+});
 
 
 //User insert API
@@ -223,7 +257,8 @@ function loadUsersList() {
             sTitle: 'Actions',
             orderable: false,
             mRender: function (data, type, row) {
-                var actionsHtml = '<button class="btn btn-default"  onclick="deleteUser(\'' + row.email+ '\')"><i class="fa fa-trash"></i></button>' + '<button class="btn btn-default"  data-toggle="modal" data-target="#myModal" onclick="editUser(\'' + row._id + '\')"><i class="fa fa-pencil edit"></i>';
+                console.log(row);
+                var actionsHtml = '<button class="btn btn-default"  data-target="#userDeletemodal" data-toggle="modal" onclick="assignuserid(\'' + row._id + '\')"><i class="fa fa-trash"></i></button>' + '<button class="btn btn-default"  data-toggle="modal" data-target="#myModal" onclick="editUser(\'' + row._id + '\')"><i class="fa fa-pencil edit"></i>';
                 return actionsHtml;
             }
         }
@@ -406,11 +441,17 @@ function editUser(id) {
     
 // }
 //delete user details
-function deleteUser(row) {
-    
+ 
+function assignuserid(userid){  
+    console.log(userid);   
+    deleteuserid = userid;
+    console.log(deleteuserid);
+}
+function userdelete()  {
+   console.log(deleteuserid)
     $.ajax({
-        url: BASE_PATH + '/user/delete',
-        data: {email:row},
+        url: BASE_PATH +'/user/delete',
+        data:  JSON.stringify({ _id: deleteuserid}),
         type: 'POST',
         success: function () {
             successMsg('deleted successfully');
@@ -423,4 +464,3 @@ function deleteUser(row) {
         }
     });
 }
- 

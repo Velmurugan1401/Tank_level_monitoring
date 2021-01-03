@@ -9,7 +9,7 @@ const EventTrigger = require("../modules/event_trigger");
 const Tankhistory = require("../modules/Tank_history");
 const Device = require("../modules/Device_details");
 const Users = require("../modules/User_details");
-const MSG = require("../modules/msg")
+const MSG = require("../modules/msg");
 
 
 
@@ -64,8 +64,6 @@ APIRoutes.prototype.init = function () {
     self.router.post('/login', function (req, res) {
         var boodskap = new Boodskap(self.app)
         boodskap.login(req, res);
-
-
     });
 
     self.router.post('/logout',sessionCheck, function (req, res) {
@@ -81,16 +79,12 @@ APIRoutes.prototype.init = function () {
         self.student.performAction(req, res);
     });
     self.router.post('/tank/:action', sessionCheck, function (req, res) {
-
-
         self.tank.performAction(req, res);
     });
     self.router.post('/tankstatus/:action', sessionCheck, function (req, res) {
         self.Tank_status.performAction(req, res);
     });
-    // MASSAGE TABLE HISTORYS LIST
-
-    
+    // MASSAGE TABLE HISTORYS LIST    
     self.router.get('/tankhistory/:action', sessionCheck, function (req, res) {
         self.Tank_history.performAction(req, res);
     });
@@ -103,17 +97,11 @@ APIRoutes.prototype.init = function () {
     self.router.post('/devicedetail/:action', sessionCheck, function (req, res) {
         self.Device_details.performAction(req, res);
     });
-    self.router.post('/user/:action', sessionCheck, function (req, res) {
-      
+    self.router.post('/user/:action', sessionCheck, function (req, res) {      
         self.details.performAction(req, res);
-    });
-   
+    });   
     self.router.post('/msg/:action', sessionCheck, function (req, res) {
-
         self.msg.performAction(req, res);
     });
-
-
     self.app.use(self.app.conf.web.basepath, self.router);
-
 };
