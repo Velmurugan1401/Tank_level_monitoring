@@ -1,6 +1,6 @@
 var UserTable = null;
 var Users_list = [];
-var deleteuserid=null;
+var deleteuserid="";
 var key;
 var count;
 var flag = false;
