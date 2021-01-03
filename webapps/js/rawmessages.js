@@ -1,21 +1,3 @@
-// var dataSet = [
-//     [ "SAMPLE_DEV_100", "Raw Message 1", "12/24/2020 04:21:46 pm"],
-//     [ "SAMPLE_DEV_101", "Raw Message 2", "12/24/2020 08:16:40 pm"]
-
-// ];
-
-// $(document).ready(function() {
-
-//     $('#rawMsgTable').DataTable( {
-//         data: dataSet,
-//         columns: [
-//             { title: "Device Name" },
-//             { title: "Messages" },
-//             { title: "Reported Time" }
-          
-//         ]
-//     } );
-// } );
 var DeviceTable = null;
 var device_list=[];
 var device_list2;
@@ -27,7 +9,38 @@ $(document).ready(function(){
     loadDeviceList();
 })
 
-
+$('#expandview').click(function(){
+    var elem = document.documentElement;
+    if($(this).hasClass('fa fa-expand')){
+       
+        $(this).removeClass('fa fa-expand');
+        
+        $(this).addClass('fa fa-compress');
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+          } else if (elem.webkitRequestFullscreen) { /* Safari */
+            elem.webkitRequestFullscreen();
+          } else if (elem.msRequestFullscreen) { /* IE11 */
+            elem.msRequestFullscreen();
+          }
+       
+          
+      }else{
+       
+        $(this).removeClass('fa fa-compress');
+        
+        $(this).addClass('fa fa-expand');  
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.webkitExitFullscreen) { /* Safari */
+            document.webkitExitFullscreen();
+          } else if (document.msExitFullscreen) { /* IE11 */
+            document.msExitFullscreen();
+          }
+        
+       
+      }
+});
 
 function loadDeviceList() {
 
@@ -198,11 +211,6 @@ function loadDeviceList() {
                        
                        
                         
-                      
-                    
-                   
-                  
-
                     $(".totalCount").html(data.result.data.total)
 
                     resultData['draw'] = oSettings.iDraw;
@@ -224,5 +232,7 @@ function loadDeviceList() {
 
 // }
  
+
+
 
 
