@@ -82,7 +82,7 @@ th
     .drop
     {
          
-        
+       display: none; 
         height: 22px;
         width: 22px;
         background: -webkit-gradient(
@@ -95,6 +95,7 @@ th
         transform: rotate(45deg);
         position: absolute;
         border-radius: 0% 100% 100% 100%;
-        left: 100px;
+        left: 110px;
         top: 43px;
+        
     }
