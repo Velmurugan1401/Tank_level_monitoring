@@ -442,3 +442,21 @@ $(".toggle-password").click(function () {
         input.attr("type", "password");
     }
 });
+
+
+function logout(obj, cbk) {
+    console.log(obj);
+    $.ajax({
+        url: API_URL + "/logout",
+        type: 'POST',
+        contentType: "application/json",
+        data: JSON.stringify(obj),
+        success: function (data) {
+            cbk(true, data);
+        },
+        error: function (e) {
+            cbk(false, null);
+        }
+    });
+
+}

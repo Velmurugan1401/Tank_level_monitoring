@@ -14,7 +14,7 @@ Users.prototype.performAction = function (req,res){
 
     if(req.params.action === 'insert'){
         self.common.commonAdd(self.table.USER_TABLE,req,res);
-        console.log("uiiiii",req.body)
+      
     }
     else if(req.params.action === 'update'){
         self.common.commonUpdate(self.table.USER_TABLE,req,res);
@@ -27,7 +27,8 @@ Users.prototype.performAction = function (req,res){
     }
     else if(req.params.action === 'userinsert'){
         self.common.commonUser(req,res);
-        console.log(req.body);
+        console.log("js",req.body);
+        console.log(res);
     }
     else{
         res.status(401).json({status:false,message:'Invalid Access'})

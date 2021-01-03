@@ -8,7 +8,38 @@ var list=[];
 $(document).ready(function(){
     loadDeviceList();
 })
-
+$('#ex').click(function(){
+    var elem = document.documentElement;
+    if($(this).hasClass('fa fa-expand')){
+       
+        $(this).removeClass('fa fa-expand');
+        
+        $(this).addClass('fa fa-compress');
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+          } else if (elem.webkitRequestFullscreen) { /* Safari */
+            elem.webkitRequestFullscreen();
+          } else if (elem.msRequestFullscreen) { /* IE11 */
+            elem.msRequestFullscreen();
+          }
+        // $('#password').attr('type','text');
+          
+      }else{
+       
+        $(this).removeClass('fa fa-compress');
+        
+        $(this).addClass('fa fa-expand');  
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.webkitExitFullscreen) { /* Safari */
+            document.webkitExitFullscreen();
+          } else if (document.msExitFullscreen) { /* IE11 */
+            document.msExitFullscreen();
+          }
+        
+        // $('#password').attr('type','password');
+      }
+});
 
 
 function loadDeviceList() {
@@ -72,12 +103,14 @@ function loadDeviceList() {
     
 
     var queryParams = {
+       
         query: {
             "bool": {
                 "must": []
             }
         },
         sort: [{ "created_ts": { "order": "asc" } }]
+        
     };
 
     device_list = [];
@@ -99,20 +132,24 @@ function loadDeviceList() {
 
         },
         "bServerSide": true,
-        "sAjaxSource": BASE_PATH+'/device/list',
+        "sAjaxSource": BASE_PATH+'/devicedetail/listdev',
         "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
          
 
 
 
-            queryParams.query['bool']['must'] = [];
+            queryParams.query['bool']['must'] = [{
+                "match": {
+                    "domainKey": "CDZMKBHJUM"
+                }
+            }];
             queryParams.query['bool']['should'] = [];
             delete queryParams.query['bool']["minimum_should_match"];
 
             var keyName = fields[oSettings.aaSorting[0][0]]
 
             var sortingJson = {};
-            sortingJson[keyName['mData']] = { "order": oSettings.aaSorting[0][1] };
+            sortingJson[keyName['mData']] = { "order": oSettings.aaSorting[0][1 ] };
             queryParams.sort = [sortingJson];
 
             queryParams['size'] = oSettings._iDisplayLength;
@@ -145,19 +182,18 @@ function loadDeviceList() {
             oSettings.jqXHR = $.ajax({
                 "dataType": 'json',
                 "contentType": 'application/json',
-                "type": "get",
+                "type": "POST",
                 "url": sSource,
-                "data": JSON.stringify({"query":queryParams}),
+                "data":JSON.stringify({"data":queryParams}),
                 success: function (data) {
 
                     console.log(data);
                     list=data;
                    
-                    var resultData = data.result;
+                    var resultData = data.result.data;
                    
-                        device_list2=data.result.data
-                        device_list=data.result.length
-                        console.log(device_list)
+                    device_list2 = resultData.data;
+                    console.log("new",device_list2.length)
                       
                     
                    

@@ -20,7 +20,31 @@ Common.prototype.commonSearch = function (tablename, req, res) {
     const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
 
     boodskap.elasticSearch(tablename, req.body.query, function (status, result) {
+
      
+        if (status) {
+            res.json({
+                status: true,
+                result: result
+            });
+        } else {
+            res.json({
+                status: false,
+                message: result
+            });
+
+        }
+    });
+
+};
+Common.prototype.commonSearchdev = function ( req, res) {
+
+    const self = this;
+
+    const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
+
+    boodskap.devSearch( req.body.data,function (status, result) {
+
 
         if (status) {
             res.json({
@@ -61,14 +85,16 @@ Common.prototype.commonDevice = function (req, res) {
     });
 
 };
+
 // RAW common=====================
-Common.prototype.RAWMsg = function (req, res) {
+Common.prototype.MsgSearch = function (tablename, req, res) {
 
     const self = this;
 
-    const boodskap = new Boodskap(self.app, req.token);
+    const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
 
-    boodskap.RawMsgSearch(function (status, result) {
+    boodskap.MSGSearch(tablename, req.body.query, function (status, result) {
+
 
         if (status) {
             res.json({
@@ -94,7 +120,7 @@ Common.prototype.commonUpdate = function (tablename, req, res) {
     const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
 
     boodskap.elasticUpdate(tablename, req.body._id, req.body.updateData, function (status, result) {
-        // console.log(req.body.updateData)
+
 
 
         if (status) {
@@ -119,7 +145,7 @@ Common.prototype.commonpush = function (tablename, req, res) {
 
 
     boodskap.elasticpush(tablename, req.body.did, req.body.dmdl, req.body.fwver, req.body, function (status, result) {
-        console.log(status)
+        // console.log(status)
 
         if (status) {
             res.json({
@@ -199,9 +225,9 @@ Common.prototype.commonAdd = function (tablename, req, res) {
     const self = this;
 
     const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
-  
-    boodskap.elasticInsert(tablename,req.body, function (status, result) {
-        console.log("insert",req.body);
+
+    boodskap.elasticInsert(tablename, req.body, function (status, result) {
+        
         if (status) {
             res.json({
                 status: true,
@@ -243,13 +269,12 @@ Common.prototype.commonDelete = function (tablename, req, res) {
 
 Common.prototype.commonUser = function (req, res) {
 
-
     const self = this;
 
     const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
   
     boodskap.Userlogin(req.body, function (status, result) {
-        console.log("insert",req.body);
+      
         if (status) {
             res.json({
                 status: true,
@@ -297,7 +322,7 @@ Common.prototype.commonUserlist = function (req,res) {
 
     const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
 
-    boodskap.Userlist( function (status, result) {
+    boodskap.Userlist( req.body.data,function (status, result) {
      
 
         if (status) {
