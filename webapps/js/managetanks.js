@@ -465,9 +465,13 @@ function deleteTank() {
        
 //     });
 // });
+
+
+//link
+
 var info = [];
 var flag1 = false;
-
+// link
 function linkdevice(tankid) {
 
     tank_list.forEach(element => {
@@ -556,12 +560,12 @@ function clicklinkdevice1() {
             type: "POST",
             success: function(result) {
                 //Success -> Show Alert & Refresh the page
-                successMsg("Device linked Successfully!");
+                successMsg("Device Unlinked Successfully!");
                 loadTankList();
             },
             error: function(e) {
                 //Error -> Show Error Alert & Reset the form
-                errorMsg("Device linked Failed!");
+                errorMsg("Device Unlinked Failed!");
                 //window.location.reload();
             },
         });
