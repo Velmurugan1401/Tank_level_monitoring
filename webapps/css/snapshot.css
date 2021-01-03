@@ -118,7 +118,7 @@ th
     {
         position: absolute;
         height: 30%;
-        width: 208px;
+        width: 209px;
         bottom: 44%;
         left: 50%;
         background: -webkit-gradient(
@@ -129,4 +129,23 @@ th
             to(#4273f0)
           );
         margin-left: -99px;
+    }
+    .drop
+    {
+         
+        
+        height: 22px;
+        width: 22px;
+        background: -webkit-gradient(
+            linear,
+            left top,
+            right top,
+            from(#8ba7e2),
+            to(#4273f0)
+          );
+        transform: rotate(45deg);
+        position: absolute;
+        border-radius: 0% 100% 100% 100%;
+        left: 115px;
+        top: 43px;
     }
