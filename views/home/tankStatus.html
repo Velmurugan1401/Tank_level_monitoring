@@ -3,7 +3,7 @@
         height:30px;border-radius: 4px;
         /* margin-top: 5px; */
     }
-    .live-btn{
+    /* .live-btn{
     width: 60px;
     background-color:rgba(28,63,170);
     height: 24px;
@@ -11,21 +11,22 @@
     color: white;
     border: none;
     margin-top: 8px;
-    }
+    } */
     .pick{
         border-radius: 4px;border: 1px solid gray;
     }
     #firstRow{
         padding: 10px 20px;
+        padding-right: 0px;
         /* border-bottom: 1px solid lightgrey; */
         background-color:gainsboro;
        
     }
     .paging_simple_numbers .pagination .paginate_button.active a, .paging_simple_numbers .pagination .paginate_button:hover a{
         color: #fff !important;
-    background-color: rgba(28,63,170) !important;
-    background: rgba(28,63,170) !important;
-    border-color: rgba(28,63,170) !important;
+    background-color:#005da2 !important;
+    background: #005da2 !important;
+    border-color: #005da2 !important;
     border-radius: 3px !important;
     }
     .dataTables_wrapper .dataTables_paginate .paginate_button:hover{
@@ -117,26 +118,24 @@
             </select>
           -->
           <div class="float-right">
-          <button type="button" class="btn" style="background-color:#005da2;color: white;">
+          <button type="button" class="btn" data-toggle="tooltip" title="Referesh" style="background-color:#005da2;color: white;">
             <i class="fa fa-refresh" aria-hidden="true"></i>
       </button></div>
 
+      <div class="float-right" style="margin-right: 5px;">
+      <button type="button" class="btn but" data-toggle="tooltip" data-placement="bottom" title="Full Screen">
+        <i class="fa fa-expand" id="expandview"style="color:white" aria-hidden="true"></i></button>
+    </div>
 <div class="dropdown float-right" style="margin-right: 5px;">
-    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" style="background-color:#005da2;border:unset;">Active Tanks</button>
-    <div class="dropdown-menu">
-           <!-- <a class="dropdown-item" href="#" >Link / Unlink Device</a>
-           <a class="dropdown-item" href="#" >Single Tank Snapshot</a>
-           <a class="dropdown-item" href="#" onclick= "" >Delete</a> -->
-           <input type="radio" checked value="Active">Active Tanks<br>
-           <input type="radio" value="Inactive">Inactive Tanks
+    <button type="button" class="btn btn-primary dropdown-toggle" id="activeTank" data-toggle="dropdown" aria-haspopup="true" style="background-color:#005da2;border:unset;">Active Tanks</button>
+    <div class="dropdown-menu" style="padding-left: 5px;padding-right: 5px;">
+           <input type="radio"  name="tankactive"  value="Active">Active Tanks<br>
+           <input type="radio" name="tankactive" value="Inactive">Inactive Tanks
          </div>
      </div>
-     
+     <!-- <input type="text" id="pick"> -->
 
-
-           
-                  
-        </div>
+</div>
 </div>
 
 
