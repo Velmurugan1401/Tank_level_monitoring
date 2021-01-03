@@ -1,6 +1,7 @@
 var TankMasterTable = null;
 var tank_list = [];
 var tankcount;
+var device_list = [];
 var id = [];
 var totalcount;
 var key;
@@ -395,39 +396,61 @@ function deleteTank(row) {
         }
     });
 }
-async function deviceLink(){
-    
-    if(device_id=""){
-        device_id=id;
-        console.log("new",id)
-     await function editTank(id) {
+$(() => {
+    $.ajax({
 
-            key = id;
+        url: BASE_PATH + "/devicedetail/listdev",
+       
+        contentType: "application/json", 
+        type: 'POST',
+        success: function (result) {
+            var resultData = data.result.data;
+            device_list = resultData;
+            console.log("hai", device_list, tank_list );
+            $("#listdevice").html("");
+        
+               resultData.forEach(element => {
+                  let tr = `<option value=` + element.id + `>` +  element.id + `</option>`;
+                  $("#listdevice").append(tr);
+               });
+        },
+       
+    });
+})
+//  function deviceLink(){
+//     console.log("hai", device_list, tank_list );
+//     $("listdevice").val();
+//     if(device_id=""){
+//         device_id=id;
+//         console.log("new",id)
+//      await function editTank(id) {
+
+//             key = id;
             
-            console.log(key);
-            Updateflag = true;
+//             console.log(key);
+//             Updateflag = true;
         
-            for (i = 0; i < tank_list.length; i++) {
-                if (tank_list[i]._id == id) {
-                    tank1 = tank_list[i];
-                    $("#tank_name").val(tank1.tank_name);
-                    $("#tank_type").val(tank1.tank_type);
-                    $("#location").val(tank1.location);
-                    $("#capacity").val(tank1.capacity);
-                    $("#min_level").val(tank1.min_level);
-                    $("#max_level").val(tank1.max_level);
-                    $("#device_id").val(tank1.device_id);
-                    console.log(tank1);
-                    _id = id
-                }
-            }
-            console.log(id);
+//             for (i = 0; i < tank_list.length; i++) {
+//                 if (tank_list[i]._id == id) {
+//                     tank1 = tank_list[i];
+//                     $("#tank_name").val(tank1.tank_name);
+//                     $("#tank_type").val(tank1.tank_type);
+//                     $("#location").val(tank1.location);
+//                     $("#capacity").val(tank1.capacity);
+//                     $("#min_level").val(tank1.min_level);
+//                     $("#max_level").val(tank1.max_level);
+//                     $("#device_id").val(tank1.device_id);
+//                     console.log(tank1);
+//                     _id = id
+//                 }
+//             }
+//             console.log(id);
         
-        }
-    }
+//         }
+//     }
         
     
-else{
-    successMsg("Already Linked");
-}
-}
+// else{
+//     successMsg("Already Linked");
+// }
+// }

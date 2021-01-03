@@ -182,12 +182,12 @@ function loadDeviceList() {
   
 }
 
-for(i=0;i<=device_list2.length;i++){
-    console.log("res",device_list2[i].id)
+// for(i=0;i<=device_list2.length;i++){
+//     console.log("res",device_list2[i].id)
    
-    $('#listdevice').append('<option>'+device_list2[i].id+`</option>`)
+//     $('#listdevice').append('<option>'+device_list2[i].id+`</option>`)
 
-}
+// }
  
 
 
