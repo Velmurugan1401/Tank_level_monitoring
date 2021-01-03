@@ -1,170 +1,238 @@
 <style>
-  #extraSideNav{
+  #extraSideNav {
     /* display: none; */
     padding-left: 0px;
     padding-right: 0px;
-    
   }
-  #headerRow{
+  #headerRow {
     /* background-color: #38A7FA; */
     background-color: #005da2;
     height: 50px;
- 
   }
-  #menuIcon{
-   /* margin-right: 10px;margin-top: -6px; */
-   display: none;
+  #menuIcon {
+    /* margin-right: 10px;margin-top: -6px; */
+    display: none;
   }
-  
-  #userMailDropdown{
+
+  #userMailDropdown {
     background-color: unset;
     text-align: left;
-    margin-right:10px;
+    margin-right: 10px;
     margin-top: 0px;
-    color:white;font-size: 12px;
+    color: white;
+    font-size: 12px;
   }
-  #collapseExample>.sidebar-nav>ul>li{
-    margin:unset !important;
-
+  #collapseExample > .sidebar-nav > ul > li {
+    margin: unset !important;
   }
-  #logoSideNav{
-    padding-top: 5px;padding-left: 20px;position: relative;
+  #logoSideNav {
+    padding-top: 5px;
+    padding-left: 20px;
+    position: relative;
   }
-  .profile{
-        background-color: white;
-        color:#005da2;
-        width: 35px;
-        height: 35px;
+  .profile {
+    background-color: white;
+    color: #005da2;
+    width: 35px;
+    height: 35px;
     border-radius: 22px;
     text-align: center;
     font-size: 24px;
     margin-right: 0px;
-    margin-top: 8px;padding-left: 0px;
+    margin-top: 8px;
+    padding-left: 0px;
     /* position: absolute; */
     /* right: 36px;top: 10px; */
-    }
-    #profileCard{
-        width: 67px;
-        position: absolute;
-        height: 29px;
-        right: 3px;
-        top: 31px;
-        background-color: rgba(28,63,170);
-        color: white;
-        /* color: black; */
-        border-radius: 4px;
-        /* opacity: 0.9;    */
-         border: 1px solid grey;
-    }
-    /* .dropdown-menu.show{
+  }
+  #profileCard {
+    width: 67px;
+    position: absolute;
+    height: 29px;
+    right: 3px;
+    top: 31px;
+    background-color: rgba(28, 63, 170);
+    color: white;
+    /* color: black; */
+    border-radius: 4px;
+    /* opacity: 0.9;    */
+    border: 1px solid grey;
+  }
+  /* .dropdown-menu.show{
       left:-3px !important;
       top:0px !important;
     } */
-  @media screen and (min-width: 320px) and (max-width: 767px) { 
-    #extraSideNav{
-    display: block;
-    padding-left: 0px;
-    padding-right: 0px;
-    background-color: #38A7FA;
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    #extraSideNav {
+      display: block;
+      padding-left: 0px;
+      padding-right: 0px;
+      background-color: #38a7fa;
+    }
+    #headerRow {
+      background-color: #38a7fa;
+      height: 50px;
+    }
+    .scroll-sidebar {
+      display: block !important;
+    }
+    #dropDownLogout {
+      display: none;
+    }
+    .profile {
+      display: none;
+    }
+    #menuIcon {
+      display: inline-block;
+      margin-right: 10px;
+      margin-top: -6px;
+    }
   }
-  #headerRow{
-    background-color: #38A7FA;
-    height: 50px;
-  }
-  .scroll-sidebar{
-    display:block !important;
-  }
-  #dropDownLogout{
-    display: none;
-  }
-  .profile{
-    display: none;
-  }
-  #menuIcon{
-    display: inline-block;
-   margin-right: 10px;
-   margin-top: -6px;
-  }
-  }
-
 </style>
 
-<div class="container-fluid" id="extraSideNav" >
-<div class="row" id="headerRow" style="">
-<div class="col-md-6" id="logoSideNav">
-  
-  <img src="images/storage-tank.png" class="logo-cls" style="width:20px;height:20px;position: absolute;top:13px;">
-  <h5 style="color: white;font-weight: 500;padding-top: 0px;position: absolute;left:45px;top:16px;">TANK MONITORING</h5>
-  
-</div>
-<div class="col-md-6">
-  
-  <div class="dropdown float-right" id="dropDownLogout">
-     <button class="btn dropdown-toggle" id="userMailDropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" 
-      aria-haspopup="true" aria-expanded="false">User Name<br/>
-      <span style="color: white;">Mail@gmail.com</span>
-    </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" onclick="loadMainPage('/profile')" href="#/profile">Profile</a>
-    <a class="dropdown-item" href="#">Settings</a>
-    <a class="dropdown-item" href="#" onclick="logout()">Log Out</a>
+<div class="container-fluid" id="extraSideNav">
+  <div class="row" id="headerRow" style="">
+    <div class="col-md-6" id="logoSideNav">
+      <img
+        src="images/storage-tank.png"
+        class="logo-cls"
+        style="width: 20px; height: 20px; position: absolute; top: 13px"
+      />
+      <h5
+        style="
+          color: white;
+          font-weight: 500;
+          padding-top: 0px;
+          position: absolute;
+          left: 45px;
+          top: 16px;
+        "
+      >
+        TANK MONITORING
+      </h5>
+    </div>
+    <div class="col-md-6">
+      <div class="dropdown float-right" id="dropDownLogout">
+        <button
+          class="btn dropdown-toggle"
+          id="userMailDropdown"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          User Name<br />
+          <span style="color: white">Mail@gmail.com</span>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a
+            class="dropdown-item"
+            onclick="loadMainPage('/profile')"
+            href="#/profile"
+            >Profile</a
+          >
+          <a class="dropdown-item" href="#">Settings</a>
+          <a class="dropdown-item" href="#" onclick="logout()">Log Out</a>
+        </div>
+      </div>
+
+      <div class="profile float-right">
+        <i class="fa fa-user" aria-hidden="true" onclick="profilelogout()"></i>
+      </div>
+
+      <button
+        class="btn float-right"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapseExample"
+        id="menuIcon"
+        aria-expanded="false"
+        aria-controls="collapseExample"
+      >
+        <i class="fa fa-bars" aria-hidden="true" style="color: black"></i>
+      </button>
+
+      <div class="collapse" id="collapseExample">
+        <div class="scroll-sidebar" style="display: none">
+          <nav class="sidebar-nav">
+            <ul class="leftMainMenu" id="sidebarnav">
+              <li class="home-page">
+                <span class="home-page-span">Home</span>
+              </li>
+              <li class="dashboard">
+                <a onclick="loadMainPage('/dashboard')" href="#/dashboard">
+                  <i
+                    class="fa fa-tachometer"
+                    style="color: white; font-size: 17px; vertical-align: unset"
+                    aria-hidden="true"
+                  ></i
+                  >Dashboard</a
+                >
+              </li>
+
+              <li class="tank-status">
+                <a onclick="loadMainPage('/tankstatus')" href="#/tankstatus">
+                  <i
+                    class="fa fa-microchip"
+                    style="color: white; font-size: 16px; vertical-align: unset"
+                    aria-hidden="true"
+                  ></i
+                  >Tank Status</a
+                >
+              </li>
+
+              <li class="admin-page" style="margin-top: 20px">
+                <span class="admin-page-span">Administration</span>
+              </li>
+
+              <li class="manage-tanks">
+                <a onclick="loadMainPage('/tanks')" href="#/managetanks">
+                  <i
+                    class="fa fa-microchip"
+                    style="color: white; font-size: 16px; vertical-align: unset"
+                    aria-hidden="true"
+                  ></i
+                  >Tanks</a
+                >
+              </li>
+
+              <li class="manage-devices">
+                <a onclick="loadMainPage('/devices')" href="#/managedevices">
+                  <i
+                    class="fa fa-microchip"
+                    style="color: white; font-size: 16px; vertical-align: unset"
+                    aria-hidden="true"
+                  ></i
+                  >Devices</a
+                >
+              </li>
+
+              <li class="users">
+                <a onclick="loadMainPage('/users')" href="#/users">
+                  <i
+                    class="fa fa-users"
+                    style="color: white; font-size: 16px; vertical-align: unset"
+                    aria-hidden="true"
+                  ></i
+                  >Users</a
+                >
+              </li>
+
+              <li class="raw-messages">
+                <a onclick="loadMainPage('/rawmessages')" href="#/rawmessages">
+                  <i
+                    class="fa fa-envelope"
+                    style="color: white; font-size: 16px; vertical-align: unset"
+                    aria-hidden="true"
+                  ></i
+                  >Raw Messages</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
-<div class="profile float-right">
-  <i class="fa fa-user" aria-hidden="true" onclick="profilelogout()"></i>
-</div>
-
-
-<button class="btn float-right" type="button" data-toggle="collapse" data-target="#collapseExample" id="menuIcon" aria-expanded="false" aria-controls="collapseExample">
-    <i class="fa fa-bars" aria-hidden="true" style="color: black;"></i>
-  </button>
-
-<div class="collapse" id="collapseExample"> 
-       <div class="scroll-sidebar" style="display: none;"> 
-        <nav class="sidebar-nav"> 
-          <ul class="leftMainMenu" id="sidebarnav">
-              
-             <li class="home-page">
-               <span class="home-page-span">Home</span>
-             
-             </li>
-                 <li class="dashboard">
-                     <a onclick="loadMainPage('/dashboard')" href="#/dashboard">
-                       <i class="fa fa-tachometer" style="color:white;font-size: 17px;vertical-align: unset;" aria-hidden="true"></i>Dashboard</a>
-                 </li>
-   
-                 <li class="tank-status">
-                     <a onclick="loadMainPage('/tankstatus')" href="#/tankstatus">
-                       <i class="fa fa-microchip" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Tank Status</a>
-                 </li>
-   
-                 <li class="admin-page" style="margin-top: 20px;">
-                   <span class="admin-page-span">Administration</span>
-                 </li>
-   
-                 <li class="manage-tanks" >
-                     <a onclick="loadMainPage('/tanks')" href="#/managetanks">
-                       <i class="fa fa-microchip" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Tanks</a>
-                 </li>
-   
-                 <li class="manage-devices">
-                     <a onclick="loadMainPage('/devices')" href="#/managedevices">
-                       <i class="fa fa-microchip" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Devices</a>
-                 </li>
-   
-                 <li class="users" >
-                     <a onclick="loadMainPage('/users')" href="#/users">
-                       <i class="fa fa-users"  style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Users</a>
-                 </li>
-   
-                 <li class="raw-messages">
-                   <a onclick="loadMainPage('/rawmessages')" href="#/rawmessages">
-                     <i class="fa fa-envelope" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Raw Messages</a>
-               </li>
-             </ul> 
-         </nav> 
-</div>
-</div>
-</div></div> </div>
 <script src="js/auth.js"></script>
