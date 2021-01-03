@@ -8,7 +8,7 @@ var usercount;
 // var startDate = moment().subtract(6, 'days').startOf('day');
 // var endDate = moment().endOf('day');
 $(document).ready(function () {
-    loadUsersList(); 
+    loadUsersList();     
 });
  
 function refreshuser()
@@ -397,7 +397,8 @@ function loadUsersList() {
 
         dom: 'l<"toolbar">frtip',
         initComplete: function () {
-            $("div.toolbar").html('<input id="datepick"> <button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button>');
+            // $("div.toolbar").append("<button>Datepick</button>");
+            $("div.toolbar").html('<input type="text"><button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button>');
             // $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button><i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>');   
 
         }

@@ -193,7 +193,7 @@ function loadDeviceList() {
                     var resultData = data.result.data;
                    
                     device_list2 = resultData.data;
-                    console.log("new",device_list2.length)
+                    console.log("new",device_list2)
                       
                     
                    
