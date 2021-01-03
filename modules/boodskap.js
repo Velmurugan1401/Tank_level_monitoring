@@ -54,19 +54,11 @@ Boodskap.prototype.login = function (req, res) {
                 domainKey: result.domainKey,
                 apiKey: result.apiKey,
             };
-
-
-
-
             req.session['sessionObj'] = sessionObj;
-
-
-
             res.json({
                 login: true,
                 sessionObj: sessionObj
             });
-
 
         } else {
 
@@ -78,7 +70,6 @@ Boodskap.prototype.login = function (req, res) {
             })
         }
     });
-
 
 }
 
@@ -183,9 +174,7 @@ Boodskap.prototype.deviceSearch = function (cbk) {
     }, function (err, res, body) {
 
         if (!err) {
-           
-
-
+        
             if (res.statusCode === 200) {
                 var resultObj = self.utils.elasticDeviceFormatter(JSON.parse(body))
                 cbk(true, resultObj)
@@ -197,7 +186,7 @@ Boodskap.prototype.deviceSearch = function (cbk) {
             self.logger.error("record search error in platform =>", err)
             cbk(false, null)
         }
-
+``
     });
 
 }
@@ -241,7 +230,7 @@ Boodskap.prototype.devSearch = function (data,cbk) {
 // RAW msg====================================
 
 Boodskap.prototype.MSGSearch = function (rid, query, cbk) {
-  
+  console.log(query)    
     const self = this;
 
     var obj = {
@@ -433,7 +422,7 @@ Boodskap.prototype.elasticpush = function (rid, did, dmdl, fwver, data, cbk) {
 Boodskap.prototype.Userlogin = function (data, cbk) {
 
     const self = this;
-    console.log(data);
+    // console.log(data);
 
     request.post({
         uri: self.API_URL + '/user/upsert/' + self.API_TOKEN ,
@@ -497,7 +486,7 @@ Boodskap.prototype.Userlist = function (cbk) {
         uri: self.API_URL + '/user/list/' + self.API_TOKEN + '/'+ size,
 
     }, function (err, res, body) {
-        console.log(body)
+        // console.log(body)
 
         if (!err) {
 
