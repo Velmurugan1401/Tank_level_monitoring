@@ -149,7 +149,7 @@ function loadDeviceList() {
             var keyName = fields[oSettings.aaSorting[0][0]]
 
             var sortingJson = {};
-            sortingJson[keyName['mData']] = { "order": oSettings.aaSorting[0][1] };
+            sortingJson[keyName['mData']] = { "order": oSettings.aaSorting[0][1 ] };
             queryParams.sort = [sortingJson];
 
             queryParams['size'] = oSettings._iDisplayLength;
