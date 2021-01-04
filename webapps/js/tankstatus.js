@@ -154,7 +154,7 @@ function loadTankStatusList() {
             mRender: function (data, type, row) {
                 console.log(row);
               var actionsHtml = '<button class="btn btn-default" data-target=""  data-toggle="modal"style="margin-right:5px;" onclick=""><i class="fa fa-link" aria-hidden="true"></i></button>'
-                          +'<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\')" href="#/snapshot" style="margin-right:5px;"><i class="fa fa-eye" aria-hidden="true"></i></button>'
+                          +'<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\');status(\''+row._id+'\')" href="#/snapshot"  style="margin-right:5px;" ><i class="fa fa-eye" aria-hidden="true"></i></button>'
                           +'<button class="btn btn-default" data-target="#statusDeletemodal" data-toggle="modal" onclick="assignDeleteDeviceId(\'' + row._id + '\')"><i class="fa fa-trash icon" ></i></button>';
                           return actionsHtml;
             }
@@ -293,4 +293,17 @@ function assignDeleteDeviceId(row){
         });
     }
 
-   
+function status(row){
+    var dank;
+
+    for(i=0;i<=TankStatus_list.length;i++){
+        if(row==TankStatus_list[i]._id)
+        {
+           dank=TankStatus_list[i];
+          
+           break;
+        }
+    }
+
+
+}   
