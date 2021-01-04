@@ -1,5 +1,6 @@
  
- <link rel="stylesheet" href="css/snapshot.css" /> 
+ 
+<link rel="stylesheet" href="css/snapshot.css" /> 
  
  
 <div class="container-fluid">
@@ -77,26 +78,11 @@
               </div>
               <div class="card-body cad">
                 <div class="row">
-                  <div class="col-6 p-2">
-                    <h5 class="">Name</h5>
-                    <p>Tank 1</p>
-
-                    <h5>Type</h5>
-                    <p>Cylinder</p>
-
-                 
-
-                    <h5>Capacity</h5>
-                    <p>10,00,000</p>
+                  <div class="col-6 p-2"id="tankname"  >
+                   
                   </div>
-                  <div class="col-6 p-2">
-                    <h5>Location</h5>
-                    <p>Chennai</p>
-                    <h5>Min Level</h5>
-                    <p>100</p>
-  
-                    <h5>Max Level</h5>
-                    <p>10,000</p>
+                  <div class="col-6 p-2 "id="Location">
+                    
 
                     <!-- <p>Created by</p>
                     <p>Meow</p> -->
@@ -119,30 +105,27 @@
               </div>
               <div class="card-body cad">
                 <div class="row">
-                  <div class="col-8 p-2">
-                    <h5>Tank Level</h5>
-                    <p>15000</p>
+                  <div class="col-8 p-2"id="status" >
+                   
                   </div>
-                  <div class="col-4 p-2">
-                    <h5>Status</h5>
-                    <p>High</p>
+                  <div class="col-4 p-2 " id="status1">
+                    
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-8 p-2">
-                    <h5>Reported time</h5>
-                    <p>24/12/2020</p>
+                  <div class="col-8 p-2" id="status2">
+                 
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-3 p-2">
-                    <button type="button" class="btn btn1">ON</button>
+                  <div class="col-3">
+                    <button type="button" class="btn act">ON</button>
                   </div>
-                  <div class="col-3 p-2">
-                    <button type="button" class="btn btn2">OFF</button>
+                  <div class="col-3">
+                    <button type="button" class="btn act">OFF</button>
                   </div>
-                  <div class="col-3 p-2">
-                    <button type="button" class="btn btn3">STATUS</button>
+                  <div class="col-3">
+                    <button type="button" class="btn act">STATUS</button>
                   </div>
                   
  
@@ -156,17 +139,11 @@
               </div>
               <div class="card-body cad">
                 <div class="row">
-                  <div class="col-6 p-2">
-                    <h5>Device_id</h5>
-                    <p>Simulator_1001</p>
-                    <h5>Linked Time</h5>
-                    <p>24/12/2020</p>
+                  <div class="col-6 p-2" id="device">
+                   
                   </div>
-                  <div class="col-6 p-2">
-                    <h5>Version</h5>
-                    <p>v1.0.1</p>
-                    <h5>Model</h5>
-                    <p>1.0</p>
+                  <div class="col-6 p-2"id="device2">
+                   
                   </div>
                 </div>
               </div>
@@ -233,3 +210,4 @@
     $('#example').DataTable();
 } );
 </script> 
+<script src="js/tankstatus.js"></script>
