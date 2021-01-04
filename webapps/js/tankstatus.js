@@ -8,12 +8,47 @@ var deleteDeviceId=null;
 $(document).ready(function(){
     loadTankStatusList();
 
-//    $('.dropdown-menu a').on('click', function(){    
-//         $('.dropdown-toggle').html($(this).html());    
-//     })
+    $('input[name="tankactive"]').on('click', function () {
+        var n = $('input[name="tankactive"]:checked').val();
+       
+        $("#tankFilter").html('');
+        $("#tankFilter").append(n);
+        })
     
 });
 
+$('#expandview').click(function(){
+    var elem = document.documentElement;
+    if($(this).hasClass('fa fa-expand')){
+       
+        $(this).removeClass('fa fa-expand');
+        
+        $(this).addClass('fa fa-compress');
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+          } else if (elem.webkitRequestFullscreen) { /* Safari */
+            elem.webkitRequestFullscreen();
+          } else if (elem.msRequestFullscreen) { /* IE11 */
+            elem.msRequestFullscreen();
+          }
+       
+          
+      }else{
+       
+        $(this).removeClass('fa fa-compress');
+        
+        $(this).addClass('fa fa-expand');  
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.webkitExitFullscreen) { /* Safari */
+            document.webkitExitFullscreen();
+          } else if (document.msExitFullscreen) { /* IE11 */
+            document.msExitFullscreen();
+          }
+        
+       
+      }
+});
 
 
 
@@ -34,18 +69,18 @@ function loadTankStatusList() {
             sWidth: '20%',
             orderable: false,
             mRender: function (data, type, row) {
-                return '<div class="row">' + '<img src="/images/tank-1.png"style="height:30px;"width:30px">' + '&nbsp;' + '&nbsp;' + '<b>' + row.tank_name +'</b>' + '&nbsp;' + '&nbsp;' + '<h6>' + '&nbsp;' + '&nbsp;' + row.location + '&nbsp;' + '</h6>' + '</div>';
+                return data ? data : '-';
             }
         },
-        // {
-        //     mData: 'location',
-        //     sTitle: 'Location',
-        //     sWidth: '20%',
-        //     orderable: false,
-        //     mRender: function (data, type, row) {
-        //         return data ? data : '-';
-        //     }
-        // },
+        {
+            mData: 'location',
+            sTitle: 'Location',
+            sWidth: '20%',
+            orderable: false,
+            mRender: function (data, type, row) {
+                return data ? data : '-';
+            }
+        },
 
         {
             mData: 'capacity',
@@ -119,7 +154,7 @@ function loadTankStatusList() {
 
     var tableOption = {
         fixedHeader: false,
-        responsive: false,
+        responsive: true,
         paging: true,
         searching: true,
         aaSorting: [[3, 'desc'],[0,'desc']],
