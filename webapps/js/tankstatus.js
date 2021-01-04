@@ -97,9 +97,9 @@ function loadTankStatusList() {
             sTitle: 'Actions',
             orderable: false,
             mRender: function (data, type, row) {
-                console.log(row);
+                // console.log(row);
               var actionsHtml = '<button class="btn btn-default" data-target=""  data-toggle="modal"style="margin-right:5px;" onclick=""><i class="fa fa-link" aria-hidden="true"></i></button>'
-                          +'<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\');status(\''+row._id+'\')" href="#/snapshot"  style="margin-right:5px;" ><i class="fa fa-eye" aria-hidden="true"></i></button>'
+                          +'<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\');status(\''+row.device_id+'\')" href="#/snapshot"  style="margin-right:5px;" ><i class="fa fa-eye" aria-hidden="true"></i></button>'
                           +'<button class="btn btn-default" data-target="#statusDeletemodal" data-toggle="modal" onclick="assignDeleteDeviceId(\'' + row._id + '\')"><i class="fa fa-trash icon" ></i></button>';
                           return actionsHtml;
             }
@@ -210,13 +210,13 @@ function profilelogout(event) {
     }
 
 function assignDeleteDeviceId(row){
-    console.log(row);
+    // console.log(row);
     deleteDeviceId = row
 }
 
     function statusDeleteTank()  {
         alert(deleteDeviceId)
-        console.log(deleteDeviceId);
+        // console.log(deleteDeviceId);
         $.ajax({
     
             url: BASE_PATH + "/tankstatus/delete",
@@ -237,18 +237,103 @@ function assignDeleteDeviceId(row){
             }
         });
     }
-
-function status(row){
     var dank;
+    var devid;
+    var tankstat;
+function status(row){
+    devid=row
+    
+    $(() => {
+        $.ajax({
+            "dataType": 'json',
+            "contentType": 'application/json',
+            "type": "POST",
+            url: BASE_PATH + '/tank/list',
+            success: function (data) {
+                var resultData = data.result.data.data;
+                // console.log("its me",resultData)
 
-    for(i=0;i<=TankStatus_list.length;i++){
-        if(row==TankStatus_list[i]._id)
-        {
-           dank=TankStatus_list[i];
-          
-           break;
-        }
+                for(i=0;i<=resultData.length;i++){
+                    if(row==resultData[i].device_id)
+                    {
+                       dank=resultData[i];
+                      
+                      
+                       break;
+                    }
+                }
+                $("#tankname").append("<h5>name</h5><p>"+dank.tank_name+"</p>")   
+                $("#tankname").append("<h5>type</h5><p>"+dank.tank_type+"</p>")   
+                $("#tankname").append("<h5>capacity</h5><p>"+dank.capacity+"</p>")  
+                $("#Location").append("<h5>location</h5><p>"+dank.location+"</p>") 
+                $("#Location").append("<h5>max_level</h5><p>"+dank.max_level+"</p>")  
+                $("#Location").append("<h5>min_level</h5><p>"+dank.min_level+"</p>")   
+                
+                   
+    
+            }
+        })
+    })
+     for(i=0;i<=TankStatus_list.length;i++)
+                 {
+                     if(row==TankStatus_list[i].device_id){
+                        tankstat=TankStatus_list[i];
+                             break   
+                     }
+                 } 
+                
+
+               
+
+}
+
+$("#status").append("<h5>Tank Level</h5><p>"+tankstat.tank_level+"</p>")   
+$("#status1").append("<h5>type</h5><p>"+tankstat.status+"</p>")   
+$("#status2").append("<h5>Reported_ts</h5><p>"+ moment(tankstat.created_ts).format(DATE_TIME_FORMAT)+"</p>")  
+
+$(() => {
+    var flist;
+    console.log("start")
+    var queryParams={
+        query:{
+            "bool": {
+                "must": { "match": {
+                    domainKey: "CDZMKBHJUM"
+                }}
+            }
+        },
+        "size":109,
+      
+        "from":0
+        
     }
+    
+    $.ajax({
+        "dataType": 'json',
+        "contentType": 'application/json',
+        "type": "POST",
+        "url": BASE_PATH+'/devicedetail/listdev',
+        "data":JSON.stringify({data:queryParams}),
+        success: function (data) {
+            var resultData = data.result.data.data;
+           
+            console.log("dara",resultData)
+            for(i=0;i<=resultData.length;i++){
+                if(devid==resultData[i].id)
+                {
+                    flist=resultData[i];
+                  
+                  
+                   break;
+                }
+            }
+            $("#device").append("<h5>Tank Level</h5><p>"+flist.id+"</p>")   
+$("#device").append("<h5>LINKED TIME</h5><p>"+moment(flist.registeredStamp).format(DATE_TIME_FORMAT)+"</p>")  
+$("#device2").append("<h5>model </h5><p>"+flist.modelId+"</p>")   
+$("#device2").append("<h5>version</h5><p>"+flist.version+"</p>")   
+            
 
 
-}   
+        }
+    })
+})   

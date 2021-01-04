@@ -219,6 +219,9 @@ for(i=0;i<=device_list2.length;i++){
     $('#listdevice').append('<option>'+device_list2[i].id+`</option>`)
 
 }
+// singlesnopshot device list
+
+
  
 
 

@@ -192,6 +192,7 @@ Boodskap.prototype.deviceSearch = function (cbk) {
 }
 // device
 Boodskap.prototype.devSearch = function (data,cbk) {
+    console.log(data)
   
     const self = this;
     var obj = {
