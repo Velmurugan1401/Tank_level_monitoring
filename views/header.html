@@ -1,64 +1,62 @@
 <style>
-  #extraSideNav {
+  #extraSideNav{
     /* display: none; */
     padding-left: 0px;
     padding-right: 0px;
+    
   }
-  #headerRow {
+  #headerRow{
     /* background-color: #38A7FA; */
-    background-color: #005da2;
+    background-color: #299AE1;
     /* height: 50px; */
  
   }
-  #menuIcon {
-    /* margin-right: 10px;margin-top: -6px; */
-    display: none;
+  #menuIcon{
+   /* margin-right: 10px;margin-top: -6px; */
+   display: none;
   }
-
-  #userMailDropdown {
+  
+  #userMailDropdown{
     background-color: unset;
     text-align: left;
-    margin-right: 10px;
+    margin-right:10px;
     margin-top: 0px;
-    color: white;
-    font-size: 12px;
+    color:white;font-size: 12px;
   }
-  #collapseExample > .sidebar-nav > ul > li {
-    margin: unset !important;
+  #collapseExample>.sidebar-nav>ul>li{
+    margin:unset !important;
+
   }
-  #logoSideNav {
-    padding-top: 5px;
-    padding-left: 20px;
-    position: relative;
+  #logoSideNav{
+    padding-top: 5px;padding-left: 20px;position: relative;
   }
-  .profile {
-    background-color: white;
-    color: #005da2;
-    width: 35px;
-    height: 35px;
+  .profile{
+        background-color: white;
+        color:#005da2;
+        width: 35px;
+        height: 35px;
     border-radius: 22px;
     text-align: center;
     font-size: 24px;
     margin-right: 0px;
-    margin-top: 8px;
-    padding-left: 0px;
+    margin-top: 8px;padding-left: 0px;
     /* position: absolute; */
     /* right: 36px;top: 10px; */
-  }
-  #profileCard {
-    width: 67px;
-    position: absolute;
-    height: 29px;
-    right: 3px;
-    top: 31px;
-    background-color: rgba(28, 63, 170);
-    color: white;
-    /* color: black; */
-    border-radius: 4px;
-    /* opacity: 0.9;    */
-    border: 1px solid grey;
-  }
-  /* .dropdown-menu.show{
+    }
+    #profileCard{
+        width: 67px;
+        position: absolute;
+        height: 29px;
+        right: 3px;
+        top: 31px;
+        background-color: rgba(28,63,170);
+        color: white;
+        /* color: black; */
+        border-radius: 4px;
+        /* opacity: 0.9;    */
+         border: 1px solid grey;
+    }
+    /* .dropdown-menu.show{
       left:-3px !important;
       top:0px !important;
     } */
@@ -98,6 +96,7 @@
    margin-top: -32px;
   }
   }
+
 </style>
 
 <div class="container-fluid" id="extraSideNav">
@@ -117,9 +116,9 @@
       aria-haspopup="true" aria-expanded="false">
       <%= sessionObj.firstName ? sessionObj.firstName : '-' %>
       <%= sessionObj.lastName ? sessionObj.lastName : '-' %>
-      <!-- Tank Monitor -->
+     
       <br/>
-      <span style="color: white;word-wrap: break-word;"><%= sessionObj.email ? sessionObj.email : '-' %></span>
+      <span style="color: white;word-wrap: break-word;"><%= sessionObj.userId ? sessionObj.userId : '-' %></span>
     </button>
   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
     <a class="dropdown-item" onclick="loadMainPage('/profile')" href="#/profile">Profile</a>
@@ -135,8 +134,8 @@
       <button
         class="btn float-right" type="button" data-toggle="collapse" data-target="#collapseExample" id="menuIcon"
         aria-expanded="false"
-        aria-controls="collapseExample"
-      >
+        aria-controls="collapseExample">
+      
         <i class="fa fa-bars" aria-hidden="true" style="color: black"></i>
       </button>
 

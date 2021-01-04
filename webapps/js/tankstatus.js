@@ -1,29 +1,22 @@
 var TankStatusTable = null;
 var TankStatus_list = [];
 var deleteDeviceId=null;
-// var sessionObj='';
-// console.log(sessionObj);
 // var startDate = moment().subtract(6, 'days').startOf('day');
 // var endDate = moment().endOf('day');
 
-var sessionObj;
+
 $(document).ready(function(){
     loadTankStatusList();
-    // console.log(JSON.stringify(sessionObj))
-  
-    $('input[name="tankactive"]').on('click', function () {
-    var n = $('input[name="tankactive"]:checked').val();
-   
-    $("#tankFilter").html('');
-    $("#tankFilter").append(n);
-    })
 
-//    $('.dropdown-menu a').on('click', function(){    
-//         $('.dropdown-toggle').html($(this).html());    
-//     })
+    $('input[name="tankactive"]').on('click', function () {
+        var n = $('input[name="tankactive"]:checked').val();
+       
+        $("#tankFilter").html('');
+        $("#tankFilter").append(n);
+        })
     
 });
-// alert($('input[name="tankactive"]:checked').val());
+
 $('#expandview').click(function(){
     var elem = document.documentElement;
     if($(this).hasClass('fa fa-expand')){
@@ -58,66 +51,10 @@ $('#expandview').click(function(){
 });
 
 
-// $(function() {
-//     var start = moment().subtract(6, 'days').startOf('day');
-//     var end = moment().endOf('day');
-  
-//     function cb(start, end) {
-//       $('#pick').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-//     }
-  
-//     $('#pick').daterangepicker({
-//       startDate: start,
-//       endDate: end,
-//       ranges: {
-//         'Today': [moment(), moment()],
-//         'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-//         'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-//         'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-//         'This Month': [moment().startOf('month'), moment().endOf('month')],
-//         'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-//       }
-//     }, cb);
-  
-//     cb(start, end);
-  
-//   });
-  
-  
-//   $('#pick').on('apply.daterangepicker', function(ev, picker) {
-//    var start = picker.startDate;
-//    var end = picker.endDate;
-  
-  
-//   $.fn.dataTable.ext.search.push(
-//     function(settings, data, dataIndex) {
-
-//       var min = start;
-//       var max = end;
-//       var startDate = new Date(data[1]);
-      
-//       if (min == null && max == null) {
-//         return true;
-//       }
-//       if (min == null && startDate <= max) {
-//         return true;
-//       }
-//       if (max == null && startDate >= min) {
-//         return true;
-//       }
-//       if (startDate <= max && startDate >= min) {
-//         return true;
-//       }
-//       return false;
-//     }
-//   );
-//   table.draw();
-//   $.fn.dataTable.ext.search.pop();
-//   });
 
 
 
-
+//Student List API
 function loadTankStatusList() {
 
     if (TankStatusTable) {
@@ -132,40 +69,51 @@ function loadTankStatusList() {
             sWidth: '20%',
             orderable: false,
             mRender: function (data, type, row) {
-                return '<div class="row">' + '<img src="/images/tank-1.png"style="height:30px;"width:30px">' + '&nbsp;' + '&nbsp;' + '<b>' + row.tank_name +'</b>' + '&nbsp;' + '&nbsp;' + '<h6>' + '&nbsp;' + '&nbsp;' + row.location + '&nbsp;' + '</h6>' + '</div>';
+                return data ? data : '-';
             }
         },
         {
-            mData: 'tank_type',
+            mData: 'location',
+            sTitle: 'Location',
             sWidth: '20%',
-            sTitle: 'Tank Type',
             orderable: false,
             mRender: function (data, type, row) {
                 return data ? data : '-';
             }
         },
 
-      
+        {
+            mData: 'capacity',
+            sWidth: '20%',
+            sTitle: 'Tank Capacity',
+            orderable: false,
+            mRender: function (data, type, row) {
+                return data ? data : '-';
+            }
+        },
         {
           mData: 'tank_level',
           sWidth: '20%',
-          sTitle: 'Tank Level(gallon)',
+          sTitle: 'Tank Level',
           orderable: false,
           mRender: function (data, type, row) {
-            //   console.log(data);
-            // if (row.tank_level) {
-            //     return '<div class="row">' + '<img src="/images/tank-1.png"style="height:30px;"width:30px">' + '&nbsp;' + '&nbsp;' + '<b>' + row.tank_name +'</b>' + '&nbsp;' + '&nbsp;' + '<h6>' + '&nbsp;' + '&nbsp;' + row.location + '&nbsp;' + '</h6>' + '</div>';
-            // } else {
-                return data ? data : '-';
-
-            // }
-        }
+            
+              return data ? data : '-';
+          }
       },
-     
+      {
+        mData: 'status',
+        sWidth: '20%',
+        sTitle: 'Status',
+        orderable: false,
+        mRender: function (data, type, row) {
+            return data ? data : '-';
+        }
+    },
       {
         mData: 'device_id',
         sWidth: '20%',
-        sTitle: ' Device Id',
+        sTitle: ' Device Id ',
         orderable: false,
         mRender: function (data, type, row) {
             return data ? data : '-';
@@ -184,9 +132,9 @@ function loadTankStatusList() {
             sTitle: 'Actions',
             orderable: false,
             mRender: function (data, type, row) {
-                
+                // console.log(row);
               var actionsHtml = '<button class="btn btn-default" data-target=""  data-toggle="modal"style="margin-right:5px;" onclick=""><i class="fa fa-link" aria-hidden="true"></i></button>'
-                          +'<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\')" href="#/snapshot" style="margin-right:5px;"><i class="fa fa-eye" aria-hidden="true"></i></button>'
+                          +'<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\');status(\''+row.device_id+'\')" href="#/snapshot"  style="margin-right:5px;" ><i class="fa fa-eye" aria-hidden="true"></i></button>'
                           +'<button class="btn btn-default" data-target="#statusDeletemodal" data-toggle="modal" onclick="assignDeleteDeviceId(\'' + row._id + '\')"><i class="fa fa-trash icon" ></i></button>';
                           return actionsHtml;
             }
@@ -199,7 +147,7 @@ function loadTankStatusList() {
                 "must": []
             }
         },
-        sort: [{ "created_ts": { "order": "asc" } }]
+        sort: [{ "created_ts": { "order": "asc" } },{ "tank_name": { "order": "asc" } }]
     };
 
     TankStatus_list = [];
@@ -209,7 +157,7 @@ function loadTankStatusList() {
         responsive: true,
         paging: true,
         searching: true,
-        aaSorting: [[3, 'desc']],
+        aaSorting: [[3, 'desc'],[0,'desc']],
         "ordering": true,
         iDisplayLength: 10,
         lengthMenu: [[10, 50, 100], [10, 50, 100]],
@@ -297,13 +245,13 @@ function profilelogout(event) {
     }
 
 function assignDeleteDeviceId(row){
-    console.log(row);
+    // console.log(row);
     deleteDeviceId = row
 }
 
     function statusDeleteTank()  {
         alert(deleteDeviceId)
-        console.log(deleteDeviceId);
+        // console.log(deleteDeviceId);
         $.ajax({
     
             url: BASE_PATH + "/tankstatus/delete",
@@ -324,6 +272,103 @@ function assignDeleteDeviceId(row){
             }
         });
     }
-function tankStatusRef(){
-    loadTankStatusList();
+    var dank;
+    var devid;
+    var tankstat;
+function status(row){
+    devid=row
+    
+    $(() => {
+        $.ajax({
+            "dataType": 'json',
+            "contentType": 'application/json',
+            "type": "POST",
+            url: BASE_PATH + '/tank/list',
+            success: function (data) {
+                var resultData = data.result.data.data;
+                // console.log("its me",resultData)
+
+                for(i=0;i<=resultData.length;i++){
+                    if(row==resultData[i].device_id)
+                    {
+                       dank=resultData[i];
+                      
+                      
+                       break;
+                    }
+                }
+                $("#tankname").append("<h5>name</h5><p>"+dank.tank_name+"</p>")   
+                $("#tankname").append("<h5>type</h5><p>"+dank.tank_type+"</p>")   
+                $("#tankname").append("<h5>capacity</h5><p>"+dank.capacity+"</p>")  
+                $("#Location").append("<h5>location</h5><p>"+dank.location+"</p>") 
+                $("#Location").append("<h5>max_level</h5><p>"+dank.max_level+"</p>")  
+                $("#Location").append("<h5>min_level</h5><p>"+dank.min_level+"</p>")   
+                
+                   
+    
+            }
+        })
+    })
+     for(i=0;i<=TankStatus_list.length;i++)
+                 {
+                     if(row==TankStatus_list[i].device_id){
+                        tankstat=TankStatus_list[i];
+                             break   
+                     }
+                 } 
+                
+
+               
+
 }
+
+$("#status").append("<h5>Tank Level</h5><p>"+tankstat.tank_level+"</p>")   
+$("#status1").append("<h5>type</h5><p>"+tankstat.status+"</p>")   
+$("#status2").append("<h5>Reported_ts</h5><p>"+ moment(tankstat.created_ts).format(DATE_TIME_FORMAT)+"</p>")  
+
+$(() => {
+    var flist;
+    console.log("start")
+    var queryParams={
+        query:{
+            "bool": {
+                "must": { "match": {
+                    domainKey: "CDZMKBHJUM"
+                }}
+            }
+        },
+        "size":109,
+      
+        "from":0
+        
+    }
+    
+    $.ajax({
+        "dataType": 'json',
+        "contentType": 'application/json',
+        "type": "POST",
+        "url": BASE_PATH+'/devicedetail/listdev',
+        "data":JSON.stringify({data:queryParams}),
+        success: function (data) {
+            var resultData = data.result.data.data;
+           
+            console.log("dara",resultData)
+            for(i=0;i<=resultData.length;i++){
+                if(devid==resultData[i].id)
+                {
+                    flist=resultData[i];
+                  
+                  
+                   break;
+                }
+            }
+            $("#device").append("<h5>Tank Level</h5><p>"+flist.id+"</p>")   
+$("#device").append("<h5>LINKED TIME</h5><p>"+moment(flist.registeredStamp).format(DATE_TIME_FORMAT)+"</p>")  
+$("#device2").append("<h5>model </h5><p>"+flist.modelId+"</p>")   
+$("#device2").append("<h5>version</h5><p>"+flist.version+"</p>")   
+            
+
+
+        }
+    })
+})   

@@ -200,7 +200,7 @@ function loadTankList() {
             orderable: false,
             mRender: function (data, type, row) {
                 // return row.tank_name+""+row.location;
-                return '<div class="row">' + '<img src="/images/tank-1.png"style="height:30px;"width:30px">' + '&nbsp;' + '&nbsp;' + '<b>' + row.tank_name +'</b>' + '&nbsp;' + '&nbsp;' + '<h6>' + '&nbsp;' + '&nbsp;' +'<i class="fa fa-map-marker" style="color: #005da2;"aria-hidden="true"></i>'+ row.location + '&nbsp;' + '</h6>' + '</div>';
+                return '<div class="row">' + '<img src="/images/tank-1.png"style="height:30px;"width:30px">' + '&nbsp;' + '&nbsp;' + '<b>' + row.tank_name +'</b>' + '&nbsp;' + '&nbsp;' + '<h6>' + '&nbsp;' + '<i class="fa fa-map-marker" aria-hidden="true"></i>' + '&nbsp;' + row.location + '&nbsp;' + '</h6>' + '</div>';
             }
         },
         {
@@ -239,7 +239,15 @@ function loadTankList() {
                 return  data;
             }
         },
-
+        {
+            mData: 'device_id',
+            sTitle: 'Device Id',
+            sWidth: '20%',
+            orderable: false,
+            mRender: function (data, type, row) {
+                return  data;
+            }
+        },
         {
             mData: 'capacity',
             sWidth: '20%',
