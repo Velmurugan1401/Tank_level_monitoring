@@ -112,7 +112,7 @@ function loadTankStatusList() {
                 "must": []
             }
         },
-        sort: [{ "created_ts": { "order": "asc" } },{ "tank_name": { "order": "asc" } }]
+        sort: [{ "created_ts": { "order": "asc" } },{ "tank_name": { "order": "desc" } }]
     };
 
     TankStatus_list = [];
