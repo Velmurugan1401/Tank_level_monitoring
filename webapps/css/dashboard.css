@@ -39,7 +39,10 @@
     height: 150px;
    
 }
-
+.card-header{
+    padding-bottom: 30px;
+    border-bottom: 1px solid lightgray;
+}
 
 .mt-6 {
     margin-top: 1.5rem;
