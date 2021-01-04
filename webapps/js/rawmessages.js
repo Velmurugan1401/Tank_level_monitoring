@@ -26,7 +26,38 @@ var list=[];
 $(document).ready(function(){
     loadDeviceList();
 })
-
+$('#expandview').click(function(){
+    var elem = document.documentElement;
+    if($(this).hasClass('fa fa-expand')){
+       
+        $(this).removeClass('fa fa-expand');
+        
+        $(this).addClass('fa fa-compress');
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+          } else if (elem.webkitRequestFullscreen) { /* Safari */
+            elem.webkitRequestFullscreen();
+          } else if (elem.msRequestFullscreen) { /* IE11 */
+            elem.msRequestFullscreen();
+          }
+       
+          
+      }else{
+       
+        $(this).removeClass('fa fa-compress');
+        
+        $(this).addClass('fa fa-expand');  
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.webkitExitFullscreen) { /* Safari */
+            document.webkitExitFullscreen();
+          } else if (document.msExitFullscreen) { /* IE11 */
+            document.msExitFullscreen();
+          }
+        
+       
+      }
+});
 
 
 function loadDeviceList() {
@@ -197,13 +228,7 @@ function loadDeviceList() {
                     console.log("size",vel.length);
                        
                        
-                        
-                      
-                    
-                   
-                  
-
-                    $(".totalCount").html(data.result.data.total)
+                $(".totalCount").html(data.result.data.total)
 
                     resultData['draw'] = oSettings.iDraw;
                     fnCallback(resultData);
@@ -215,6 +240,10 @@ function loadDeviceList() {
 
     DeviceTable = $("#rawMsgTable").DataTable(tableOption);
   
+}
+
+function rawMsgRef(){
+    loadDeviceList();
 }
 
 // for(i=0;i<=device_list2.length;i++){
