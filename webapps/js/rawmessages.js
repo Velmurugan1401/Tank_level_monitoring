@@ -1,21 +1,3 @@
-// var dataSet = [
-//     [ "SAMPLE_DEV_100", "Raw Message 1", "12/24/2020 04:21:46 pm"],
-//     [ "SAMPLE_DEV_101", "Raw Message 2", "12/24/2020 08:16:40 pm"]
-
-// ];
-
-// $(document).ready(function() {
-
-//     $('#rawMsgTable').DataTable( {
-//         data: dataSet,
-//         columns: [
-//             { title: "Device Name" },
-//             { title: "Messages" },
-//             { title: "Reported Time" }
-          
-//         ]
-//     } );
-// } );
 var DeviceTable = null;
 var device_list=[];
 var device_list2;
@@ -58,7 +40,6 @@ $('#expandview').click(function(){
        
       }
 });
-
 
 function loadDeviceList() {
 
@@ -228,7 +209,8 @@ function loadDeviceList() {
                     console.log("size",vel.length);
                        
                        
-                $(".totalCount").html(data.result.data.total)
+                        
+                    $(".totalCount").html(data.result.data.total)
 
                     resultData['draw'] = oSettings.iDraw;
                     fnCallback(resultData);
@@ -253,5 +235,7 @@ function rawMsgRef(){
 
 // }
  
+
+
 
 

@@ -47,76 +47,7 @@ option = {
 
 chart.setOption(option);
 
-var myChart = echarts.init(document.getElementById('graph'));
-option = {
-    legend: {},
-    tooltip: {
-    },
-    dataset: {
-        dimensions: ['product', 'Yesterday', 'Last 7 Days', 'Last 30 days'],
-        source: [{
-                product: 'Avadi',
-                'Yesterday': 43.3,
-                'Last 7 Days': 85.8,
-                'Last 30 days': 93.7
-            },
-            {
-                product: 'Porur',
-                'Yesterday': 83.1,
-                'Last 7 Days': 73.4,
-                'Last 30 days': 55.1
-            },
-            {
-                product: 'Egmore',
-                'Yesterday': 86.4,
-                'Last 7 Days': 65.2,
-                'Last 30 days': 82.5
-            },
-            {
-                product: 'Puzhal',
-                'Yesterday': 72.4,
-                'Last 7 Days': 53.9,
-                'Last 30 days': 39.1
-            },
-            {
-                product: 'Manali',
-                'Yesterday': 72.4,
-                'Last 7 Days': 53.9,
-                'Last 30 days': 39.1
-            },
-            {
-                product: 'T.nagar',
-                'Yesterday': 72.4,
-                'Last 7 Days': 53.9,
-                'Last 30 days': 39.1
-            },
-            {
-                product: 'Otteri',
-                'Yesterday': 72.4,
-                'Last 7 Days': 53.9,
-                'Last 30 days': 39.1
-            }
-        ]
-    },
-    xAxis: {
-        type: 'category'
-    },
-    yAxis: {},
-    // Declare several bar series, each will be mapped
-    // to a column of dataset.source by default.
-    series: [{
-            type: 'bar'
-        },
-        {
-            type: 'bar'
-        },
-        {
-            type: 'bar'
-        }
 
-    ]
-};
-myChart.setOption(option);
 $(() => {
     $.ajax({
         "dataType": 'json',
@@ -165,24 +96,134 @@ $(() => {
         }
     })
 })
-// $(() => {
-//     $.ajax({
-//         "dataType": 'json',
-//         "contentType": 'application/json',
-//         "type": "get",
-//         url: BASE_PATH + '/tankhistory/list',
-//         success: function (data) {
-//             var resultData = data.result.data;
-//             // $("#totaltank").html(data.result.total)
-//             console.log(data.result.data[0].data)
+
+$(() => {
+    var stertdate=moment().valueOf(new Date())
+    var start30date=moment().subtract(30, 'days').valueOf(new Date())
+    console.log(start30date)
+
+    var queryParams={
+    
+    
+        
+    
+            query: {
+                "range" : {
+                    "receivedstamp" : {
+                        "gt" :start30date,
+                        "lt" : stertdate,
+                        "boost" : 2.0
+                    }
+                }
+            },
+        
+         "aggs": {
+           "sports":{
+             "terms" : { "field" : "deviceid" },
+             "aggs": {
+               "avg_scoring":{
+                 "avg": {"field":"tank_level"}
+               }
+             }
+           }
+         }
+    }
+   
+
+    $.ajax({
+        "dataType": 'json',
+                "contentType": 'application/json',
+                "type": "POST",
+                "url": BASE_PATH+'/tankhistory/list',
+                "data":JSON.stringify({"query":queryParams}),
+        url: BASE_PATH + '/tankhistory/list',
+
+        success: function (data) {
+
+            var resultData = data.result.aggregations.sports;
+            // $("#totaltank").html(data.result.total)
+            console.log(resultData)
+            var reading=resultData.buckets[0].avg_scoring.value;
+            var two=resultData.buckets[1].avg_scoring.value;
+
+            console.log(resultData.buckets[0].avg_scoring.value)
+            var myChart = echarts.init(document.getElementById('graph'));
+            var value=[{
+                product: 'Avadi',
+                'Yesterday': 43.3,
+                'Last 7 Days': 85.8,
+                'Last 30 days': resultData.buckets[0].avg_scoring.value
+            },
+            {
+                product: 'Porur',
+                'Yesterday': 83.1,
+                'Last 7 Days': 73.4,
+                'Last 30 days': resultData.buckets[1].avg_scoring.value
+            },
+            {
+                product: 'Egmore',
+                'Yesterday': 86.4,
+                'Last 7 Days': 65.2,
+                'Last 30 days': resultData.buckets[2].avg_scoring.value
+            },
+            {
+                product: 'Puzhal',
+                'Yesterday': 72.4,
+                'Last 7 Days': 53.9,
+                'Last 30 days': resultData.buckets[3].avg_scoring.value
+            },
+            {
+                product: 'Manali',
+                'Yesterday': 72.4,
+                'Last 7 Days': 53.9,
+                'Last 30 days': resultData.buckets[4].avg_scoring.value
+            },
+            {
+                product: 'T.nagar',
+                'Yesterday': 72.4,
+                'Last 7 Days': 53.9,
+                'Last 30 days': resultData.buckets[5].avg_scoring.value
+            },
+            {
+                product: 'Otteri',
+                'Yesterday': 72.4,
+                'Last 7 Days': 53.9,
+                'Last 30 days': resultData.buckets[6].avg_scoring.value
+            }
+        ]
+option = {
+    legend: {},
+    tooltip: {},
+    dataset: {
+        dimensions: ['product', 'Yesterday', 'Last 7 Days', 'Last 30 days'],
+        source: value
+    },
+    xAxis: {
+        type: 'category'
+    },
+    yAxis: {},
+    // Declare several bar series, each will be mapped
+    // to a column of dataset.source by default.
+    series: [{
+            type: 'bar'
+        },
+        {
+            type: 'bar'
+        },
+        {
+            type: 'bar'
+        }
+
+    ]
+};
+myChart.setOption(option);
 
 
+           
 
-
-
-//         }
-//     })
-// })
+        }
+    })
+})
 $(() => {
     $.ajax({
         "dataType": 'json',
@@ -193,9 +234,14 @@ $(() => {
             
              resultData = data.result.data.data;
           var sho=data.result.data.data;
-           console.log(sho[0].capacity)
-           var myChart = echarts.init(document.getElementById('main'));
-var data=[resultData[0].tank_level,resultData[1].capacity,40,50,40,200]
+
+
+
+        }
+    })
+})
+var myChart = echarts.init(document.getElementById('main'));
+var data=[200,500,700]
 option = {
     color: ['#3398DB'],
     tooltip: {
@@ -232,8 +278,3 @@ option = {
 myChart.setOption(option);
 
 
-
-
-        }
-    })
-})

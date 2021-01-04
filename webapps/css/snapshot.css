@@ -1,39 +1,4 @@
-/*  
- .title-spa
- {
-     padding:10px;
- }
- .header
- {
-     background-color: #1C3FAA;
-     color: white;
-     padding: 10px;
- }
- .dem
- {
-     
-     margin: 10px;
-     padding-top: 20px;
- }
- .demo
- {
-    margin: 10px;
- }
- .btn
- {
-    padding:10px 15px 10px 15px;
-    margin: 10px;
- }
- .btn1
- {
-     background-color: green;
-     color: white;
- }
- .btn2
-{
-    background-color: red;
-    color: white;
-} */
+ 
 .head
 {
     background-color:#DCDCDC;
@@ -53,11 +18,9 @@
      
 }
 .btn{
-    transition: 0.5s;
-    
-    color: grey;
-    
-   
+    transition: 0.5s;    
+    color: grey;    
+    padding: 8px;  
 }
 th
 {
@@ -68,21 +31,7 @@ th
     background-color: #009B84;
     color: white;
 }
-.btn1
-{
-    background-color: #009B84;
-    color: white;
-}
-.btn2
-{
-    background-color: #009B84;
-    color: white;
-}
-.btn3
-{
-    background-color: #009B84;
-    color: white;
-}
+ 
 .content
 {
     position: relative;
@@ -105,6 +54,7 @@ th
     {
         background-color:rgb(228, 230, 232);
         border-bottom: 3px solid #858C9C;
+        padding: 8px !important;
     }
     .cad p{
   margin-bottom: 18px;
@@ -118,7 +68,7 @@ th
     {
         position: absolute;
         height: 30%;
-        width: 208px;
+        width: 209px;
         bottom: 44%;
         left: 50%;
         background: -webkit-gradient(
@@ -129,4 +79,24 @@ th
             to(#4273f0)
           );
         margin-left: -99px;
+    }
+    .drop
+    {
+         
+       display: none; 
+        height: 22px;
+        width: 22px;
+        background: -webkit-gradient(
+            linear,
+            left top,
+            right top,
+            from(#8ba7e2),
+            to(#4273f0)
+          );
+        transform: rotate(45deg);
+        position: absolute;
+        border-radius: 0% 100% 100% 100%;
+        left: 110px;
+        top: 43px;
+        
     }

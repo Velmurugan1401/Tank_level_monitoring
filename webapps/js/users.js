@@ -1,5 +1,6 @@
 var UserTable = null;
 var Users_list = [];
+var deleteuserid="";
 var key;
 var count;
 var flag = false;
@@ -7,7 +8,7 @@ var usercount;
 // var startDate = moment().subtract(6, 'days').startOf('day');
 // var endDate = moment().endOf('day');
 $(document).ready(function () {
-    loadUsersList(); 
+    loadUsersList();     
 });
  
 function refreshuser()
@@ -15,6 +16,94 @@ function refreshuser()
     loadUsersList();
 }
 
+
+$('#expand').click(function(){
+    var elem = document.documentElement;
+    if($(this).hasClass('fa fa-expand')){
+       
+      $(this).removeClass('fa fa-expand');
+      
+      $(this).addClass('fa fa-compress');
+      
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { /* Safari */
+        elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE11 */
+        elem.msRequestFullscreen();
+    }
+        
+    }else{
+     
+      $(this).removeClass('fa fa-compress');
+      
+      $(this).addClass('fa fa-expand');  
+      
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { /* Safari */
+        document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE11 */
+        document.msExitFullscreen();
+    }
+    }
+});
+$(function() {
+    var start = moment().subtract(6, 'days').startOf('day');
+    var end = moment().endOf('day');
+  
+    function cb(start, end) {
+      $('#pick').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+    }
+  
+    $('#pick').daterangepicker({
+      startDate: start,
+      endDate: end,
+      ranges: {
+        'Today': [moment(), moment()],
+        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+        'This Month': [moment().startOf('month'), moment().endOf('month')],
+        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+      }
+    }, cb);
+  
+    cb(start, end);
+  
+  });
+  
+  
+  $('#pick').on('apply.daterangepicker', function(ev, picker) {
+   var start = picker.startDate;
+   var end = picker.endDate;
+  
+  
+  $.fn.dataTable.ext.search.push(
+    function(settings, data, dataIndex) {
+
+      var min = start;
+      var max = end;
+      var startDate = new Date(data[1]);
+      
+      if (min == null && max == null) {
+        return true;
+      }
+      if (min == null && startDate <= max) {
+        return true;
+      }
+      if (max == null && startDate >= min) {
+        return true;
+      }
+      if (startDate <= max && startDate >= min) {
+        return true;
+      }
+      return false;
+    }
+  );
+  table.draw();
+  $.fn.dataTable.ext.search.pop();
+  });
 
 //User insert API
 
@@ -223,7 +312,8 @@ function loadUsersList() {
             sTitle: 'Actions',
             orderable: false,
             mRender: function (data, type, row) {
-                var actionsHtml = '<button class="btn btn-default"  onclick="deleteUser(\'' + row.email+ '\')"><i class="fa fa-trash"></i></button>' + '<button class="btn btn-default"  data-toggle="modal" data-target="#myModal" onclick="editUser(\'' + row._id + '\')"><i class="fa fa-pencil edit"></i>';
+                console.log(row);
+                var actionsHtml = '<button class="btn btn-default"  data-target="#userDeletemodal" data-toggle="modal" onclick="assignuserid(\'' + row._id + '\')"><i class="fa fa-trash"></i></button>' + '<button class="btn btn-default"  data-toggle="modal" data-target="#myModal" onclick="editUser(\'' + row._id + '\')"><i class="fa fa-pencil edit"></i>';
                 return actionsHtml;
             }
         }
@@ -250,7 +340,7 @@ function loadUsersList() {
         paging: true,
         searching: true,
         aaSorting: [
-            [3, 'desc']
+            [3, 'desc'],[0,'desc'],[1,'desc'],[2,'desc']
         ],
         "ordering": true,
         iDisplayLength: 10,
@@ -362,7 +452,8 @@ function loadUsersList() {
 
         dom: 'l<"toolbar">frtip',
         initComplete: function () {
-            $("div.toolbar").html('<input id="datepick"> <button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button>');
+            // $("div.toolbar").append("<button>Datepick</button>");
+            $("div.toolbar").html('<label> Start date:</label><input class="pick" data-date-format="mm/dd/yyyy" type="date" id="datePickerrr"><label>End date:</label><input class="pick" data-date-format="mm/dd/yyyy" type="date" id="datePickerrr"><button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button>');
             // $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button><i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>');   
 
         }
@@ -406,11 +497,17 @@ function editUser(id) {
     
 // }
 //delete user details
-function deleteUser(row) {
-    
+ 
+function assignuserid(userid){  
+    console.log(userid);   
+    deleteuserid = userid;
+    console.log(deleteuserid);
+}
+function userdelete()  {
+   console.log(deleteuserid)
     $.ajax({
-        url: BASE_PATH + '/user/delete',
-        data: {email:row},
+        url: BASE_PATH +'/user/delete',
+        data:  JSON.stringify({ _id: deleteuserid}),
         type: 'POST',
         success: function () {
             successMsg('deleted successfully');
@@ -423,4 +520,3 @@ function deleteUser(row) {
         }
     });
 }
- 

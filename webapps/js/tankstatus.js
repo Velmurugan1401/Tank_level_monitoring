@@ -6,7 +6,7 @@ var deleteDeviceId=null;
 // var startDate = moment().subtract(6, 'days').startOf('day');
 // var endDate = moment().endOf('day');
 
-
+var sessionObj;
 $(document).ready(function(){
     loadTankStatusList();
     // console.log(JSON.stringify(sessionObj))
@@ -23,7 +23,7 @@ $(document).ready(function(){
 //     })
     
 });
-
+// alert($('input[name="tankactive"]:checked').val());
 $('#expandview').click(function(){
     var elem = document.documentElement;
     if($(this).hasClass('fa fa-expand')){
@@ -56,6 +56,65 @@ $('#expandview').click(function(){
        
       }
 });
+
+
+// $(function() {
+//     var start = moment().subtract(6, 'days').startOf('day');
+//     var end = moment().endOf('day');
+  
+//     function cb(start, end) {
+//       $('#pick').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+//     }
+  
+//     $('#pick').daterangepicker({
+//       startDate: start,
+//       endDate: end,
+//       ranges: {
+//         'Today': [moment(), moment()],
+//         'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+//         'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+//         'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+//         'This Month': [moment().startOf('month'), moment().endOf('month')],
+//         'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+//       }
+//     }, cb);
+  
+//     cb(start, end);
+  
+//   });
+  
+  
+//   $('#pick').on('apply.daterangepicker', function(ev, picker) {
+//    var start = picker.startDate;
+//    var end = picker.endDate;
+  
+  
+//   $.fn.dataTable.ext.search.push(
+//     function(settings, data, dataIndex) {
+
+//       var min = start;
+//       var max = end;
+//       var startDate = new Date(data[1]);
+      
+//       if (min == null && max == null) {
+//         return true;
+//       }
+//       if (min == null && startDate <= max) {
+//         return true;
+//       }
+//       if (max == null && startDate >= min) {
+//         return true;
+//       }
+//       if (startDate <= max && startDate >= min) {
+//         return true;
+//       }
+//       return false;
+//     }
+//   );
+//   table.draw();
+//   $.fn.dataTable.ext.search.pop();
+//   });
+
 
 
 
