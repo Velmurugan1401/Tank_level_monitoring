@@ -340,7 +340,7 @@ function loadUsersList() {
         paging: true,
         searching: true,
         aaSorting: [
-            [3, 'desc']
+            [3, 'desc'],[0,'desc'],[1,'desc'],[2,'desc']
         ],
         "ordering": true,
         iDisplayLength: 10,

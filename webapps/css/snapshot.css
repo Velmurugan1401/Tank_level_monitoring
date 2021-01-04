@@ -54,6 +54,7 @@ th
     {
         background-color:rgb(228, 230, 232);
         border-bottom: 3px solid #858C9C;
+        padding: 8px !important;
     }
     .cad p{
   margin-bottom: 18px;

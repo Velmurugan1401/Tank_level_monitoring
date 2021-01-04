@@ -1,13 +1,16 @@
-
 <style>
   .sidebar-nav>ul>li> a{
     color:white;
   }
-  .sidebar-nav>ul>li> a.active{
+  /* .sidebar-nav>ul>li> a.active{
     color:#000;
     background-color: #fff;
-  }
-  
+  } */
+  .active-tab>a{
+    color:#000 !important;
+    background-color: #fff;
+  } 
+   
  .sidebar-nav>ul>li a:hover{
      /* background-color: rgba(59,130,246,0.5); */
      background-color: white;
@@ -18,9 +21,9 @@
     /* position: absolute;
     margin-top: 50px !important; */
     padding-top: 0px;
-    height: 82.5vh !important;
+    height: 84vh !important;
     /* height: calc(100%-40vh) !important; */
-    width:206px !important;
+  
     top:unset !important;
     background-color: #363636;
   }
@@ -42,7 +45,7 @@
 </style>
  
   
-<aside class="left-sidebar" style="margin-top: 50px;position: absolute;">
+<aside class="left-sidebar" style="position: absolute;">
    <!-- Sidebar scroll-->
      <div class="scroll-sidebar">
        <nav class="sidebar-nav"> 
@@ -52,7 +55,7 @@
               <span class="home-page-span">Home</span>
               <!-- <a href="javascript:void(0)" style="font-weight: bold;color: cornflowerblue !important;">Home</a> -->
             </li>
-                <li class="dashboard left-list">
+                <li class="dashboard">
                     <a class="" onclick="loadMainPage('/dashboard')" href="#/dashboard">
                       <!-- <i class="fa fa-tachometer" style="color:white;font-size: 17px;vertical-align: unset;" aria-hidden="true"></i>Dashboard</a> -->
                       <img src="images/tachometer.png" style="width:23px;height:23px;">&nbsp;&nbsp;Dashboard</a>
@@ -101,9 +104,17 @@
  
 
 <script>
-
+  //  $('.sidebar-nav>ul>li').click(function(){
+  //   //  alert("hi")
+  //       if($(this).hasClass('.active-tab')){
+  //         $(".sidebar-nav>ul>li>a").removeClass('.active-tab');
+  //         $(this).addClass('.active-tab');
+         
+  // }else{
+        
+  //        $(this).removeClass('.active-tab');
+  //        $(this).addClass('.active-tab');  
+         
+  //        }
+  //  });
 </script>
-
-
- 
-
