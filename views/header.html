@@ -8,7 +8,8 @@
   #headerRow{
     /* background-color: #38A7FA; */
     background-color: #005da2;
-    height: 50px;
+    /* height: 50px; */
+ 
   }
   #menuIcon{
    /* margin-right: 10px;margin-top: -6px; */
@@ -59,16 +60,26 @@
       left:-3px !important;
       top:0px !important;
     } */
+   .tankImg-circle{
+     background-color: white;
+     border-radius: 10px;
+     width:20px;margin-top: 9px;
+   }
+   .tank-heading{
+    color: white;font-weight: 500;position: absolute;left:45px;top:16px;font-size: 14px;
+   }
+
+
   @media screen and (min-width: 320px) and (max-width: 767px) { 
     #extraSideNav{
     display: block;
     padding-left: 0px;
     padding-right: 0px;
-    background-color: #38A7FA;
+    background-color: #005da2;
   }
   #headerRow{
-    background-color: #38A7FA;
-    height: 50px;
+    background-color: #005da2;
+    /* height: 50px; */
   }
   .scroll-sidebar{
     display:block !important;
@@ -80,30 +91,32 @@
     display: none;
   }
   #menuIcon{
-    display: inline-block;
+    display: block;
    margin-right: 10px;
-   margin-top: -6px;
+   margin-top: -32px;
   }
   }
 
 </style>
 
-<div class="container-fluid" id="extraSideNav" >
+<div class="container-fluid" id="extraSideNav">
 <div class="row" id="headerRow" style="">
 <div class="col-md-6" id="logoSideNav">
-  
-  <img src="images/storage-tank.png" class="logo-cls" style="width:20px;height:20px;position: absolute;top:13px;">
-  <h5 style="color: white;font-weight: 500;padding-top: 0px;position: absolute;left:45px;top:16px;">TANK MONITORING</h5>
+  <div class="tankImg-circle">
+    <img src="images/storage-tank.png" class="logo-cls"  style="width:18px;height:15px;padding-left: 3px;">
+    <h5 class="tank-heading">TANK MONITORING</h5>
+    
+  </div>
   
 </div>
 <div class="col-md-6">
   
   <div class="dropdown float-right" id="dropDownLogout">
      <button class="btn dropdown-toggle" id="userMailDropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" 
-      aria-haspopup="true" aria-expanded="false">User Name<br/>
-      <span style="color: white;">Mail@gmail.com</span>
+      aria-haspopup="true" aria-expanded="false">Tank Monitor<br/>
+      <span style="color: white;word-wrap: break-word;">tankmonitoring@boodskap.io</span>
     </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
     <a class="dropdown-item" onclick="loadMainPage('/profile')" href="#/profile">Profile</a>
     <a class="dropdown-item" href="#">Settings</a>
     <a class="dropdown-item" href="#" onclick="logout()">Log Out</a>
@@ -120,47 +133,53 @@
   </button>
 
 <div class="collapse" id="collapseExample"> 
-       <div class="scroll-sidebar" style="display: none;"> 
+       <div class="scroll-sidebar" style=""> 
         <nav class="sidebar-nav"> 
           <ul class="leftMainMenu" id="sidebarnav">
               
-             <li class="home-page">
-               <span class="home-page-span">Home</span>
-             
-             </li>
-                 <li class="dashboard">
-                     <a onclick="loadMainPage('/dashboard')" href="#/dashboard">
-                       <i class="fa fa-tachometer" style="color:white;font-size: 17px;vertical-align: unset;" aria-hidden="true"></i>Dashboard</a>
-                 </li>
-   
-                 <li class="tank-status">
-                     <a onclick="loadMainPage('/tankstatus')" href="#/tankstatus">
-                       <i class="fa fa-microchip" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Tank Status</a>
-                 </li>
-   
-                 <li class="admin-page" style="margin-top: 20px;">
-                   <span class="admin-page-span">Administration</span>
-                 </li>
-   
-                 <li class="manage-tanks" >
-                     <a onclick="loadMainPage('/tanks')" href="#/managetanks">
-                       <i class="fa fa-microchip" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Tanks</a>
-                 </li>
-   
-                 <li class="manage-devices">
-                     <a onclick="loadMainPage('/devices')" href="#/managedevices">
-                       <i class="fa fa-microchip" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Devices</a>
-                 </li>
-   
-                 <li class="users" >
-                     <a onclick="loadMainPage('/users')" href="#/users">
-                       <i class="fa fa-users"  style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Users</a>
-                 </li>
-   
-                 <li class="raw-messages">
-                   <a onclick="loadMainPage('/rawmessages')" href="#/rawmessages">
-                     <i class="fa fa-envelope" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Raw Messages</a>
-               </li>
+            <li class="home-page">
+              <span class="home-page-span">Home</span>
+              <!-- <a href="javascript:void(0)" style="font-weight: bold;color: cornflowerblue !important;">Home</a> -->
+            </li>
+                <li class="dashboard left-list">
+                    <a class="" onclick="loadMainPage('/dashboard')" href="#/dashboard">
+                      <!-- <i class="fa fa-tachometer" style="color:white;font-size: 17px;vertical-align: unset;" aria-hidden="true"></i>Dashboard</a> -->
+                      <img src="images/tachometer.png" style="width:23px;height:23px;">&nbsp;&nbsp;Dashboard</a>
+                    </li>
+  
+                <li class="tank-status left-list">
+                    <a onclick="loadMainPage('/tankstatus')" href="#/tankstatus">
+                      <!-- <i class="fa fa-microchip" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Tank Status</a> -->
+                      <img src="images/tank-status.png" style="width:23px;height:23px;">&nbsp;&nbsp;Tank Status</a>
+                    </li>
+  
+                <li class="admin-page" style="margin-top: 20px;">
+                  <span class="admin-page-span">Administration</span>
+                </li>
+  
+                <li class="manage-tanks left-list" >
+                    <a onclick="loadMainPage('/tanks')" href="#/managetanks">
+                      <!-- <i class="fa fa-microchip" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Tanks</a> -->
+                      <img src="images/storage-tank.png" style="width:20px;height:20px;">&nbsp;&nbsp;Tanks</a>
+                    </li>
+  
+                <li class="manage-devices left-list">
+                    <a onclick="loadMainPage('/devices')" href="#/managedevices">
+                      <!-- <i class="fa fa-microchip" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Devices</a> -->
+                      <img src="images/motherboard.png" style="width:20px;height:20px;">&nbsp;&nbsp;Devices</a>
+                    </li>
+  
+                <li class="users left-list" >
+                    <a onclick="loadMainPage('/users')" href="#/users">
+                      <!-- <i class="fa fa-users"  style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Users</a> -->
+                      <img src="images/users.png" style="width:23px;height:23px;">&nbsp;&nbsp;Users</a>
+                    </li>
+  
+                <li class="raw-messages left-list">
+                  <a onclick="loadMainPage('/rawmessages')" href="#/rawmessages">
+                    <!-- <i class="fa fa-envelope" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i> -->
+                    <img src="images/envelope.png" style="width:17px;height:17px;">&nbsp;&nbsp;Raw Messages</a>
+                  </li>
              </ul> 
          </nav> 
 </div>

@@ -8,9 +8,9 @@ var deleteDeviceId=null;
 $(document).ready(function(){
     loadTankStatusList();
 
-   $('.dropdown-menu a').on('click', function(){    
-        $('.dropdown-toggle').html($(this).html());    
-    })
+//    $('.dropdown-menu a').on('click', function(){    
+//         $('.dropdown-toggle').html($(this).html());    
+//     })
     
 });
 
@@ -31,18 +31,18 @@ function loadTankStatusList() {
             sWidth: '20%',
             orderable: false,
             mRender: function (data, type, row) {
-                return data ? data : '-';
+                return '<div class="row">' + '<img src="/images/tank-1.png"style="height:30px;"width:30px">' + '&nbsp;' + '&nbsp;' + '<b>' + row.tank_name +'</b>' + '&nbsp;' + '&nbsp;' + '<h6>' + '&nbsp;' + '&nbsp;' + row.location + '&nbsp;' + '</h6>' + '</div>';
             }
         },
-        {
-            mData: 'location',
-            sTitle: 'Location',
-            sWidth: '20%',
-            orderable: false,
-            mRender: function (data, type, row) {
-                return data ? data : '-';
-            }
-        },
+        // {
+        //     mData: 'location',
+        //     sTitle: 'Location',
+        //     sWidth: '20%',
+        //     orderable: false,
+        //     mRender: function (data, type, row) {
+        //         return data ? data : '-';
+        //     }
+        // },
 
         {
             mData: 'capacity',

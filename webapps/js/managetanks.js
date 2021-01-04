@@ -166,6 +166,7 @@ function loadTankList() {
             orderable: false,
             mRender: function (data, type, row) {
                 // return row.tank_name+""+row.location;
+                
                 return '<div class="row">' + '<img src="/images/tank-1.png"style="height:30px;"width:30px">' + '&nbsp;' + '&nbsp;' + '<b>' + row.tank_name +'</b>' + '&nbsp;' + '&nbsp;' + '<h6>' + '&nbsp;' + '&nbsp;' + row.location + '&nbsp;' + '</h6>' + '</div>';
             }
         },
