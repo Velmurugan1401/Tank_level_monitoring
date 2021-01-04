@@ -21,20 +21,7 @@ option = {
         type: 'pie',
         radius: '55%',
         center: ['50%', '60%'],
-        data: [{
-                value: 88,
-                name: 'All Level'
-            },
-            {
-                value: 150,
-                name: 'High Level'
-            },
-            {
-                value: 22,
-                name: 'Low Level'
-            },
-
-        ],
+        data: data,
         emphasis: {
             itemStyle: {
                 shadowBlur: 10,
@@ -123,14 +110,9 @@ $(() => {
         "type": "POST",
         url: BASE_PATH + '/user/list',
         success: function (data) {
-            var resultData = data.result.data;
             $("#totaluser").html(data.result.total)
-
-
-
-
-
-
+            var resultData = data.result.data;
+         
         }
     })
 })
@@ -143,11 +125,6 @@ $(() => {
         success: function (data) {
             var resultData = data.result.data;
             $("#totaldevice").html(data.result.total)
-
-
-
-
-
         }
     })
 })
@@ -228,10 +205,6 @@ option = {
     }]
 };
 myChart.setOption(option);
-
-
-
-
-        }
+}
     })
 })

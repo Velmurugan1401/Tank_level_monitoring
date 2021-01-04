@@ -423,4 +423,7 @@ function deleteUser(row) {
         }
     });
 }
- 
+// for(i=0;i<=Users_list.length;i++){
+//     console.log("res",Users_list[i]._id.id)
+// $('#listuser').append('<option>'+Users_list[i]._id+`</option>`)
+// }
