@@ -80,10 +80,9 @@ th
           );
         margin-left: -99px;
     }
-    .drop
+    #drop
     {
-         
-       display: none; 
+              
         height: 22px;
         width: 22px;
         background: -webkit-gradient(
@@ -100,3 +99,9 @@ th
         top: 43px;
         
     }
+.off{
+    display: none; 
+}
+.on{
+    display: block;
+}

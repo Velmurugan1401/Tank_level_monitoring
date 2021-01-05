@@ -366,4 +366,27 @@ $(() => {
 
         }
     })
-})   
+})    
+
+// $('#onbut').click(function(){
+       
+//     if($(this).hasClass('off')){
+       
+//       $(this).removeClass('off');
+      
+//       $(this).addClass('on');    
+     
+        
+//     }
+// });
+// $('#offbut').click(function(){
+       
+//     if($(this).hasClass('on')){
+       
+//       $(this).removeClass('on');
+      
+//       $(this).addClass('off');    
+     
+        
+//     }
+// });
