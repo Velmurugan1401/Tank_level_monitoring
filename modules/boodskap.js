@@ -271,6 +271,7 @@ Boodskap.prototype.MSGSearch = function (rid, query, cbk) {
 
 
 Boodskap.prototype.elasticSearch = function (rid, query, cbk) {
+    console.log(query)
   
     const self = this;
 
