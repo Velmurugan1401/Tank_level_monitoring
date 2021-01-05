@@ -13,13 +13,13 @@ $(document).ready(function () {
     loadTankList();
   });
 
-$('#expandview').click(function(){
+$('#full').click(function(){
     var elem = document.documentElement;
-    if($(this).hasClass('fa fa-expand')){
+    if($('#expandview').hasClass('fa fa-expand')){
        
-        $(this).removeClass('fa fa-expand');
+        $('#expandview').removeClass('fa fa-expand');
         
-        $(this).addClass('fa fa-compress');
+        $('#expandview').addClass('fa fa-compress');
         if (elem.requestFullscreen) {
             elem.requestFullscreen();
           } else if (elem.webkitRequestFullscreen) { /* Safari */
@@ -31,9 +31,9 @@ $('#expandview').click(function(){
           
       }else{
        
-        $(this).removeClass('fa fa-compress');
+        $('#expandview').removeClass('fa fa-compress');
         
-        $(this).addClass('fa fa-expand');  
+        $('#expandview').addClass('fa fa-expand');  
         if (document.exitFullscreen) {
             document.exitFullscreen();
           } else if (document.webkitExitFullscreen) { /* Safari */
@@ -303,11 +303,11 @@ function loadTankList() {
                 console.log(row.device_id);
                 if (row.device_id) {
 
-                    return '<button type="button"  data-toggle="tooltip" data-placement="bottom" title="Unlink"id="link" class="btn tank-atag link" data-toggle="modal" data-target="#myModal1" onclick="linkdevice(\'' + row._id + '\')"><i class="fa fa-unlink" style="color:white;" aria-hidden="true"></i></button>';
+                    return '<button type="button"  data-toggle="tooltip" data-placement="bottom" title="Unlink" id="link" class="btn tank-atag link" data-toggle="modal" data-target="#myModal1" onclick="linkdevice(\'' + row._id + '\')"><i class="fa fa-unlink" style="color:white;" aria-hidden="true"></i></button>';
 
                 } else {
 
-                    return '<button type="button"  data-toggle="tooltip" data-placement="bottom" title="Link"id="link" class="btn tank-atag link" data-toggle="modal" data-target="#myModal" onclick="linkdevice(\'' + row._id + '\')"><i class="fa fa-link"style="color:white;" aria-hidden="true"></i></button>';
+                    return '<button type="button"  data-toggle="tooltip" data-placement="bottom" title="Link" id="link" class="btn tank-atag link" data-toggle="modal" data-target="#myModal" onclick="linkdevice(\'' + row._id + '\')"><i class="fa fa-link"style="color:white;" aria-hidden="true"></i></button>';
 
                 }
             },
@@ -416,13 +416,8 @@ function loadTankList() {
                     tank_list = resultData.data;
                     console.log("new",tank_list.length)
                 //   console.log("now",tank_list[0].tank_name);
-<<<<<<< HEAD
-                    $(".totalCount").html(data.result.total)
-                    $("#total").html(data.result.total)
-=======
                     $("#manageTankTotalCount").html(data.result.total)
 
->>>>>>> 4e7c640266dca38c00f66f42ca43c26650b2f7e5
                     resultData['draw'] = oSettings.iDraw;
                     fnCallback(resultData);
                 }
