@@ -284,7 +284,7 @@ function status(row){
             "contentType": 'application/json',
             "type": "POST",
             url: BASE_PATH + '/tank/list',
-            success: function (data) {
+            success: function (data) {                
                 var resultData = data.result.data.data;
                 // console.log("its me",resultData)
 
@@ -315,15 +315,12 @@ function status(row){
                         tankstat=TankStatus_list[i];
                              break   
                      }
-                 } 
-                
-
-               
+                 }                          
 
 }
 
 $("#status").append("<h5>Tank Level</h5><p>"+tankstat.tank_level+"</p>")   
-$("#status1").append("<h5>type</h5><p>"+tankstat.status+"</p>")   
+$("#status1").append("<h5>Status</h5><p>"+tankstat.status+"</p>")   
 $("#status2").append("<h5>Reported_ts</h5><p>"+ moment(tankstat.created_ts).format(DATE_TIME_FORMAT)+"</p>")  
 
 $(() => {
@@ -338,9 +335,7 @@ $(() => {
             }
         },
         "size":109,
-      
         "from":0
-        
     }
     
     $.ajax({
@@ -350,22 +345,20 @@ $(() => {
         "url": BASE_PATH+'/devicedetail/listdev',
         "data":JSON.stringify({data:queryParams}),
         success: function (data) {
-            var resultData = data.result.data.data;
-           
+            var resultData = data.result.data.data;           
             console.log("dara",resultData)
             for(i=0;i<=resultData.length;i++){
                 if(devid==resultData[i].id)
                 {
-                    flist=resultData[i];
-                  
+                    flist=resultData[i];           
                   
                    break;
                 }
             }
-            $("#device").append("<h5>Tank Level</h5><p>"+flist.id+"</p>")   
-$("#device").append("<h5>LINKED TIME</h5><p>"+moment(flist.registeredStamp).format(DATE_TIME_FORMAT)+"</p>")  
-$("#device2").append("<h5>model </h5><p>"+flist.modelId+"</p>")   
-$("#device2").append("<h5>version</h5><p>"+flist.version+"</p>")   
+            $("#device").append("<h5>Device Name</h5><p>"+flist.id+"</p>")   
+            $("#device").append("<h5>LINKED TIME</h5><p>"+moment(flist.registeredStamp).format(DATE_TIME_FORMAT)+"</p>")  
+           $("#device2").append("<h5>model </h5><p>"+flist.modelId+"</p>")   
+           $("#device2").append("<h5>version</h5><p>"+flist.version+"</p>")   
             
 
 
