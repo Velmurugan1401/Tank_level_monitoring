@@ -1,21 +1,4 @@
-// var dataSet = [
-    //     [ "SAMPLE_DEV_100", "Raw Message 1", "12/24/2020 04:21:46 pm"],
-    //     [ "SAMPLE_DEV_101", "Raw Message 2", "12/24/2020 08:16:40 pm"]
-    
-    // ];
-    
-    // $(document).ready(function() {
-    
-    //     $('#rawMsgTable').DataTable( {
-    //         data: dataSet,
-    //         columns: [
-    //             { title: "Device Name" },
-    //             { title: "Messages" },
-    //             { title: "Reported Time" }
-              
-    //         ]
-    //     } );
-    // } );
+
     var DeviceTable = null;
     var device_list=[];
     var device_list2;
@@ -26,8 +9,67 @@
     $(document).ready(function(){
         loadDeviceList();
     })
+
+    $('#expandview').click(function(){
+        var elem = document.documentElement;
+        if($(this).hasClass('fa fa-expand')){
+           
+            $(this).removeClass('fa fa-expand');
+            
+            $(this).addClass('fa fa-compress');
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+              } else if (elem.webkitRequestFullscreen) { /* Safari */
+                elem.webkitRequestFullscreen();
+              } else if (elem.msRequestFullscreen) { /* IE11 */
+                elem.msRequestFullscreen();
+              }
+           
+              
+          }else{
+           
+            $(this).removeClass('fa fa-compress');
+            
+            $(this).addClass('fa fa-expand');  
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+              } else if (document.webkitExitFullscreen) { /* Safari */
+                document.webkitExitFullscreen();
+              } else if (document.msExitFullscreen) { /* IE11 */
+                document.msExitFullscreen();
+              }
+            
+           
+          }
+    });
     
-    
+    $(function() {
+
+      var start = moment().subtract(29, 'days');
+      var end = moment();
+  
+      function cb(start, end) {
+          $('#rawMsgDatePicker span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+      }
+  
+      $('#rawMsgDatePicker').daterangepicker({
+          startDate: start,
+          endDate: end,
+          ranges: {
+             'Today': [moment(), moment()],
+             'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+             'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+             'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+             'This Month': [moment().startOf('month'), moment().endOf('month')],
+             'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+          }
+      }, cb);
+  
+      cb(start, end);
+  
+  });
+
+
     
     function loadDeviceList() {
     
@@ -197,9 +239,7 @@
                         console.log("size",vel.length);
                            
                            
-                            
-                          
-                    $(".totalCount").html(data.result.data.total)
+                     $("#totalCount").html(data.result.total)
     
                         resultData['draw'] = oSettings.iDraw;
                         fnCallback(resultData);
@@ -213,10 +253,7 @@
       
     };
 
-    // DeviceTable = $("#rawMsgTable").DataTable(tableOption);
   
-
-
 function rawMsgRef(){
     loadDeviceList();
 }
