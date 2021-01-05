@@ -202,7 +202,6 @@ function loadTankStatusList() {
             }
         },
         sort: [{ "created_ts": { "order": "asc" } }]
-       
     };
 
     TankStatus_list = [];
@@ -234,9 +233,11 @@ function loadTankStatusList() {
 
             var keyName = fields[oSettings.aaSorting[0][0]]
 
-            var sortingJson = {};
-            sortingJson[keyName['mData']] = { "order": oSettings.aaSorting[0][1] };
-            queryParams.sort = [sortingJson];
+            // var sortingJson = {};
+            // sortingJson[keyName['mData']] = { "order": oSettings.aaSorting[0][1] };
+            // queryParams.sort = [sortingJson];
+
+            queryParams.sort=[{"created_ts":{"order":"desc"}}];
 
             queryParams['size'] = oSettings._iDisplayLength;
             queryParams['from'] = oSettings._iDisplayStart;

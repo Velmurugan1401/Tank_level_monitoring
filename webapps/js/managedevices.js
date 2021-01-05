@@ -197,8 +197,10 @@ function loadDeviceList() {
                       
                     
                    
-                  $("#manageDeviceTotalCount").html(data.result.total)
+                  
 
+                    $(".totalCount").html(data.result.total)
+                    $("#total").html(data.result.total)
                     resultData['draw'] = oSettings.iDraw;
                     fnCallback(resultData);
                 }

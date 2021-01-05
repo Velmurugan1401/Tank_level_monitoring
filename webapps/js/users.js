@@ -313,7 +313,7 @@ function loadUsersList() {
             orderable: false,
             mRender: function (data, type, row) {
                 console.log(row);
-                var actionsHtml = '<button class="btn btn-default"  data-target="#userDeletemodal" data-toggle="modal" onclick="assignuserid(\'' + row._id + '\')"><i class="fa fa-trash"></i></button>' + '<button class="btn btn-default"  data-toggle="modal" data-target="#myModal" onclick="editUser(\'' + row._id + '\')"><i class="fa fa-pencil edit"></i>';
+                var actionsHtml = '<button class="btn btn-default"  data-target="#userDeletemodal" data-toggle="modal" onclick="assignuserid(\'' + row.email + '\')"><i class="fa fa-trash"></i></button>' + '<button class="btn btn-default"  data-toggle="modal" data-target="#myModal" onclick="editUser(\'' + row._id + '\')"><i class="fa fa-pencil edit"></i>';
                 return actionsHtml;
             }
         }
@@ -500,14 +500,15 @@ function editUser(id) {
  
 function assignuserid(userid){  
     console.log(userid);   
-    deleteuserid = userid;
-    console.log(deleteuserid);
+    email_id = userid;
+    console.log(email_id);
 }
 function userdelete()  {
-   console.log(deleteuserid)
+   console.log(email_id)
     $.ajax({
         url: BASE_PATH +'/user/delete',
-        data:  JSON.stringify({ _id: deleteuserid}),
+        data:  JSON.stringify({email_id}),
+        contentType: "application/json",
         type: 'POST',
         success: function () {
             successMsg('deleted successfully');
