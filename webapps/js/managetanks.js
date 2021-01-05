@@ -416,8 +416,13 @@ function loadTankList() {
                     tank_list = resultData.data;
                     console.log("new",tank_list.length)
                 //   console.log("now",tank_list[0].tank_name);
+<<<<<<< HEAD
                     $(".totalCount").html(data.result.total)
                     $("#total").html(data.result.total)
+=======
+                    $("#manageTankTotalCount").html(data.result.total)
+
+>>>>>>> 4e7c640266dca38c00f66f42ca43c26650b2f7e5
                     resultData['draw'] = oSettings.iDraw;
                     fnCallback(resultData);
                 }

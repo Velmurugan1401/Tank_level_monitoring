@@ -65,40 +65,62 @@
       </div>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-12 dname chart ml-4">
+<<<<<<< HEAD
       <div class="card-header">Water Consumption By Area wise</div>  
       
       <div id="main"  style="width: 100%; height: 300px;">
+=======
+      <div class="card-header">Water Consumption By Area wish</div>  
+      <div class="row">
+        <div class="col-md-4 col-lg-4 col-sm-4 col-xl-4">
+          <select class="form-select" aria-label="Default select example" style="margin-top: 20px; margin-left: 10px;height: 35px;background: #fff; border: 1px solid #ccc;">
+            <option selected>-Select Location-</option>
+            <option value="1">Velachery</option>
+            <option value="2">Chennai</option>
+            <option value="3">Porur</option>
+          </select>
+        </div>
+        <div class="col-md-auto col-lg-auto col-sm-auto col-xl-auto">
+        
+          <div id="reportrange" style="background: #fff; border: 1px solid #ccc;display: inline-block;padding: 6px; margin-top: 20px; margin-left: 20px;">
+            <i class="fa fa-calendar"></i>&nbsp;
+            <span></span> <i class="fa fa-caret-down"></i>
+        </div></div>
+         
+      </div>
+      <div id="bar1"  style="width: 100%; height: 300px;">
+>>>>>>> 4e7c640266dca38c00f66f42ca43c26650b2f7e5
 
+      </div>
+    </div>
+  </div>
+
+  <div class="row five">
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xl-12 chart1">
+      <div class="card-header">Water Consumption by Total Chennai city</div>  
+      <div class="row">
+        <div class="col-md-6 col-lg-6 col-sm-6 col-xl-6">
+          <select class="form-select" aria-label="Default select example" style="margin-top: 20px; margin-left: 10px;height: 35px;background: #fff; border: 1px solid #ccc;">
+            <option selected>Chennai</option>
+            
+          </select>
+        </div>
+        <div class="col-md-auto col-lg-auto col-sm-auto col-xl-auto">
+        
+          <div id="reportrang" style="background: #fff; border: 1px solid #ccc;display: inline-block;padding: 6px; margin-top: 20px;margin-left: 190px;">
+            <i class="fa fa-calendar"></i>&nbsp;
+            <span></span> <i class="fa fa-caret-down"></i>
+        </div></div>
+         
+      </div>
+      <div id="bar2"  style="width: 100%; height: 500px;">
+      
+      </div>
       </div>
     </div>
   </div>
  
-  <div class="row three">
-   
-
-    <div class="col-md-12 col-lg-12 col-sm-12 col-xl-12 chart3">
-      <div class="card-header">Water Consumption by Total Chennai city</div>  
-     
-      <div id="graph" style="width: 100%; height: 300px;">
-
-      </div>
-    </div>
-   
-  </div>
-  <!-- <div class="row">
-
-    <div class="col-lg-6 chart3">
-      <h4>Water Consumption By Days</h4>
-      <div id="graph" style="width: 500px; height: 300px;">
-
-      </div>
-    </div>
-    <div class="col-lg-6 chart4">
-      <div id="main1" style="width: 500px; height: 400px;">
-
-      </div>
-    </div>
-  </div> -->
+  
  
 
 <script src="js/dashboard.js"></script>
@@ -109,31 +131,139 @@
 
 
 <script>
-  var myCharts = echarts.init(document.getElementById('main1'));
+  $(function() {
+
+var start = moment().subtract(29, 'days');
+var end = moment();
+
+function cb(start, end) {
+    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+}
+
+$('#reportrange').daterangepicker({
+    startDate: start,
+    endDate: end,
+    ranges: {
+       'Today': [moment(), moment()],
+       'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+       'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+       'Last 30 Days': [moment().subtract(29, 'days'), moment()]
+       
+    }
+}, cb);
+
+cb(start, end);
+
+});
+$(function() {
+
+var start = moment().subtract(29, 'days');
+var end = moment();
+
+function cb(start, end) {
+    $('#reportrang span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+}
+
+$('#reportrang').daterangepicker({
+    startDate: start,
+    endDate: end,
+    ranges: {
+       'Today': [moment(), moment()],
+       'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+       'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+       'Last 30 Days': [moment().subtract(29, 'days'), moment()]
+       
+    }
+}, cb);
+
+cb(start, end);
+
+});
+
+  var myCharts = echarts.init(document.getElementById('bar1'));
   option = {
-    xAxis: {
-        type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-    },
-    yAxis: {
-        type: 'value'
-    },
-    series: [{
-        data: [120, 200, 150, 80, 70, 110, 130],
-        type: 'line',
-        symbol: 'triangle',
-        symbolSize: 20,
-        lineStyle: {
-            color: 'green',
-            width: 4,
-            type: 'dashed'
-        },
-        itemStyle: {
-            borderWidth: 3,
-            borderColor: 'yellow',
-            color: 'blue'
+    color: ['#3398DB'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
         }
-    }]
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+             axisLabel: {
+            interval: 0,
+            rotate:30
+        },
+            data: ['TANK 1', 'TANK 2', 'TANK 3', 'TANK 4', 'TANK 5', 'TANK 6', 'TANK 7','TANK 8','TANK 9','TANK 10'],
+            axisTick: {
+                alignWithLabel: true
+            }
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Consumption Level',
+            type: 'bar',
+            barWidth: '60%',
+            data: [10, 52, 200, 334, 390, 330, 220, 200, 334, 390]
+        }
+    ]
+};
+myCharts.setOption(option);
+var myCharts = echarts.init(document.getElementById('bar2'));
+option = {
+    color: ['#3398DB'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+             axisLabel: {
+            interval: 0,
+            rotate:30
+        },
+            data: ['POONDI', 'CHOLAVARAM', 'REDHILLS', 'CHEMBARAMBAKKAM', 'KILPAUK', 'VEERANAM', 'NESAPAKKAM','KODAMBAKKAM A','KODAMBAKKAM B','KOYAMBEDU'],
+            axisTick: {
+                alignWithLabel: true
+            }
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Consumption Level',
+            type: 'bar',
+            barWidth: '60%',
+            data: [10, 52, 200, 334, 390, 330, 220, 200, 334, 390]
+        }
+    ]
 };
 myCharts.setOption(option);
 </script>

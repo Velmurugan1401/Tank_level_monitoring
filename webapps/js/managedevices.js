@@ -196,7 +196,7 @@ function loadDeviceList() {
                     console.log("new",device_list2)
                       
                     $(".totalCount").html(data.result.total)
-
+                    $("#total").html(data.result.total)
                     resultData['draw'] = oSettings.iDraw;
                     fnCallback(resultData);
                 }
