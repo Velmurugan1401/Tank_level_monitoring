@@ -450,7 +450,6 @@ Boodskap.prototype.Userlogin = function (data,cbk) {
 // delete User========
 
 Boodskap.prototype.UserDelete = function (email, cbk) {
-
     const self = this;
 
     request.delete({

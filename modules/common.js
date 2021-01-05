@@ -299,7 +299,6 @@ Common.prototype.commonUserDelete = function (req, res) {
     const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
 
     boodskap.UserDelete(req.body.email, function (status, result) {
-
         if (status) {
             res.json({
                 status: true,
