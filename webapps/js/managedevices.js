@@ -8,7 +8,38 @@ var list=[];
 $(document).ready(function(){
     loadDeviceList();
 })
-
+$('#ex').click(function(){
+    var elem = document.documentElement;
+    if($(this).hasClass('fa fa-expand')){
+       
+        $(this).removeClass('fa fa-expand');
+        
+        $(this).addClass('fa fa-compress');
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+          } else if (elem.webkitRequestFullscreen) { /* Safari */
+            elem.webkitRequestFullscreen();
+          } else if (elem.msRequestFullscreen) { /* IE11 */
+            elem.msRequestFullscreen();
+          }
+        // $('#password').attr('type','text');
+          
+      }else{
+       
+        $(this).removeClass('fa fa-compress');
+        
+        $(this).addClass('fa fa-expand');  
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.webkitExitFullscreen) { /* Safari */
+            document.webkitExitFullscreen();
+          } else if (document.msExitFullscreen) { /* IE11 */
+            document.msExitFullscreen();
+          }
+        
+        // $('#password').attr('type','password');
+      }
+});
 
 
 function loadDeviceList() {
@@ -118,7 +149,7 @@ function loadDeviceList() {
             var keyName = fields[oSettings.aaSorting[0][0]]
 
             var sortingJson = {};
-            sortingJson[keyName['mData']] = { "order": oSettings.aaSorting[0][1] };
+            sortingJson[keyName['mData']] = { "order": oSettings.aaSorting[0][1 ] };
             queryParams.sort = [sortingJson];
 
             queryParams['size'] = oSettings._iDisplayLength;
@@ -162,7 +193,7 @@ function loadDeviceList() {
                     var resultData = data.result.data;
                    
                     device_list2 = resultData.data;
-                    console.log("new",device_list2.length)
+                    console.log("new",device_list2)
                       
                     $(".totalCount").html(data.result.total)
 

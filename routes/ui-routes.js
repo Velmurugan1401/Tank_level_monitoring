@@ -54,12 +54,13 @@ UIRoutes.prototype.init = function () {
     //After Login pages
 
     self.router.get('/main',sessionCheck,function (req, res) {
-
+       
         res.render('home/tankstatus.html', {
             layout: '',
             sessionObj: req.session['sessionObj'],
             config: self.app.conf,
             basePath: self.app.conf.web.basepath
+           
         });
     });
 
@@ -146,8 +147,5 @@ UIRoutes.prototype.init = function () {
         });
     });
 
-
-
-   
     self.app.use(self.app.conf.web.basepath, self.router);
 };

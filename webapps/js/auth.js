@@ -444,19 +444,27 @@ $(".toggle-password").click(function () {
 });
 
 
-function logout(obj, cbk) {
-    console.log(obj);
+function logout() {
+   
     $.ajax({
-        url: API_URL + "/logout",
+        url:BASE_PATH+"/logout",
         type: 'POST',
         contentType: "application/json",
-        data: JSON.stringify(obj),
+      
         success: function (data) {
-            cbk(true, data);
-        },
-        error: function (e) {
-            cbk(false, null);
+            // req.session.destroy();
+
+            // window.location = '/logout';
+            window.location.reload();
         }
     });
 
+}
+function myfunction() {
+    var y = document.getElementById("sidebar-wrapper");
+    if (y.style.display === "none") {
+        y.style.display = "block";
+    } else {
+        y.style.display = "none";
+    }
 }
