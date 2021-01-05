@@ -500,14 +500,15 @@ function editUser(id) {
  
 function assignuserid(userid){  
     console.log(userid);   
-    deleteuserid = userid;
-    console.log(deleteuserid);
+    email_id = userid;
+    console.log(email_id);
 }
 function userdelete()  {
-   console.log(deleteuserid)
+   console.log(email_id)
     $.ajax({
         url: BASE_PATH +'/user/delete',
-        data:  JSON.stringify(deleteuserid),
+        data:  JSON.stringify({email_id}),
+        contentType: "application/json",
         type: 'POST',
         success: function () {
             successMsg('deleted successfully');

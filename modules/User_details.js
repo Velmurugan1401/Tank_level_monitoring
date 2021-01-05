@@ -20,8 +20,7 @@ Users.prototype.performAction = function (req,res){
     }
     else if(req.params.action === 'userinsert'){
         self.common.commonUser(req,res);
-        console.log("js",req.body);
-        console.log(res);
+
     }
     else{
         res.status(401).json({status:false,message:'Invalid Access'})
