@@ -9,14 +9,9 @@ $(() => {
         "type": "POST",
         url: BASE_PATH + '/user/list',
         success: function (data) {
-            var resultData = data.result.data;
             $("#totaluser").html(data.result.total)
-
-
-
-
-
-
+            var resultData = data.result.data;
+         
         }
     })
 })
@@ -29,11 +24,6 @@ $(() => {
         success: function (data) {
             var resultData = data.result.data;
             $("#totaldevice").html(data.result.total)
-
-
-
-
-
         }
     })
 })

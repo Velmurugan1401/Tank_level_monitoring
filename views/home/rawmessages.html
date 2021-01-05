@@ -7,9 +7,9 @@
      }
      .paging_simple_numbers .pagination .paginate_button.active a, .paging_simple_numbers .pagination .paginate_button:hover a{
          color: #fff !important;
-     background-color: rgba(28,63,170) !important;
-     background: rgba(28,63,170) !important;
-     border-color: rgba(28,63,170) !important;
+     background-color: #299AE1 !important;
+     background: #299AE1 !important;
+     border-color: #299AE1 !important;
      border-radius: 3px !important;
      }
      .dataTables_wrapper .dataTables_paginate .paginate_button:hover{
@@ -21,6 +21,15 @@
     
      .activ-inactive-coln{
          text-align: right;
+     }
+     #rawMsgDatePicker{
+        background: #fff;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px;
+    margin-right: 5px;
+    margin-top: 5px;
+    border-radius: 2px;
      }
  </style>
  <div class="container-fluid" id="tankStatusCont">
@@ -54,22 +63,28 @@
                    </div>
       
     <div class="row" id="firstRow" style="">
-         <div class="col-md-2" style="">
+         <div class="col-md-6" style="">
              <div style="margin-top: 12px;">
                 <span>Total messsages: </span>
-                <span id="total" style="font-weight: 500;">2</span>
+                <span id="totalCount" style="font-weight: 500;"></span>
          </div>
          </div>
-         <div class="col-md-10 activ-inactive-coln">
+         <div class="col-md-6 activ-inactive-coln">
             <div class="float-right">
-                <button type="button" class="btn" data-toggle="tooltip" title="Referesh" onclick="rawMsgRef()" style="background-color:#005da2;color: white;">
+                <button type="button" class="btn" data-toggle="tooltip" title="Referesh" onclick="rawMsgRef()" style="background-color:#299AE1;color: white;">
                   <i class="fa fa-refresh" aria-hidden="true"></i>
-            </button></div>
+            </button>
+           </div>
       
             <div class="float-right" style="margin-right: 5px;">
-            <button type="button" class="btn but" data-toggle="tooltip" data-placement="bottom" title="Full Screen">
-              <i class="fa fa-expand" id="expandview"style="color:white" aria-hidden="true"></i></button>
+            <button type="button" class="btn but" data-toggle="tooltip" data-placement="bottom" title="Full Screen" style="background-color:#299AE1;color: white;">
+              <i class="fa fa-expand" id="expandview" style="color:white" aria-hidden="true"></i></button>
           </div>
+
+          <div id="rawMsgDatePicker">
+            <i class="fa fa-calendar"></i>&nbsp;
+            <span></span> <i class="fa fa-caret-down"></i>
+        </div>
                    
          </div>
      </div>
