@@ -17,16 +17,16 @@
     }
     #firstRow{
         padding: 10px 20px;
-        /* border-bottom: 1px solid lightgrey; */
+       padding-right: 0px;
         background-color:gainsboro;
        
     }
     .paging_simple_numbers .pagination .paginate_button.active a, .paging_simple_numbers .pagination .paginate_button:hover a{
         color: #fff !important;
-    background-color: rgba(28,63,170) !important;
-    background: rgba(28,63,170) !important;
-    border-color: rgba(28,63,170) !important;
-    border-radius: 3px !important;
+        background-color: #299AE1 !important;
+        background: #299AE1 !important;
+        border-color: #299AE1!important;
+        border-radius: 3px !important;
     }
     .dataTables_wrapper .dataTables_paginate .paginate_button:hover{
             border: none !important;
@@ -37,10 +37,10 @@
    
     #activeInactiveSelect{
         height: 34px;
-      border-radius: 4px;
-    padding-left: 2px;
-    padding-right: 7px;
-    margin-right: 5px;
+        border-radius: 4px;
+        padding-left: 2px;
+        padding-right: 7px;
+        margin-right: 5px;
     }
     .dataTables_filter input {
     background-size: 0 2px,100% 1px;
@@ -64,19 +64,14 @@
 .dropdown-menu{
     min-width: 7.8rem;
 }
+.table-row-div{
+    background-color:white;border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;padding-left: 20px;padding-bottom: 20px;margin-bottom: 70px;
+}
 
-    /* .dropdown-menu.show{
-        left:-60px !important;
-        top:5px !important;
-    } */
-    /* .activ-inactive-coln{
-        text-align: right;
-    } */
-    
-    @media screen and (min-width: 340px) and (max-width: 767px) { 
+   
+     @media screen and (min-width: 340px) and (max-width: 767px) { 
         .activ-inactive-coln{
-        /* text-align: unset; */
-        /* margin-top: 10px; */
         position: absolute;
         right: 8px;
     }
@@ -85,7 +80,7 @@
    }
    #tankStatusCont{
       margin-left: 13px;
-      /* margin-top: -25px !important; */
+     
    }
     }
 </style>
@@ -95,8 +90,8 @@
 <div class="container-fluid" id="tankStatusCont" >
     <div class="row" style="background-color:white;padding-top: 25px;border-top-left-radius: 5px;
                 border-top-right-radius: 5px;padding: 20px;">
-                    <div class="col-md-6">
-                      <span class="title-span" style="color: grey;font-weight: 500;">Home</pan>
+                    <div class="col-md-12">
+                      <span class="title-span" style="color: grey;font-weight: 500;">Home</span>
                         <span class="title-span" style="margin-left: 5px;margin-right: 5px;">
                             <i class="fa fa-angle-right" aria-hidden="true"></i>
                         </span>
@@ -104,50 +99,43 @@
                     </div></div> 
       
    <div class="row" id="firstRow" >
-        <div class="col-md-2" >
+        <div class="col-md-6" >
             <div style="margin-top: 12px;">
                <span>Total Tanks: </span>
                <span id="total" style="font-weight: 500;"></span>
         </div>
         </div>
-        <div class="col-md-10 activ-inactive-coln">
-            <!-- <select id="activeInactiveSelect">
-                <option value="0">Active Tanks</option>
-                <option value="1">Inactive Tanks</option>
-            </select>
-          -->
-          <div class="float-right">
-          <button type="button" class="btn" style="background-color:#005da2;color: white;">
+        <div class="col-md-6 activ-inactive-coln">
+           <div class="float-right">
+          <button type="button" class="btn" data-toggle="tooltip" data-placement="bottom" title="Referesh" onclick="tankStatusRef()" style="background-color:#299AE1;color: white;">
             <i class="fa fa-refresh" aria-hidden="true"></i>
       </button></div>
-      
-      <div id="daterange" class="selectbox pull-right">
-        <i class="fa fa-calendar"></i>
-        <span>December 19, 2020 - January 5, 2021</span> <b class="caret"></b>
-    </div>
 
-<div class="dropdown float-right" style="margin-right: 5px;">
-    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" style="background-color:#005da2;border:unset;">Active Tanks</button>
-    <div class="dropdown-menu">
-           <!-- <a class="dropdown-item" href="#" >Link / Unlink Device</a>
-           <a class="dropdown-item" href="#" >Single Tank Snapshot</a>
-           <a class="dropdown-item" href="#" onclick= "" >Delete</a> -->
-           <input type="radio" checked value="Active">Active Tanks<br>
-           <input type="radio" value="Inactive">Inactive Tanks
+      <div class="float-right" style="margin-right: 5px;">
+        <button type="button" class="btn" data-toggle="tooltip" data-placement="bottom" title="Full Screen" style="background-color:#299AE1;color: white;">
+          <i class="fa fa-expand" id="expandview"style="color:white" aria-hidden="true"></i></button>
+      </div>
+      
+      
+
+<!-- <div class="dropdown float-right" style="margin-right: 5px;">
+    <button type="button" class="btn btn-primary dropdown-toggle" id="activeTank" data-toggle="dropdown" aria-haspopup="true"
+     style="background-color:#005da2;border:unset;width:130px;"><a id="tankFilter">Active Tanks</a></button>
+    <div class="dropdown-menu" style="padding-left: 5px;padding-right: 5px;width:133px !important;">
+           <input type="radio" checked name="tankactive"  value="Active Tanks">Active Tanks<br>
+           <input type="radio" name="tankactive" value="Inactive Tanks">Inactive Tanks
          </div>
-     </div>
+     </div> -->
+     <!-- </div> -->
      
 
-
-           
                   
         </div>
 </div>
 
 
 
-    <div class="row" style="background-color:white;border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;padding-left: 20px;padding-bottom: 20px;margin-bottom: 70px;">
+    <div class="row table-row-div">
         <div class="col-md-12">
             <table class="table table-bordered responsive no-wrap" id="StatusTable" cellspacing="0" width="100%">
                

@@ -271,6 +271,7 @@ Boodskap.prototype.MSGSearch = function (rid, query, cbk) {
 
 
 Boodskap.prototype.elasticSearch = function (rid, query, cbk) {
+    console.log(query)
   
     const self = this;
 
@@ -450,7 +451,6 @@ Boodskap.prototype.Userlogin = function (data,cbk) {
 // delete User========
 
 Boodskap.prototype.UserDelete = function (email, cbk) {
-
     const self = this;
 
     request.delete({

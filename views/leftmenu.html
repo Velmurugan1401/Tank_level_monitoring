@@ -2,29 +2,24 @@
   .sidebar-nav>ul>li> a{
     color:white;
   }
-  /* .sidebar-nav>ul>li> a.active{
-    color:#000;
-    background-color: #fff;
+  /* .left-list a{
+    color:white !important;
   } */
-  .active-tab>a{
+ 
+  .active-tab{
     color:#000 !important;
-    background-color: #fff;
+    background-color: #fff !important;
   } 
    
  .sidebar-nav>ul>li a:hover{
-     /* background-color: rgba(59,130,246,0.5); */
      background-color: white;
      color: black;
  
   } 
   .left-sidebar{
-    /* position: absolute;
-    margin-top: 50px !important; */
     padding-top: 0px;
     height: 84vh !important;
-    /* height: calc(100%-40vh) !important; */
-  
-    top:unset !important;
+     top:unset !important;
     background-color: #363636;
   }
   .sidebar-nav{
@@ -37,8 +32,7 @@
  
   .home-page-span,.admin-page-span{
       padding-left: 18px;
-      /* font-weight: bold; */
-      color: #b7b3b3;
+       color: #b7b3b3;
   }
 
   
@@ -55,7 +49,7 @@
               <span class="home-page-span">Home</span>
               <!-- <a href="javascript:void(0)" style="font-weight: bold;color: cornflowerblue !important;">Home</a> -->
             </li>
-                <li class="dashboard">
+                <li class="dashboard left-list">
                     <a class="" onclick="loadMainPage('/dashboard')" href="#/dashboard">
                       <!-- <i class="fa fa-tachometer" style="color:white;font-size: 17px;vertical-align: unset;" aria-hidden="true"></i>Dashboard</a> -->
                       <img src="images/tachometer.png" style="width:23px;height:23px;">&nbsp;&nbsp;Dashboard</a>
@@ -105,13 +99,14 @@
 
 <script>
   //  $('.sidebar-nav>ul>li').click(function(){
-  //   //  alert("hi")
+  //    alert("if");
   //       if($(this).hasClass('.active-tab')){
-  //         $(".sidebar-nav>ul>li>a").removeClass('.active-tab');
+  //         $(this).removeClass('.active-tab');
   //         $(this).addClass('.active-tab');
          
-  // }else{
-        
+  // }
+  // else{
+  //   alert("else");
   //        $(this).removeClass('.active-tab');
   //        $(this).addClass('.active-tab');  
          
