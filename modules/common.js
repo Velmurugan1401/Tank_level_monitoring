@@ -123,16 +123,15 @@ Common.prototype.commonUpdate = function (tablename, req, res) {
     boodskap.elasticUpdate(tablename, req.body._id, req.body.updateData, function (status, result) {
 
 
-
         if (status) {
             var obj ={
-                "email" : req.body.email,
-                "firstName" : req.body.fname,
-               "lastName" : req.body.lname,
-               "primaryPhone" : req.body.mnumber,
-               "password": req.body.password,
+                "email" : req.body.updateData.email,
+                "firstName" : req.body.updateData.fname,
+               "lastName" : req.body.updateData.lname,
+               "primaryPhone" : req.body.updateData.mnumber,
+               "password": req.body.updateData.password,
                "roles": [
-                req.body.roles
+                req.body.updateData.roles
               ],
             }
             console.log("obj",obj)
@@ -244,7 +243,7 @@ Common.prototype.testAction = function (req, res) {
 
 Common.prototype.commonAdd = function (tablename, req, res) {
 
-  console.log("common",req.body);
+//   console.log("common",req.body);
     const self = this;
 
     const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
@@ -257,7 +256,6 @@ Common.prototype.commonAdd = function (tablename, req, res) {
                 "password": req.body.password,
                 "firstName": req.body.fname,
                 "lastName": req.body.lname,
-                
                 "primaryPhone": req.body.mnumber,
                
                 "roles": [
@@ -291,6 +289,8 @@ Common.prototype.commonAdd = function (tablename, req, res) {
 };
 
 Common.prototype.commonDelete = function (tablename, req, res) {
+
+    console.log("del",req.body)
 
     const self = this;
 
