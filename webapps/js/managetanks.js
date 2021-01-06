@@ -5,6 +5,7 @@ var key;
 var device_list = [];
 var Updateflag = false;
 var id = [];
+var device_id;
 var totalcount;
 var tankDeleteId=null;
 var startDate = moment().subtract(6, 'days').startOf('day');
@@ -58,7 +59,7 @@ function tankDetails() {
     var tank_name = $("#tank_name").val();
     var tank_type = $("#tank_type").val();
     var location = $("#location").val();
-    var device_id = $("#device_id").val();
+    // var device_id = $("#device_id").val();
     var capacity = $("#capacity").val();
     var min_level = $("#min_level").val();
     var max_level = $("#max_level").val();
@@ -105,7 +106,7 @@ function tankDetails() {
             tank_name: tank_name,
             tank_type: tank_type,
             location: location,
-            device_id: device_id,
+            // device_id: device_id,
             capacity: capacity,
             min_level: min_level,
             max_level: max_level,
@@ -143,7 +144,7 @@ function tankDetails() {
         var tank_name = $("#tank_name").val();
         var tank_type = $("#tank_type").val();
         var location = $("#location").val();
-        var device_id = $("#device_id").val();
+        // var device_id = $("#device_id").val();
         var capacity = $("#capacity").val();
         var min_level = $("#min_level").val();
         var max_level = $("#max_level").val();
@@ -155,7 +156,8 @@ function tankDetails() {
             device_id: device_id,
             capacity: capacity,
             min_level: min_level,
-            max_level: max_level
+            max_level: max_level,
+            
         };
         $.ajax({
 
@@ -449,7 +451,7 @@ function editTank(id) {
             $("#capacity").val(tank1.capacity);
             $("#min_level").val(tank1.min_level);
             $("#max_level").val(tank1.max_level);
-
+            device_id=tank1.device_id;
           
         }
     }
