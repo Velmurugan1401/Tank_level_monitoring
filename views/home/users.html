@@ -175,7 +175,11 @@ input::-webkit-inner-spin-button {
           form.classList.add('was-validated');
           event.preventDefault();
             event.stopPropagation();
-            loadUser();
+            $(document).ready(function(){
+              loadUser();
+            loadrecordUser();
+            })
+            
           
         }, false);
       });

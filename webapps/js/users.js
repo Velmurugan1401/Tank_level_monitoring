@@ -4,7 +4,7 @@ var deleteuserid="";
 var key;
 var count;
 var flag = false;
-var flag2=false;
+
 var usercount;
 // var startDate = moment().subtract(6, 'days').startOf('day');
 // var endDate = moment().endOf('day');
@@ -83,7 +83,7 @@ function loadrecordUser() {
     var lastName = $("#lastname").val();
     var primaryPhone = $("#mobile").val();
     var email = $("#emailid").val();
-    var password=$("#pass").val();
+    var password=$("#Password").val();
     var roles = $("#role").val();
 
      //Validate
@@ -126,6 +126,7 @@ function loadrecordUser() {
             lname : lastName,
             mnumber : primaryPhone,
             email : email,
+            password : password,
             roles: roles,
             created_ts: new Date().getTime()
 
@@ -146,6 +147,7 @@ function loadrecordUser() {
             data: JSON.stringify(input),
             success: function (result) {
                 console.log(result);
+
                 $("#firstname,#lastname,#mobile,#emailid,#role").val('');
                 $("#myModal").css('display','none');
                 $(".modal-backdrop").remove();
@@ -199,7 +201,7 @@ function loadrecordUser() {
 
                 successMsg("Update Completed Successfully!");
 
-                // loadUsersList();
+                loadUsersList();
                         //  window.location.reload();
 
             },
@@ -215,144 +217,6 @@ function loadrecordUser() {
     }
 
 }
-// function loadUser() {
-
-//     var firstname = $("#firstname").val();
-//     var lastName = $("#lastname").val();
-//     var primaryPhone = $("#mobile").val();
-//     var password=$("#pass").val();
-//     var email = $("#emailid").val();
-//     var roles = $("#role").val();
-
-//      //Validate
-//      if (firstname === "") {
-//         $(".validate").css('display','block');
-//         return;
-
-
-//     //     alert("First  Name is Required!");
-
-//     } else if (lastName === "") {
-//         $(".validate").css('display','block');
-//         return;
-//     //     alert("Last name is Required!");
-
-//     }
-//     else if (primaryPhone === "") {
-//         $(".validate").css('display','block');
-//         return;
-//     //     alert("Mobile number  is Required!");
-
-//     }
-//     else if (email === "") {
-//         $(".validate").css('display','block');
-//         return;
-//     //     alert("Email id is Required!");
-
-//     }
-//     else if(password==="")
-//     {
-//         $(".validate").css('display','block');
-//     return;
-//     }
-
-//       else {
-   
-//         //Build Input Objects
-//         var inputObj =
-//         {
-//             firstName: firstname,
-//             lastName: lastName,
-//             primaryPhone: primaryPhone,
-//             password:password,
-//             email: email,
-//             roles: [roles]
-
-//         };
-//     }
-
-//     console.log("inputObj", inputObj);
-
-//     //Call API
-//     if (flag == false) {
-//         $.ajax({
-//             url: BASE_PATH + "/user/userinsert",
-//             "dataType": 'json',
-//             "contentType": 'application/json',
-//             "type": "POST",
-
-//             data: JSON.stringify(inputObj),
-//             success: function (result) {
-//                 console.log(result);
-//                 $("#firstname,#lastname,#mobile,#emailid,#role").val('');
-//                 $("#myModal").css('display','none');
-//                 $(".modal-backdrop").remove();
-
-//                 //Success -> Show Alert & Refresh the page
-//                 successMsg("User Added Successfully!");
-//                 // loadUsersList();
-//                 window.location.reload();
-
-//             },
-//             error: function (e) {
-
-//                 //Error -> Show Error Alert & Reset the form
-//                 errorMsg(" User not created!");
-//                 // window.location.reload();
-//                 loadUsersList();
-
-//             }
-//         });
-
-//     // } else if (flag == true) {
-//     //     var fname = $("#firstname").val();
-//     //     var lname = $("#lastname").val();
-//     //     var mno = $("#mobile").val();
-//     //     var eid = $("#emailid").val();
-//     //     var roles = $("#role").val();
-
-//     //     var updateData = {
-//     //         firstName: fname,
-//     //         lastName: lname,
-//     //         primaryPhone: mno,
-//     //         email: eid,
-//     //         roles: [roles]
-//     //     };
-//     //     console.log("id", key)
-//     //     console.log("update", updateData);
-//     //     $.ajax({
-
-//     //         url: BASE_PATH + "/user/userinsert",
-//     //         "dataType": 'json',
-//     //         "contentType": 'application/json',
-//     //         "type": "POST",
-//     //         data: JSON.stringify(updateData),
-//     //         success: function (result) {
-//     //             // //Success -> Show Alert & Refresh the page 
-//     //          $("#firstname,#lastname,#mobile,#emailid,#role").val('');
-//     //             $("#myModal").css('display','none');
-//     //             $(".modal-backdrop").remove();
-
-//     //             successMsg("Update Completed Successfully!");
-
-//     //             // loadUsersList();
-//     //                      window.location.reload();
-
-//     //         },
-//     //         error: function (e) {
-
-//     //             //Error -> Show Error Alert & Reset the form
-//     //             errorMsg("Update Failed!");
-//     //          window.location.reload();
-
-//     //         }
-//     //     });
-//     //     flag = false;
-//     }
-
-// }
-
-
 //User List API
 function loadUsersList() {
 
@@ -428,7 +292,7 @@ function loadUsersList() {
             orderable: false,
             mRender: function (data, type, row) {
               
-                var actionsHtml = '<button class="btn btn-default"  data-target="#userDeletemodal" data-toggle="modal" onclick="assignuserrecordid(\'' + row._id + '\')"><i class="fa fa-trash"></i></button>' + '<button class="btn btn-default"  data-toggle="modal" data-target="#myModal" onclick="editUser(\'' + row._id + '\')"><i class="fa fa-pencil edit"></i>';
+                var actionsHtml = '<button class="btn btn-default"  data-target="#userDeletemodal" data-toggle="modal" onclick="assignuserrecordid(\'' + row._id + '\',\'' + row.email + '\')"><i class="fa fa-trash"></i></button>' + '<button class="btn btn-default"  data-toggle="modal" data-target="#myModal" onclick="editUser(\'' + row._id +'\')"><i class="fa fa-pencil edit"></i>';
                 return actionsHtml;
             }
         }
@@ -585,27 +449,7 @@ function loadUsersList() {
 var user1;
 var _id
 
-// function editUser(id) {
-//     key = id;
-//     flag = true;
-//     console.log(flag);
-//     console.log(key);
 
-//     for (i = 0; i < Users_list.length; i++) {
-//         if (Users_list[i]._id == id) {
-//             user1 = Users_list[i];
-//             console.log(Users_list[i]);
-//             console.log(user1);
-//             $("#firstname").val(user1.firstName);
-//             $("#lastname").val(user1.lastName);
-//             $("#mobile").val(user1.primaryPhone);
-//             $("#role").val(user1.roles);
-//             $("#emailid").val(user1.email);
-
-//         }
-//     }
-
-// }
 function editUser(id) {
     key = id;
     flag = true;
@@ -626,48 +470,25 @@ function editUser(id) {
     }
 
 }
+var email;
 
-// var user1;
-// function editUser(row) {
-// console.log(row);
-    
-// }
-//delete user details
- 
-// function assignuserid(userid){  
-//     console.log(userid);   
-//     email_id = userid;
-//     console.log(email_id);
-// }
-// function userdelete()  {
-//    console.log(email_id)
-//     $.ajax({
-//         url: BASE_PATH +'/user/userdelete',
-//         data:  JSON.stringify({email_id}),
-//         contentType: "application/json",
-//         type: 'POST',
-//         success: function () {
-//             successMsg('deleted successfully');
-//             loadUsersList();
-//         },
-//         error: function () {
-//             // console.log(e);
-//             errorMsg("deletion failed");
-//             // window.locale.reload();
-//         }
-//     });
-// }
-
-function assignuserrecordid(userid){  
-    console.log(userid);   
-    recordid = userid;
-    console.log(recordid);
+function assignuserrecordid(rowid,rowemail){  
+    console.log("id",rowid);   
+   recordid=rowid;
+    console.log("email",rowemail);
+    email=rowemail;
+  
 }
+
 function userrecorddelete()  {
-   console.log(recordid)
+   console.log("userrecorddelete recordid ",recordid)
+   console.log("userrecorddelete email ",email)
+//    console.log(email)
+
+//    var email=Users_list.email
     $.ajax({
         url: BASE_PATH +'/user/delete',
-        data:  JSON.stringify({_id:recordid}),
+        data: JSON.stringify({_id:recordid,email:email}),
         contentType: "application/json",
         type: 'POST',
         success: function () {
