@@ -1,5 +1,3 @@
- 
- 
 <link rel="stylesheet" href="css/snapshot.css" /> 
  
  
@@ -56,7 +54,7 @@
   <div class="row p-2 mb-5 align-items-start" style="background-color:white;border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;padding-left: 10px;padding-right:10px;padding-bottom: 20px;margin-bottom: 70px;">
     <!-- start content1 -->
-    <div class="col-lg-4 col-sm-12 col-md-12 content mt-2 text-center">
+    <div class="col-lg-4 col-sm-12 col-md-12 content mt-2 text-center" id="waterlevl">
       <img
         src="images/water-tank-widget-8.png"       
       />
@@ -158,46 +156,8 @@
       <!-- start table  -->
       <div class="row mt-5">
         <div class="col-12">
-          <table class="table" id="example" width="100%">
-            <thead>
-              <tr>
-                <th scope="col">Reported time</th>
-                <th scope="col">Current level</th>
-                <th scope="col">Alerts</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>24/12/2020</td>
-                <td>10000</td>
-                <td>High</td>
-              </tr>
-              <tr>
-                <td>24/12/2020</td>
-                <td>10000</td>
-                <td>High</td>
-              </tr>
-              <tr>
-                <td>24/12/2020</td>
-                <td>10000</td>
-                <td>High</td>
-              </tr>
-              <tr>
-                <td>24/12/2020</td>
-                <td>10000</td>
-                <td>Low</td>
-              </tr>
-              <tr>
-                <td>26/12/2020</td>
-                <td>10000</td>
-                <td>Low</td>
-              </tr>
-              <tr>
-                <td>24/12/2020</td>
-                <td>15000</td>
-                <td>Low</td>
-              </tr>
-            </tbody>
+          <table class="table table-responsive" id="example" width="100%">
+            
           </table>
         </div>
       </div>
@@ -232,9 +192,10 @@
    });
  </script>
 
-<script>
+<!-- <script>
   $(document).ready(function() {
     $('#example').DataTable();
-} );
+} ); -->
 </script> 
 <script src="js/tankstatus.js"></script>
+<script src="js/snapshot.js"></script>

@@ -1,3 +1,5 @@
+// const e = require("express");
+
 var TankStatusTable = null;
 var TankStatus_list = [];
 var deleteDeviceId=null;
@@ -66,11 +68,30 @@ function loadTankStatusList() {
             mData: 'tank_name',
             sTitle: 'Tank Name',
             sWidth: '15%',
-            orderable: false,
+            orderable: true,
             "className": 'sortingtable',
             mRender: function (data, type, row) {
-                return '<div class="row">' + '<img src="/images/tank-1.png"style="height:30px;"width:30px">' + '&nbsp;' + '&nbsp;' + '<b>' + row.tank_name +'</b>'  + '</div>'+'<br>' + '<h6>' + '<i class="fa fa-map-marker" aria-hidden="true" style="color:red;"></i>'+'&nbsp;' + '&nbsp;' + row.location + '&nbsp;' + '</h6>';
-                // return data ? data : '-';
+                if(!((row.tank_name) && (row.location))){
+                   return data ? data : '-';
+                }
+                else if((row.tank_name == "null") || (row.tank_name == "undefined")){
+                    return '<div class="row">' + '<b>' + '-' +'</b>' 
+                    + '</div>'+'<br>' 
+                    + '<h6>' + '<i class="fa fa-map-marker" aria-hidden="true" style="color:red;"></i>'+'&nbsp;' + '&nbsp;' + row.location + '&nbsp;' + '</h6>';
+                  
+                }
+                else if((row.location == "null") || (row.location == "undefined")){
+                    return '<div class="row">' + '<img src="/images/tank-1.png"style="height:30px;"width:30px">' + '&nbsp;' + '&nbsp;' + '<b>' + row.tank_name +'</b>' 
+                 + '</div>'+'<br>' 
+                 + '<h6>' + '-' +'</h6>';
+               
+                }
+                else{
+                return '<div class="row">' + '<img src="/images/tank-1.png"style="height:30px;"width:30px">' + '&nbsp;' + '&nbsp;' + '<b>' + row.tank_name +'</b>' 
+                 + '</div>'+'<br>' 
+                 + '<h6>' + '<i class="fa fa-map-marker" aria-hidden="true" style="color:red;"></i>'+'&nbsp;' + '&nbsp;' + row.location + '&nbsp;' + '</h6>';
+               
+                }
             }
         },
        {
@@ -81,22 +102,25 @@ function loadTankStatusList() {
             mRender: function (data, type, row) {
                 // console.log(row);
                 return data ? data : '-';
+                
             }
         },
         {
           mData: 'tank_level',
           sWidth: '20%',
           sTitle: 'Tank Level',
-        //   orderable: false,
+          orderable: true,
           "className": 'sortingtable',
           mRender: function (data, type, row) {
             var cal=(row.tank_level/row.capacity)*100;
             //  alert(cal);
+
+
              if((cal > 75) && (cal <= 100)){
                 return '<div class="row">' 
                 + '<div class="col-md-8">'
-                +'<div style="font-size:16px;font-weight:normal;">' + '<b>'+ row.tank_level + '</b>'+'&nbsp;' +'gallons '+'</div>'
-                +'<div style="font-size:12px;">'+ 'Total Capacity' + '&nbsp;'+ row.capacity + '&nbsp;'+'<br>' +'gallons '+'</div>'
+                +'<div style="font-size:16px;font-weight:normal;">' + '<b>'+ row.tank_level + '</b>'+'&nbsp;' +'litres '+'</div>'
+                +'<div style="font-size:12px;">'+ 'Total Capacity' + '&nbsp;'+ row.capacity + '&nbsp;'+'<br>' +'litres '+'</div>'
                 +'</div>'
                 + '<div class="col-md-4">'
                 +'<div style="width:50px;height:50px;background-color:lightyellow;border:1px solid gray;border-bottom:35px solid #38A7FA;border-radius:3px;">' + '</div>'
@@ -107,8 +131,8 @@ function loadTankStatusList() {
              else if((cal > 50) && (cal <= 75)){
                 return '<div class="row">' 
                 + '<div class="col-md-8">'
-                +'<div style="font-size:16px;font-weight:normal;">' + '<b>'+row.tank_level+ '</b>' + '&nbsp;' +'gallons '+'</div>'
-                +'<div style="font-size:12px;">'+ 'Total Capacity' + '&nbsp;'+ row.capacity + '&nbsp;'+'<br>' +'gallons '+'</div>'
+                +'<div style="font-size:16px;font-weight:normal;">' + '<b>'+row.tank_level+ '</b>' + '&nbsp;' +'litres '+'</div>'
+                +'<div style="font-size:12px;">'+ 'Total Capacity' + '&nbsp;'+ row.capacity + '&nbsp;'+'<br>' +'litres '+'</div>'
                 +'</div>'
                 + '<div class="col-md-4">'
                 +'<div style="width:50px;height:50px;background-color:lightyellow;border:1px solid gray;border-radius:3px;border-bottom:23px solid #38A7FA;">'+ '</div>'
@@ -119,8 +143,8 @@ function loadTankStatusList() {
              else if((cal > 25) && (cal <= 50)){
                 return '<div class="row">' 
                 + '<div class="col-md-8">'
-                +'<div style="font-size:16px;font-weight:normal;">' + '<b>'+row.tank_level+ '</b>' + '&nbsp;' +'gallons '+'</div>'
-                +'<div style="font-size:12px;">'+ 'Total Capacity' + '&nbsp;'+ row.capacity + '&nbsp;'+'<br>' +'gallons '+'</div>'
+                +'<div style="font-size:16px;font-weight:normal;">' + '<b>'+row.tank_level+ '</b>' + '&nbsp;' +'litres '+'</div>'
+                +'<div style="font-size:12px;">'+ 'Total Capacity' + '&nbsp;'+ row.capacity + '&nbsp;'+'<br>' +'litres '+'</div>'
                 +'</div>'
                 + '<div class="col-md-4">'
                 +'<div style="width:50px;height:50px;background-color:lightyellow;border:1px solid gray;border-radius:3px;border-bottom:15px solid #38A7FA;">' +'</div>'
@@ -131,8 +155,8 @@ function loadTankStatusList() {
              else if((cal > 1) && (cal <= 25)){
                 return '<div class="row">' 
                 + '<div class="col-md-8">'
-                +'<div style="font-size:16px;font-weight:normal;">' +'<b>'+ row.tank_level + '</b>'+ '&nbsp;' +'gallons '+'</div>'
-                +'<div style="font-size:12px;">'+ 'Total Capacity' + '&nbsp;'+ row.capacity + '&nbsp;'+'<br>' +'gallons '+'</div>'
+                +'<div style="font-size:16px;font-weight:normal;">' +'<b>'+ row.tank_level + '</b>'+ '&nbsp;' +'litres '+'</div>'
+                +'<div style="font-size:12px;">'+ 'Total Capacity' + '&nbsp;'+ row.capacity + '&nbsp;'+'<br>' +'litres '+'</div>'
                 +'</div>'
                 + '<div class="col-md-4">'
                 +'<div style="width:50px;height:50px;background-color:lightyellow;border:1px solid gray;border-radius:3px;border-bottom:10px solid #38A7FA;">' +'</div>'
@@ -143,8 +167,8 @@ function loadTankStatusList() {
              else{
                 return '<div class="row">' 
                 + '<div class="col-md-8">'
-                +'<div style="font-size:16px;font-weight:normal;">' + '<b>'+row.tank_level+ '</b>' + '&nbsp;' +'gallons '+'</div>'
-                +'<div style="font-size:12px;">'+ 'Total Capacity' + '&nbsp;'+ row.capacity + '&nbsp;'+'<br>' +'gallons '+'</div>'
+                +'<div style="font-size:16px;font-weight:normal;">' + '<b>'+row.tank_level+ '</b>' + '&nbsp;' +'litres '+'</div>'
+                +'<div style="font-size:12px;">'+ 'Total Capacity' + '&nbsp;'+ row.capacity + '&nbsp;'+'<br>' +'litres '+'</div>'
                 +'</div>'
                 + '<div class="col-md-4">'
                 +'<div style="width:50px;height:50px;background-color:lightyellow;border:1px solid gray;border-radius:3px;">' +'</div>'
@@ -187,8 +211,8 @@ function loadTankStatusList() {
                 }
                 else{
               var actionsHtml = '<button class="btn btn-default"  title="Tank Linked" style="margin-right:5px;" ><i class="fa fa-link" aria-hidden="true"></i></button>'
-                          +'<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\');status(\''+row.device_id+'\')" href="#/snapshot" title="Goto Snapshot" style="margin-right:5px;" ><i class="fa fa-eye" aria-hidden="true"></i></button>'
-                          +'<button class="btn btn-default" data-target="#statusDeletemodal" data-toggle="modal" onclick="assignDeleteDeviceId(\'' + row._id + '\')"><i class="fa fa-trash icon" ></i></button>';
+                          +'<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\');status(\''+row.device_id+'\');level(\''+row.device_id+'\')" href="#/snapshot" title="Goto Snapshot" style="margin-right:5px;" ><i class="fa fa-eye" aria-hidden="true"></i></button>'
+                          +'<button class="btn btn-default" data-target="#statusDeletemodal" data-toggle="modal" onclick="assignDeleteDeviceId(\'' + row._id + '\',\'' + row._id + '\')"><i class="fa fa-trash icon" ></i></button>';
                           return actionsHtml;
                }
             }
@@ -199,6 +223,8 @@ function loadTankStatusList() {
         query: {
             "bool": {
                 "must": []
+
+           
             }
         },
         sort: [{ "created_ts": { "order": "asc" } }]
@@ -233,9 +259,9 @@ function loadTankStatusList() {
 
             var keyName = fields[oSettings.aaSorting[0][0]]
 
-            // var sortingJson = {};
-            // sortingJson[keyName['mData']] = { "order": oSettings.aaSorting[0][1] };
-            // queryParams.sort = [sortingJson];
+            var sortingJson = {};
+            sortingJson[keyName['mData']] = { "order": oSettings.aaSorting[0][1] };
+            queryParams.sort = [sortingJson];
 
             queryParams.sort=[{"created_ts":{"order":"desc"}}];
 
@@ -300,8 +326,10 @@ function loadTankStatusList() {
         loadTankStatusList();
     }
 
-function assignDeleteDeviceId(row){
-    // console.log(row);
+function assignDeleteDeviceId(row,row1){
+
+    console.log(row);
+    console.log(row1);
     deleteDeviceId = row
 }
 
@@ -437,3 +465,43 @@ $('#offbut').on('click', function(e){
     $('.on').removeClass('on').addClass('off');
     e.preventDefault();
 });
+
+
+$(document).ready(function(){
+    setInterval(level(row),3000);
+});
+function level(row)
+{
+    var lvl;
+    var cap;
+    var cal;
+        $.ajax({
+            "dataType": 'json',
+            "contentType": 'application/json',
+            "type": "POST",
+            url: BASE_PATH + '/tankstatus/list',
+            success: function (data) {                
+                var resultData = data.result.data.data;  
+                // console.log('result',resultData)             
+                // console.log('meeee');
+                for(i=0;i<=resultData.length;i++){
+                    if(row==resultData[i].device_id)
+                    {
+                        lvl=resultData[i].tank_level;
+                        cap=resultData[i].capacity;                            
+                        cal=((lvl/cap)*100);  
+                        // console.log(Math.round(cal)); 
+                        $('.water').height(cal);
+                        // $("waterlevl").append(<span style="height='+cal+'%"></span>')
+                        // $('#water').css('height':"'cal'+'%'");
+                        // function resizeDiv() { var rh=$('.pright').height()+'px'.toString(); $('.pleft').css('height',rh); }
+                        break;
+                    }
+                }          
+    
+            }
+        })
+        
+      
+  
+    }

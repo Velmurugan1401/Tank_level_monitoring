@@ -305,11 +305,11 @@ function loadTankList() {
                 console.log(row.device_id);
                 if (row.device_id) {
 
-                    return '<button type="button" id="link" class="btn tank-atag link1" data-toggle="modal" data-target="#myModal1" onclick="linkdevice(\'' + row._id + '\')"><i class="fa fa-unlink" aria-hidden="true"></i></button>';
+                    return '<button type="button" id="link" class="btn tank-atag link1" title="unlink" data-toggle="modal" data-target="#myModal1" onclick="linkdevice(\'' + row._id + '\')"><i class="fa fa-unlink" aria-hidden="true"></i></button>';
 
                 } else {
 
-                    return '<button type="button" id="link" class="btn tank-atag1 link1" data-toggle="modal" data-target="#myModal" onclick="linkdevice(\'' + row._id + '\')"><i class="fa fa-link" aria-hidden="true"></i></button>';
+                    return '<button type="button" id="link" class="btn tank-atag1 link1" title="link" data-toggle="modal" data-target="#myModal" onclick="linkdevice(\'' + row._id + '\')"><i class="fa fa-link" aria-hidden="true"></i></button>';
 
                 }
             },
