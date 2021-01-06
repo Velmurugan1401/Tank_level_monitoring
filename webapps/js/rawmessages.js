@@ -10,13 +10,13 @@
         loadDeviceList();
     })
 
-    $('#expandview').click(function(){
+    $('#rawExpand').click(function(){
         var elem = document.documentElement;
-        if($(this).hasClass('fa fa-expand')){
+        if($(expandview).hasClass('fa fa-expand')){
            
-            $(this).removeClass('fa fa-expand');
+            $(expandview).removeClass('fa fa-expand');
             
-            $(this).addClass('fa fa-compress');
+            $(expandview).addClass('fa fa-compress');
             if (elem.requestFullscreen) {
                 elem.requestFullscreen();
               } else if (elem.webkitRequestFullscreen) { /* Safari */
@@ -28,9 +28,9 @@
               
           }else{
            
-            $(this).removeClass('fa fa-compress');
+            $(expandview).removeClass('fa fa-compress');
             
-            $(this).addClass('fa fa-expand');  
+            $(expandview).addClass('fa fa-expand');  
             if (document.exitFullscreen) {
                 document.exitFullscreen();
               } else if (document.webkitExitFullscreen) { /* Safari */
