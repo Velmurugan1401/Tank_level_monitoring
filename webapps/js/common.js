@@ -25,7 +25,7 @@ $(document).ready(function () {
 function logout() {
     Cookies.remove('myweb_cookie')
     document.location=BASE_PATH+'/login';
-}
+}       
 
 
 var s4 = function () {

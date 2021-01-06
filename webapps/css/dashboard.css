@@ -36,7 +36,8 @@
     border-radius: .375rem;
     position: relative;
     background-color: white;
-    height: 150px;
+    height: 80px;
+    width: 180px;
    
 }
 .card-header{
@@ -69,7 +70,7 @@
    padding-top: 20px;
 }
 .three{
-    margin-top: 30px;
+    margin-top: 70px;
 }
 .tank:hover{
     box-shadow: 20px blue;
@@ -93,7 +94,15 @@ margin-bottom: 20px;
 border-radius: 6px;
 box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 margin-left: 20px;
+
 }
+.chart1{
+    background-color: white;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    
+    }
 /* .chart2{
     background-color: white;
     margin-bottom: 20px;
@@ -116,6 +125,7 @@ margin-left: 20px;
 cursor: pointer;
 transition: box-shadow 0.3s ease-in-out;
 border-radius: 6px;
+
 
 }
 .chart3{
@@ -151,6 +161,9 @@ color:hotpink;
 }
 .topic{
     padding-top: 50px;
+}
+.card-header{
+    border-bottom: 1px solid lightgrey;
 }
 /* .topic1{
     padding-top: 30px;
