@@ -39,6 +39,7 @@ $(() => {
         success: function (data) {
             var resultData = data.result.data;
             $("#totaldevice").html(data.result.total)
+            
         }
     })
 })

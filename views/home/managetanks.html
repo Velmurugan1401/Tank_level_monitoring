@@ -1,4 +1,7 @@
-<div class="container-fluid ">
+<link rel="stylesheet" href="css/managetanks.css">
+
+
+<div class="container-fluid cf">
   <div class="row" style="background-color:white;padding-top: 25px;border-top-left-radius: 5px;
     border-top-right-radius: 5px;padding: 20px;">
         <div class="col-md-12">
@@ -17,13 +20,13 @@
              
           </div>
         <div class="col-md-6 coln2">
-            <div id="reportrange" style="background: #fff;margin-right: 10px; border: 1px solid #ccc;display: inline-block;padding:6px">
+            <div id="reportrange" class="calender" style="background: #fff;margin-right: 10px; border: 1px solid #ccc;display: inline-block;padding:6px">
                 <i class="fa fa-calendar"></i>&nbsp;
                 <span></span> <i class="fa fa-caret-down"></i>
             </div>
-            <button type="button"  id="full" class="btn but" data-toggle="tooltip" data-placement="bottom" title="Full Screen">
-            <i class="fa fa-expand" id="expandview"style="color:white" aria-hidden="true"></i></button>
-            <button class="btn but1" data-toggle="tooltip" data-placement="bottom" title="Referesh"style="color:#1C3FAA" onclick="refreshtank()"><i class="fa fa-refresh   fa-fw "style=" color:white;" aria-hidden="true"></i></a> 
+            <button type="button"  id="full" class="btn but fullviwe"  data-placement="bottom" title="Full Screen">
+            <i class="fa fa-expand" id="expandview"style="color:white;" aria-hidden="true"></i></button>
+            <button class="btn but1 expand" data-toggle="tooltip" data-placement="bottom" title="Referesh"style="color:#1C3FAA" onclick="refreshtank()"><i class="fa fa-refresh   fa-fw "style=" color:white;" aria-hidden="true"></i></a> 
           </div>
 
             <div class="modal fade" id="exampleModal" role="dialog">
@@ -207,7 +210,7 @@
    <div class="row roo" >
           <div class="col-md-12">
            
-              <table class="table table-bordered table-responsive no-wrap" id="tank_table" width="100%" ></table> 
+              <table class="table table-bordered table-responsive no-wrap data" id="tank_table" width="100%" ></table> 
             
              
           </div>

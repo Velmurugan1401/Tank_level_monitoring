@@ -239,7 +239,7 @@ function loadTankList() {
             // "className": 'sortingtable',
             mRender: function (data, type, row) {
                 // return row.tank_name+""+row.location;
-                return '<div class="row">' + '<img src="/images/tank-1.png"style="height:30px;"width:30px">' + '&nbsp;' + '&nbsp;' + '<b>' + row.tank_name +'</b>' + '&nbsp;' + '&nbsp;' + '<h6>' + '&nbsp;' + '<i class="fa fa-map-marker" aria-hidden="true" style="color:#299AE1"></i>' + '&nbsp;' + row.location + '&nbsp;' + '</h6>' + '</div>';
+                return '<div class="row">' + '<img src="/images/tank-1.png"style="height:30px;"width:30px">' + '&nbsp;' + '&nbsp;' + '<b>' + row.tank_name +'</b>' + '</div>'+' <br>' + '<h6>' + '<i class="fa fa-map-marker" aria-hidden="true" style="color:red"></i>' + '&nbsp;' + row.location + '&nbsp;' + '</h6>';
             }
         },
         {
@@ -252,7 +252,7 @@ function loadTankList() {
             }
         },
         {
-            mData: 'min_level',
+            mData: 'min_level ',
             sTitle: 'Min level',
             sWidth: '20%',
             orderable: false,
@@ -293,7 +293,7 @@ function loadTankList() {
             sTitle: 'capacity',
             orderable: true,
             mRender: function (data, type, row) {
-                return '<div class="row">' + '<b>' + row.capacity + '</b>' + '&nbsp;' + 'Gallon' +'<span style="margin-right:50px">' + 'min -' + row.min_level + '&nbsp;' + '&nbsp;' + '<h6>' +'max -' + '&nbsp;' + row.max_level + '&nbsp;' + '</h6>' + '</div>';
+                return '<div class="row">' + '<b>' + row.capacity + '</b>' + '&nbsp;' + 'Liters' +'<span style="margin-right:50px">' + 'min -' + row.min_level +'&nbsp;'+'Liters'+'&nbsp;' + '&nbsp;' + '<h6>' +'max -' + '&nbsp;' + row.max_level + '&nbsp;'+'Liters'+'&nbsp;' + '</h6>' + '</div>';
             }
         },
         {
@@ -305,11 +305,11 @@ function loadTankList() {
                 console.log(row.device_id);
                 if (row.device_id) {
 
-                    return '<button type="button" id="link" class="btn tank-atag link1" data-toggle="modal" data-target="#myModal1" onclick="linkdevice(\'' + row._id + '\')"><i class="fa fa-unlink" aria-hidden="true"></i></button>';
+                    return '<button type="button" id="link" class="btn tank-atag link1" title="Unlink" data-toggle="modal" data-target="#myModal1" onclick="linkdevice(\'' + row._id + '\')"><i class="fa fa-unlink" aria-hidden="true"></i></button>';
 
                 } else {
 
-                    return '<button type="button" id="link" class="btn tank-atag1 link1" data-toggle="modal" data-target="#myModal" onclick="linkdevice(\'' + row._id + '\')"><i class="fa fa-link" aria-hidden="true"></i></button>';
+                    return '<button type="button" id="link" class="btn tank-atag1 link1" title="Link" data-toggle="modal" data-target="#myModal" onclick="linkdevice(\'' + row._id + '\')"><i class="fa fa-link" aria-hidden="true"></i></button>';
 
                 }
             },
@@ -459,7 +459,7 @@ function loadTankList() {
 
         dom: 'l<"toolbar">frtip',
         initComplete: function () {
-            $("div.toolbar").html('<button type="button" class="btn button1" onclick=addtank() data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus-square icons" style="color:white";"aria-hidden="true"></i>Add Tanks</button>');
+            $("div.toolbar").html('<button type="button" class="btn button1 addtank" onclick=addtank() data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus-square icons" style="color:white";"aria-hidden="true"></i>Add Tank</button>');
         }
 
 
