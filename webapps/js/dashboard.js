@@ -1,6 +1,21 @@
 var resultData;
+// event trigger
+$(() => {
+    $.ajax({
+        "dataType": 'json',
+        "contentType": 'application/json',
+        "type": "POST",
+        url: BASE_PATH + '/eventtrigger/list',
+        success: function (data) {
+            var resultData = data.result.data;
+            console.log(resultData)
+            $("#totalevent").html(data.result.total)
 
 
+        }
+    })
+})
+// user list
 
 $(() => {
     $.ajax({

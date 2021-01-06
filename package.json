@@ -20,6 +20,7 @@
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
     "csv-parser": "^2.3.3",
+    "echart": "^0.1.3",
     "echarts": "^5.0.0",
     "ejs": "^3.1.3",
     "elasticemail": "^0.2.0",
