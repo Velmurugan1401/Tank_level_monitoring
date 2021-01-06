@@ -192,6 +192,7 @@ Boodskap.prototype.deviceSearch = function (cbk) {
 }
 // device
 Boodskap.prototype.devSearch = function (data,cbk) {
+    console.log(data)
   
     const self = this;
     var obj = {
@@ -271,6 +272,7 @@ Boodskap.prototype.MSGSearch = function (rid, query, cbk) {
 
 
 Boodskap.prototype.elasticSearch = function (rid, query, cbk) {
+    console.log(query)
   
     const self = this;
 

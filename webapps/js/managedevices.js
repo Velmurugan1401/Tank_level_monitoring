@@ -195,10 +195,6 @@ function loadDeviceList() {
                     device_list2 = resultData.data;
                     console.log("new",device_list2)
                       
-                    
-                   
-                  
-
                     $(".totalCount").html(data.result.total)
                     $("#total").html(data.result.total)
                     resultData['draw'] = oSettings.iDraw;
@@ -219,6 +215,9 @@ for(i=0;i<=device_list2.length;i++){
     $('#listdevice').append('<option>'+device_list2[i].id+`</option>`)
 
 }
+// singlesnopshot device list
+
+
  
 
 
