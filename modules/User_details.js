@@ -12,13 +12,16 @@ Users.prototype.performAction = function (req,res){
 
     const self = this;
 
-    if(req.params.action === 'delete'){
+    if(req.params.action === 'userdelete'){
         self.common.commonUserDelete(req,res);
     }
     else if(req.params.action === 'insert'){
         self.common.commonAdd(self.table.USER_TABLE,req,res);
     }
-    else if(req.params.action === 'recorddelete'){
+    else if(req.params.action === 'update'){
+        self.common.commonUpdate(self.table.USER_TABLE,req,res);
+    }
+    else if(req.params.action === 'delete'){
         self.common.commonDelete(self.table.USER_TABLE,req,res);
     }
     else if(req.params.action === 'userinsert'){

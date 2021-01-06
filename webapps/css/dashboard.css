@@ -38,6 +38,7 @@
     background-color: white;
     height: 80px;
     width: 180px;
+    padding-top: 24px;
    
 }
 .card-header{
@@ -164,6 +165,8 @@ color:hotpink;
 }
 .card-header{
     border-bottom: 1px solid lightgrey;
+    margin-top: 20px;
+   padding-bottom: 9px;
 }
 /* .topic1{
     padding-top: 30px;

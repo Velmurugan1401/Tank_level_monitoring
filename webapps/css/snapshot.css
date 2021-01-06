@@ -22,13 +22,13 @@
     color: grey;    
     padding: 8px;  
 }
-th
+/* th
 {
     color: #009B84;
-}
+} */
 .act
 {
-    background-color: #009B84;
+    background-color: #299AE1;
     color: white;
 }
  
@@ -54,7 +54,7 @@ th
     {
         background-color:rgb(228, 230, 232);
         border-bottom: 3px solid #858C9C;
-        padding: 8px !important;
+        padding: 10px !important;
     }
     .cad p{
   margin-bottom: 18px;
@@ -80,10 +80,9 @@ th
           );
         margin-left: -99px;
     }
-    .drop
+    #drop
     {
-         
-       display: none; 
+              
         height: 22px;
         width: 22px;
         background: -webkit-gradient(
@@ -96,7 +95,25 @@ th
         transform: rotate(45deg);
         position: absolute;
         border-radius: 0% 100% 100% 100%;
-        left: 110px;
-        top: 43px;
-        
+        left: 93px;
+        top: 41px;
+        animation: mymove 1s infinite;
+        animation-fill-mode: forwards;
+        /* animation-iteration-count: 5; */
     }
+    @keyframes mymove {
+        from {top:35px;}
+        to {top: 70px; background: -webkit-gradient(
+            linear,
+            left top,
+            right top,
+            from(#8ba7e2),
+            to(#4273f0)
+          );}
+      }
+.off{
+    display: none; 
+}
+.on{
+    display: block;
+}
