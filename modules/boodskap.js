@@ -192,6 +192,7 @@ Boodskap.prototype.deviceSearch = function (cbk) {
 }
 // device
 Boodskap.prototype.devSearch = function (data,cbk) {
+    console.log(data)
   
     const self = this;
     var obj = {
@@ -420,7 +421,7 @@ Boodskap.prototype.elasticpush = function (rid, did, dmdl, fwver, data, cbk) {
 // for user login========
 
 
-Boodskap.prototype.Userlogin = function (data,cbk) {
+Boodskap.prototype.PlatformUserCreate = function (data,cbk) {
     const self = this;
     // console.log(data);
 
@@ -450,7 +451,7 @@ Boodskap.prototype.Userlogin = function (data,cbk) {
 
 // delete User========
 
-Boodskap.prototype.UserDelete = function (email, cbk) {
+Boodskap.prototype.PlatformUserDelete = function (email, cbk) {
     const self = this;
 
     request.delete({

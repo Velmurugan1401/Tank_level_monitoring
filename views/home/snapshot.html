@@ -61,7 +61,7 @@
         src="images/water-tank-widget-8.png"       
       />
       <span class="water"></span>
-      <span class="drop">
+      <span id="drop" class="off">
 
       </span>
     </div>
@@ -127,13 +127,13 @@
                 </div>
                 <div class="row">
                   <div class="col-3">
-                    <button type="button" class="btn act">ON</button>
+                    <button type="button" class="btn act" id="onbut">ON</button>
                   </div>
                   <div class="col-3">
-                    <button type="button" class="btn act">OFF</button>
+                    <button type="button" class="btn act" id="offbut">OFF</button>
                   </div>
                   <div class="col-3">
-                    <button type="button" class="btn act">STATUS</button>
+                    <button type="button" class="btn act" id="current">STATUS</button>
                   </div>
                   
  
@@ -207,7 +207,31 @@
   </div>
   <!--  end content section -->
 </div>
- 
+ <script>
+   $('#onbut').click(function(){
+       
+       if($(this).hasClass('off')){
+          
+         $(this).removeClass('off');
+         
+         $(this).addClass('on');    
+        
+           
+       }
+   });
+   $('#offbut').click(function(){
+          
+       if($(this).hasClass('on')){
+          
+         $(this).removeClass('on');
+         
+         $(this).addClass('off');    
+        
+           
+       }
+   });
+ </script>
+
 <script>
   $(document).ready(function() {
     $('#example').DataTable();
