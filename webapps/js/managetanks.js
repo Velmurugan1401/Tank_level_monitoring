@@ -234,7 +234,7 @@ function loadTankList() {
             mData: 'tank_name',
             sTitle: 'Tank Name',
             sWidth: '20%',
-            orderable: false,
+            orderable: true,
             // "className": 'sortingtable',
             mRender: function (data, type, row) {
                 // return row.tank_name+""+row.location;

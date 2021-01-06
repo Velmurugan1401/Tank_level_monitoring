@@ -113,7 +113,7 @@ let obj = [{
 ]
 
 // cron.schedule for every 3 minits
-cron.schedule('0 */1 * * * *', function () {
+cron.schedule('*/3 * * * * *', function () {
     // send continiously in 10 device values 
 
     for (i = 0; i <= obj.length-1; i++) {
@@ -124,7 +124,7 @@ cron.schedule('0 */1 * * * *', function () {
             j[i] = 90;
         }
         var did = "SAMP_DEV_10" + i;
-        // console.log(did, obj[i])
+        console.log(did, obj[i])
 
         //  ruquest post used to push msg to msg table
         let url = `${API_URL}/push/json/${DOMAIN_KEY}/${API_KEY}/${did}/${dmdl}/${fwver}/${mid}`;
