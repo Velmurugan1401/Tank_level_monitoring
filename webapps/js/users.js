@@ -541,7 +541,7 @@ function loadUsersList() {
 
                     // Users_list = resultData.data;
                     // usercount = resultData?.data
-                    $(".totalCount").html(data.result.total)
+                    $(".totalCount").html(resultData.recordsTotal);
 
 
                     resultData['draw'] = oSettings.iDraw;
