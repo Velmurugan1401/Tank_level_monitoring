@@ -7,18 +7,21 @@
             <span class="title-span" style="margin-left: 5px;margin-right: 5px;">
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
             </span>
-            <span class="title-span" style="color: mediumblue ;font-weight: 500;">Tanks</span>
+            <span class="title-span" style="color   :#0000D0 ;font-weight: 500;">Manage Tanks</span>
         </div>
       </div>
    <div class="row head">
-          <div class="col-md-6 coln1" id="total">
+          <div class="col-md-6 coln1" >
              <span class="span1">Total Tanks:</span>
              <span id="manageTankTotalCount" style="font-weight: 500;" class="total"></span>
              
           </div>
         <div class="col-md-6 coln2">
-
-            <button type="button" class="btn but" data-toggle="tooltip" data-placement="bottom" title="Full Screen">
+            <div id="reportrange" style="background: #fff;margin-right: 10px; border: 1px solid #ccc;display: inline-block;padding:6px">
+                <i class="fa fa-calendar"></i>&nbsp;
+                <span></span> <i class="fa fa-caret-down"></i>
+            </div>
+            <button type="button"  id="full" class="btn but" data-toggle="tooltip" data-placement="bottom" title="Full Screen">
             <i class="fa fa-expand" id="expandview"style="color:white" aria-hidden="true"></i></button>
             <button class="btn but1" data-toggle="tooltip" data-placement="bottom" title="Referesh"style="color:#1C3FAA" onclick="refreshtank()"><i class="fa fa-refresh   fa-fw "style=" color:white;" aria-hidden="true"></i></a> 
           </div>
@@ -27,52 +30,92 @@
               <div class="modal-dialog">
                   <!-- Modal content-->
                   <div class="modal-content modal-div">
+
                       <div class="modal-header" style="background-color: #009B84;">
                           <h4 class="modal-title user-add-header text-center">Add New Tank</h4>
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
                       </div>
                       <div class="modal-body">
-                          <div class="row" style="margin-top:20px;">
-                              <div class="col-md-12">
-                                  <label for="usr" class="modal-txt">Tank Name</label>
-                                  <input type="text" class="form-control"  id="tank_name" placeholder="Enter Tank Name">
-                              </div>
+                        <form class="needs-validation" novalidate>
+                          <div class="form-row" style="margin-top:20px;">
+                            <div style="margin-left: 355px;"><span style="color:red; font-size: 12px;">* Required</span></div>
+                            <div class="col-md-12">
+                                  <label for="usr" class="modal-txt" >Tank Name <span class=star>*</span></label>
+                                  <input type="text" class="form-control"name="usr"  id="tank_name" placeholder="Enter Tank Name" required>
+                                  <span class="validate" style="display: none;"> Please Enter Tank Name</span>
+                                 
+                                </div>
                           </div>
                           <div class="row" style="margin-top:20px;">
                             <div class="col-md-12">
-                                <label for="usr" class="modal-txt">Tank Type</label>
-                                <input type="text" class="form-control"  id="tank_type" placeholder="Enter Tank Type">
+                                <label for="usr" class="modal-txt">Tank Type <span class=star>*</span></label>
+                                <!-- <input type="text" class="form-control"  id="tank_type" placeholder="Enter Tank Type" > -->
+                                
+                            <select class="form-select form-control"id="tank_type" aria-label="Default select example">
+                                <option disabled value="">Choose  Tank Type</option>
+                                <option>Circle </option>
+                                <option>Squre</option>
+                                <option>Cylindrical</option>
+                              </select>
+                                <span class="validate"> Please Enter Tank Type</span>
                             </div>
                         </div>
                         <div class="row" style="margin-top:20px;">
                           <div class="col-md-12">
-                              <label for="usr" class="modal-txt">Capacity</label>
+                              <label for="usr" class="modal-txt">Capacity <span class=star>*</span></label>
                               <input type="number" class="form-control"  id="capacity" placeholder="Enter Capacity">
-                          </div>
+                              <span class="validate"> Please Enter Capacity</span>  </div>
                         </div>
                         <div class="row" style="margin-top:20px;">
                             <div class="col-md-12">
-                                <label for="usr" class="modal-txt">Min Level</label>
+                                <label for="usr" class="modal-txt">Min Level <span class=star>*</span></label>
                                 <input type="number" class="form-control"  id="min_level" placeholder="Enter Capacity">
-                            </div>
+                            
+                                <span class="validate"> Please Enter Min Level</span></div>
                           </div>
                           <div class="row" style="margin-top:20px;">
                             <div class="col-md-12">
-                                <label for="usr" class="modal-txt">Max Level</label>
+                                <label for="usr" class="modal-txt">Max Level <span class=star>*</span></label>
                                 <input type="number" class="form-control"  id="max_level" placeholder="Enter Capacity">
+                                <span class="validate"> Please Enter Max Level</span>
                             </div>
                           </div>
                       <div class="row" style="margin-top:20px;">
                         <div class="col-md-12">
-                            <label for="usr" class="modal-txt">Location</label>
-                            <input type="text" class="form-control"  id="location" placeholder="Enter Location">
+                            <label for="usr" class="modal-txt">Location <span class=star>*</span></label>
+                            <!-- <input type="text" class="form-control"  id="location" placeholder="Enter Location"> -->
+                           
+                            <select class="form-select form-control" id="location" aria-label="Default select example">
+                                <option disabled value="">Choose Location</option>
+                                <option>Avadi</option>
+                                <option>Porur</option>
+                                <option>Velachery</option>
+                                <option>Egmore</option>
+                                <option>Guindy</option>
+                                <option>Little Mount</option>
+                                <option>Kilpauk</option>
+                                <option>Saidapet</option>
+                                <option>Vadapalani</option>
+                                <option>Poondi</option>
+                                <option>Cholavaram</option>
+                                <option>Redhills</option>
+                                <option>Chembarampakkam</option>
+                                <option>Veeranam</option>
+                                <option>Nesupakkam</option>
+                                <option>Kodambakkam A</option>
+                                <option>Kottambakkam B</option> 
+                                <option>Koyambedu</option>
+
+                              </select>
+                            <span class="validate"> Please Enter Location</span>
+                            
                         </div>
                         
                      
                       </div>
                       <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                          <button onclick="tankDetails()" type="button" class="btn btn-success link-btn" data-dismiss="modal" id="examplemodal">Add Tank</button>
+                          <button onclick="tankDetails()" type="button" class="btn btn-success link-btn"  id="examplemodal">Add Tank</button>
                       </div>
                   </div>
       </div>
@@ -173,9 +216,10 @@
 </div>
 
 </div>
+
+
 <script src="js/managetanks.js"></script>
 <script src="js/managedevices.js"></script>
 <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
-  
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVC

@@ -8,13 +8,13 @@ var list=[];
 $(document).ready(function(){
     loadDeviceList();
 })
-$('#ex').click(function(){
+$('#ex3').click(function(){
     var elem = document.documentElement;
-    if($(this).hasClass('fa fa-expand')){
+    if($('#ex').hasClass('fa fa-expand')){
        
-        $(this).removeClass('fa fa-expand');
+        $('#ex').removeClass('fa fa-expand');
         
-        $(this).addClass('fa fa-compress');
+        $('#ex').addClass('fa fa-compress');
         if (elem.requestFullscreen) {
             elem.requestFullscreen();
           } else if (elem.webkitRequestFullscreen) { /* Safari */
@@ -26,9 +26,9 @@ $('#ex').click(function(){
           
       }else{
        
-        $(this).removeClass('fa fa-compress');
+        $('#ex').removeClass('fa fa-compress');
         
-        $(this).addClass('fa fa-expand');  
+        $('#ex').addClass('fa fa-expand');  
         if (document.exitFullscreen) {
             document.exitFullscreen();
           } else if (document.webkitExitFullscreen) { /* Safari */
@@ -195,10 +195,6 @@ function loadDeviceList() {
                     device_list2 = resultData.data;
                     console.log("new",device_list2)
                       
-                    
-                   
-                  
-
                     $(".totalCount").html(data.result.total)
                     $("#total").html(data.result.total)
                     resultData['draw'] = oSettings.iDraw;
@@ -219,6 +215,9 @@ for(i=0;i<=device_list2.length;i++){
     $('#listdevice').append('<option>'+device_list2[i].id+`</option>`)
 
 }
+// singlesnopshot device list
+
+
  
 
 
