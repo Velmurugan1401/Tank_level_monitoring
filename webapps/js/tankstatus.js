@@ -424,3 +424,16 @@ $(() => {
         }
     })
 })   
+
+
+
+
+
+$('#onbut').on('click', function(e){
+    $('.off').removeClass('off').addClass('on');
+    e.preventDefault();
+});
+$('#offbut').on('click', function(e){
+    $('.on').removeClass('on').addClass('off');
+    e.preventDefault();
+});
