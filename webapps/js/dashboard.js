@@ -566,7 +566,7 @@ $(()=>{
                     interval: 0,
                     rotate:30
                 },
-                    data: ['POONDI', 'CHOLAVARAM', 'REDHILLS', 'CHEMBARAMBAKKAM', 'MYLAPORE', 'VEERANAM', 'NESAPAKKAM','KODAMBAKKAM A',],
+                    data: ['Avadi', 'Porur', 'Velachery', 'Egmore', 'Guindy', 'Little Mount', 'Kilpauk','Saidapet',],
                     axisTick: {
                         alignWithLabel: true
                     }
