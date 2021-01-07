@@ -79,7 +79,7 @@ $(function() {
 
 function loadrecordUser() {
   
-    $("#firstname,#lastname,#mobile,#emailid,#role").val('');
+    
 
     var firstname = $("#firstname").val();
     var lastName = $("#lastname").val();
@@ -151,8 +151,8 @@ function loadrecordUser() {
                 console.log(result);
 
                
-                // $("#myModal").css('display','none');
-                // $(".modal-backdrop").remove();
+                $("#myModal").css('display','none');
+                $(".modal-backdrop").remove();
 
                 //Success -> Show Alert & Refresh the page
                 successMsg("User Added Successfully!");
