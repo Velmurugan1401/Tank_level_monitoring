@@ -56,14 +56,22 @@
   <div class="row p-2 mb-5 align-items-start" style="background-color:white;border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;padding-left: 10px;padding-right:10px;padding-bottom: 20px;margin-bottom: 70px;">
     <!-- start content1 -->
-    <div class="col-lg-4 col-sm-12 col-md-12 content mt-2 text-center">
+    <div class="col-lg-4 col-sm-12 col-md-12 content mt-2 text-center" id="waterlevl">
       <img
         src="images/water-tank-widget-8.png"       
       />
       <span class="water"></span>
-      <span id="drop" class="off">
+      <!-- <span id="drop" class="off">
 
-      </span>
+      </span> -->
+      <!--  left: 117px;
+      top: 31px;  -->
+      <!-- left:94px -->
+      <canvas width="100" id="drawing-surface" style="position: absolute;
+     max-width: 100%;
+     left: 108px;
+    top: 29px;
+      transform: translateY(6px);"></canvas>
     </div>
     <!-- end content1 -->
     <!-- start content2 -->
@@ -133,7 +141,7 @@
                     <button type="button" class="btn act" id="offbut">OFF</button>
                   </div>
                   <div class="col-3">
-                    <button type="button" class="btn act">STATUS</button>
+                    <button type="button" class="btn act" id="current">STATUS</button>
                   </div>
                   
  
@@ -158,46 +166,8 @@
       <!-- start table  -->
       <div class="row mt-5">
         <div class="col-12">
-          <table class="table" id="example" width="100%">
-            <thead>
-              <tr>
-                <th scope="col">Reported time</th>
-                <th scope="col">Current level</th>
-                <th scope="col">Alerts</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>24/12/2020</td>
-                <td>10000</td>
-                <td>High</td>
-              </tr>
-              <tr>
-                <td>24/12/2020</td>
-                <td>10000</td>
-                <td>High</td>
-              </tr>
-              <tr>
-                <td>24/12/2020</td>
-                <td>10000</td>
-                <td>High</td>
-              </tr>
-              <tr>
-                <td>24/12/2020</td>
-                <td>10000</td>
-                <td>Low</td>
-              </tr>
-              <tr>
-                <td>26/12/2020</td>
-                <td>10000</td>
-                <td>Low</td>
-              </tr>
-              <tr>
-                <td>24/12/2020</td>
-                <td>15000</td>
-                <td>Low</td>
-              </tr>
-            </tbody>
+          <table class="table table-responsive" id="example" width="100%">
+            
           </table>
         </div>
       </div>
@@ -232,9 +202,108 @@
    });
  </script>
 
-<script>
+<!-- <script>
   $(document).ready(function() {
     $('#example').DataTable();
-} );
-</script> 
-<script src="js/tankstatus.js"></script>
+} ); 
+</script> -->
+<script type="text/javascript">
+  function Random(range) {
+        return Math.floor((Math.random() * range) + 1);
+  }
+  function RandomFloat(range) {
+        return (Math.random() * range) + 1;
+  }
+  var viewport = new Viewport();
+  for (var i = 0; i < 200; i++) {
+        var particle = new Particle();
+        viewport.addObject(particle);
+  }     
+  viewport.init();
+
+   function Viewport() {
+        var me = this;
+        me.objects = [];
+        var canvas = document.getElementById("drawing-surface");
+        function resizeCanvas() {
+              canvas.width = 200;
+              canvas.height = 150;
+        }
+        resizeCanvas();
+        
+  var drawingSurface = document.getElementById("drawing-surface").getContext("2d");
+  var image = new Image();
+  
+  function drawBackgroundImage() {
+  if (me.backgroundImage) {
+        drawingSurface.drawImage(me.backgroundImage, 0, 0, canvas.width, canvas.height);
+  }
+  }
+  function drawObjects() {
+  for (var i = 0; i < me.objects.length; i++) {
+        me.objects[i].paint(drawingSurface);
+  }
+  }
+  me.paintInit = function () {
+        me.doPaint = true;
+  }
+  function paint() {
+  me.paintInit();
+  if (me.doPaint) {
+        drawBackgroundImage();
+        drawObjects();
+        me.doPaint = false;
+  }
+  }
+  var timer;
+  me.init = function () {
+        timer = setInterval(function () { paint(); }, 1000 / 30);
+  };
+  me.repaint = function () {
+        me.doPaint = true;
+  };
+  me.addObject = function (obj) {
+        me.objects.push(obj);
+  }
+  }
+    function Particle() {
+        var me = this;
+        var source = {};
+        source.location = { x: 0, y: 0 };
+        me.reset = function () {
+        me.speed = RandomFloat(10) + 5;
+        me.radius = 6;
+        me.opacity = 10;
+        me.color = '#299AE1';
+        me.location = { x: source.location.x + Random(5), y: source.location.y };
+        me.angle = 45;
+  };
+  me.reset();
+
+  me.move = function () {
+        if (me.location.y>window.innerHeight || me.location.x > window.innerWidth) {
+         me.reset();
+        }
+        var xval = Math.cos(me.angle);
+        if (xval > 0) {
+              me.angle += 0.01;
+        }
+        else {
+              me.angle -= 0.01;
+        }
+        me.location.x += Math.cos(me.angle) * me.speed;
+        me.location.y += Math.sin(me.angle) * me.speed;
+  };
+  me.paint = function (context) {
+        me.move();
+        context.beginPath();
+        context.arc(me.location.x, me.location.y, me.radius, 0, 2 * Math.PI, false);
+        context.fillStyle = me.color;
+        context.globalAlpha = me.opacity / 255;
+        context.fill();
+        context.closePath();
+  };
+  }
+</script>
+ <script src="js/tankstatus.js"></script>
+<script src="js/snapshot.js"></script> 

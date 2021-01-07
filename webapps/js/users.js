@@ -12,44 +12,87 @@ $(document).ready(function () {
     loadUsersList();     
 });
  
+function adduser(){
+    $("#firstname,#lastname,#mobile,#emailid,#role").val('');
+//     var firstname = $("#firstname").val();
+//     var lastName = $("#lastname").val();
+//     var primaryPhone = $("#mobile").val();
+//     var email = $("#emailid").val();
+//     var roles = $("#role").val();
+//  var password=$('#Password').val();
+
+
+
+//     //Validate
+//     if (firstname === "") {
+//         $(".validate").css('display','none');
+//         return;
+
+
+//     //     alert("First  Name is Required!");
+
+//     } else if (lastName === "") {
+//         $(".validate").css('display','none');
+//         return;
+//     //     alert("Last name is Required!");
+
+//     }
+//     else if (primaryPhone === "") {
+//         $(".validate").css('display','none');
+//         return;
+//     //     alert("Mobile number  is Required!");
+
+//     }
+//     else if (email === "") {
+//         $(".validate").css('display','none');
+//         return;
+//     //     alert("Email id is Required!");
+
+//     }
+//     else if(password==="")
+//     {
+//         $(".validate").css('display','none');
+//     return;
+//     }
+
+ }
 function refreshuser()
 {
     loadUsersList();
 }
 
-
-$('#expand').click(function(){
+$('#full').click(function(){
     var elem = document.documentElement;
-    if($(this).hasClass('fa fa-expand')){
+    if($('#expand').hasClass('fa fa-expand')){
        
-      $(this).removeClass('fa fa-expand');
-      
-      $(this).addClass('fa fa-compress');
-      
-      if (elem.requestFullscreen) {
-        elem.requestFullscreen();
-    } else if (elem.webkitRequestFullscreen) { /* Safari */
-        elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) { /* IE11 */
-        elem.msRequestFullscreen();
-    }
+        $('#expand').removeClass('fa fa-expand');
         
-    }else{
-     
-      $(this).removeClass('fa fa-compress');
-      
-      $(this).addClass('fa fa-expand');  
-      
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) { /* Safari */
-        document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { /* IE11 */
-        document.msExitFullscreen();
-    }
-    }
-}); 
-
+        $('#expand').addClass('fa fa-compress');
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+          } else if (elem.webkitRequestFullscreen) { /* Safari */
+            elem.webkitRequestFullscreen();
+          } else if (elem.msRequestFullscreen) { /* IE11 */
+            elem.msRequestFullscreen();
+          }
+        // $('#password').attr('type','text');
+          
+      }else{
+       
+        $('#expand').removeClass('fa fa-compress');
+        
+        $('#expand').addClass('fa fa-expand');  
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.webkitExitFullscreen) { /* Safari */
+            document.webkitExitFullscreen();
+          } else if (document.msExitFullscreen) { /* IE11 */
+            document.msExitFullscreen();
+          }
+        
+        // $('#password').attr('type','password');
+      }
+});
 //User insert API
 $(function() {
 
@@ -77,7 +120,7 @@ $(function() {
 
 });
 
-function loadrecordUser() {}
+function loadrecordUser() { }
 
 function loadUser() 
 {
@@ -87,34 +130,40 @@ function loadUser()
     var primaryPhone = $("#mobile").val();
     var email = $("#emailid").val();
     var roles = $("#role").val();
-
+ var password=$('#Password').val();
 
 
 
     //Validate
     if (firstname === "") {
-
-        showToast("info", "info","First Name is Required");
+        $(".validate").css('display','block');
+        return;
 
 
     //     alert("First  Name is Required!");
 
     } else if (lastName === "") {
-        showToast("info", "info","Last Name is Required");
-
+        $(".validate").css('display','block');
+        return;
     //     alert("Last name is Required!");
 
     }
     else if (primaryPhone === "") {
-
-        showToast("info", "info","Mobile Number is Required");
+        $(".validate").css('display','block');
+        return;
     //     alert("Mobile number  is Required!");
 
     }
     else if (email === "") {
-        showToast("info", "info","Email id is Required");
+        $(".validate").css('display','block');
+        return;
     //     alert("Email id is Required!");
 
+    }
+    else if(password==="")
+    {
+        $(".validate").css('display','block');
+    return;
     }
 
       else {
@@ -149,9 +198,9 @@ function loadUser()
                 $(".modal-backdrop").remove();
 
                 //Success -> Show Alert & Refresh the page
-                $("#firstname,#lastname,#mobile,#emailid,#role").val('');
-                $("#myModal").css('display','none');
-                $(".modal-backdrop").remove();
+                // $("#firstname,#lastname,#mobile,#emailid,#role").val('');
+                // $("#myModal").css('display','none');
+                // $(".modal-backdrop").remove();
                 successMsg("User Added Successfully!");
                 // loadUsersList();
                 // window.location.reload();
@@ -211,139 +260,139 @@ function loadUser()
     }
 
 }
-function loadUser() {
+// function loadUser() {
 
-    var firstname = $("#firstname").val();
-    var lastName = $("#lastname").val();
-    var primaryPhone = $("#mobile").val();
-    var password=$("#pass").val();
-    var email = $("#emailid").val();
-    var roles = $("#role").val();
-
-
+//     var firstname = $("#firstname").val();
+//     var lastName = $("#lastname").val();
+//     var primaryPhone = $("#mobile").val();
+//     var password=$("#pass").val();
+//     var email = $("#emailid").val();
+//     var roles = $("#role").val();
 
 
-    //Validate
-    if (firstname === "") {
-
-        showToast("info", "info","First Name is Required");
 
 
-    //     alert("First  Name is Required!");
+//     //Validate
+//     if (firstname === "") {
 
-    } else if (lastName === "") {
-        showToast("info", "info","Last Name is Required");
+//         showToast("info", "info","First Name is Required");
 
-    //     alert("Last name is Required!");
 
-    }
-    else if (primaryPhone === "") {
+//     //     alert("First  Name is Required!");
 
-        showToast("info", "info","Mobile Number is Required");
-    //     alert("Mobile number  is Required!");
+//     } else if (lastName === "") {
+//         showToast("info", "info","Last Name is Required");
 
-    }
-    else if (email === "") {
-        showToast("info", "info","Email id is Required");
-    //     alert("Email id is Required!");
+//     //     alert("Last name is Required!");
 
-    }
+//     }
+//     else if (primaryPhone === "") {
 
-      else {
+//         showToast("info", "info","Mobile Number is Required");
+//     //     alert("Mobile number  is Required!");
 
-        //Build Input Objects
-        var inputObj =
-        {
-            firstName: firstname,
-            lastName: lastName,
-            primaryPhone: primaryPhone,
-            password:password,
-            email: email,
-            roles: [roles]
+//     }
+//     else if (email === "") {
+//         showToast("info", "info","Email id is Required");
+//     //     alert("Email id is Required!");
 
-        };
+//     }
 
-    }
-    console.log("inputObj", inputObj);
+//       else {
 
-    //Call API
-    if (flag == false) {
-        $.ajax({
-            url: BASE_PATH + "/user/userinsert",
-            "dataType": 'json',
-            "contentType": 'application/json',
-            "type": "POST",
+//         //Build Input Objects
+//         var inputObj =
+//         {
+//             firstName: firstname,
+//             lastName: lastName,
+//             primaryPhone: primaryPhone,
+//             password:password,
+//             email: email,
+//             roles: [roles]
 
-            data: JSON.stringify(inputObj),
-            success: function (result) {
-                console.log(result);
-                $("#firstname,#lastname,#mobile,#emailid,#role").val('');
-                $("#myModal").css('display','none');
-                $(".modal-backdrop").remove();
+//         };
 
-                //Success -> Show Alert & Refresh the page
-                successMsg("User Added Successfully!");
-                // loadUsersList();
-                window.location.reload();
+//     }
+//     console.log("inputObj", inputObj);
 
-            },
-            error: function (e) {
+//     //Call API
+//     if (flag == false) {
+//         $.ajax({
+//             url: BASE_PATH + "/user/userinsert",
+//             "dataType": 'json',
+//             "contentType": 'application/json',
+//             "type": "POST",
 
-                //Error -> Show Error Alert & Reset the form
-                errorMsg(" User not created!");
-                // window.location.reload();
-                loadUsersList();
+//             data: JSON.stringify(inputObj),
+//             success: function (result) {
+//                 console.log(result);
+//                 $("#firstname,#lastname,#mobile,#emailid,#role").val('');
+//                 $("#myModal").css('display','none');
+//                 $(".modal-backdrop").remove();
 
-            }
-        });
+//                 //Success -> Show Alert & Refresh the page
+//                 successMsg("User Added Successfully!");
+//                 // loadUsersList();
+//                 window.location.reload();
 
-    // } else if (flag == true) {
-    //     var fname = $("#firstname").val();
-    //     var lname = $("#lastname").val();
-    //     var mno = $("#mobile").val();
-    //     var eid = $("#emailid").val();
-    //     var roles = $("#role").val();
+//             },
+//             error: function (e) {
 
-    //     var updateData = {
-    //         firstName: fname,
-    //         lastName: lname,
-    //         primaryPhone: mno,
-    //         email: eid,
-    //         roles: [roles]
-    //     };
-    //     console.log("id", key)
-    //     console.log("update", updateData);
-    //     $.ajax({
+//                 //Error -> Show Error Alert & Reset the form
+//                 errorMsg(" User not created!");
+//                 // window.location.reload();
+//                 loadUsersList();
 
-    //         url: BASE_PATH + "/user/userinsert",
-    //         "dataType": 'json',
-    //         "contentType": 'application/json',
-    //         "type": "POST",
-    //         data: JSON.stringify(updateData),
-    //         success: function (result) {
-    //             // //Success -> Show Alert & Refresh the page 
-    //          $("#firstname,#lastname,#mobile,#emailid,#role").val('');
-    //             $("#myModal").css('display','none');
-    //             $(".modal-backdrop").remove();
+//             }
+//         });
 
-    //             successMsg("Update Completed Successfully!");
+//     // } else if (flag == true) {
+//     //     var fname = $("#firstname").val();
+//     //     var lname = $("#lastname").val();
+//     //     var mno = $("#mobile").val();
+//     //     var eid = $("#emailid").val();
+//     //     var roles = $("#role").val();
 
-    //             // loadUsersList();
-    //                      window.location.reload();
+//     //     var updateData = {
+//     //         firstName: fname,
+//     //         lastName: lname,
+//     //         primaryPhone: mno,
+//     //         email: eid,
+//     //         roles: [roles]
+//     //     };
+//     //     console.log("id", key)
+//     //     console.log("update", updateData);
+//     //     $.ajax({
 
-    //         },
-    //         error: function (e) {
+//     //         url: BASE_PATH + "/user/userinsert",
+//     //         "dataType": 'json',
+//     //         "contentType": 'application/json',
+//     //         "type": "POST",
+//     //         data: JSON.stringify(updateData),
+//     //         success: function (result) {
+//     //             // //Success -> Show Alert & Refresh the page 
+//     //          $("#firstname,#lastname,#mobile,#emailid,#role").val('');
+//     //             $("#myModal").css('display','none');
+//     //             $(".modal-backdrop").remove();
 
-    //             //Error -> Show Error Alert & Reset the form
-    //             errorMsg("Update Failed!");
-    //          window.location.reload();
+//     //             successMsg("Update Completed Successfully!");
 
-    //         }
-    //     });
-    //     flag = false;
-    }
+//     //             // loadUsersList();
+//     //                      window.location.reload();
 
-}
+//     //         },
+//     //         error: function (e) {
+
+//     //             //Error -> Show Error Alert & Reset the form
+//     //             errorMsg("Update Failed!");
+//     //          window.location.reload();
+
+//     //         }
+//     //     });
+//     //     flag = false;
+//     }
+
+// }
 
 
 //User List API
@@ -400,7 +449,7 @@ function loadUsersList() {
         {
             mData: 'roles',
             sWidth: '20%',
-            sTitle: 'roles',
+            sTitle: 'Roles',
             orderable: false,
             mRender: function (data, type, row) {
                 return  data ? data :'-';
@@ -552,7 +601,7 @@ function loadUsersList() {
 
         dom: 'l<"toolbar">frtip',
         initComplete: function () {            
-            $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button>');
+            $("div.toolbar").html('<button type="button" class="btn button1" onclick=adduser() data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button>');
         }
     };
 

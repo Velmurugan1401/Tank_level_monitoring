@@ -7,7 +7,7 @@ var deleteDeviceId=null;
 
 $(document).ready(function(){
     loadTankStatusList();
-
+    // loadTankEventList();
     // $("button").click(function(){
     //     $("div").animate({bottom: '50px'});
     //   });
@@ -187,7 +187,7 @@ function loadTankStatusList() {
                 }
                 else{
               var actionsHtml = '<button class="btn btn-default"  title="Tank Linked" style="margin-right:5px;" ><i class="fa fa-link" aria-hidden="true"></i></button>'
-                          +'<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\');status(\''+row.device_id+'\')" href="#/snapshot" title="Goto Snapshot" style="margin-right:5px;" ><i class="fa fa-eye" aria-hidden="true"></i></button>'
+                          +'<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\');status(\''+row.device_id+'\');level(\''+row.device_id+'\')" href="#/snapshot" title="Goto Snapshot" style="margin-right:5px;" ><i class="fa fa-eye" aria-hidden="true"></i></button>'
                           +'<button class="btn btn-default" data-target="#statusDeletemodal" data-toggle="modal" onclick="assignDeleteDeviceId(\'' + row._id + '\')"><i class="fa fa-trash icon" ></i></button>';
                           return actionsHtml;
                }
@@ -356,6 +356,7 @@ function status(row){
                        break;
                     }
                 }
+              
                 $("#tankname").append("<h5>name</h5><p>"+dank.tank_name+"</p>")   
                 $("#tankname").append("<h5>type</h5><p>"+dank.tank_type+"</p>")   
                 $("#tankname").append("<h5>capacity</h5><p>"+dank.capacity+"</p>")  
@@ -447,3 +448,63 @@ $(() => {
         
 //     }
 // });
+
+
+$('#onbut').on('click', function(e){
+    // $('.off').removeClass('off').addClass('on');
+    // if(drawing-surface.style.visibility=='hidden')
+    // drawing-surface.style.visibility='visible';
+    // e.preventDefault();
+});
+$('#offbut').on('click', function(e){
+    $('.on').removeClass('on').addClass('off');
+    e.preventDefault();
+});
+
+//tank height
+// $('#current').click(function(){
+// var capacity=dank.capacity;
+// var level=tankstat.tank_level;
+// var cal=((level/capacity)*100)/2;
+// $('#water').css('height',cal+'%');
+// });
+
+
+
+ 
+    setInterval(level,3000);
+ 
+function level()
+{
+  
+    
+    var lvl;
+    var cap;
+    var cal;
+        $.ajax({
+            "dataType": 'json',
+            "contentType": 'application/json',
+            "type": "POST",
+            url: BASE_PATH + '/tankstatus/list',
+            success: function (data) {                
+                var resultData = data.result.data.data;                  
+                console.log('row',devid);
+                for(i=0;i<=resultData.length-1;i++){
+                    if(devid==resultData[i].device_id)
+                    {          
+                        console.log(resultData);            
+                        lvl=resultData[i].tank_level;
+                        cap=resultData[i].capacity;                            
+                        cal=((lvl/cap)*100);  
+                        console.log(Math.round(cal)); 
+                        $('.water').height(cal);                        
+                        break;
+                    }
+                }          
+    
+            }
+        })
+        
+      
+  
+    }
