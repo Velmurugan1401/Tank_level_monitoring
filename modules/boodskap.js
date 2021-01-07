@@ -232,7 +232,7 @@ Boodskap.prototype.devSearch = function (data,cbk) {
 // RAW msg====================================
 
 Boodskap.prototype.MSGSearch = function (rid, query, cbk) {
-      
+      console.log(query)
     const self = this;
 
     var obj = {
