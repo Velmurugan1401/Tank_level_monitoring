@@ -233,7 +233,7 @@ function loadTankStatusList() {
     TankStatus_list = [];
 
     var tableOption = {
-        fixedHeader: true,
+        fixedHeader: false,
         responsive: true,
         paging: true,
         searching: true,
@@ -299,7 +299,7 @@ function loadTankStatusList() {
                 "contentType": 'application/json',
                 "type": "POST",
                 "url": sSource,
-                "data": JSON.stringify({"query":queryParams}),
+                "data": JSON.stringify({ "query":queryParams }),
                 success: function (data) {
 
                     var resultData = data.result.data;

@@ -3,9 +3,13 @@
     var device_list=[];
     var device_list2;
     var list=[];
-    // var startDate = moment().subtract(6, 'days').startOf('day');
-    // var endDate = moment().endOf('day');
-    
+
+    var startDate;
+    var endDate;
+    // var start = moment().subtract(6, 'days').startOf('day');
+    // var end = moment().endOf('day');
+    var start = moment().subtract(29, 'days');
+      var end = moment();
     
     $(document).ready(function(){
         loadDeviceList();
@@ -46,10 +50,15 @@
     
     $(function() {
 
-      var start = moment().subtract(29, 'days');
-      var end = moment();
+    //   var start = moment().subtract(29, 'days');
+    //   var end = moment();
   
       function cb(start, end) {
+          startDate = start;
+          endDate = end;
+          console.log(startDate)
+console.log(endDate)
+
           $('#rawMsgDatePicker span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
       }
   
@@ -64,16 +73,22 @@
              'This Month': [moment().startOf('month'), moment().endOf('month')],
              'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
           }
-      }, cb);
+      }, cb) ;
+    //     console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+    //   });
   
-      cb(start, end);
+      cb(start, end)
+      
   
   });
 
 
     
     function loadDeviceList() {
-    
+       
+console.log(startDate)
+console.log(endDate)
+
         if (DeviceTable) {
             DeviceTable.destroy();
             $("#rawMsgTable").html("");
@@ -139,12 +154,12 @@
                     "must": []
                      // ,
                 // "filter":{"range":{"created_ts":{
-                //     "gte":new Date(startDate.toISOString()).getTime(),
-                //     "lte":new Date(endDate.toISOString()).getTime()
+                //     "gte":startDate.getTime(),
+                //     "lte":endDate.getTime()
                 // }}}
                 }
             },
-            sort: [{ "created_ts": { "order": "asc" } }]
+            // sort: [{ "created_ts": { "order": "asc" } }]
             
         };
     
@@ -175,32 +190,34 @@
                 // queryParams.query['range'] =  {
                 //     "receivedstamp": {
                         
-                //       "gte": 1609141209325,
-                //       "lte": 1608826599604
+                //       "gte": new Date(startDate).getTime(),
+                //       "lte": new Date(endDate).getTime()
                      
                 //     }
                 //   };
     
-                var startTime = moment().valueOf();
-                var last30Days =  moment().subtract(30,'d').valueOf();
-                queryParams.query['bool']['must'] =  {
-                    range:{
-                        "receivedstamp": {
-                            "from": last30Days,
-                            "to": startTime
+                // var startTime = moment().valueOf();
+                // var last30Days =  moment().subtract(30,'d').valueOf();
+                // queryParams.query['bool']['must'] =  {
+                //     range:{
+                //         "receivedstamp": {
+                //             "from": startDate,
+                //             "to": endDate
                            
-                          }
-                    }
+                //           }
+                //     }
                    
-                  };
+                //   };
+
+
                 queryParams.query['bool']['should'] = [];
                 delete queryParams.query['bool']["minimum_should_match"];
     
                 var keyName = fields[oSettings.aaSorting[0][0]]
     
-                var sortingJson = {};
-                sortingJson[keyName['mData']] = { "order": oSettings.aaSorting[0][1] };
-                queryParams.sort = [sortingJson];
+                // var sortingJson = {};
+                // sortingJson[keyName['mData']] = { "order": oSettings.aaSorting[0][1] };
+                // queryParams.sort = [sortingJson];
     
                 queryParams['size'] = oSettings._iDisplayLength;
                 queryParams['from'] = oSettings._iDisplayStart;

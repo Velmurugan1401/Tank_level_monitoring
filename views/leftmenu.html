@@ -6,7 +6,7 @@
     color:white !important;
   } */
  
-  .active-tab{
+  .active-tab a{
     color:#000 !important;
     background-color: #fff !important;
   } 
@@ -34,14 +34,46 @@
       padding-left: 18px;
        color: #b7b3b3;
   }
+  @media screen and (min-width: 320px) and (max-width: 767px) { 
+    #leftMenuSideBar{
+     display: none;
+    }
+
+  }
+
+   
+@media only screen and (min-width: 768px) and (max-width: 1024px)  {
+  
+  .sidebar-nav{
+  width:130px;
+}
+.newleft{
+  position: relative;
+  width:140px !important;
+}
+
+.sidebar-nav>ul>li a:hover{
+   background-color: white;
+   color: black;
+
+} 
+
+}
+
+@media only screen and (min-width: 1025px){
+  .newleft{
+  position: relative;
+  width:200px !important;
+}
+}
 
   
 </style>
  
   
-<aside class="left-sidebar" style="position: absolute;">
+<aside class="left-sidebar  newleft" style="position: absolute;">
    <!-- Sidebar scroll-->
-     <div class="scroll-sidebar">
+     <div class="scroll-sidebar" id="leftMenuSideBar">
        <nav class="sidebar-nav"> 
          <ul class="leftMainMenu" id="sidebarnav">
             
@@ -100,15 +132,15 @@
 <script>
   //  $('.sidebar-nav>ul>li').click(function(){
   //    alert("if");
-  //       if($(this).hasClass('.active-tab')){
-  //         $(this).removeClass('.active-tab');
-  //         $(this).addClass('.active-tab');
+  //       if($(this).hasClass('.active-tab a')){
+  //         $('.sidebar-nav>ul>li').removeClass('.sidebar-nav>ul>li> a');
+  //         $(".sidebar-nav>ul>li").addClass('.active-tab a');
          
   // }
   // else{
   //   alert("else");
-  //        $(this).removeClass('.active-tab');
-  //        $(this).addClass('.active-tab');  
+  //        $(this).removeClass('.sidebar-nav>ul>li> a');
+  //        $(this).addClass('.active-tab a');  
          
   //        }
   //  });
