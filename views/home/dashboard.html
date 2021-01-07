@@ -50,11 +50,7 @@
             <span class="text-base text-gray-600 mt-1"> Devices</span>
           </div>
         </div>
-      </div> 
-      
-   
-   
-  </div>
+      </div>
 
   <div class="row three" id="chart">
 
@@ -65,8 +61,8 @@
       </div>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-12 dname chart ml-4">
-      <div class="card-header">Water Consumption By Area wish</div>  
-      <div class="row">
+      <div class="card-header">Water Consumption By Days</div>  
+      <!-- <div class="row">
         <div class="col-md-4 col-lg-4 col-sm-4 col-xl-4">
           <select id="location" class="form-select calender" aria-label="Default select example" style="margin-top: 20px; margin-left: 10px;height: 35px;background: #fff; border: 1px solid #ccc;">
             <option >select</option>
@@ -82,7 +78,7 @@
             <span></span> <i class="fa fa-caret-down"></i>
         </div></div>
          
-      </div>
+      </div> -->
       <div id="bar1"  style="width: 100%; height: 300px;">
 
       </div>
@@ -111,38 +107,36 @@
     </div>
   </div>
  
-  
- 
 
 <script src="js/dashboard.js"></script>
 
 
 
 <script>
-  $(function() {
+//   $(function() {
 
-var start = moment().subtract(29, 'days');
-var end = moment();
+// var start = moment().subtract(29, 'days');
+// var end = moment();
 
-function cb(start, end) {
-    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-}
+// function cb(start, end) {
+//     $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+// }
 
-$('#reportrange').daterangepicker({
-    startDate: start,
-    endDate: end,
-    ranges: {
-       'Today': [moment(), moment()],
-       'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-       'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-       'Last 30 Days': [moment().subtract(29, 'days'), moment()]
+// $('#reportrange').daterangepicker({
+//     startDate: start,
+//     endDate: end,
+//     ranges: {
+//        'Today': [moment(), moment()],
+//        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+//        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+//        'Last 30 Days': [moment().subtract(29, 'days'), moment()]
        
-    }
-}, cb);
+//     }
+// }, cb);
 
-cb(start, end);
+// cb(start, end);
 
-});
+// });
 $(function() {
 
 var start = moment().subtract(29, 'days');
@@ -156,7 +150,7 @@ $('#reportrang').daterangepicker({
     startDate: start,
     endDate: end,
     ranges: {
-       'Today': [moment(), moment()],
+      //  'Today': [moment(), moment()],
        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
        'Last 30 Days': [moment().subtract(29, 'days'), moment()]
@@ -185,13 +179,13 @@ cb(start, end);
   var lo=$('#location').val()
   if(lo == 'velachery')
 {
-  data1=["tank1","tank2"]
+  data1=["tank1","tank2","tank3","tank4","tank5","tank6","tank7","tank8","tank9","tank10","tank11","tank12","tank13","tank14","tank15","tank16","tank17","tank18","tank19","tank20"]
   console.log(lo)
-  data2=[300,200]
+  data2=[10, 52, 200, 334, 390, 330, 220, 200, 334, 390,100, 252, 200, 434, 390, 530, 220, 200, 334, 390]
 }else{
-  data1=["tank1","tank2"]
+  data1=["tank1","tank2","tank3","tank4","tank5","tank6","tank7","tank8","tank9","tank10","tank11","tank12","tank13","tank14","tank15","tank16","tank17","tank18","tank19","tank20"]
   console.log(lo)
-  data2=[300,200]
+  data2=[10, 52, 200, 334, 390, 330, 220, 200, 334, 390,100, 252, 200, 434, 390, 530, 220, 200, 334, 390]
 }
 
 })
@@ -268,7 +262,7 @@ option = {
             interval: 0,
             rotate:30
         },
-            data: ['POONDI', 'CHOLAVARAM', 'REDHILLS', 'CHEMBARAMBAKKAM', 'KILPAUK', 'VEERANAM', 'NESAPAKKAM','KODAMBAKKAM A','KODAMBAKKAM B','KOYAMBEDU'],
+            data: ['POONDI', 'CHOLAVARAM', 'REDHILLS', 'CHEMBARAMBAKKAM', 'MYLAPORE', 'VEERANAM', 'NESAPAKKAM','KODAMBAKKAM A','KODAMBAKKAM B','KOYAMBEDU','AVADI','PORUR','VELACHERY','EGMORE','GUINDY','LITTLE MOUNT','KILPAUK','SAIDAPET','VADAPALANI','THIRUMANGALAM'],
             axisTick: {
                 alignWithLabel: true
             }
@@ -284,7 +278,7 @@ option = {
             name: 'Consumption Level',
             type: 'bar',
             barWidth: '60%',
-            data: [10, 52, 200, 334, 390, 330, 220, 200, 334, 390]
+            data: [10, 52, 200, 334, 390, 330, 220, 200, 334, 390,100, 252, 200, 434, 390, 530, 220, 200, 334, 390]
         }
     ]
 };

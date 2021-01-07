@@ -95,7 +95,7 @@
         transform: rotate(45deg);
         position: absolute;
         border-radius: 0% 100% 100% 100%;
-        left: 114px;
+        left: 93px;
         top: 41px;
         animation: mymove 1s infinite;
         animation-fill-mode: forwards;
