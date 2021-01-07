@@ -117,7 +117,7 @@ cron.schedule('*/3 * * * * *', function () {
     // send continiously in 10 device values 
 
     for (i = 0; i <= obj.length-1; i++) {
-        j[i] = j[i] + 10;
+        j[i] = j[i] +510;
         obj[i].tank_level = j[i];
         //    condition chacking tank level 
         if (obj[i].capacity <= obj[i].tank_level) {

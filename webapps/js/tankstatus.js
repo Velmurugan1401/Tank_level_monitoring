@@ -553,8 +553,8 @@ function status(row){
 
 }
 
-$("#status").append("<h5>Tank Level</h5><p>"+tankstat.tank_level+"</p>")   
-$("#status1").append("<h5>Status</h5><p>"+tankstat.status+"</p>")   
+
+// $("#status1").append("<h5>Status</h5><p>"+tankstat.status+"</p>")   
 $("#status2").append("<h5>Reported_ts</h5><p>"+ moment(tankstat.created_ts).format(DATE_TIME_FORMAT)+"</p>")  
 
 $(() => {
@@ -629,7 +629,7 @@ $('#offbut').on('click', function(e){
 function level()
 {
   
-    
+    var conti;
     var lvl;
     var cap;
     var cal;
@@ -649,14 +649,64 @@ function level()
                         cap=resultData[i].capacity;                            
                         cal=((lvl/cap)*100);  
                         console.log(Math.round(cal)); 
-                        $('.water').height(cal);                        
+                        $('.water').height(cal); 
+                        conti=resultData[i].tank_level                       
                         break;
                     }
                 }          
     
             }
         })
+        $("#status").append("<h5>Tank Level</h5><p>"+conti+"</p>")   
         
       
   
     }
+    $(() => {
+        var flist;
+        console.log("start")
+        var queryParams={
+            query:{
+                "bool": {
+                    "must": { "term": {
+                        "device_id": devid
+                    }}
+                }
+            },
+            "sort":[
+                {"reported_ts ":{"order":"desc"}}
+            ]
+            
+        }
+        $.ajax({
+            "dataType": 'json',
+            "contentType": 'application/json',
+            "type": "POST",
+            "url": BASE_PATH+'/eventtrigger/list',
+            "data":JSON.stringify({data:queryParams}),
+            success: function (data) {
+                var resultData = data.result.data.data;           
+                console.log("dara",resultData)
+                for(i=0;i<1;i++){
+                    if(resultData.tank_level=="High")
+                    {
+                        $("#status1").append("<h5>Status</h5><p>High</p>")        
+                      
+                      
+                    }
+                    else if(resultData.tank_level=="Low")
+                    {
+                        $("#status1").append("<h5>Status</h5><p>Low</p>") 
+                    }
+                    else{
+                        $("#status1").append("<h5>Status</h5><p>Normal</p>")
+                    }
+                }
+               
+                
+    
+    
+            }
+        })
+    })
+    
