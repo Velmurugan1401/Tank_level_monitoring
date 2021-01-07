@@ -67,23 +67,25 @@
     .water
     {
         position: absolute;
-        height: 30%;
+        /* height: 30%; */
         width: 209px;
         bottom: 44%;
         left: 50%;
-        background: -webkit-gradient(
+        /* background: -webkit-gradient(
             linear,
             left top,
             right top,
             from(#8ba7e2),
             to(#4273f0)
-          );
+          ); */
+          background-color: #299AE1;
         margin-left: -99px;
+        transition:none;
     }
     #drop
     {
               
-        height: 22px;
+        /* height: 100px;
         width: 22px;
         background: -webkit-gradient(
             linear,
@@ -92,14 +94,26 @@
             from(#8ba7e2),
             to(#4273f0)
           );
-        transform: rotate(45deg);
+        
         position: absolute;
         border-radius: 0% 100% 100% 100%;
         left: 114px;
         top: 41px;
         animation: mymove 1s infinite;
-        animation-fill-mode: forwards;
+        animation-fill-mode: forwards; */
         /* animation-iteration-count: 5; */
+        
+            height: 158px;
+            width: 14px;
+            background: -webkit-gradient( linear, left top, right top, from(#8ba7e2), to(#4273f0) );
+            position: absolute;
+            /* border-radius: 0% 100% 100% 0%; */
+            left: 95px;
+            top: 35px;
+            /* animation: mymove 1s infinite; */
+            animation-fill-mode: forwards;
+            /* animation-iteration-count: 5; */
+    
     }
     @keyframes mymove {
         from {top:35px;}
@@ -117,3 +131,9 @@
 .on{
     display: block;
 }
+/* 
+@media only screen and (min-width: 1420px) {
+     canvas {
+      left:115px;
+    }
+  } */

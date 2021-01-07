@@ -24,18 +24,19 @@ module.exports = Boodskap;
 Boodskap.prototype.login = function (req, res) {
 
     const self = this;
+    // console.log("login",req.body)
 
     var username = req['body']['username'];
     var password = req['body']['password'];
-
+    // console.log("username",username)
     var data = {
         email: username,
         password: password,
         targetDomainKey: self.app.conf.settings.boodskap.domainKey
     }
-
+// console.log(data);
     self.doLogin(data, function (status, result) {
-        // console.log(status);
+        //  console.log(status);
         // console.log(result);
 
         if (status) {
@@ -421,7 +422,7 @@ Boodskap.prototype.elasticpush = function (rid, did, dmdl, fwver, data, cbk) {
 // for user login========
 
 
-Boodskap.prototype.Userlogin = function (data,cbk) {
+Boodskap.prototype.PlatformUserCreate = function (data,cbk) {
     const self = this;
     // console.log(data);
 
@@ -451,7 +452,7 @@ Boodskap.prototype.Userlogin = function (data,cbk) {
 
 // delete User========
 
-Boodskap.prototype.UserDelete = function (email, cbk) {
+Boodskap.prototype.PlatformUserDelete = function (email, cbk) {
     const self = this;
 
     request.delete({

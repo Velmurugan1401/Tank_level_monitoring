@@ -125,6 +125,7 @@ function tankDetails() {
             max_level: max_level,
             created_ts: new Date().getTime()
         };
+        
         console.log("inputObj", inputObj);
         //Call API
         if(Updateflag == false)
@@ -135,12 +136,16 @@ function tankDetails() {
             contentType: "application/json",
             type: 'POST',
             success: function (result) {
+                console.log("how",result);
                 $("#exampleModal").css('display','none')
                 $(".modal-backdrop").remove();
                 // alert("hai");
                 //Success -> Show Alert & Refresh the page
+                
                 successMsg("Tank Insert Successfully!");
                 loadTankList();
+                
+                
             },
             error: function (e) {
 
