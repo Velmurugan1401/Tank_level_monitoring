@@ -91,4 +91,63 @@
 .toolbar {
   float: right;
 }
-
+@media screen and (min-width: 340px) and (max-width: 767px) { 
+  .me1{
+      position: relative;
+  }
+  .fullv{
+     position: absolute;
+     left: 210px;
+     top: -40px;
+    
+  }
+  .exp5{
+      position: absolute;
+      left: 259px;
+      top: -40px;
+  }
+  .calen{
+  position: relative;
+  margin-bottom: 7px;
+  top: 10px;
+  width: 295px;
+      }
+      
+      .dataTables_filter{
+      position: relative;
+      left: -50px;
+      }
+      
+  
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px)  {
+  .me1{
+      position: relative;
+  }
+  .fullv{
+      position: absolute;
+      left: 160px;
+      top: -5px;
+      margin-bottom: 24px;
+     
+   }
+   .exp5{
+      position: absolute;
+      left: 211px;
+      margin-bottom: 24px;
+      top: -5px;
+  }
+  .calen{
+      position: relative;
+      margin-bottom: 20px;
+      top: 20px;
+      width: 295px;
+      left: -49px;
+      margin-top: 23px;
+      }
+      /* .dataTables_filter{
+          position: relative;
+          left: 172px;
+          top: 5px;
+          } */
+}
