@@ -3,7 +3,7 @@
  <style>
 
    .flow{
-     display:none;
+     display: none;
     height: 100px;
       width: 12px;
       background: rgb(41 154 225);
@@ -29,9 +29,9 @@
       </div></div> 
 
   <!--  start header section -->
-  <div class="row p-2 head">
+  <div class="row head">
     <div class="col-8">
-      <h5 class="p-2">Tank Snapshot</h5>
+      <h5 style="margin-top:10px;padding-top: 5px;padding-bottom: 5px;">Tank Snapshot</h5>
     </div>
     <div class="col-4">
       <div class="d-flex" style="justify-content: flex-end">
@@ -86,7 +86,7 @@
           <div class="card-deck">
             <div class="card car">
               <div class="card-header car-head">
-                <h5>Tank Overview</h5>
+                <h5 class="pt-2">Tank Overview</h5>
               </div>
               <div class="card-body cad">
                 <div class="row">
@@ -109,7 +109,7 @@
             </div>
             <div class="card car">
               <div class="card-header car-head">
-                <h5>Tank Status</h5>
+                <h5 class="pt-2">Tank Status</h5>
               </div>
               <div class="card-body cad">
                 <div class="row">
@@ -127,13 +127,13 @@
                 </div>
                 <div class="row">
                   <div class="col-3">
-                    <button type="button" class="btn act" id="onbut">ON</button>
+                    <button type="button" class="btn act oho" id="onbut">ON</button>
                   </div>
                   <div class="col-3">
-                    <button type="button" class="btn act" id="offbut">OFF</button>
+                    <button type="button" class="btn act oho" id="offbut">OFF</button>
                   </div>
                   <div class="col-3">
-                    <button type="button" class="btn act" id="current">STATUS</button>
+                    <button type="button" class="btn act oh" id="current">STATUS</button>
                   </div>
                   
  
@@ -162,4 +162,29 @@
 </div>
   
  <script src="js/tankstatus.js"></script>
+ <script>
+  // $('#onbut').click(function(){
+      
+  //     if($(this).hasClass('off')){
+         
+  //       $(this).removeClass('off');
+        
+  //       $(this).addClass('on');    
+       
+          
+  //     }
+  // });
+  // $('#offbut').click(function(){
+         
+  //     if($(this).hasClass('on')){
+         
+  //       $(this).removeClass('on');
+        
+  //       $(this).addClass('off');    
+       
+          
+  //     }
+  // });
+</script>
+
  
