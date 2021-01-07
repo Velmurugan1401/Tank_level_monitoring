@@ -304,7 +304,7 @@ function loadTankList() {
             sTitle: 'Linked Devices',
             orderable: false,
             mRender: function (data, type, row) {
-                console.log(row.device_id);
+                // console.log(row.device_id);
                 if (row.device_id) {
 
                     return '<button type="button" id="link" class="btn tank-atag link1" data-toggle="modal" data-target="#myModal1" onclick="linkdevice(\'' + row._id + '\')"><i class="fa fa-unlink" aria-hidden="true"></i></button>';
@@ -655,3 +655,59 @@ function clicklinkdevice1() {
 
     }
 
+    $(() => {
+        var queryParams={
+            "query": {
+                "bool": {
+                    "must": [{
+                        "match": {
+                            "domainKey": "CDZMKBHJUM"
+                        }
+                    }]
+                }
+            },
+            "from": 0,
+            "size": 50
+        }
+        var dev;
+        $.ajax({
+      
+            url: BASE_PATH + "/devicedetail/listdev",
+            contentType: "application/json",
+            type: "POST",
+            "data":JSON.stringify({"data":queryParams}),
+            // async: true,
+            success: function(data) {
+                var resultData = data.result.data.data;
+                device_list = resultData;
+                console.log("hello", device_list);
+                $("#listdevice").html("");
+    
+                resultData.forEach((et) => {
+                    for(i=0;i<=tank_list.length-1;i++){
+                        console.log("noe",tank_list[i].device_id);
+                        if(et.id==tank_list[i].device_id){
+                         dev="";
+                         break;
+                        }
+
+                        else{
+                           dev=et.id;
+                        }
+                    }
+                    if(dev==""){
+
+
+                    }
+                    else{
+                        let tr = `<option value=` + dev+ `>` + dev + `</option>`;
+                        $("#listdevice").append(tr);
+                    }
+                    
+                   
+                });
+            },
+        });
+    });
+    
+  
