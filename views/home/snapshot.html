@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="css/snapshot.css" /> 
+<link rel="stylesheet" href="css/snapshot.css"/> 
  
  
 <div class="container-fluid">
@@ -13,7 +13,7 @@
           <span class="title-span" style="margin-left: 5px;margin-right: 5px;">
             <i class="fa fa-angle-right" aria-hidden="true"></i>
         </span>
-        <span class="title-span" style="color: mediumblue;font-weight: 500;">Tank Snapshot</span>
+        <span class="title-span" style="color:#2998e1;font-weight: 500;">Tank Snapshot</span>
       </div></div> 
 
   <!--  start header section -->
@@ -59,17 +59,7 @@
         src="images/water-tank-widget-8.png"       
       />
       <span class="water"></span>
-      <!-- <span id="drop" class="off">
-
-      </span> -->
-      <!--  left: 117px;
-      top: 31px;  -->
-      <!-- left:94px -->
-      <canvas width="100" id="drawing-surface" style="position: absolute;
-     max-width: 100%;
-     left: 108px;
-    top: 29px;
-      transform: translateY(6px);"></canvas>
+      
     </div>
     <!-- end content1 -->
     <!-- start content2 -->
@@ -87,20 +77,8 @@
                   <div class="col-6 p-2"id="tankname"  >
                    
                   </div>
-                  <div class="col-6 p-2 "id="Location">
-                    
-
-                    <!-- <p>Created by</p>
-                    <p>Meow</p> -->
-
-                    <!-- <p>Created Time</p>
-                  <p>24/12/2020</p> -->
-<!-- 
-                    <p>Updated by</p>
-                    <p>Cat</p> -->
-                    <!-- 
-                  <p>Updated Time</p>
-                  <p>26/12/2020</p> -->
+                  <div class="col-6 p-2 "id="Location">                   
+ 
                   </div>
                 </div>
                 <div class="row">
@@ -147,16 +125,7 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="card car">
-              <div class="card-header car-head">
-                <h5>Device Overview</h5>
-              </div>
-              <div class="card-body cad">
-                <div class="row">
-                  
-                </div>
-              </div>
-            </div> -->
+            
           </div>
         </div>
       </div>
@@ -165,46 +134,7 @@
       <div class="row mt-5">
         <div class="col-12">
           <table class="table table-bordered table-responsive no-wrap" id="example" width="100%" ></table>
-          <!-- <table class="table" id="example" width="100%"> -->
-            <!-- <thead>
-              <tr>
-                <th scope="col">Reported time</th>
-                <th scope="col">Current level</th>
-                <th scope="col">Alerts</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>24/12/2020</td>
-                <td>10000</td>
-                <td>High</td>
-              </tr>
-              <tr>
-                <td>24/12/2020</td>
-                <td>10000</td>
-                <td>High</td>
-              </tr>
-              <tr>
-                <td>24/12/2020</td>
-                <td>10000</td>
-                <td>High</td>
-              </tr>
-              <tr>
-                <td>24/12/2020</td>
-                <td>10000</td>
-                <td>Low</td>
-              </tr>
-              <tr>
-                <td>26/12/2020</td>
-                <td>10000</td>
-                <td>Low</td>
-              </tr>
-              <tr>
-                <td>24/12/2020</td>
-                <td>15000</td>
-                <td>Low</td>
-              </tr>
-            </tbody> -->
+         
           </table>
         </div>
       </div>
@@ -214,133 +144,8 @@
   </div>
   <!--  end content section -->
 </div>
- <script>
-   $('#onbut').click(function(){
-       
-       if($(this).hasClass('off')){
-          
-         $(this).removeClass('off');
-         
-         $(this).addClass('on');    
-        
-           
-       }
-   });
-   $('#offbut').click(function(){
-          
-       if($(this).hasClass('on')){
-          
-         $(this).removeClass('on');
-         
-         $(this).addClass('off');    
-        
-           
-       }
-   });
- </script>
+ 
 
-<!-- <script>
-  $(document).ready(function() {
-    $('#example').DataTable();
-} ); 
-</script> -->
-<script type="text/javascript">
-  function Random(range) {
-        return Math.floor((Math.random() * range) + 1);
-  }
-  function RandomFloat(range) {
-        return (Math.random() * range) + 1;
-  }
-  var viewport = new Viewport();
-  for (var i = 0; i < 200; i++) {
-        var particle = new Particle();
-        viewport.addObject(particle);
-  }     
-  viewport.init();
-
-   function Viewport() {
-        var me = this;
-        me.objects = [];
-        var canvas = document.getElementById("drawing-surface");
-        function resizeCanvas() {
-              canvas.width = 200;
-              canvas.height = 150;
-        }
-        resizeCanvas();
-        
-  var drawingSurface = document.getElementById("drawing-surface").getContext("2d");
-  var image = new Image();
   
-  function drawBackgroundImage() {
-  if (me.backgroundImage) {
-        drawingSurface.drawImage(me.backgroundImage, 0, 0, canvas.width, canvas.height);
-  }
-  }
-  function drawObjects() {
-  for (var i = 0; i < me.objects.length; i++) {
-        me.objects[i].paint(drawingSurface);
-  }
-  }
-  me.paintInit = function () {
-        me.doPaint = true;
-  }
-  function paint() {
-  me.paintInit();
-  if (me.doPaint) {
-        drawBackgroundImage();
-        drawObjects();
-        me.doPaint = false;
-  }
-  }
-  var timer;
-  me.init = function () {
-        timer = setInterval(function () { paint(); }, 1000 / 30);
-  };
-  me.repaint = function () {
-        me.doPaint = true;
-  };
-  me.addObject = function (obj) {
-        me.objects.push(obj);
-  }
-  }
-    function Particle() {
-        var me = this;
-        var source = {};
-        source.location = { x: 0, y: 0 };
-        me.reset = function () {
-        me.speed = RandomFloat(10) + 5;
-        me.radius = 6;
-        me.opacity = 10;
-        me.color = '#299AE1';
-        me.location = { x: source.location.x + Random(5), y: source.location.y };
-        me.angle = 45;
-  };
-  me.reset();
-
-  me.move = function () {
-        if (me.location.y>window.innerHeight || me.location.x > window.innerWidth) {
-         me.reset();
-        }
-        var xval = Math.cos(me.angle);
-        if (xval > 0) {
-              me.angle += 0.01;
-        }
-        else {
-              me.angle -= 0.01;
-        }
-        me.location.x += Math.cos(me.angle) * me.speed;
-        me.location.y += Math.sin(me.angle) * me.speed;
-  };
-  me.paint = function (context) {
-        me.move();
-        context.beginPath();
-        context.arc(me.location.x, me.location.y, me.radius, 0, 2 * Math.PI, false);
-        context.fillStyle = me.color;
-        context.globalAlpha = me.opacity / 255;
-        context.fill();
-        context.closePath();
-  };
-  }
-</script>
  <script src="js/tankstatus.js"></script>
-<script src="js/snapshot.js"></script> 
+ 

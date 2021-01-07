@@ -83,7 +83,7 @@
             
             {
                 mData: 'tank_level',
-                sTitle: 'Device Name',
+                sTitle: 'Tank Level',
                 sWidth: '20%',
                 orderable: false,
                 mRender: function (data, type, row) {
@@ -94,7 +94,7 @@
             },
             {
                 mData: 'deviceid',
-                sTitle: 'Device Model',
+                sTitle: 'Device Id',
                 sWidth: '20%',
                 orderable: false,
                 mRender: function (data, type, row) {
@@ -105,7 +105,7 @@
             {
                 mData: 'channel',
                 sWidth: '20%',
-                sTitle: 'Device Version',
+                sTitle: 'Channel',
                 orderable: false,
                 mRender: function (data, type, row) {
                     return data;
