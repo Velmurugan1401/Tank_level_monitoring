@@ -7,13 +7,13 @@
      }
      .paging_simple_numbers .pagination .paginate_button.active a, .paging_simple_numbers .pagination .paginate_button:hover a{
          color: #fff !important;
-     background-color: #299AE1 !important;
-     background: #299AE1 !important;
-     border-color: #299AE1 !important;
-     border-radius: 3px !important;
+         background-color: #299AE1 !important;
+         background: #299AE1 !important;
+         border-color: #299AE1 !important;
+         border-radius: 3px !important;
      }
      .dataTables_wrapper .dataTables_paginate .paginate_button:hover{
-             border: none !important;
+         border: none !important;
      }
      .dataTables_wrapper .dataTables_paginate .paginate_button{
          border: none !important;
@@ -24,46 +24,69 @@
      }
      #rawMsgDatePicker{
         background: #fff;
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 6px;
-    margin-right: 5px;
-    margin-top: 5px;
-    border-radius: 2px;
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px;
+        margin-right: 5px;
+        margin-top: 5px;
+        border-radius: 2px;
+     }
+     #topbar-raw-msg{
+        background-color:white;
+        padding-top: 25px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        padding: 20px;
+     }
+     #rawRefresh{
+        background-color:#299AE1;color: white;margin-right: 20px;
+     }
+     #rawDataTableRow{
+        background-color:white;border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;padding-left: 20px;padding-bottom:20px;margin-bottom: 70px;
+     }
+
+     @media screen and (min-width: 340px) and (max-width: 767px) { 
+         #rawRefresh{
+             margin-top: 0px;
+         }
+         #rawExpand{
+             margin-top: 0px;
+         }
+         #rawDataTableRow{
+            padding-bottom:30px;margin-bottom: 70px;
+        }
+        #rawMsgDatePicker{
+            /* background: #fff;
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px; */
+            /* border-radius: 2px; */
+            margin-right: 16px;
+            margin-top:11px;
+            
+     }
+     #firstRow{
+         /* padding: 10px 20px;padding-right: 0px;
+         border-bottom: 1px solid lightgrey;
+         background-color:gainsboro; */
+        height:100px;
+     }
      }
  </style>
  <div class="container-fluid" id="tankStatusCont">
-     <div class="row" style="background-color:white;padding-top: 25px;border-top-left-radius: 20px;
-                 border-top-right-radius: 20px;padding: 20px;">
-                     <div class="col-md-6">
-                       <span class="title-span" style="color: grey;font-weight: 500;">Administration</pan>
-                         <span class="title-span" style="margin-left: 5px;margin-right: 5px;">
-                             <i class="fa fa-angle-right" aria-hidden="true"></i>
-                         </span>
-                         <span class="title-span" style="color: mediumblue;font-weight: 500;">Raw Messages</span>
-                     </div>
- 
-                     <!-- <div class="col-md-6" style="text-align: right;">
-                          <div class="profile">
-                             <i class="fa fa-user" aria-hidden="true" onclick="profilelogout()"></i>
-                                 <div class="card" id="profileCard" style="display: none;">
-                                    <div class="card-body" style="padding-left: 0px;padding-top: 10px;padding-right: 0px;">
-                                       <ul class="list-unstyled" style="font-size: 14px;">
-                                         <li>Profile</li> 
-                                         <li><a onclick="logout()">logout</a></li>
-                                        
-                                     </ul>
-                                    
-                                 </div>
-                             </div>
- 
-                             
-                             </div>  -->
-                     <!-- </div> -->
-                   </div>
+     <div class="row" id="topbar-raw-msg">
+            <div class="col-md-6">
+                <span class="title-span" style="color: grey;font-weight: 500;">Administration</pan>
+                <span class="title-span" style="margin-left: 5px;margin-right: 5px;">
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </span>
+                <span class="title-span" style="color: mediumblue;font-weight: 500;">Raw Messages</span>
+            </div>
+       </div>
       
-    <div class="row" id="firstRow" style="">
-         <div class="col-md-6" style="">
+    <div class="row" id="firstRow">
+         <div class="col-md-6">
              <div style="margin-top: 12px;">
                 <span>Total messsages: </span>
                 <span id="totalCount" style="font-weight: 500;"></span>
@@ -71,12 +94,12 @@
          </div>
          <div class="col-md-6 activ-inactive-coln">
             <div class="float-right">
-                <button type="button" class="btn" data-toggle="tooltip" title="Referesh" onclick="rawMsgRef()" style="background-color:#299AE1;color: white;">
+                <button type="button" class="btn" id="rawRefresh" data-toggle="tooltip" title="Referesh" onclick="rawMsgRef()">
                   <i class="fa fa-refresh" aria-hidden="true"></i>
             </button>
            </div>
       
-            <div class="float-right" style="margin-right: 5px;">
+            <div class="float-right">
             <button type="button" class="btn but" id="rawExpand" data-toggle="tooltip" data-placement="bottom" title="Full Screen" style="background-color:#299AE1;color: white;">
               <i class="fa fa-expand" id="expandview" style="color:white" aria-hidden="true"></i></button>
           </div>
@@ -89,8 +112,7 @@
          </div>
      </div>
  
-     <div class="row" style="background-color:white;border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;padding-left: 20px;padding-bottom:20px;margin-bottom: 70px;">
+     <div class="row" id="rawDataTableRow">
          <div class="col-md-12">
              <table class="table table-bordered responsive no-wrap" id="rawMsgTable" cellspacing="0" width="100%">
                 

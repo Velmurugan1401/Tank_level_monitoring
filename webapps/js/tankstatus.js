@@ -350,17 +350,10 @@ function loadTankStatusList() {
             sTitle: 'Actions',
             orderable: false,
             mRender: function (data, type, row) {
-                if(!(row.device_id)){
-                    var actionsHtml = '<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\');status(\''+row.device_id+'\')" href="#/snapshot"  style="margin-right:5px;" ><i class="fa fa-eye" aria-hidden="true"></i></button>'
-                    +'<button class="btn btn-default" data-target="#statusDeletemodal" data-toggle="modal" onclick="assignDeleteDeviceId(\'' + row._id + '\')"><i class="fa fa-trash icon" ></i></button>';
-                    return actionsHtml;
-                }
-                else{
-              var actionsHtml = '<button class="btn btn-default"  title="Tank Linked" style="margin-right:5px;" ><i class="fa fa-link" aria-hidden="true"></i></button>'
-                          +'<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\');status(\''+row.device_id+'\');level(\''+row.device_id+'\')" href="#/snapshot" title="Goto Snapshot" style="margin-right:5px;" ><i class="fa fa-eye" aria-hidden="true"></i></button>'
+              var actionsHtml = '<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\');status(\''+row.device_id+'\');level(\''+row.device_id+'\')" href="#/snapshot" title="Goto Snapshot" style="margin-right:5px;" ><i class="fa fa-eye" aria-hidden="true"></i></button>'
                           +'<button class="btn btn-default" data-target="#statusDeletemodal" data-toggle="modal" onclick="assignDeleteDeviceId(\'' + row._id + '\')"><i class="fa fa-trash icon" ></i></button>';
                           return actionsHtml;
-               }
+            
             }
         }
     ];
@@ -379,7 +372,7 @@ function loadTankStatusList() {
     TankStatus_list = [];
 
     var tableOption = {
-        fixedHeader: true,
+        fixedHeader: false,
         responsive: true,
         paging: true,
         searching: true,
@@ -409,7 +402,7 @@ function loadTankStatusList() {
             sortingJson[keyName['mData']] = { "order": oSettings.aaSorting[0][1] };
             queryParams.sort = [sortingJson];
 
-            queryParams.sort=[{"created_ts":{"order":"desc"}}];
+            // queryParams.sort=[{"created_ts":{"order":"desc"}}];
 
             queryParams['size'] = oSettings._iDisplayLength;
             queryParams['from'] = oSettings._iDisplayStart;
@@ -445,7 +438,7 @@ function loadTankStatusList() {
                 "contentType": 'application/json',
                 "type": "POST",
                 "url": sSource,
-                "data": JSON.stringify({"query":queryParams}),
+                "data": JSON.stringify({ "query":queryParams }),
                 success: function (data) {
 
                     var resultData = data.result.data;
@@ -524,19 +517,18 @@ function status(row){
                 for(i=0;i<=resultData.length;i++){
                     if(row==resultData[i].device_id)
                     {
-                       dank=resultData[i];
-                      
+                       dank=resultData[i];                    
                       
                        break;
                     }
                 }
               
-                $("#tankname").append("<h5>name</h5><p>"+dank.tank_name+"</p>")   
-                $("#tankname").append("<h5>type</h5><p>"+dank.tank_type+"</p>")   
-                $("#tankname").append("<h5>capacity</h5><p>"+dank.capacity+"</p>")  
-                $("#Location").append("<h5>location</h5><p>"+dank.location+"</p>") 
-                $("#Location").append("<h5>max_level</h5><p>"+dank.max_level+"</p>")  
-                $("#Location").append("<h5>min_level</h5><p>"+dank.min_level+"</p>")   
+                $("#tankname").append("<h5>Name</h5><p>"+dank.tank_name+"</p>")   
+                $("#tankname").append("<h5>Type</h5><p>"+dank.tank_type+"</p>")   
+                $("#tankname").append("<h5>Capacity</h5><p>"+dank.capacity+"</p>")  
+                $("#Location").append("<h5>Location</h5><p>"+dank.location+"</p>") 
+                $("#Location").append("<h5>Max_level</h5><p>"+dank.max_level+"</p>")  
+                $("#Location").append("<h5>Min_level</h5><p>"+dank.min_level+"</p>")   
                 
                    
     
@@ -590,9 +582,9 @@ $(() => {
                 }
             }
             $("#device").append("<h5>Device Name</h5><p>"+flist.id+"</p>")   
-            $("#device").append("<h5>LINKED TIME</h5><p>"+moment(flist.registeredStamp).format(DATE_TIME_FORMAT)+"</p>")  
-           $("#device2").append("<h5>model </h5><p>"+flist.modelId+"</p>")   
-           $("#device2").append("<h5>version</h5><p>"+flist.version+"</p>")   
+            $("#device").append("<h5>Linked Time</h5><p>"+moment(flist.registeredStamp).format(DATE_TIME_FORMAT)+"</p>")  
+           $("#device2").append("<h5>Model</h5><p>"+flist.modelId+"</p>")   
+           $("#device2").append("<h5>Version</h5><p>"+flist.version+"</p>")   
             
 
 
@@ -633,6 +625,7 @@ function level()
     var lvl;
     var cap;
     var cal;
+    var conti;
         $.ajax({
             "dataType": 'json',
             "contentType": 'application/json',
@@ -640,24 +633,30 @@ function level()
             url: BASE_PATH + '/tankstatus/list',
             success: function (data) {                
                 var resultData = data.result.data.data;                  
-                console.log('row',devid);
+                // console.log('row',devid);
                 for(i=0;i<=resultData.length-1;i++){
                     if(devid==resultData[i].device_id)
-                    {          
-                        console.log(resultData);            
+                    {     
+                        conti=resultData[i].tank_level    
+                        // console.log(resultData);            
                         lvl=resultData[i].tank_level;
-                        cap=resultData[i].capacity;                            
+                        cap=resultData[i].capacity;  
+                        console.log(conti)                          
                         cal=((lvl/cap)*100);  
-                        console.log(Math.round(cal)); 
+                        // console.log(Math.round(cal)); 
                         $('.water').height(cal); 
-                        conti=resultData[i].tank_level                       
+$("#status").html("<h5>Tank Level</h5><p>"+conti+"</p>")   
+                                           
                         break;
                     }
                 }          
     
             }
+            
         })
-        $("#status").append("<h5>Tank Level</h5><p>"+conti+"</p>")   
+
+
+
         
       
   
