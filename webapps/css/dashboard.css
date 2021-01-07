@@ -30,7 +30,7 @@
 /* *>.intro-y:nth-child(3) {
     transform: translateY(50px);
 } */
-.box {
+/* .box {
     box-shadow: 0 3px 20px rgba(0,0,0,.043137254901960784);
     background-color: rgba(255,255,255,var(--tw-bg-opacity));
     border-radius: .375rem;
@@ -40,11 +40,12 @@
     width: 180px;
     padding-top: 24px;
    
-}
-.card-header{
-    padding-bottom: 30px;
-    border-bottom: 1px  lightgray;
-    font-size: medium;
+} */
+
+.dname{
+    background-color: white;
+    height:70px;
+   padding-top: 17px;
 }
 
 .mt-6 {
@@ -72,10 +73,10 @@
    padding-top: 20px;
 }
 .three{
-    margin-top: 70px;
+  padding-top: 20px;
 }
 .tank:hover{
-    box-shadow: 20px blue;
+    box-shadow: 20px;
     background-color: white;
     margin-left: 10px;
     padding-top: 50px;
@@ -90,38 +91,35 @@
     
 }
 
-.chart{
+.charts{
 background-color: white;
 margin-bottom: 20px;
 border-radius: 6px;
 box-shadow: 0 5px 4px rgba(0,0,0,0.3);
-margin-left: 20px;
+/* margin-right: 20px; */
+
+
+
 
 }
+.chart{
+    
+    
+    background-color: white;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    box-shadow: 0 5px 4px rgba(0,0,0,0.3);
+    /* padding-left: 5px;
+    margin-left: 150px; */
+ 
+    }
 .chart1{
     background-color: white;
     margin-bottom: 20px;
     border-radius: 6px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    
-    }
-/* .chart2{
-    background-color: white;
-    margin-bottom: 20px;
-    border-radius: 6px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  
+}
 
-} */
-
-
-/* .fa-2x{
-    margin-bottom: 90px;
-} */
-/* .one{
-    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
-    transition: box-shadow 0.3s ease-in-out;
-} */
 .dname:hover{
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 cursor: pointer;
@@ -143,62 +141,33 @@ margin-right: 20px;
     border-radius: 6px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
-.text{
-    padding-left: 540px;
- 
-}
 
 .icon1{
 color:hotpink;
+padding-left: 30px;
 }
 .icon2{
     color:lightblue;
-
+    padding-left: 30px;
 }
 .icon3{
     color:orange;
+    padding-left: 30px;
 }
 .icon4{
-  color:greenyellow;  
+  color:greenyellow; 
+  padding-left: 30px;
 }
 .topic{
     padding-top: 50px;
+   
 }
 .card-header{
-    border-bottom: 1px solid lightgrey;
-    margin-top: 20px;
-   padding-bottom: 9px;
+    border-bottom:  1px solid lightgrey;
+    padding-bottom: 9px;
+   
 }
-/* .topic1{
-    padding-top: 30px;
-    margin-top: 10px;
-} */
-/* @media screen and (max-width: 320px) {
-    .three{
-        padding-top: 30px;
-       
-    }
-  }
-  @media only screen and (max-width: 600px) {
-    body {
-      background-color: lightblue;
-    }
-  }
-  @media only screen and (max-width: 768px) {
-    /* For mobile phones: */
-    /* [class*="col-"] {
-      width: 100%;
-    }
-  } */
-/* .roe{ */
-    /* border-bottom-left-radius: 20px;padding-bottom: 70px;
-        border-bottom-right-radius: 20px;
-    background-color:white;
-padding-left: 20px;
-} */ 
-/* .con{
-    background-color: white;
-} */
+
 @media screen and (min-width: 340px) and (max-width: 767px) { 
     
     .dname1{
