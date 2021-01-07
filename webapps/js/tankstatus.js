@@ -5,11 +5,157 @@ var TankStatus_list = [];
 var deleteDeviceId=null;
 // var startDate = moment().subtract(6, 'days').startOf('day');
 // var endDate = moment().endOf('day');
+ var EventTable=null;
+var Event_list=[];
+$(document).ready(function(){
+    loadEventList();
+});
+function loadEventList()
+{
+ if(EventTable)
+ {
+    EventTable.destroy();
+    $('#example').html("");
+ }
+ var fields=[
+    {
+        mData: 'device_id',
+        sTitle: 'Device Id',
+        sWidth: '20%',
+        orderable: false,
+        mRender: function (data, type, row) {  
+            console.log(row);        
+            return  data ? data :'-';
+        }
+    },
+    {
+        mData: 'tank_level',
+        sTitle: 'Status',
+        sWidth: '20%',
+        orderable: false,
+        mRender: function (data, type, row) {          
+                
+            return  data ? data :'-';
+        }
+    }
+  
+]
+    var queryParams = {
+        query:{
+            "bool": {
+                "must": { "match": {
+                    "device_id": devid
+                }}
+            }
+        },
+        sort: [{
+            "created_ts": {
+                "order": "asc"
+            }
+        }]
+    };
 
+    Event_list = [];
+   
+    var tableOption = {
+        fixedHeader: false,
+        responsive:true,
+        paging: true,
+        searching: true,
+        aaSorting: [
+            [0, 'desc'],
+        ],
+        "ordering": true,
+        iDisplayLength: 10,
+        lengthMenu: [
+            [10, 50, 100],
+            [10, 50, 100]
+        ],
+        aoColumns: fields,
+        "bProcessing": true,
+        "language": {
+            "emptyTable": "No data found!",
+            "processing": '<i class="fa fa-spinner fa-spin" style="color:#333"></i> Processing'
+
+        },
+        "bServerSide": true,
+        "sAjaxSource": BASE_PATH + '/eventtrigger/list',
+        "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
+
+
+            queryParams.query['bool']['must'] = [{ "match": {
+                "device_id": devid
+            }}];
+            queryParams.query['bool']['should'] = [];
+            delete queryParams.query['bool']["minimum_should_match"];
+
+            var keyName = fields[oSettings.aaSorting[0][0]]
+
+            var sortingJson = {};
+            sortingJson[keyName['mData']] = {
+                "order": oSettings.aaSorting[0][1]
+            };
+            queryParams.sort = [sortingJson];
+
+            queryParams['size'] = oSettings._iDisplayLength;
+            queryParams['from'] = oSettings._iDisplayStart;
+
+            // queryParams.query['bool']['must'].push({ "match": { "acc_id":SESSION_OBJ.orgs[0]  } });
+
+            var searchText = oSettings.oPreviousSearch.sSearch.trim();
+
+            if (searchText) {
+                queryParams.query['bool']['should'].push({ "wildcard": { "tank_level": "*" + searchText + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "tank_level": "*" + searchText.toLowerCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "tank_level": "*" + searchText.toUpperCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "tank_level": "*" + capitalizeFLetter(searchText) + "*" } })
+                queryParams.query['bool']["minimum_should_match"] = 1;
+                queryParams.query['bool']['should'].push({
+                    "match_phrase": {
+                        "tank_level.keyword": "*" + searchText + "*"
+                    }
+                })
+                queryParams.query['bool']['should'].push({
+                    "match_phrase_prefix": {
+                        "tank_level.keyword": {
+                            "query": "*" + searchText + "*"
+                        }
+                    }
+                });
+ 
+            }
+               
+            oSettings.jqXHR = $.ajax({
+                "dataType": 'json',
+                "contentType": 'application/json',
+                "type": "POST",
+                "url": sSource,
+
+                "data": JSON.stringify({
+                    "query": queryParams
+                }),
+                success: function (data) {
+
+                    var resultData = data.result.data;            
+                     resultData['draw'] = oSettings.iDraw;
+                    fnCallback(resultData);
+                }
+            });
+        },       
+
+        
+        initComplete: function () {          
+         
+        }
+    };
+
+    EventTable = $("#example").DataTable(tableOption);
+
+}
 
 $(document).ready(function(){
     loadTankStatusList();
-
+    // loadTankEventList();
     // $("button").click(function(){
     //     $("div").animate({bottom: '50px'});
     //   });
@@ -204,17 +350,10 @@ function loadTankStatusList() {
             sTitle: 'Actions',
             orderable: false,
             mRender: function (data, type, row) {
-                if(!(row.device_id)){
-                    var actionsHtml = '<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\');status(\''+row.device_id+'\')" href="#/snapshot"  style="margin-right:5px;" ><i class="fa fa-eye" aria-hidden="true"></i></button>'
-                    +'<button class="btn btn-default" data-target="#statusDeletemodal" data-toggle="modal" onclick="assignDeleteDeviceId(\'' + row._id + '\')"><i class="fa fa-trash icon" ></i></button>';
-                    return actionsHtml;
-                }
-                else{
-              var actionsHtml = '<button class="btn btn-default"  title="Tank Linked" style="margin-right:5px;" ><i class="fa fa-link" aria-hidden="true"></i></button>'
-                          +'<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\');status(\''+row.device_id+'\');level(\''+row.device_id+'\')" href="#/snapshot" title="Goto Snapshot" style="margin-right:5px;" ><i class="fa fa-eye" aria-hidden="true"></i></button>'
-                          +'<button class="btn btn-default" data-target="#statusDeletemodal" data-toggle="modal" onclick="assignDeleteDeviceId(\'' + row._id + '\',\'' + row._id + '\')"><i class="fa fa-trash icon" ></i></button>';
+              var actionsHtml = '<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\');status(\''+row.device_id+'\');level(\''+row.device_id+'\')" href="#/snapshot" title="Goto Snapshot" style="margin-right:5px;" ><i class="fa fa-eye" aria-hidden="true"></i></button>'
+                          +'<button class="btn btn-default" data-target="#statusDeletemodal" data-toggle="modal" onclick="assignDeleteDeviceId(\'' + row._id + '\')"><i class="fa fa-trash icon" ></i></button>';
                           return actionsHtml;
-               }
+            
             }
         }
     ];
@@ -384,6 +523,7 @@ function status(row){
                        break;
                     }
                 }
+              
                 $("#tankname").append("<h5>name</h5><p>"+dank.tank_name+"</p>")   
                 $("#tankname").append("<h5>type</h5><p>"+dank.tank_type+"</p>")   
                 $("#tankname").append("<h5>capacity</h5><p>"+dank.capacity+"</p>")  
@@ -406,7 +546,7 @@ function status(row){
 
 }
 
-$("#status").append("<h5>Tank Level</h5><p>"+tankstat.tank_level+"</p>")   
+$("#status").append("<h5>Tank Level</h5><p>"+tankstat && tankstat.tank_level ? tankstat.tank_level : '-'+"</p>")   
 $("#status1").append("<h5>Status</h5><p>"+tankstat.status+"</p>")   
 $("#status2").append("<h5>Reported_ts</h5><p>"+ moment(tankstat.created_ts).format(DATE_TIME_FORMAT)+"</p>")  
 
@@ -466,12 +606,23 @@ $('#offbut').on('click', function(e){
     e.preventDefault();
 });
 
+//tank height
+// $('#current').click(function(){
+// var capacity=dank.capacity;
+// var level=tankstat.tank_level;
+// var cal=((level/capacity)*100)/2;
+// $('#water').css('height',cal+'%');
+// });
 
-$(document).ready(function(){
-    setInterval(level(row),3000);
-});
-function level(row)
+
+
+ 
+    setInterval(level,3000);
+ 
+function level()
 {
+  
+    
     var lvl;
     var cap;
     var cal;
@@ -481,20 +632,17 @@ function level(row)
             "type": "POST",
             url: BASE_PATH + '/tankstatus/list',
             success: function (data) {                
-                var resultData = data.result.data.data;  
-                // console.log('result',resultData)             
-                // console.log('meeee');
-                for(i=0;i<=resultData.length;i++){
-                    if(row==resultData[i].device_id)
-                    {
+                var resultData = data.result.data.data;                  
+                console.log('row',devid);
+                for(i=0;i<=resultData.length-1;i++){
+                    if(devid==resultData[i].device_id)
+                    {          
+                        console.log(resultData);            
                         lvl=resultData[i].tank_level;
                         cap=resultData[i].capacity;                            
                         cal=((lvl/cap)*100);  
-                        // console.log(Math.round(cal)); 
-                        $('.water').height(cal);
-                        // $("waterlevl").append(<span style="height='+cal+'%"></span>')
-                        // $('#water').css('height':"'cal'+'%'");
-                        // function resizeDiv() { var rh=$('.pright').height()+'px'.toString(); $('.pleft').css('height',rh); }
+                        console.log(Math.round(cal)); 
+                        $('.water').height(cal);                        
                         break;
                     }
                 }          

@@ -11,9 +11,7 @@
     var start = moment().subtract(29, 'days');
       var end = moment();
     
-    $(document).ready(function(){
-        loadDeviceList();
-    })
+   
 
     $('#rawExpand').click(function(){
         var elem = document.documentElement;
@@ -54,10 +52,10 @@
     //   var end = moment();
   
       function cb(start, end) {
-          startDate = start;
-          endDate = end;
+          startDate = Date.parse(start);
+          endDate = Date.parse(end);
           console.log(startDate)
-console.log(endDate)
+          console.log(endDate)
 
           $('#rawMsgDatePicker span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
       }
@@ -81,6 +79,10 @@ console.log(endDate)
       
   
   });
+
+  $(document).ready(function(){
+    loadDeviceList();
+})
 
 
     
@@ -154,8 +156,8 @@ console.log(endDate)
                     "must": []
                      // ,
                 // "filter":{"range":{"created_ts":{
-                //     "gte":startDate.getTime(),
-                //     "lte":endDate.getTime()
+                //     "gte":startDate,
+                //     "lte":endDate
                 // }}}
                 }
             },
@@ -190,27 +192,27 @@ console.log(endDate)
                 // queryParams.query['range'] =  {
                 //     "receivedstamp": {
                         
-                //       "gte": new Date(startDate).getTime(),
-                //       "lte": new Date(endDate).getTime()
+                //       "gte": startDate,
+                //       "lte": endDate
                      
                 //     }
                 //   };
     
                 // var startTime = moment().valueOf();
                 // var last30Days =  moment().subtract(30,'d').valueOf();
-                // queryParams.query['bool']['must'] =  {
-                //     range:{
-                //         "receivedstamp": {
-                //             "from": startDate,
-                //             "to": endDate
+                queryParams.query['bool']['must'] =  {
+                    range:{
+                        "receivedstamp": {
+                            "gte": startDate,
+                            "lte": endDate
                            
-                //           }
-                //     }
+                          }
+                    }
                    
-                //   };
+                  };
 
 
-                queryParams.query['bool']['should'] = [];
+                // queryParams.query['bool']['should'] = [];
                 delete queryParams.query['bool']["minimum_should_match"];
     
                 var keyName = fields[oSettings.aaSorting[0][0]]

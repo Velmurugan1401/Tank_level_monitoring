@@ -16,18 +16,18 @@
   </header>
   <div class="row rname" style=" padding-top: 50px ;">
   
-    <div class="col-lg intro-y col-sm-12 col-md-6">
+    <div class="col-lg intro-y col-sm-12 col-md-6 cname">
     
-        <div class="box dname">
-          <i class="fa fa-user-o fa-2x icon1" aria-hidden="true"></i>
+        <div class="box dname dname1">
+          <i class="fa fa-user-o fa-2x icon1 ricon" aria-hidden="true"></i>
           <span class="text-3xl font-bold leading-8 mt-6" style="margin-left: 15px;" id="totaluser"></span>
-          <span class="text-base text-gray-600 mt-1" id="totaluser"> Users</span>
+          <span class="text-base text-gray-600 mt-1 " id="totaluser"> Users</span>
      </div>
     </div>
     <div class="col-lg intro-y col-sm-12 col-md-6">
   
-        <div class="box dname">
-           <i class="fa fa-tablet fa-2x icon2" aria-hidden="true"></i>
+        <div class="box dname dname2">
+           <i class="fa fa-tablet fa-2x icon2 ricon" aria-hidden="true"></i>
            <span class="text-3xl font-bold leading-8 mt-6"style="margin-left: 15px;"  id="totaltank"></span>
             <span class="text-base text-gray-600 mt-1">Tanks</span>
         </div>
@@ -35,18 +35,18 @@
     </div>
     <div class="col-lg intro-y col-sm-12 col-md-6">
     
-        <div class="box dname">
+        <div class="box dname dname3">
         
-            <i class="fa fa-calendar-o fa-2x icon3" aria-hidden="true"></i>
+            <i class="fa fa-calendar-o fa-2x icon3 ricon" aria-hidden="true"></i>
             <span class="text-3xl font-bold leading-8 mt-6" style="margin-left: 15px;" id="totalevent">5</span>
           <span class="text-base text-gray-600 mt-1" >Events</span>
         </div> 
     </div>
       <div class="col-lg intro-y col-sm-12 col-md-6">
        
-          <div class="box dname">
+          <div class="box dname dname4">
             
-              <i class="fa fa-television fa-2x icon4" aria-hidden="true"></i>
+              <i class="fa fa-television fa-2x icon4 ricon" aria-hidden="true"></i>
           
         
             <span class="text-3xl font-bold leading-8 mt-6"style="margin-left: 15px;"  id="totaldevice"></span>
@@ -67,7 +67,7 @@
       <div class="card-header">Water Consumption By Days</div>  
       <!-- <div class="row">
         <div class="col-md-4 col-lg-4 col-sm-4 col-xl-4">
-          <select id="location" class="form-select" aria-label="Default select example" style="margin-top: 20px; margin-left: 10px;height: 35px;background: #fff; border: 1px solid #ccc;">
+          <select id="location" class="form-select calender" aria-label="Default select example" style="margin-top: 20px; margin-left: 10px;height: 35px;background: #fff; border: 1px solid #ccc;">
             <option >select</option>
             <option>Velachery</option>
             <option >Chennai</option>
@@ -88,23 +88,27 @@
     </div>
   </div>
 
-  <div class="row five">
+  <div class="row five newrow">
     <div class="col-md-12 col-lg-12 col-sm-12 col-xl-12 chart1">
       <div class="card-header">Water Consumption by Total Chennai city</div>  
       <div class="row">
         <div class="col-md-6 col-lg-6 col-sm-6 col-xl-6">
-          <select name="" id="sel" style="margin-top: 20px;">
+          <!-- <select name="" id="sel" style="margin-top: 20px;">
             <option >Current</option>
             <option >Yesterday</option>
            <option >Last7days</option>
             <option >Last30days</option>
 
          
-          </select>
+          </select> -->
         </div>
         <div class="col-md-auto col-lg-auto col-sm-auto col-xl-auto">
          
         
+          <div id="reportrange" style="background: #fff; border: 1px solid #ccc;display: inline-block;padding: 6px; margin-top: 20px; margin-left: 20px;">
+            <i class="fa fa-calendar"style="color: #299AE1;"></i>&nbsp;
+            <span></span> <i class="fa fa-caret-down"></i>
+        </div>
           </div>
          
       </div>
@@ -151,31 +155,31 @@
 
 
 
-$(function() {
- var dateof= $("#reportrang").val()
-  console.log(dateof)
-var start = moment().subtract(29, 'days');
-var end = moment();
+// $(function() {
+//  var dateof= $("#reportrang").val()
+//   console.log(dateof)
+// var start = moment().subtract(29, 'days');
+// var end = moment();
 
-function cb(start, end) {
-    $('#reportrang span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-}
-var Today;
-$('#reportrang').daterangepicker({
-    startDate: start,
-    endDate: end,
-    ranges: {
-      //  Today: [moment(), moment()],
-       'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-       'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-       'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+// function cb(start, end) {
+//     $('#reportrang span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+// }
+// var Today;
+// $('#reportrang').daterangepicker({
+//     startDate: start,
+//     endDate: end,
+//     ranges: {
+//       //  Today: [moment(), moment()],
+//        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+//        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+//        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
       
        
-    }
+//     }
     
-}, cb);
-cb(start, end);
-console.log("startDate",end)
+// }, cb);
+// cb(start, end);
+// console.log("startDate",end)
 
 
-});
+// });
