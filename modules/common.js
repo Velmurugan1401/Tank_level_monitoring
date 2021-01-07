@@ -113,7 +113,7 @@ Common.prototype.MsgSearch = function (tablename, req, res) {
 };
 
 
-Common.prototype.commonUpdate = function (tablename, req, res) {
+Common.prototype.commonUserUpdate = function (tablename, req, res) {
 
     console.log("update",req.body)
     const self = this;
@@ -241,7 +241,7 @@ Common.prototype.testAction = function (req, res) {
 
 };
 
-Common.prototype.commonAdd = function (tablename, req, res) {
+Common.prototype.commonUserAdd = function (tablename, req, res) {
 
 //   console.log("common",req.body);
     const self = this;
@@ -251,6 +251,7 @@ Common.prototype.commonAdd = function (tablename, req, res) {
     boodskap.elasticInsert(tablename, req.body, function (status, result) {
         
         if (status) {
+
             var obj={
                 "email": req.body.email,
                 "password": req.body.password,
@@ -288,7 +289,7 @@ Common.prototype.commonAdd = function (tablename, req, res) {
     });
 };
 
-Common.prototype.commonDelete = function (tablename, req, res) {
+Common.prototype.commonUserDelete = function (tablename, req, res) {
 
     console.log("del",req.body)
 

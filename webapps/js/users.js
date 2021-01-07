@@ -78,6 +78,8 @@ $(function() {
 //User insert API
 
 function loadrecordUser() {
+  
+    $("#firstname,#lastname,#mobile,#emailid,#role").val('');
 
     var firstname = $("#firstname").val();
     var lastName = $("#lastname").val();
@@ -86,39 +88,39 @@ function loadrecordUser() {
     var password=$("#Password").val();
     var roles = $("#role").val();
 
-     //Validate
-     if (firstname === "") {
-        $(".validate").css('display','block');
-        return;
+    //  //Validate
+    //  if (firstname === "") {
+    //     $(".validate").css('display','block');
+    //     return;
 
 
-    //     alert("First  Name is Required!");
+    // //     alert("First  Name is Required!");
 
-    } else if (lastName === "") {
-        $(".validate").css('display','block');
-        return;
-    //     alert("Last name is Required!");
+    // } else if (lastName === "") {
+    //     $(".validate").css('display','block');
+    //     return;
+    // //     alert("Last name is Required!");
 
-    }
-    else if (primaryPhone === "") {
-        $(".validate").css('display','block');
-        return;
-    //     alert("Mobile number  is Required!");
+    // }
+    // else if (primaryPhone === "") {
+    //     $(".validate").css('display','block');
+    //     return;
+    // //     alert("Mobile number  is Required!");
 
-    }
-    else if (email === "") {
-        $(".validate").css('display','block');
-        return;
-    //     alert("Email id is Required!");
+    // }
+    // else if (email === "") {
+    //     $(".validate").css('display','block');
+    //     return;
+    // //     alert("Email id is Required!");
 
-    }
-    else if(password==="")
-    {
-        $(".validate").css('display','block');
-    return;
-    }
+    // }
+    // else if(password==="")
+    // {
+    //     $(".validate").css('display','block');
+    // return;
+    // }
 
-      else {
+    //   else {
         //Build Input Objects
         var input =
         {
@@ -132,7 +134,7 @@ function loadrecordUser() {
 
 
         };
-    }
+    // }
 
     console.log("insert", input);
 
@@ -148,9 +150,9 @@ function loadrecordUser() {
             success: function (result) {
                 console.log(result);
 
-                $("#firstname,#lastname,#mobile,#emailid,#role").val('');
-                $("#myModal").css('display','none');
-                $(".modal-backdrop").remove();
+               
+                // $("#myModal").css('display','none');
+                // $(".modal-backdrop").remove();
 
                 //Success -> Show Alert & Refresh the page
                 successMsg("User Added Successfully!");
@@ -364,19 +366,19 @@ function loadUsersList() {
             var searchText = oSettings.oPreviousSearch.sSearch.trim();
 
             if (searchText) {
-                queryParams.query['bool']['should'].push({ "wildcard": { "firstname": "*" + searchText + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "firstname": "*" + searchText.toLowerCase() + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "firstname": "*" + searchText.toUpperCase() + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "firstname": "*" + capitalizeFLetter(searchText) + "*" } })
+                queryParams.query['bool']['should'].push({ "wildcard": { "fname": "*" + searchText + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "fname": "*" + searchText.toLowerCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "fname": "*" + searchText.toUpperCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "fname": "*" + capitalizeFLetter(searchText) + "*" } })
                 queryParams.query['bool']["minimum_should_match"] = 1;
                 queryParams.query['bool']['should'].push({
                     "match_phrase": {
-                        "firstname.keyword": "*" + searchText + "*"
+                        "fname.keyword": "*" + searchText + "*"
                     }
                 })
                 queryParams.query['bool']['should'].push({
                     "match_phrase_prefix": {
-                        "firstname.keyword": {
+                        "fname.keyword": {
                             "query": "*" + searchText + "*"
                         }
                     }
