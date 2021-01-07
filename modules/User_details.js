@@ -12,26 +12,18 @@ Users.prototype.performAction = function (req,res){
 
     const self = this;
 
-    if(req.params.action === 'userdelete'){
-        self.common.commonUserDelete(req,res);
-    }
-    else if(req.params.action === 'insert'){
-        self.common.commonAdd(self.table.USER_TABLE,req,res);
+    if(req.params.action === 'insert'){
+        self.common.commonUserAdd(self.table.USER_TABLE,req,res);
     }
     else if(req.params.action === 'update'){
-        self.common.commonUpdate(self.table.USER_TABLE,req,res);
+        self.common.commonUserUpdate(self.table.USER_TABLE,req,res);
     }
     else if(req.params.action === 'delete'){
-        self.common.commonDelete(self.table.USER_TABLE,req,res);
-    }
-    else if(req.params.action === 'userinsert'){
-        self.common.commonUser(req,res);
-
+        self.common.commonUserDelete(self.table.USER_TABLE,req,res);
     }
     else if(req.params.action === 'list'){
         self.common.commonSearch(self.table.USER_TABLE,req,res);
     }
-
     else{
         res.status(401).json({status:false,message:'Invalid Access'})
     }

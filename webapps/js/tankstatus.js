@@ -1,13 +1,161 @@
+// const e = require("express");
+
 var TankStatusTable = null;
 var TankStatus_list = [];
 var deleteDeviceId=null;
 // var startDate = moment().subtract(6, 'days').startOf('day');
 // var endDate = moment().endOf('day');
+ var EventTable=null;
+var Event_list=[];
+$(document).ready(function(){
+    loadEventList();
+});
+function loadEventList()
+{
+ if(EventTable)
+ {
+    EventTable.destroy();
+    $('#example').html("");
+ }
+ var fields=[
+    {
+        mData: 'device_id',
+        sTitle: 'Device Id',
+        sWidth: '20%',
+        orderable: false,
+        mRender: function (data, type, row) {  
+            console.log(row);        
+            return  data ? data :'-';
+        }
+    },
+    {
+        mData: 'tank_level',
+        sTitle: 'Status',
+        sWidth: '20%',
+        orderable: false,
+        mRender: function (data, type, row) {          
+                
+            return  data ? data :'-';
+        }
+    }
+  
+]
+    var queryParams = {
+        query:{
+            "bool": {
+                "must": { "match": {
+                    "device_id": devid
+                }}
+            }
+        },
+        sort: [{
+            "created_ts": {
+                "order": "asc"
+            }
+        }]
+    };
 
+    Event_list = [];
+   
+    var tableOption = {
+        fixedHeader: false,
+        responsive:true,
+        paging: true,
+        searching: true,
+        aaSorting: [
+            [0, 'desc'],
+        ],
+        "ordering": true,
+        iDisplayLength: 10,
+        lengthMenu: [
+            [10, 50, 100],
+            [10, 50, 100]
+        ],
+        aoColumns: fields,
+        "bProcessing": true,
+        "language": {
+            "emptyTable": "No data found!",
+            "processing": '<i class="fa fa-spinner fa-spin" style="color:#333"></i> Processing'
+
+        },
+        "bServerSide": true,
+        "sAjaxSource": BASE_PATH + '/eventtrigger/list',
+        "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
+
+
+            queryParams.query['bool']['must'] = [{ "match": {
+                "device_id": devid
+            }}];
+            queryParams.query['bool']['should'] = [];
+            delete queryParams.query['bool']["minimum_should_match"];
+
+            var keyName = fields[oSettings.aaSorting[0][0]]
+
+            var sortingJson = {};
+            sortingJson[keyName['mData']] = {
+                "order": oSettings.aaSorting[0][1]
+            };
+            queryParams.sort = [sortingJson];
+
+            queryParams['size'] = oSettings._iDisplayLength;
+            queryParams['from'] = oSettings._iDisplayStart;
+
+            // queryParams.query['bool']['must'].push({ "match": { "acc_id":SESSION_OBJ.orgs[0]  } });
+
+            var searchText = oSettings.oPreviousSearch.sSearch.trim();
+
+            if (searchText) {
+                queryParams.query['bool']['should'].push({ "wildcard": { "tank_level": "*" + searchText + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "tank_level": "*" + searchText.toLowerCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "tank_level": "*" + searchText.toUpperCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "tank_level": "*" + capitalizeFLetter(searchText) + "*" } })
+                queryParams.query['bool']["minimum_should_match"] = 1;
+                queryParams.query['bool']['should'].push({
+                    "match_phrase": {
+                        "tank_level.keyword": "*" + searchText + "*"
+                    }
+                })
+                queryParams.query['bool']['should'].push({
+                    "match_phrase_prefix": {
+                        "tank_level.keyword": {
+                            "query": "*" + searchText + "*"
+                        }
+                    }
+                });
+ 
+            }
+               
+            oSettings.jqXHR = $.ajax({
+                "dataType": 'json',
+                "contentType": 'application/json',
+                "type": "POST",
+                "url": sSource,
+
+                "data": JSON.stringify({
+                    "query": queryParams
+                }),
+                success: function (data) {
+
+                    var resultData = data.result.data;            
+                     resultData['draw'] = oSettings.iDraw;
+                    fnCallback(resultData);
+                }
+            });
+        },       
+
+        
+        initComplete: function () {          
+         
+        }
+    };
+
+    EventTable = $("#example").DataTable(tableOption);
+
+}
 
 $(document).ready(function(){
     loadTankStatusList();
-
+    // loadTankEventList();
     // $("button").click(function(){
     //     $("div").animate({bottom: '50px'});
     //   });
@@ -66,11 +214,30 @@ function loadTankStatusList() {
             mData: 'tank_name',
             sTitle: 'Tank Name',
             sWidth: '15%',
-            orderable: false,
+            orderable: true,
             "className": 'sortingtable',
             mRender: function (data, type, row) {
-                return '<div class="row">' + '<img src="/images/tank-1.png"style="height:30px;"width:30px">' + '&nbsp;' + '&nbsp;' + '<b>' + row.tank_name +'</b>'  + '</div>'+'<br>' + '<h6>' + '<i class="fa fa-map-marker" aria-hidden="true" style="color:red;"></i>'+'&nbsp;' + '&nbsp;' + row.location + '&nbsp;' + '</h6>';
-                // return data ? data : '-';
+                if(!((row.tank_name) && (row.location))){
+                   return data ? data : '-';
+                }
+                else if((row.tank_name == "null") || (row.tank_name == "undefined")){
+                    return '<div class="row">' + '<b>' + '-' +'</b>' 
+                    + '</div>'+'<br>' 
+                    + '<h6>' + '<i class="fa fa-map-marker" aria-hidden="true" style="color:red;"></i>'+'&nbsp;' + '&nbsp;' + row.location + '&nbsp;' + '</h6>';
+                  
+                }
+                else if((row.location == "null") || (row.location == "undefined")){
+                    return '<div class="row">' + '<img src="/images/tank-1.png"style="height:30px;"width:30px">' + '&nbsp;' + '&nbsp;' + '<b>' + row.tank_name +'</b>' 
+                 + '</div>'+'<br>' 
+                 + '<h6>' + '-' +'</h6>';
+               
+                }
+                else{
+                return '<div class="row">' + '<img src="/images/tank-1.png"style="height:30px;"width:30px">' + '&nbsp;' + '&nbsp;' + '<b>' + row.tank_name +'</b>' 
+                 + '</div>'+'<br>' 
+                 + '<h6>' + '<i class="fa fa-map-marker" aria-hidden="true" style="color:red;"></i>'+'&nbsp;' + '&nbsp;' + row.location + '&nbsp;' + '</h6>';
+               
+                }
             }
         },
        {
@@ -81,22 +248,25 @@ function loadTankStatusList() {
             mRender: function (data, type, row) {
                 // console.log(row);
                 return data ? data : '-';
+                
             }
         },
         {
           mData: 'tank_level',
           sWidth: '20%',
           sTitle: 'Tank Level',
-        //   orderable: false,
+          orderable: true,
           "className": 'sortingtable',
           mRender: function (data, type, row) {
             var cal=(row.tank_level/row.capacity)*100;
             //  alert(cal);
+
+
              if((cal > 75) && (cal <= 100)){
                 return '<div class="row">' 
                 + '<div class="col-md-8">'
-                +'<div style="font-size:16px;font-weight:normal;">' + '<b>'+ row.tank_level + '</b>'+'&nbsp;' +'gallons '+'</div>'
-                +'<div style="font-size:12px;">'+ 'Total Capacity' + '&nbsp;'+ row.capacity + '&nbsp;'+'<br>' +'gallons '+'</div>'
+                +'<div style="font-size:16px;font-weight:normal;">' + '<b>'+ row.tank_level + '</b>'+'&nbsp;' +'litres '+'</div>'
+                +'<div style="font-size:12px;">'+ 'Total Capacity' + '&nbsp;'+ row.capacity + '&nbsp;'+'<br>' +'litres '+'</div>'
                 +'</div>'
                 + '<div class="col-md-4">'
                 +'<div style="width:50px;height:50px;background-color:lightyellow;border:1px solid gray;border-bottom:35px solid #38A7FA;border-radius:3px;">' + '</div>'
@@ -107,8 +277,8 @@ function loadTankStatusList() {
              else if((cal > 50) && (cal <= 75)){
                 return '<div class="row">' 
                 + '<div class="col-md-8">'
-                +'<div style="font-size:16px;font-weight:normal;">' + '<b>'+row.tank_level+ '</b>' + '&nbsp;' +'gallons '+'</div>'
-                +'<div style="font-size:12px;">'+ 'Total Capacity' + '&nbsp;'+ row.capacity + '&nbsp;'+'<br>' +'gallons '+'</div>'
+                +'<div style="font-size:16px;font-weight:normal;">' + '<b>'+row.tank_level+ '</b>' + '&nbsp;' +'litres '+'</div>'
+                +'<div style="font-size:12px;">'+ 'Total Capacity' + '&nbsp;'+ row.capacity + '&nbsp;'+'<br>' +'litres '+'</div>'
                 +'</div>'
                 + '<div class="col-md-4">'
                 +'<div style="width:50px;height:50px;background-color:lightyellow;border:1px solid gray;border-radius:3px;border-bottom:23px solid #38A7FA;">'+ '</div>'
@@ -119,8 +289,8 @@ function loadTankStatusList() {
              else if((cal > 25) && (cal <= 50)){
                 return '<div class="row">' 
                 + '<div class="col-md-8">'
-                +'<div style="font-size:16px;font-weight:normal;">' + '<b>'+row.tank_level+ '</b>' + '&nbsp;' +'gallons '+'</div>'
-                +'<div style="font-size:12px;">'+ 'Total Capacity' + '&nbsp;'+ row.capacity + '&nbsp;'+'<br>' +'gallons '+'</div>'
+                +'<div style="font-size:16px;font-weight:normal;">' + '<b>'+row.tank_level+ '</b>' + '&nbsp;' +'litres '+'</div>'
+                +'<div style="font-size:12px;">'+ 'Total Capacity' + '&nbsp;'+ row.capacity + '&nbsp;'+'<br>' +'litres '+'</div>'
                 +'</div>'
                 + '<div class="col-md-4">'
                 +'<div style="width:50px;height:50px;background-color:lightyellow;border:1px solid gray;border-radius:3px;border-bottom:15px solid #38A7FA;">' +'</div>'
@@ -131,8 +301,8 @@ function loadTankStatusList() {
              else if((cal > 1) && (cal <= 25)){
                 return '<div class="row">' 
                 + '<div class="col-md-8">'
-                +'<div style="font-size:16px;font-weight:normal;">' +'<b>'+ row.tank_level + '</b>'+ '&nbsp;' +'gallons '+'</div>'
-                +'<div style="font-size:12px;">'+ 'Total Capacity' + '&nbsp;'+ row.capacity + '&nbsp;'+'<br>' +'gallons '+'</div>'
+                +'<div style="font-size:16px;font-weight:normal;">' +'<b>'+ row.tank_level + '</b>'+ '&nbsp;' +'litres '+'</div>'
+                +'<div style="font-size:12px;">'+ 'Total Capacity' + '&nbsp;'+ row.capacity + '&nbsp;'+'<br>' +'litres '+'</div>'
                 +'</div>'
                 + '<div class="col-md-4">'
                 +'<div style="width:50px;height:50px;background-color:lightyellow;border:1px solid gray;border-radius:3px;border-bottom:10px solid #38A7FA;">' +'</div>'
@@ -143,8 +313,8 @@ function loadTankStatusList() {
              else{
                 return '<div class="row">' 
                 + '<div class="col-md-8">'
-                +'<div style="font-size:16px;font-weight:normal;">' + '<b>'+row.tank_level+ '</b>' + '&nbsp;' +'gallons '+'</div>'
-                +'<div style="font-size:12px;">'+ 'Total Capacity' + '&nbsp;'+ row.capacity + '&nbsp;'+'<br>' +'gallons '+'</div>'
+                +'<div style="font-size:16px;font-weight:normal;">' + '<b>'+row.tank_level+ '</b>' + '&nbsp;' +'litres '+'</div>'
+                +'<div style="font-size:12px;">'+ 'Total Capacity' + '&nbsp;'+ row.capacity + '&nbsp;'+'<br>' +'litres '+'</div>'
                 +'</div>'
                 + '<div class="col-md-4">'
                 +'<div style="width:50px;height:50px;background-color:lightyellow;border:1px solid gray;border-radius:3px;">' +'</div>'
@@ -187,7 +357,7 @@ function loadTankStatusList() {
                 }
                 else{
               var actionsHtml = '<button class="btn btn-default"  title="Tank Linked" style="margin-right:5px;" ><i class="fa fa-link" aria-hidden="true"></i></button>'
-                          +'<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\');status(\''+row.device_id+'\')" href="#/snapshot" title="Goto Snapshot" style="margin-right:5px;" ><i class="fa fa-eye" aria-hidden="true"></i></button>'
+                          +'<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\');status(\''+row.device_id+'\');level(\''+row.device_id+'\')" href="#/snapshot" title="Goto Snapshot" style="margin-right:5px;" ><i class="fa fa-eye" aria-hidden="true"></i></button>'
                           +'<button class="btn btn-default" data-target="#statusDeletemodal" data-toggle="modal" onclick="assignDeleteDeviceId(\'' + row._id + '\')"><i class="fa fa-trash icon" ></i></button>';
                           return actionsHtml;
                }
@@ -199,6 +369,8 @@ function loadTankStatusList() {
         query: {
             "bool": {
                 "must": []
+
+           
             }
         },
         sort: [{ "created_ts": { "order": "asc" } }]
@@ -300,8 +472,10 @@ function loadTankStatusList() {
         loadTankStatusList();
     }
 
-function assignDeleteDeviceId(row){
-    // console.log(row);
+function assignDeleteDeviceId(row,row1){
+
+    console.log(row);
+    console.log(row1);
     deleteDeviceId = row
 }
 
@@ -356,6 +530,7 @@ function status(row){
                        break;
                     }
                 }
+              
                 $("#tankname").append("<h5>name</h5><p>"+dank.tank_name+"</p>")   
                 $("#tankname").append("<h5>type</h5><p>"+dank.tank_type+"</p>")   
                 $("#tankname").append("<h5>capacity</h5><p>"+dank.capacity+"</p>")  
@@ -437,3 +612,51 @@ $('#offbut').on('click', function(e){
     $('.on').removeClass('on').addClass('off');
     e.preventDefault();
 });
+
+//tank height
+// $('#current').click(function(){
+// var capacity=dank.capacity;
+// var level=tankstat.tank_level;
+// var cal=((level/capacity)*100)/2;
+// $('#water').css('height',cal+'%');
+// });
+
+
+
+ 
+    setInterval(level,3000);
+ 
+function level()
+{
+  
+    
+    var lvl;
+    var cap;
+    var cal;
+        $.ajax({
+            "dataType": 'json',
+            "contentType": 'application/json',
+            "type": "POST",
+            url: BASE_PATH + '/tankstatus/list',
+            success: function (data) {                
+                var resultData = data.result.data.data;                  
+                console.log('row',devid);
+                for(i=0;i<=resultData.length-1;i++){
+                    if(devid==resultData[i].device_id)
+                    {          
+                        console.log(resultData);            
+                        lvl=resultData[i].tank_level;
+                        cap=resultData[i].capacity;                            
+                        cal=((lvl/cap)*100);  
+                        console.log(Math.round(cal)); 
+                        $('.water').height(cal);                        
+                        break;
+                    }
+                }          
+    
+            }
+        })
+        
+      
+  
+    }

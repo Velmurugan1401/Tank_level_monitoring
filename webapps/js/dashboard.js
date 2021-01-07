@@ -39,6 +39,7 @@ $(() => {
         success: function (data) {
             var resultData = data.result.data;
             $("#totaldevice").html(data.result.total)
+            
         }
     })
 })
@@ -56,8 +57,97 @@ $(() => {
     })
 })
 // BAR CHART--------------------------------------------
+$(() => {
+    var queryParams={
+        
+        
+        aggs: {
+ 
+            "sports":{
+              "terms" : { "field" : "deviceid" },
+              "aggs": {
+                "avg_scoring":{
+                  "sum": {"field":"tank_level"}
+                }
+              }
+            },
+            "tanks":{
+                 "terms" : { "field" : "device_id" },
+                 "aggs": {
+                "avg_scoring":{
+                  "sum": {"field":"tank_level"}
+                }
+              }
+            }
+          }
+         }
+         
+    $.ajax({
+        "dataType": 'json',
+        "contentType": 'application/json',
+        "type": "POST",
+        "url": BASE_PATH + '/tankhistory/list',
+        "data": JSON.stringify({
+            "query": queryParams
+        }),
+        success: function (data) {
+            var resultData = data.result.data;
+            var location=data.result.aggregations.sports.buckets;
+            console.log("me",data.result.aggregations.sports.buckets[0].avg_scoring.value)
+            var sevendays = data.result.aggregations.sports.buckets
+           
+console.log(sevendays)
+            var myChart = echarts.init(document.getElementById('bar1'));
+var data = [location[0].avg_scoring.value, location[1].avg_scoring.value, location[2].avg_scoring.value,location[3].avg_scoring.value,location[4].avg_scoring.value,location[6].avg_scoring.value,location[7].avg_scoring.value,location[8].avg_scoring.value,location[9].avg_scoring.value],
+ nameareas=['POONDI', 'CHOLAVARAM', 'REDHILLS', 'CHEMBARAMBAKKAM', 'MYLAPORE', 'VEERANAM', 'NESAPAKKAM','KODAMBAKKAM A',]
+option = {
+    color: ['#3398DB'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
 
-// PIE CHART--------------------------------------------
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [{
+        type: 'category',
+        axisLabel: {
+                        interval: 0,
+                        rotate:30
+                   },
+            data: nameareas,
+
+        axisTick: {
+            alignWithLabel: true
+        }
+    }],
+    yAxis: [{
+        type: 'value'
+    }],
+    series: [{
+        name: "liters",
+        type: 'bar',
+        barWidth: '60%',
+
+        data: data
+    }]
+};
+myChart.setOption(option);
+
+          
+
+        }
+    })
+})
+
+
+
 $(() => {
     var event;
 
@@ -149,219 +239,542 @@ $(() => {
     })
 })
 
-$(()=>{
-    $(function() {
 
-        var start = moment().subtract(29, 'days');
-        var end = moment();
-        
-        function cb(start, end) {
-            $('#reportrang span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        }
-        
-        $('#reportrang').daterangepicker({
-            startDate: start,
-            endDate: end,
-            ranges: {
-              //  'Today': [moment(), moment()],
-               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-               'Last 30 Days': [moment().subtract(29, 'days'), moment()]
-               
-            }
-        }, cb);
-        
-        cb(start, end);
-        
-        });
-
-    var query={
-        
-            "aggs" : {
-            "last30days" : {
-                    "range" : {
-                        "field" : "receivedstamp",
-                        "ranges" : [
-                            { "from" : "1608826599604", "to" : "1609660800000" }
-                        ]
-                    },
-                    "aggs" : {
-                        "result" : { "terms" : { "field" : "deviceid" },
-                             "aggs": {
-               "avg_scoring":{
-                 "sum": {"field":"tank_level"}
-               }
-             }
-                        },
-                         "result2" : { "terms" : { "field" : "device_id" },
-                             "aggs": {
-               "avg_":{
-                 "sum": {"field":"tank_level"}
-               }
-             }
-                        }
-                        
-                        
-                    }
-                    
-                        
-               
-            },
-                    "last7days" : {
-                    "range" : {
-                        "field" : "receivedstamp",
-                        "ranges" : [
-                            { "from" : "1609142400000", "to" : "1609660800000" }
-                        ]
-                    },
-                    "aggs" : {
-                        "result" : { "terms" : { "field" : "deviceid" },
-                             "aggs": {
-               "avg_scoring":{
-                 "avg": {"field":"tank_level"}
-               }
-             }
-                        }
-                    
-                        
-                    }
-                },
-                 "lastonedays" : {
-                    "range" : {
-                        "field" : "receivedstamp",
-                        "ranges" : [
-                            { "from" : "1609142400000", "to" : "1609660800000" }
-                        ]
-                    },
-                    "aggs" : {
-                        "result" : { "terms" : { "field" : "deviceid" },
-                             "aggs": {
-               "avg_scoring":{
-                 "avg": {"field":"tank_level"}
-               }
-             }
-                        }
-                    
-                        
-                    }
-                }
-                
-            },
-            "sort":[{"deviceid":{"order" : "asc"}}]
-            
-            
-        
-    }
-    $.ajax({
-        "dataType": 'json',
-        "contentType": 'application/json',
-        "type": "POST",
-        "url": BASE_PATH + '/msg/list',
-        "data": JSON.stringify({
-            "query": queryParams
-            
-        }),
-
-        success: function (data) {
-            var resultData = data.result.data;
-
-
-        }
-    });
-    var myCharts = echarts.init(document.getElementById('bar2'));
-option = {
-    color: ['#3398DB'],
-    tooltip: {
-        trigger: 'axis',
-        axisPointer: {           
-            type: 'shadow'        
-        }
-    },
-    grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
-    },
-    xAxis: [
-        {
-            type: 'category',
-             axisLabel: {
-            interval: 0,
-            rotate:30
-        },
-            data: ['POONDI', 'CHOLAVARAM', 'REDHILLS', 'CHEMBARAMBAKKAM', 'MYLAPORE', 'VEERANAM', 'NESAPAKKAM','KODAMBAKKAM A','KODAMBAKKAM B','KOYAMBEDU','AVADI','PORUR','VELACHERY','EGMORE','GUINDY','LITTLE MOUNT','KILPAUK','SAIDAPET','VADAPALANI','THIRUMANGALAM'],
-            axisTick: {
-                alignWithLabel: true
-            }
-        }
-    ],
-    yAxis: [
-        {
-            type: 'value'
-        }
-    ],
-    series: [
-        {
-            name: 'Consumption Level',
-            type: 'bar',
-            barWidth: '60%',
-            data: backend
-        }
-    ]
-};
-myCharts.setOption(option);
-
-
-
-
-
-})
-// $(document).ready(function(){
-//     $('#reportrang').daterangepicker({ onSelect: function(dateText, inst) { alert("Working"); } });
-// });
+// $( "#sel" ).click(function() {
 
 
     
-$(document).ready(function(){
-    $("#reportrang").trigger('click'); 
-});
+//     var query;
+//     if($("#sel").val()=="Last30days")
+//     { 
+//         var stertdate = moment().valueOf(new Date())
+//         var start30date = moment().subtract(30, 'days').valueOf(new Date())
+//         queryParams={
+//             "sort" : [
+//                 { "deviceid" : {"order" : "desc"}}],
+//             aggs: {
+//                 "last30days": {
+//                     "range": {
+//                         "field": "receivedstamp",
+//                         "ranges": [{
+//                             "from": start30date,
+//                             "to": stertdate
+//                         }]
+//                     },
+//                     "aggs": {
+//                         "result": {
+//                             "terms": {
+//                                 "field": "deviceid"
+//                             },
+//                             "aggs": {
+//                                 "avg_scoring": {
+//                                     "sum": {
+//                                         "field": "tank_level"
+//                                     }
+//                                 }
+//                             }
+//                         }
+    
+    
+//                     }
+//                 }
+//             }
+           
+       
+//      }
+//      $.ajax({
+//         "dataType": 'json',
+//         "contentType": 'application/json',
+//         "type": "POST",
+//         "url": BASE_PATH + '/tankhistory/list',
+//         "data": JSON.stringify({
+//             "query": queryParams
+//         }),
+//         // url: BASE_PATH + '/tankhistory/list',
+
+//         success: function (data) {
+//             console.log(data)
+//              var onemonth=data.result.aggregations.last30days.buckets[0].result.buckets
+//             var myCharts = echarts.init(document.getElementById('bar2'));
+//             var lastonemonth=[onemonth[0].avg_scoring.value,onemonth[1].avg_scoring.value,onemonth[2].avg_scoring.value,onemonth[3].avg_scoring.value,onemonth[4].avg_scoring.value,onemonth[6].avg_scoring.value,onemonth[7].avg_scoring.value,onemonth[8].avg_scoring.value,onemonth[9].avg_scoring.value]
+//             option = {
+//                 color: ['#3398DB'],
+//                 tooltip: {
+//                     trigger: 'axis',
+//                     axisPointer: {           
+//                         type: 'shadow'        
+//                     }
+//                 },
+//                 grid: {
+//                     left: '3%',
+//                     right: '4%',
+//                     bottom: '3%',
+//                     containLabel: true
+//                 },
+//                 xAxis: [
+//                     {
+//                         type: 'category',
+//                          axisLabel: {
+//                         interval: 0,
+//                         rotate:30
+//                     },
+//                         // data: ['POONDI', 'CHOLAVARAM', 'REDHILLS', 'CHEMBARAMBAKKAM', 'MYLAPORE', 'VEERANAM', 'NESAPAKKAM','KODAMBAKKAM A','KODAMBAKKAM B','KOYAMBEDU','AVADI','PORUR','VELACHERY','EGMORE','GUINDY','LITTLE MOUNT','KILPAUK','SAIDAPET','VADAPALANI','THIRUMANGALAM'],
+//                         data: ['POONDI', 'CHOLAVARAM', 'REDHILLS', 'CHEMBARAMBAKKAM', 'MYLAPORE', 'VEERANAM', 'NESAPAKKAM','KODAMBAKKAM A'],             
+
+//                         axisTick: {
+//                             alignWithLabel: true
+//                         }
+//                     }
+//                 ],
+//                 yAxis: [
+//                     {
+//                         type: 'value'
+//                     }
+//                 ],
+//                 series: [
+//                     {
+//                         name: 'Liter',
+//                         type: 'bar',
+//                         barWidth: '60%',
+//                         data:lastonemonth
+//                     }
+//                 ]
+//             };
+//             myCharts.setOption(option);
+            
+//             console.log(data)
+//         }
+//       });
+//     }else if($("#sel").val()=="Last7days"){
+ 
+//         var stertdate = moment().valueOf(new Date())
+//         var start30date = moment().subtract(7, 'days').valueOf(new Date())
+//         queryParams={
+//             "sort" : [
+//                 { "deviceid" : {"order" : "desc"}}],
+//             aggs: {
+//                 "last30days": {
+//                     "range": {
+//                         "field": "receivedstamp",
+//                         "ranges": [{
+//                             "from": start30date,
+//                             "to": stertdate
+//                         }]
+//                     },
+//                     "aggs": {
+//                         "result": {
+//                             "terms": {
+//                                 "field": "deviceid"
+//                             },
+//                             "aggs": {
+//                                 "avg_scoring": {
+//                                     "sum": {
+//                                         "field": "tank_level"
+//                                     }
+//                                 }
+//                             }
+//                         }
+    
+    
+//                     }
+//                 }
+//             }
+           
+       
+//      }
+//      $.ajax({
+//         "dataType": 'json',
+//         "contentType": 'application/json',
+//         "type": "POST",
+//         "url": BASE_PATH + '/tankhistory/list',
+//         "data": JSON.stringify({
+//             "query": queryParams
+//         }),
+//         // url: BASE_PATH + '/tankhistory/list',
+
+//         success: function (data) {
+//             console.log(data)
+//              var onemonth=data.result.aggregations.last30days.buckets[0].result.buckets
+//             var myCharts = echarts.init(document.getElementById('bar2'));
+//             var lastonemonth=[onemonth[0].avg_scoring.value,onemonth[1].avg_scoring.value,onemonth[2].avg_scoring.value,onemonth[3].avg_scoring.value,onemonth[4].avg_scoring.value,onemonth[6].avg_scoring.value,onemonth[7].avg_scoring.value,onemonth[8].avg_scoring.value,onemonth[9].avg_scoring.value]
+//             option = {
+//                 color: ['#3398DB'],
+//                 tooltip: {
+//                     trigger: 'axis',
+//                     axisPointer: {           
+//                         type: 'shadow'        
+//                     }
+//                 },
+//                 grid: {
+//                     left: '3%',
+//                     right: '4%',
+//                     bottom: '3%',
+//                     containLabel: true
+//                 },
+//                 xAxis: [
+//                     {
+//                         type: 'category',
+//                          axisLabel: {
+//                         interval: 0,
+//                         rotate:30
+//                     },
+//                     data: ['POONDI', 'CHOLAVARAM', 'REDHILLS', 'CHEMBARAMBAKKAM', 'MYLAPORE', 'VEERANAM', 'NESAPAKKAM','KODAMBAKKAM A'],               
+                       
+//                     // data: ['POONDI', 'CHOLAVARAM', 'REDHILLS', 'CHEMBARAMBAKKAM', 'MYLAPORE', 'VEERANAM', 'NESAPAKKAM','KODAMBAKKAM A','KODAMBAKKAM B','KOYAMBEDU','AVADI','PORUR','VELACHERY','EGMORE','GUINDY','LITTLE MOUNT','KILPAUK','SAIDAPET','VADAPALANI','THIRUMANGALAM'],
+//                         axisTick: {
+//                             alignWithLabel: true
+//                         }
+//                     }
+//                 ],
+//                 yAxis: [
+//                     {
+//                         type: 'value'
+//                     }
+//                 ],
+//                 series: [
+//                     {
+//                         name: 'Liter',
+//                         type: 'bar',
+//                         barWidth: '60%',
+//                         data:lastonemonth
+//                     }
+//                 ]
+//             };
+//             myCharts.setOption(option);
+            
+           
+//         }
+//       });
+
+//     }else if($("#sel").val()=="Yesterday"){
+        
+//         var stertdate = moment().valueOf(new Date())
+//         var start30date = moment().subtract(1, 'days').valueOf(new Date())
+//         queryParams={
+//             "sort" : [
+//                 { "deviceid" : {"order" : "desc"}}],
+//             aggs: {
+//                 "last30days": {
+//                     "range": {
+//                         "field": "receivedstamp",
+//                         "ranges": [{
+//                             "from": start30date,
+//                             "to": stertdate
+//                         }]
+//                     },
+//                     "aggs": {
+//                         "result": {
+//                             "terms": {
+//                                 "field": "deviceid"
+//                             },
+//                             "aggs": {
+//                                 "avg_scoring": {
+//                                     "sum": {
+//                                         "field": "tank_level"
+//                                     }
+//                                 }
+//                             }
+//                         }
+    
+    
+//                     }
+//                 }
+//             }
+           
+       
+//      }
+//      $.ajax({
+//         "dataType": 'json',
+//         "contentType": 'application/json',
+//         "type": "POST",
+//         "url": BASE_PATH + '/tankhistory/list',
+//         "data": JSON.stringify({
+//             "query": queryParams
+//         }),
+//         // url: BASE_PATH + '/tankhistory/list',
+
+//         success: function (data) {
+//             console.log(data)
+//              var onemonth=data.result.aggregations.last30days.buckets[0].result.buckets
+//             var myCharts = echarts.init(document.getElementById('bar2'));
+//             var lastonemonth=[onemonth[0].avg_scoring.value,onemonth[1].avg_scoring.value,onemonth[2].avg_scoring.value,onemonth[3].avg_scoring.value,onemonth[4].avg_scoring.value,onemonth[6].avg_scoring.value,onemonth[7].avg_scoring.value,onemonth[8].avg_scoring.value,onemonth[9].avg_scoring.value]
+//             option = {
+//                 color: ['#3398DB'],
+//                 tooltip: {
+//                     trigger: 'axis',
+//                     axisPointer: {           
+//                         type: 'shadow'        
+//                     }
+//                 },
+//                 grid: {
+//                     left: '3%',
+//                     right: '4%',
+//                     bottom: '3%',
+//                     containLabel: true
+//                 },
+//                 xAxis: [
+//                     {
+//                         type: 'category',
+//                          axisLabel: {
+//                         interval: 0,
+//                         rotate:30
+//                     },
+//                         data: ['POONDI', 'CHOLAVARAM', 'REDHILLS', 'CHEMBARAMBAKKAM', 'MYLAPORE', 'VEERANAM', 'NESAPAKKAM','KODAMBAKKAM A'],               axisTick: {
+//                             alignWithLabel: true
+//                         }
+//                     }
+//                 ],
+//                 yAxis: [
+//                     {
+//                         type: 'value'
+//                     }
+//                 ],
+//                 series: [
+//                     {
+//                         name: 'Liter',
+//                         type: 'bar',
+//                         barWidth: '60%',
+//                         data:lastonemonth
+//                     }
+//                 ]
+//             };
+//             myCharts.setOption(option);
+            
+           
+//         }
+//       });
+
+//     }else if($("#sel").val()=="Current"){
+//         var stertdate = moment().valueOf(new Date())
+//         var start30date = moment().subtract(0, 'days').valueOf(new Date())
+//         queryParams={
+//             "sort" : [
+//                 { "deviceid" : {"order" : "desc"}}],
+//             aggs: {
+//                 "last30days": {
+//                     "range": {
+//                         "field": "receivedstamp",
+//                         "ranges": [{
+//                             "from": start30date,
+//                             "to": stertdate
+//                         }]
+//                     },
+//                     "aggs": {
+//                         "result": {
+//                             "terms": {
+//                                 "field": "deviceid"
+//                             },
+//                             "aggs": {
+//                                 "avg_scoring": {
+//                                     "sum": {
+//                                         "field": "tank_level"
+//                                     }
+//                                 }
+//                             }
+//                         }
+    
+    
+//                     }
+//                 }
+//             }
+           
+       
+//      }
+//      $.ajax({
+//         "dataType": 'json',
+//         "contentType": 'application/json',
+//         "type": "POST",
+//         "url": BASE_PATH + '/tankhistory/list',
+//         "data": JSON.stringify({
+//             "query": queryParams
+//         }),
+//         // url: BASE_PATH + '/tankhistory/list',
+
+//         success: function (data) {
+//             console.log(data)
+//              var onemonth=data.result.aggregations.last30days.buckets[0].result.buckets
+//             var myCharts = echarts.init(document.getElementById('bar2'));
+//             var lastonemonth=[onemonth[0].avg_scoring.value,onemonth[1].avg_scoring.value,onemonth[2].avg_scoring.value,onemonth[3].avg_scoring.value,onemonth[4].avg_scoring.value,onemonth[6].avg_scoring.value,onemonth[7].avg_scoring.value,onemonth[8].avg_scoring.value,onemonth[9].avg_scoring.value]
+//             option = {
+//                 color: ['#3398DB'],
+//                 tooltip: {
+//                     trigger: 'axis',
+//                     axisPointer: {           
+//                         type: 'shadow'        
+//                     }
+//                 },
+//                 grid: {
+//                     left: '3%',
+//                     right: '4%',
+//                     bottom: '3%',
+//                     containLabel: true
+//                 },
+//                 xAxis: [
+//                     {
+//                         type: 'category',
+//                          axisLabel: {
+//                         interval: 0,
+//                         rotate:30
+//                     },
+//                         data: ['POONDI', 'CHOLAVARAM', 'REDHILLS', 'CHEMBARAMBAKKAM', 'MYLAPORE', 'VEERANAM', 'NESAPAKKAM','KODAMBAKKAM A',],
+//                         axisTick: {
+//                             alignWithLabel: true
+//                         }
+//                     }
+//                 ],
+//                 yAxis: [
+//                     {
+//                         type: 'value'
+//                     }
+//                 ],
+//                 series: [
+//                     {
+//                         name: 'Liter',
+//                         type: 'bar',
+//                         barWidth: '60%',
+//                         data:lastonemonth
+//                     }
+//                 ]
+//             };
+//             myCharts.setOption(option);
+            
+           
+//         }
+//       });
+
+
+//     }
+
   
 
-  var ms;
-  var ms2;
-    
-    $( function() { 
-    
-      
-    
-    var start = moment().subtract(29, 'days');
-    var end = moment();
-    
-    function cb(start, end) {
-        ms = Date.parse(start);
-        ms2 = Date.parse(end);
+
+
+   
+//   });
+  $(function() {
+    var dateof= $("#reportrange").val()
+     console.log(dateof)
+   var start = moment().subtract(29, 'days');
+   var end = moment();
+   
+   function cb(start, end) {
+       $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+    var startof=Date.parse(start)
+    var endof=Date.parse(end)
+    queryParams={
+        "sort" : [
+            { "deviceid" : {"order" : "desc"}}],
+        aggs: {
+            "last30days": {
+                "range": {
+                    "field": "receivedstamp",
+                    "ranges": [{
+                        "from": startof,
+                        "to": endof
+                    }]
+                },
+                "aggs": {
+                    "result": {
+                        "terms": {
+                            "field": "deviceid"
+                        },
+                        "aggs": {
+                            "avg_scoring": {
+                                "sum": {
+                                    "field": "tank_level"
+                                }
+                            }
+                        }
+                    }
+
+
+                }
+            }
+        }
+       
+   
+ }
+ $.ajax({
+    "dataType": 'json',
+    "contentType": 'application/json',
+    "type": "POST",
+    "url": BASE_PATH + '/tankhistory/list',
+    "data": JSON.stringify({
+        "query": queryParams
+    }),
+    // url: BASE_PATH + '/tankhistory/list',
+
+    success: function (data) {
+        console.log(data)
+         var onemonth=data.result.aggregations.last30days.buckets[0].result.buckets
+        var myCharts = echarts.init(document.getElementById('bar2'));
+        var lastonemonth=[onemonth[0].avg_scoring.value,onemonth[1].avg_scoring.value,onemonth[2].avg_scoring.value,onemonth[3].avg_scoring.value,onemonth[4].avg_scoring.value,onemonth[6].avg_scoring.value,onemonth[7].avg_scoring.value,onemonth[8].avg_scoring.value,onemonth[9].avg_scoring.value]
+        option = {
+            color: ['#3398DB'],
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {           
+                    type: 'shadow'        
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                     axisLabel: {
+                    interval: 0,
+                    rotate:30
+                },
+                    data: ['POONDI', 'CHOLAVARAM', 'REDHILLS', 'CHEMBARAMBAKKAM', 'MYLAPORE', 'VEERANAM', 'NESAPAKKAM','KODAMBAKKAM A',],
+                    axisTick: {
+                        alignWithLabel: true
+                    }
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value'
+                }
+            ],
+            series: [
+                {
+                    name: 'Liter',
+                    type: 'bar',
+                    barWidth: '60%',
+                    data:lastonemonth
+                }
+            ]
+        };
+        myCharts.setOption(option);
+        
        
     }
-    
-    $('#reportrang').daterangepicker({
-        startDate: start,
-        endDate: end,
-        ranges: {
-          //  'Today': [moment(), moment()],
-           'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-           'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-           'Last 30 Days': [moment().subtract(29, 'days'), moment()]
-           
-        }
-    }, cb);
-    
-    cb(start, end);
-    
-    
-    console.log(ms)
-    console.log(ms2)
-    
-    
-    
-    });
+  });
+
+
+
+   }
+   var Today;
+   $('#reportrange').daterangepicker({
+       startDate: start,
+       endDate: end,
+       ranges: {
+          'Today': [moment(), moment()],
+          'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+         
+          
+       }
+       
+   }, cb);
+   cb(start, end);
+   console.log("startDate",end)
+   
+   
+   });

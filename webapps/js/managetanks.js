@@ -5,6 +5,7 @@ var key;
 var device_list = [];
 var Updateflag = false;
 var id = [];
+var device_id;
 var totalcount;
 var tankDeleteId=null;
 var startDate = moment().subtract(6, 'days').startOf('day');
@@ -60,7 +61,7 @@ function tankDetails() {
     var tank_name = $("#tank_name").val();
     var tank_type = $("#tank_type").val();
     var location = $("#location").val();
-    var device_id = $("#device_id").val();
+    // var device_id = $("#device_id").val();
     var capacity = $("#capacity").val();
     var min_level = $("#min_level").val();
     var max_level = $("#max_level").val();
@@ -118,12 +119,13 @@ function tankDetails() {
             tank_name: tank_name,
             tank_type: tank_type,
             location: location,
-            device_id: device_id,
+            // device_id: device_id,
             capacity: capacity,
             min_level: min_level,
             max_level: max_level,
             created_ts: new Date().getTime()
         };
+        
         console.log("inputObj", inputObj);
         //Call API
         if(Updateflag == false)
@@ -134,12 +136,16 @@ function tankDetails() {
             contentType: "application/json",
             type: 'POST',
             success: function (result) {
+                console.log("how",result);
                 $("#exampleModal").css('display','none')
                 $(".modal-backdrop").remove();
                 // alert("hai");
                 //Success -> Show Alert & Refresh the page
+                
                 successMsg("Tank Insert Successfully!");
                 loadTankList();
+                
+                
             },
             error: function (e) {
 
@@ -156,7 +162,7 @@ function tankDetails() {
         var tank_name = $("#tank_name").val();
         var tank_type = $("#tank_type").val();
         var location = $("#location").val();
-        var device_id = $("#device_id").val();
+        // var device_id = $("#device_id").val();
         var capacity = $("#capacity").val();
         var min_level = $("#min_level").val();
         var max_level = $("#max_level").val();
@@ -168,7 +174,8 @@ function tankDetails() {
             device_id: device_id,
             capacity: capacity,
             min_level: min_level,
-            max_level: max_level
+            max_level: max_level,
+            
         };
         $.ajax({
 
@@ -199,8 +206,8 @@ function tankDetails() {
 }
 $(function() {
 
-    var start = moment().subtract(29, 'days');
-    var end = moment();
+    // var start = moment().subtract(29, 'days');
+    // var end = moment();
 
     function cb(start, end) {
         $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
@@ -239,7 +246,7 @@ function loadTankList() {
             // "className": 'sortingtable',
             mRender: function (data, type, row) {
                 // return row.tank_name+""+row.location;
-                return '<div class="row">' + '<img src="/images/tank-1.png"style="height:30px;"width:30px">' + '&nbsp;' + '&nbsp;' + '<b>' + row.tank_name +'</b>' + '&nbsp;' + '&nbsp;' + '<h6>' + '&nbsp;' + '<i class="fa fa-map-marker" aria-hidden="true" style="color:#299AE1"></i>' + '&nbsp;' + row.location + '&nbsp;' + '</h6>' + '</div>';
+                return '<div class="row">' + '<img src="/images/tank-1.png"style="height:30px;"width:30px">' + '&nbsp;' + '&nbsp;' + '<b>' + row.tank_name +'</b>' + '</div>'+' <br>' + '<h6>' + '<i class="fa fa-map-marker" aria-hidden="true" style="color:red"></i>' + '&nbsp;' + row.location + '&nbsp;' + '</h6>';
             }
         },
         {
@@ -252,7 +259,7 @@ function loadTankList() {
             }
         },
         {
-            mData: 'min_level ',
+            mData: 'min_level',
             sTitle: 'Min level',
             sWidth: '20%',
             orderable: false,
@@ -293,7 +300,7 @@ function loadTankList() {
             sTitle: 'capacity',
             orderable: true,
             mRender: function (data, type, row) {
-                return '<div class="row">' + '<b>' + row.capacity + '</b>' + '&nbsp;' + 'Gallon' +'<span style="margin-right:50px">' + 'min -' + row.min_level + '&nbsp;' + '&nbsp;' + '<h6>' +'max -' + '&nbsp;' + row.max_level + '&nbsp;' + '</h6>' + '</div>';
+                return '<div class="row">' + '<b>' + row.capacity + '</b>' + '&nbsp;' + 'Liters' +'<span style="margin-right:50px">' + 'min -' + row.min_level +'&nbsp;'+'Liters'+'&nbsp;' + '&nbsp;' + '<h6>' +'max -' + '&nbsp;' + row.max_level + '&nbsp;'+'Liters'+'&nbsp;' + '</h6>' + '</div>';
             }
         },
         {
@@ -302,14 +309,14 @@ function loadTankList() {
             sTitle: 'Linked Devices',
             orderable: false,
             mRender: function (data, type, row) {
-                console.log(row.device_id);
+                // console.log(row.device_id);
                 if (row.device_id) {
 
-                    return '<button type="button" id="link" class="btn tank-atag link1" data-toggle="modal" data-target="#myModal1" onclick="linkdevice(\'' + row._id + '\')"><i class="fa fa-unlink" aria-hidden="true"></i></button>';
+                    return '<button type="button" id="link" class="btn tank-atag link1" title="Unlink" data-toggle="modal" data-target="#myModal1" onclick="linkdevice(\'' + row._id + '\')"><i class="fa fa-unlink" aria-hidden="true"></i></button>';
 
                 } else {
 
-                    return '<button type="button" id="link" class="btn tank-atag1 link1" data-toggle="modal" data-target="#myModal" onclick="linkdevice(\'' + row._id + '\')"><i class="fa fa-link" aria-hidden="true"></i></button>';
+                    return '<button type="button" id="link" class="btn tank-atag1 link1" title="Link" data-toggle="modal" data-target="#myModal" onclick="linkdevice(\'' + row._id + '\')"><i class="fa fa-link" aria-hidden="true"></i></button>';
 
                 }
             },
@@ -459,7 +466,7 @@ function loadTankList() {
 
         dom: 'l<"toolbar">frtip',
         initComplete: function () {
-            $("div.toolbar").html('<button type="button" class="btn button1" onclick=addtank() data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus-square icons" style="color:white";"aria-hidden="true"></i>Add Tanks</button>');
+            $("div.toolbar").html('<button type="button" class="btn button1 addtank" onclick=addtank() data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus-square icons" style="color:white";"aria-hidden="true"></i>Add Tank</button>');
         }
 
 
@@ -487,7 +494,7 @@ function editTank(id) {
             $("#capacity").val(tank1.capacity);
             $("#min_level").val(tank1.min_level);
             $("#max_level").val(tank1.max_level);
-
+            device_id=tank1.device_id;
           
         }
     }
@@ -652,3 +659,60 @@ function clicklinkdevice1() {
         });
 
     }
+
+    $(() => {
+        var queryParams={
+            "query": {
+                "bool": {
+                    "must": [{
+                        "match": {
+                            "domainKey": "CDZMKBHJUM"
+                        }
+                    }]
+                }
+            },
+            "from": 0,
+            "size": 50
+        }
+        var dev;
+        $.ajax({
+      
+            url: BASE_PATH + "/devicedetail/listdev",
+            contentType: "application/json",
+            type: "POST",
+            "data":JSON.stringify({"data":queryParams}),
+            // async: true,
+            success: function(data) {
+                var resultData = data.result.data.data;
+                device_list = resultData;
+                console.log("hello", device_list);
+                $("#listdevice").html("");
+    
+                resultData.forEach((et) => {
+                    for(i=0;i<=tank_list.length-1;i++){
+                        console.log("noe",tank_list[i].device_id);
+                        if(et.id==tank_list[i].device_id){
+                         dev="";
+                         break;
+                        }
+
+                        else{
+                           dev=et.id;
+                        }
+                    }
+                    if(dev==""){
+
+
+                    }
+                    else{
+                        let tr = `<option value=` + dev+ `>` + dev + `</option>`;
+                        $("#listdevice").append(tr);
+                    }
+                    
+                   
+                });
+            },
+        });
+    });
+    
+  

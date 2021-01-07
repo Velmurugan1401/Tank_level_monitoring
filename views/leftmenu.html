@@ -34,12 +34,28 @@
       padding-left: 18px;
        color: #b7b3b3;
   }
-
+  @media only screen and (min-width: 768px) and (max-width: 1024px)  {
+  
+    .sidebar-nav{
+    width:130px;
+  }
+  .newleft{
+    position: relative;
+    width:140px !important;
+  }
+  
+  .sidebar-nav>ul>li a:hover{
+     background-color: white;
+     color: black;
+ 
+  } 
+  
+  }
   
 </style>
  
   
-<aside class="left-sidebar" style="position: absolute;">
+<aside class="left-sidebar newleft" style="position: absolute;">
    <!-- Sidebar scroll-->
      <div class="scroll-sidebar">
        <nav class="sidebar-nav"> 

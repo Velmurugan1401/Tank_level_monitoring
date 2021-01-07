@@ -6,6 +6,7 @@
     // var startDate = moment().subtract(6, 'days').startOf('day');
     // var endDate = moment().endOf('day');
     
+    
     $(document).ready(function(){
         loadDeviceList();
     })
@@ -136,6 +137,11 @@
             query: {
                 "bool": {
                     "must": []
+                     // ,
+                // "filter":{"range":{"created_ts":{
+                //     "gte":new Date(startDate.toISOString()).getTime(),
+                //     "lte":new Date(endDate.toISOString()).getTime()
+                // }}}
                 }
             },
             sort: [{ "created_ts": { "order": "asc" } }]
