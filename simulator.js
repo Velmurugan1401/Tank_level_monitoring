@@ -10,7 +10,7 @@ let mid = 1000;
 let fwver = "3";
 let dmdl = "2";
 let did = "";
-j = [90, 100, 95, 98, 94, 93, 97, 92, 100, 95];
+j = [90, 100, 80, 100, 90, 90, 90, 90, 100, 90,100,90,90,100,90];
 // define object filed
 
 let obj = [{
@@ -74,6 +74,41 @@ let obj = [{
         "tank_level": " ",
         "unit": "gallon",
         "power_status": "Active"
+    },
+    {
+
+        "capacity": "7000",
+        "tank_level": " ",
+        "unit": "gallon",
+        "power_status": "Active"
+    },
+    {
+
+        "capacity": "8000",
+        "tank_level": " ",
+        "unit": "gallon",
+        "power_status": "Active"
+    },
+    {
+
+        "capacity": "12000",
+        "tank_level": " ",
+        "unit": "gallon",
+        "power_status": "Active"
+    },
+    {
+
+        "capacity": "11000",
+        "tank_level": " ",
+        "unit": "gallon",
+        "power_status": "Active"
+    },
+    {
+
+        "capacity": "15000",
+        "tank_level": " ",
+        "unit": "gallon",
+        "power_status": "Active"
     }
 ]
 
@@ -81,7 +116,7 @@ let obj = [{
 cron.schedule('0 */1 * * * *', function () {
     // send continiously in 10 device values 
 
-    for (i = 0; i <= 9; i++) {
+    for (i = 0; i <= obj.length-1; i++) {
         j[i] = j[i] + 510;
         obj[i].tank_level = j[i];
         //    condition chacking tank level 
@@ -89,7 +124,7 @@ cron.schedule('0 */1 * * * *', function () {
             j[i] = 90;
         }
         var did = "SAMP_DEV_10" + i;
-        console.log(did, obj[i])
+        // console.log(did, obj[i])
 
         //  ruquest post used to push msg to msg table
         let url = `${API_URL}/push/json/${DOMAIN_KEY}/${API_KEY}/${did}/${dmdl}/${fwver}/${mid}`;

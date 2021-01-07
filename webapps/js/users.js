@@ -1,10 +1,10 @@
 var UserTable = null;
 var Users_list = [];
-var deleteuserid=null;
+var deleteuserid="";
 var key;
 var count;
 var flag = false;
-var flag2=false;
+
 var usercount;
 // var startDate = moment().subtract(6, 'days').startOf('day');
 // var endDate = moment().endOf('day');
@@ -120,22 +120,19 @@ $(function() {
 
 });
 
-function loadrecordUser() { }
+//User insert API
 
-function loadUser() 
-{
-     console.log("hi");
+function loadrecordUser() {
+
     var firstname = $("#firstname").val();
     var lastName = $("#lastname").val();
     var primaryPhone = $("#mobile").val();
     var email = $("#emailid").val();
+    var password=$("#Password").val();
     var roles = $("#role").val();
- var password=$('#Password').val();
 
-
-
-    //Validate
-    if (firstname === "") {
+     //Validate
+     if (firstname === "") {
         $(".validate").css('display','block');
         return;
 
@@ -167,7 +164,6 @@ function loadUser()
     }
 
       else {
-
         //Build Input Objects
         var input =
         {
@@ -175,12 +171,15 @@ function loadUser()
             lname : lastName,
             mnumber : primaryPhone,
             email : email,
-            roles: roles
+            password : password,
+            roles: roles,
+            created_ts: new Date().getTime()
+
 
         };
-
     }
-    console.log("insert data", input);
+
+    console.log("insert", input);
 
     //Call API
     if (flag == false) {
@@ -193,40 +192,42 @@ function loadUser()
             data: JSON.stringify(input),
             success: function (result) {
                 console.log(result);
+
                 $("#firstname,#lastname,#mobile,#emailid,#role").val('');
                 $("#myModal").css('display','none');
                 $(".modal-backdrop").remove();
 
                 //Success -> Show Alert & Refresh the page
-                // $("#firstname,#lastname,#mobile,#emailid,#role").val('');
-                // $("#myModal").css('display','none');
-                // $(".modal-backdrop").remove();
                 successMsg("User Added Successfully!");
-                // loadUsersList();
+                loadUsersList();
                 // window.location.reload();
 
             },
-            error: function (e) {    
+            error: function (e) {
+
                 //Error -> Show Error Alert & Reset the form
-                errorMsg(" User not created!");                
-                loadUsersList();    
+                errorMsg(" User not created!");
+                // window.location.reload();
+                loadUsersList();
+
             }
         });
-    
-    }
-     else if (flag == true) {
+
+    } else if (flag == true) {
         var fname = $("#firstname").val();
         var lname = $("#lastname").val();
         var mno = $("#mobile").val();
         var eid = $("#emailid").val();
         var roles = $("#role").val();
-    
+
+        
+
         var updateData = {
             fname: fname,
             lname: lname,
             mnumber: mno,
             email: eid,
-            roles: [roles]
+            roles: roles
         };
         console.log("id", key)
         console.log("update", updateData);
@@ -236,7 +237,7 @@ function loadUser()
             "dataType": 'json',
             "contentType": 'application/json',
             "type": "POST",
-            data: JSON.stringify(updateData),
+            data: JSON.stringify({_id:key,updateData}),
             success: function (result) {
                 // //Success -> Show Alert & Refresh the page 
              $("#firstname,#lastname,#mobile,#emailid,#role").val('');
@@ -245,156 +246,22 @@ function loadUser()
 
                 successMsg("Update Completed Successfully!");
 
-                // loadUsersList();
-                         window.location.reload();
-
+                loadUsersList();
             },
-            error: function (e) {
-    
+                        //  window.location.reload();
+
+      error:function (e)
+{
                 //Error -> Show Error Alert & Reset the form
-                errorMsg("Update Failed!");             
-    
+                errorMsg("Update Failed!");
+            //  window.location.reload();
+
             }
         });
         flag = false;
     }
 
 }
-// function loadUser() {
-
-//     var firstname = $("#firstname").val();
-//     var lastName = $("#lastname").val();
-//     var primaryPhone = $("#mobile").val();
-//     var password=$("#pass").val();
-//     var email = $("#emailid").val();
-//     var roles = $("#role").val();
-
-
-
-
-//     //Validate
-//     if (firstname === "") {
-
-//         showToast("info", "info","First Name is Required");
-
-
-//     //     alert("First  Name is Required!");
-
-//     } else if (lastName === "") {
-//         showToast("info", "info","Last Name is Required");
-
-//     //     alert("Last name is Required!");
-
-//     }
-//     else if (primaryPhone === "") {
-
-//         showToast("info", "info","Mobile Number is Required");
-//     //     alert("Mobile number  is Required!");
-
-//     }
-//     else if (email === "") {
-//         showToast("info", "info","Email id is Required");
-//     //     alert("Email id is Required!");
-
-//     }
-
-//       else {
-
-//         //Build Input Objects
-//         var inputObj =
-//         {
-//             firstName: firstname,
-//             lastName: lastName,
-//             primaryPhone: primaryPhone,
-//             password:password,
-//             email: email,
-//             roles: [roles]
-
-//         };
-
-//     }
-//     console.log("inputObj", inputObj);
-
-//     //Call API
-//     if (flag == false) {
-//         $.ajax({
-//             url: BASE_PATH + "/user/userinsert",
-//             "dataType": 'json',
-//             "contentType": 'application/json',
-//             "type": "POST",
-
-//             data: JSON.stringify(inputObj),
-//             success: function (result) {
-//                 console.log(result);
-//                 $("#firstname,#lastname,#mobile,#emailid,#role").val('');
-//                 $("#myModal").css('display','none');
-//                 $(".modal-backdrop").remove();
-
-//                 //Success -> Show Alert & Refresh the page
-//                 successMsg("User Added Successfully!");
-//                 // loadUsersList();
-//                 window.location.reload();
-
-//             },
-//             error: function (e) {
-
-//                 //Error -> Show Error Alert & Reset the form
-//                 errorMsg(" User not created!");
-//                 // window.location.reload();
-//                 loadUsersList();
-
-//             }
-//         });
-
-//     // } else if (flag == true) {
-//     //     var fname = $("#firstname").val();
-//     //     var lname = $("#lastname").val();
-//     //     var mno = $("#mobile").val();
-//     //     var eid = $("#emailid").val();
-//     //     var roles = $("#role").val();
-
-//     //     var updateData = {
-//     //         firstName: fname,
-//     //         lastName: lname,
-//     //         primaryPhone: mno,
-//     //         email: eid,
-//     //         roles: [roles]
-//     //     };
-//     //     console.log("id", key)
-//     //     console.log("update", updateData);
-//     //     $.ajax({
-
-//     //         url: BASE_PATH + "/user/userinsert",
-//     //         "dataType": 'json',
-//     //         "contentType": 'application/json',
-//     //         "type": "POST",
-//     //         data: JSON.stringify(updateData),
-//     //         success: function (result) {
-//     //             // //Success -> Show Alert & Refresh the page 
-//     //          $("#firstname,#lastname,#mobile,#emailid,#role").val('');
-//     //             $("#myModal").css('display','none');
-//     //             $(".modal-backdrop").remove();
-
-//     //             successMsg("Update Completed Successfully!");
-
-//     //             // loadUsersList();
-//     //                      window.location.reload();
-
-//     //         },
-//     //         error: function (e) {
-
-//     //             //Error -> Show Error Alert & Reset the form
-//     //             errorMsg("Update Failed!");
-//     //          window.location.reload();
-
-//     //         }
-//     //     });
-//     //     flag = false;
-//     }
-
-// }
-
-
 //User List API
 function loadUsersList() {
 
@@ -462,7 +329,7 @@ function loadUsersList() {
             sWidth: '20%',
             "className": 'sortingtable',
             mRender: function (data, type, row) {
-                return  moment(data).format(DATE_TIME_FORMAT);
+                return moment(data).format(DATE_TIME_FORMAT);
             }
         },
         {
@@ -470,7 +337,7 @@ function loadUsersList() {
             orderable: false,
             mRender: function (data, type, row) {
               
-                var actionsHtml = '<button class="btn btn-default"  data-target="#userDeletemodal" data-toggle="modal" onclick="assignuserid(\'' + row.email + '\');assignuserrecordid(\'' + row._id + '\')"><i class="fa fa-trash"></i></button>' + '<button class="btn btn-default"  data-toggle="modal" data-target="#myModal" onclick="editUser(\'' + row._id + '\')"><i class="fa fa-pencil edit"></i>';
+                var actionsHtml = '<button class="btn btn-default"  data-target="#userDeletemodal" data-toggle="modal" onclick="assignuserrecordid(\'' + row._id + '\',\'' + row.email + '\')"><i class="fa fa-trash"></i></button>' + '<button class="btn btn-default"  data-toggle="modal" data-target="#myModal" onclick="editUser(\'' + row._id +'\')"><i class="fa fa-pencil edit"></i>';
                 return actionsHtml;
             }
         }
@@ -480,6 +347,11 @@ function loadUsersList() {
         query: {
             "bool": {
                 "must": []
+                 /*,
+                "filter":{"range":{"created_ts":{
+                            "gte":new Date(startDate.toISOString()).getTime(),
+                            "lte":new Date(endDate.toISOString()).getTime()
+                        }}}*/
             }
         },
         sort: [{
@@ -537,41 +409,25 @@ function loadUsersList() {
             var searchText = oSettings.oPreviousSearch.sSearch.trim();
 
             if (searchText) {
-                queryParams.query['bool']['should'].push({ "wildcard": { "firstname": "*" + searchText + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "firstname": "*" + searchText.toLowerCase() + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "firstname": "*" + searchText.toUpperCase() + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "firstname": "*" + capitalizeFLetter(searchText) + "*" } })
+                queryParams.query['bool']['should'].push({ "wildcard": { "fname": "*" + searchText + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "fname": "*" + searchText.toLowerCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "fname": "*" + searchText.toUpperCase() + "*" } });
+                queryParams.query['bool']['should'].push({ "wildcard": { "fname": "*" + capitalizeFLetter(searchText) + "*" } })
                 queryParams.query['bool']["minimum_should_match"] = 1;
                 queryParams.query['bool']['should'].push({
                     "match_phrase": {
-                        "firstname.keyword": "*" + searchText + "*"
+                        "fname.keyword": "*" + searchText + "*"
                     }
                 })
                 queryParams.query['bool']['should'].push({
                     "match_phrase_prefix": {
-                        "firstname.keyword": {
+                        "fname.keyword": {
                             "query": "*" + searchText + "*"
                         }
                     }
                 });
 
-                queryParams.query['bool']['should'].push({ "wildcard": { "roles": "*" + searchText + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "roles": "*" + searchText.toLowerCase() + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "roles": "*" + searchText.toUpperCase() + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "roles": "*" + capitalizeFLetter(searchText) + "*" } })
-                queryParams.query['bool']["minimum_should_match"] = 1;
-                queryParams.query['bool']['should'].push({
-                    "match_phrase": {
-                        "roles.keyword": "*" + searchText + "*"
-                    }
-                })
-                queryParams.query['bool']['should'].push({
-                    "match_phrase_prefix": {
-                        "roles.keyword": {
-                            "query": "*" + searchText + "*"
-                        }
-                    }
-                });
+                
             }
                
             oSettings.jqXHR = $.ajax({
@@ -588,20 +444,27 @@ function loadUsersList() {
                     var resultData = data.result.data;
                     console.log("user ist",resultData.data);
 
-                    // Users_list = resultData.data;
+                     Users_list = resultData.data;
                     // usercount = resultData?.data
-                    $(".totalCount").html(resultData.recordsTotal);
+                    $(".totalCount").html(data.result.total)
 
 
                     resultData['draw'] = oSettings.iDraw;
                     fnCallback(resultData);
                 }
             });
-        },       
+        },
+        // dom: 'l<"toolbar">frtip',
+        // initComplete: function (settings, json) {
+        //     $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button><i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>');
+        // },
 
         dom: 'l<"toolbar">frtip',
-        initComplete: function () {            
-            $("div.toolbar").html('<button type="button" class="btn button1" onclick=adduser() data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button>');
+        initComplete: function () {
+            // $("div.toolbar").append("<button>Datepick</button>");
+            $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button>');
+            // $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button><i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>');   
+
         }
     };
 
@@ -615,37 +478,16 @@ function loadUsersList() {
 var user1;
 var _id
 
-// function editUser(id) {
-//     key = id;
-//     flag = true;
-//     console.log(flag);
-//     console.log(key);
 
-//     for (i = 0; i < Users_list.length; i++) {
-//         if (Users_list[i]._id == id) {
-//             user1 = Users_list[i];
-//             console.log(Users_list[i]);
-//             console.log(user1);
-//             $("#firstname").val(user1.firstName);
-//             $("#lastname").val(user1.lastName);
-//             $("#mobile").val(user1.primaryPhone);
-//             $("#role").val(user1.roles);
-//             $("#emailid").val(user1.email);
-
-//         }
-//     }
-
-// }
 function editUser(id) {
     key = id;
     flag = true;
     console.log(flag);
     console.log(key);
-
-    for (i = 0; i < Users_list.length; i++) {
+ for (i = 0; i < Users_list.length; i++) {
         if (Users_list[i]._id == id) {
             user1 = Users_list[i];
-            console.log(Users_list[i]);
+            console.log(Users_list);
             console.log(user1);
             $("#firstname").val(user1.fname);
             $("#lastname").val(user1.lname);
@@ -657,45 +499,25 @@ function editUser(id) {
     }
 
 }
- 
-//delete user details
- 
-function assignuserid(userid){  
-    console.log(userid);   
-    email_id = userid;
-    console.log(email_id);
-}
-function userdelete()  {
-   console.log(email_id)
-    $.ajax({
-        url: BASE_PATH +'/user/delete',
-        data:  JSON.stringify({email_id}),
-        contentType: "application/json",
-        type: 'POST',
-        success: function (result) {
-            // $(".modal-backdrop").remove();
-            successMsg('deleted successfully');
-            loadUsersList();
-        },
-        error: function (e) {
-            // console.log(e);
-            errorMsg("deletion failed");
-            // window.locale.reload();
-            // window.location.reload();
-        }
-    });
+var email;
+
+function assignuserrecordid(rowid,rowemail){  
+    console.log("id",rowid);   
+   recordid=rowid;
+    console.log("email",rowemail);
+    email=rowemail;
+  
 }
 
-function assignuserrecordid(userid){  
-    console.log(userid);   
-    recordid = userid;
-    console.log(recordid);
-}
 function userrecorddelete()  {
-   console.log(recordid)
+   console.log("userrecorddelete recordid ",recordid)
+   console.log("userrecorddelete email ",email)
+//    console.log(email)
+
+//    var email=Users_list.email
     $.ajax({
-        url: BASE_PATH +'/user/recorddelete',
-        data:  JSON.stringify({_id:recordid}),
+        url: BASE_PATH +'/user/delete',
+        data: JSON.stringify({_id:recordid,email:email}),
         contentType: "application/json",
         type: 'POST',
         success: function () {

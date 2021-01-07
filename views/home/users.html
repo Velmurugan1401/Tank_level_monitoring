@@ -109,7 +109,7 @@ input::-webkit-inner-spin-button {
                  
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-success link-btn" onclick="loadUser()">Add User</button>
+              <button type="button" class="btn btn-success link-btn" onclick="loadrecordUser();">Add User</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
@@ -153,7 +153,7 @@ input::-webkit-inner-spin-button {
        
           <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-success link-btn" id="" data-dismiss="modal" onclick="userdelete();userrecorddelete();">Delete</button>
+              <button type="button" class="btn btn-success link-btn" id="" data-dismiss="modal" onclick="userrecorddelete();">Delete</button>
           </div>
       </div>
   </div>
@@ -175,7 +175,11 @@ input::-webkit-inner-spin-button {
           form.classList.add('was-validated');
           event.preventDefault();
             event.stopPropagation();
-            loadUser();
+            $(document).ready(function(){
+              loadUser();
+            loadrecordUser();
+            })
+            
           
         }, false);
       });

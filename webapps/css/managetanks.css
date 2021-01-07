@@ -190,6 +190,7 @@ padding-left: 20px;
     color:#299AE1!important;
     font-size: 12px!important;font-weight: 600;
     text-decoration: underline;
+
 }
 .dataTables_filter input, .dataTables_filter input:focus, .dataTables_length select, .dataTables_length select:focus{
     background-image: unset;
@@ -199,7 +200,6 @@ padding-left: 20px;
 }
 .form-control{
     background-color: #EFEFEF;
-<<<<<<< HEAD
         margin-right: 20px;
     
 }
@@ -210,15 +210,15 @@ color: red;
 font-size: 11px;
 
 }
-.link{
+.link1{
     background-color:#299AE1;
  margin-left: 30px;
+ 
+ color: white;
 }
 .star{
     color: red;
 }
 .invalid input:required:valid {
     background: #17D654;
-=======
->>>>>>> 03c60aa86fcd49aa66663fdd8e1845d5c324209e
 }
