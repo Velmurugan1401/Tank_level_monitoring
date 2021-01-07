@@ -1,19 +1,21 @@
 <style>
-  .sidebar-nav>ul>li> a{
-    color:white;
-  }
-  /* .left-list a{
+  .leftmenu-anchor{
     color:white !important;
+  }
+
+
+  /* .sidebar-nav>ul>li a{
+    color:;
   } */
- 
+  
   .active-tab{
     color:#000 !important;
     background-color: #fff !important;
   } 
    
- .sidebar-nav>ul>li a:hover{
-     background-color: white;
-     color: black;
+ .leftmenu-anchor:hover{
+     background-color: white !important;
+     color: black !important;
  
   } 
   .left-sidebar{
@@ -34,30 +36,46 @@
       padding-left: 18px;
        color: #b7b3b3;
   }
-  @media only screen and (min-width: 768px) and (max-width: 1024px)  {
-  
-    .sidebar-nav{
-    width:130px;
+  @media screen and (min-width: 320px) and (max-width: 767px) { 
+    #leftMenuSideBar{
+     display: none;
+    }
+
   }
+
+   
+@media only screen and (min-width: 768px) and (max-width: 1024px)  {
+  
+  .sidebar-nav{
+  width:130px;
+}
+.newleft{
+  position: relative;
+  width:140px !important;
+}
+
+.sidebar-nav>ul>li a:hover{
+   background-color: white;
+   color: black;
+
+} 
+
+}
+
+@media only screen and (min-width: 1025px){
   .newleft{
-    position: relative;
-    width:140px !important;
-  }
-  
-  .sidebar-nav>ul>li a:hover{
-     background-color: white;
-     color: black;
- 
-  } 
-  
-  }
+  position: relative;
+  width:200px !important;
+}
+}
+
   
 </style>
  
   
-<aside class="left-sidebar newleft" style="position: absolute;">
+<aside class="left-sidebar  newleft" style="position: absolute;">
    <!-- Sidebar scroll-->
-     <div class="scroll-sidebar">
+     <div class="scroll-sidebar" id="leftMenuSideBar">
        <nav class="sidebar-nav"> 
          <ul class="leftMainMenu" id="sidebarnav">
             
@@ -66,13 +84,13 @@
               <!-- <a href="javascript:void(0)" style="font-weight: bold;color: cornflowerblue !important;">Home</a> -->
             </li>
                 <li class="dashboard left-list">
-                    <a class="" onclick="loadMainPage('/dashboard')" href="#/dashboard">
+                    <a class="leftmenu-anchor" onclick="loadMainPage('/dashboard')" href="#/dashboard">
                       <!-- <i class="fa fa-tachometer" style="color:white;font-size: 17px;vertical-align: unset;" aria-hidden="true"></i>Dashboard</a> -->
                       <img src="images/tachometer.png" style="width:23px;height:23px;">&nbsp;&nbsp;Dashboard</a>
                     </li>
   
                 <li class="tank-status left-list">
-                    <a onclick="loadMainPage('/tankstatus')" href="#/tankstatus">
+                    <a class="leftmenu-anchor" onclick="loadMainPage('/tankstatus')" href="#/tankstatus">
                       <!-- <i class="fa fa-microchip" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Tank Status</a> -->
                       <img src="images/tank-status.png" style="width:23px;height:23px;">&nbsp;&nbsp;Tank Status</a>
                     </li>
@@ -82,25 +100,25 @@
                 </li>
   
                 <li class="manage-tanks left-list" >
-                    <a onclick="loadMainPage('/tanks')" href="#/managetanks">
+                    <a class="leftmenu-anchor" onclick="loadMainPage('/tanks')" href="#/managetanks">
                       <!-- <i class="fa fa-microchip" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Tanks</a> -->
                       <img src="images/storage-tank.png" style="width:20px;height:20px;">&nbsp;&nbsp;Tanks</a>
                     </li>
   
                 <li class="manage-devices left-list">
-                    <a onclick="loadMainPage('/devices')" href="#/managedevices">
+                    <a class="leftmenu-anchor" onclick="loadMainPage('/devices')" href="#/managedevices">
                       <!-- <i class="fa fa-microchip" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Devices</a> -->
                       <img src="images/motherboard.png" style="width:20px;height:20px;">&nbsp;&nbsp;Devices</a>
                     </li>
   
                 <li class="users left-list" >
-                    <a onclick="loadMainPage('/users')" href="#/users">
+                    <a class="leftmenu-anchor" onclick="loadMainPage('/users')" href="#/users">
                       <!-- <i class="fa fa-users"  style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i>Users</a> -->
                       <img src="images/users.png" style="width:23px;height:23px;">&nbsp;&nbsp;Users</a>
                     </li>
   
                 <li class="raw-messages left-list">
-                  <a onclick="loadMainPage('/rawmessages')" href="#/rawmessages">
+                  <a class="leftmenu-anchor" onclick="loadMainPage('/rawmessages')" href="#/rawmessages">
                     <!-- <i class="fa fa-envelope" style="color:white;font-size: 16px;vertical-align: unset;" aria-hidden="true"></i> -->
                     <img src="images/envelope.png" style="width:17px;height:17px;">&nbsp;&nbsp;Raw Messages</a>
                   </li>
@@ -114,18 +132,21 @@
  
 
 <script>
-  //  $('.sidebar-nav>ul>li').click(function(){
+  //  $('.left-list').click(function(){
   //    alert("if");
   //       if($(this).hasClass('.active-tab')){
-  //         $(this).removeClass('.active-tab');
+  //         $(this).removeClass('.leftmenu-anchor');
   //         $(this).addClass('.active-tab');
          
   // }
   // else{
   //   alert("else");
   //        $(this).removeClass('.active-tab');
-  //        $(this).addClass('.active-tab');  
+  //        $(this).addClass('.leftmenu-anchor');  
          
   //        }
   //  });
+
+
+
 </script>

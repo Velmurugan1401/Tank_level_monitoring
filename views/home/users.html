@@ -58,28 +58,40 @@ input::-webkit-inner-spin-button {
                   <div class="col-md-12 mb-3">
                     <label for="firstname">First name</label>
                     <input type="text" class="form-control" id="firstname" placeholder="First Name" required>
-                    <span class="validate" style="display: none;"> Please Enter first Name</span>                    
+                    <!-- <span class="validate" style="display: none;"> Please Enter first Name</span>   
+                                      -->
+                     <div class="invalid-feedback"> Enter your First Name.
+                      </div>
                   </div>
               </div>
               <div class="form-row">  
                 <div class="col-md-12 mb-3">
                   <label for="lastname">Last name</label>
                   <input type="text" class="form-control" id="lastname" placeholder="Last Name" required>
-                  <span class="validate" style="display: none;"> Please Enter last Name</span>                        
+                  <!-- <span class="validate" style="display: none;"> Please Enter last Name</span>                         -->
+                  <div class="invalid-feedback">
+                    Please provide a valid city.
+                  </div>
                 </div>
             </div>
             <div class="form-row">  
               <div class="col-md-12 mb-3">
                 <label for="emailid">Email Id</label>
                 <input type="email" class="form-control" id="emailid" placeholder="Email Id" required>
-                <span class="validate" style="display: none;"> Please Enter Email id</span>                        
+                <div class="invalid-feedback">
+                  Please provide a valid city.
+                </div>
+                <!-- <span class="validate" style="display: none;"> Please Enter Email id</span>                         -->
               </div>
           </div>
           <div class="form-row">  
             <div class="col-md-12 mb-3">
               <label for="mobile">Mobile No</label>
               <input type="tel" class="form-control" id="mobile" placeholder="Mobile No"   pattern="[789][0-9]{9}" required>
-              <span class="validate" style="display: none;"> Please Enter Mobile no</span>                     
+              <div class="invalid-feedback">
+                Please provide a valid city.
+              </div>
+              <!-- <span class="validate" style="display: none;"> Please Enter Mobile no</span>                      -->
             </div>
         </div>
         <div class="col-md-3 mb-3">
@@ -89,15 +101,21 @@ input::-webkit-inner-spin-button {
             <option>Admin</option>
             <option>User</option>
           </select>
-          <span class="validate" style="display: none;"> Please Choose role</span>
+          <div class="invalid-feedback">
+            Please provide a valid city.
+          </div>
+          <!-- <span class="validate" style="display: none;"> Please Choose role</span> -->
         </div>
                 <div class="form-row mb-3">
                   <label for="Password">Password</label>
                   <input type="password" class="form-control" id="Password" placeholder="Password" required>
-                  <span class="validate" style="display: none;"> Please Enter Password</span>
+                  <div class="invalid-feedback">
+                    Please provide a valid city.
+                  </div>
+                  <!-- <span class="validate" style="display: none;"> Please Enter Password</span> -->
                 </div>
-               
-                  
+                <button type="submit" class="btn btn-success link-btn" >Add User</button>
+               </form>   
                  
             </div>
             <div class="modal-footer">
@@ -151,36 +169,4 @@ input::-webkit-inner-spin-button {
   </div>
 </div>
  <script src="js/users.js"></script>   
-  <!-- <script>
-      (function() {
-    'use strict';
-    window.addEventListener('load', function() {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName('needs-validation');
-      // Loop over them and prevent submission
-      var validation = Array.prototype.filter.call(forms, function(form) {
-        form.addEventListener('submit', function(event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-          form.classList.add('was-validated');
-          event.preventDefault();
-            event.stopPropagation();
-            $(document).ready(function(){
-              loadUser();
-            loadrecordUser();
-            })
-            
-          
-        }, false);
-      });
-    }, false);
-  })();
-
-   </script>
-
- 
   
-
-  -->

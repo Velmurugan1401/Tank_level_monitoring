@@ -75,5 +75,26 @@
         margin-left: -99px;
         transition:none;
     }
-    
+    #tankname h5
+    {
+        color:#858C9C;
+    }
+    #Location h5{
+        color:#858C9C;
+    }
+    #device h5{
+        color:#858C9C;
+    }
+    #device2 h5{
+        color:#858C9C;
+    }
+    #status h5{
+        color:#858C9C;
+    }
+    #status1 h5{
+        color:#858C9C;
+    }
+    #status2 h5{
+        color:#858C9C;
+    }
  

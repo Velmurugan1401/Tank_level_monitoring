@@ -18,12 +18,12 @@ $(document).ready(function () {
         var locName = location.hash.replace("#",'');
         $(".homeMenu").removeClass('active');
         $(".homeMenu a").removeClass('active');
-
-        if(locName.includes("profile")){
-            loadHeaderPage(locName);
-        }else{
-            loadMainPage(locName);
-        }
+        loadMainPage(locName);
+        // if(locName.includes("profile")){
+        //     loadHeaderPage(locName);
+        // }else{
+           
+        // }
 
     }
 
