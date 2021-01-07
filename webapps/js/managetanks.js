@@ -246,7 +246,7 @@ function loadTankList() {
             // "className": 'sortingtable',
             mRender: function (data, type, row) {
                 // return row.tank_name+""+row.location;
-                return '<div class="row">' + '<img src="/images/tank-1.png"style="height:30px;"width:30px">' + '&nbsp;' + '&nbsp;' + '<b>' + row.tank_name +'</b>' + '</div>'+' <br>' + '<h6>' + '<i class="fa fa-map-marker" aria-hidden="true" style="color:red"></i>' + '&nbsp;' + row.location + '&nbsp;' + '</h6>';
+                return '<div class="row">' + '<img src="/images/tank-1.png"style="height:30px;"width:30px">' + '&nbsp;' + '&nbsp;' + '<b>' + row.tank_name +'</b>' + '</div>'+' <br>' + '<h6>' + '<i class="fa fa-map-marker" aria-hidden="true" style="color:#299AE1"></i>' + '&nbsp;' + row.location + '&nbsp;' + '</h6>';
             }
         },
         {
@@ -297,10 +297,10 @@ function loadTankList() {
         {
             mData: 'capacity',
             sWidth: '20%',
-            sTitle: 'capacity',
+            sTitle: 'Capacity',
             orderable: true,
             mRender: function (data, type, row) {
-                return '<div class="row">' + '<b>' + row.capacity + '</b>' + '&nbsp;' + 'Liters' +'<span style="margin-right:50px">' + 'min -' + row.min_level +'&nbsp;'+'Liters'+'&nbsp;' + '&nbsp;' + '<h6>' +'max -' + '&nbsp;' + row.max_level + '&nbsp;'+'Liters'+'&nbsp;' + '</h6>' + '</div>';
+                return '<div class="row">' + '<b>' + row.capacity + '</b>' + '&nbsp;' + 'Liters' +'<span style="margin-right:50px">' + 'Min -' + row.min_level +'&nbsp;'+'Liters'+'&nbsp;' + '&nbsp;' + '<h6>' +'Max -' + '&nbsp;' + row.max_level + '&nbsp;'+'Liters'+'&nbsp;' + '</h6>' + '</div>';
             }
         },
         {
