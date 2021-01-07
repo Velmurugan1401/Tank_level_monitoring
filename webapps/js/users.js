@@ -12,43 +12,88 @@ $(document).ready(function () {
     loadUsersList();     
 });
  
+function adduser(){
+    $("#firstname,#lastname,#mobile,#emailid,#role").val('');
+//     var firstname = $("#firstname").val();
+//     var lastName = $("#lastname").val();
+//     var primaryPhone = $("#mobile").val();
+//     var email = $("#emailid").val();
+//     var roles = $("#role").val();
+//  var password=$('#Password').val();
+
+
+
+//     //Validate
+//     if (firstname === "") {
+//         $(".validate").css('display','none');
+//         return;
+
+
+//     //     alert("First  Name is Required!");
+
+//     } else if (lastName === "") {
+//         $(".validate").css('display','none');
+//         return;
+//     //     alert("Last name is Required!");
+
+//     }
+//     else if (primaryPhone === "") {
+//         $(".validate").css('display','none');
+//         return;
+//     //     alert("Mobile number  is Required!");
+
+//     }
+//     else if (email === "") {
+//         $(".validate").css('display','none');
+//         return;
+//     //     alert("Email id is Required!");
+
+//     }
+//     else if(password==="")
+//     {
+//         $(".validate").css('display','none');
+//     return;
+//     }
+
+ }
 function refreshuser()
 {
     loadUsersList();
 }
 
-
-$('#expand').click(function(){
+$('#full').click(function(){
     var elem = document.documentElement;
-    if($(this).hasClass('fa fa-expand')){
+    if($('#expand').hasClass('fa fa-expand')){
        
-      $(this).removeClass('fa fa-expand');
-      
-      $(this).addClass('fa fa-compress');
-      
-      if (elem.requestFullscreen) {
-        elem.requestFullscreen();
-    } else if (elem.webkitRequestFullscreen) { /* Safari */
-        elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) { /* IE11 */
-        elem.msRequestFullscreen();
-    }
+        $('#expand').removeClass('fa fa-expand');
         
-    }else{
-     
-      $(this).removeClass('fa fa-compress');
-      
-      $(this).addClass('fa fa-expand');  
-      
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) { /* Safari */
-        document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { /* IE11 */
-        document.msExitFullscreen();
-    }
-    }
+        $('#expand').addClass('fa fa-compress');
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+          } else if (elem.webkitRequestFullscreen) { /* Safari */
+            elem.webkitRequestFullscreen();
+          } else if (elem.msRequestFullscreen) { /* IE11 */
+            elem.msRequestFullscreen();
+          }
+        // $('#password').attr('type','text');
+          
+      }else{
+       
+        $('#expand').removeClass('fa fa-compress');
+        
+        $('#expand').addClass('fa fa-expand');  
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.webkitExitFullscreen) { /* Safari */
+            document.webkitExitFullscreen();
+          } else if (document.msExitFullscreen) { /* IE11 */
+            document.msExitFullscreen();
+          }
+        
+        // $('#password').attr('type','password');
+      }
 });
+//User insert API
 $(function() {
 
     var start = moment().subtract(29, 'days');
@@ -204,11 +249,11 @@ function loadrecordUser() {
                 successMsg("Update Completed Successfully!");
 
                 loadUsersList();
+            },
                         //  window.location.reload();
 
-            },
-            error: function (e) {
-
+      error:function (e)
+{
                 //Error -> Show Error Alert & Reset the form
                 errorMsg("Update Failed!");
             //  window.location.reload();
@@ -273,7 +318,7 @@ function loadUsersList() {
         {
             mData: 'roles',
             sWidth: '20%',
-            sTitle: 'roles',
+            sTitle: 'Roles',
             orderable: false,
             mRender: function (data, type, row) {
                 return  data ? data :'-';
@@ -384,23 +429,7 @@ function loadUsersList() {
                     }
                 });
 
-                queryParams.query['bool']['should'].push({ "wildcard": { "roles": "*" + searchText + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "roles": "*" + searchText.toLowerCase() + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "roles": "*" + searchText.toUpperCase() + "*" } });
-                queryParams.query['bool']['should'].push({ "wildcard": { "roles": "*" + capitalizeFLetter(searchText) + "*" } })
-                queryParams.query['bool']["minimum_should_match"] = 1;
-                queryParams.query['bool']['should'].push({
-                    "match_phrase": {
-                        "roles.keyword": "*" + searchText + "*"
-                    }
-                })
-                queryParams.query['bool']['should'].push({
-                    "match_phrase_prefix": {
-                        "roles.keyword": {
-                            "query": "*" + searchText + "*"
-                        }
-                    }
-                });
+                
             }
                
             oSettings.jqXHR = $.ajax({

@@ -43,7 +43,8 @@
 }
 .card-header{
     padding-bottom: 30px;
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1px  lightgray;
+    font-size: medium;
 }
 
 .mt-6 {
@@ -93,7 +94,7 @@
 background-color: white;
 margin-bottom: 20px;
 border-radius: 6px;
-box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+box-shadow: 0 5px 4px rgba(0,0,0,0.3);
 margin-left: 20px;
 
 }
@@ -198,3 +199,140 @@ padding-left: 20px;
 /* .con{
     background-color: white;
 } */
+@media screen and (min-width: 340px) and (max-width: 767px) { 
+    
+    .dname1{
+        position: relative;
+        width: 390px;
+        margin-bottom:  20px;
+        padding-left: 99px;
+
+    }
+    .dname1{
+        position: relative;
+        width: 250px;
+        margin-bottom:  20px;
+        padding-left: 38px;
+        margin-left: 38px;
+    }
+    .dname2{
+        position: relative;
+        width: 250px;
+        margin-bottom:  20px;
+        padding-left: 38px;
+        margin-left: 38px;
+
+    }
+    .dname3{
+        position: relative;
+        width: 250px;
+        margin-bottom:  20px;
+        padding-left: 38px;
+        margin-left: 38px;
+
+    } .dname4{
+        position: relative;
+        width: 250px;
+        margin-bottom: 20px;
+        margin-left: 38px;
+        padding-left: 38px;
+
+    }
+    .ricon{
+        padding-right: 10px;
+    }
+    .chart{
+        position: relative;
+        width: 390px;
+        bottom: 80px;
+    }
+    .calender{
+        left: 11px;
+        position: relative;
+    }
+    .calender1{
+        right: 168px;
+        width: 300px;
+        position: relative;
+    }
+    .newchart{
+        position: relative;
+       bottom: 80px;
+        width: 340px;
+        position: relative;
+        left: -30px;
+        border-radius: 10px;
+      
+    }
+    .newrow{
+        margin-left: 20px;
+        right: 10px;
+    }
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px)  {
+    .calender{
+        left: 11px;
+        position: relative;
+    }
+    .dname1{
+        position: relative;
+        width: 240px;
+        margin-bottom:  20px;
+        padding-left: 38px;
+        margin-right: 12px;
+        height: 90px;
+
+    }
+    .dname2{
+        position: relative;
+        width: 240px;
+        margin-bottom:  40px;
+        padding-left: 38px;
+        margin-left: 19px;
+        height: 90px;
+
+    }
+    .dname3{
+        position: relative;
+        width: 240px;
+        margin-bottom:  20px;
+        padding-left: 38px;
+        margin-right: 12px;
+        height: 90px;
+
+    }.dname4{
+        position: relative;
+        width: 240px;
+        margin-bottom: 20px;
+        margin-left: 19px;
+        padding-left: 38px;
+        height: 90px;
+
+    }
+    .chart{
+        width:250px;
+        bottom: 80px;
+        margin-bottom: 40px;
+    }
+    .three{
+        position: relative;
+        width: 1110px;
+        margin-left: 5px;
+    }
+    .newrow{
+        width: 560px;
+        margin-left: 5px;
+    }
+    .newchart{
+       width: 10px;
+      position: relative;
+        margin-bottom: 200px;
+    }
+    .calender1{
+        left: 15px;
+        width: 300px;
+        position: relative;
+    }
+  }

@@ -241,6 +241,84 @@ Common.prototype.testAction = function (req, res) {
 
 };
 
+
+Common.prototype.commonAdd = function (tablename, req, res) {
+
+
+    const self = this;
+
+    const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
+
+    boodskap.elasticInsert(tablename, req.body, function (status, result) {
+        
+        if (status) {
+            res.json({
+                status: true,
+                result: result
+            });
+        } else {
+            res.json({
+                status: false,
+                message: result
+            });
+
+        }
+    });
+};
+
+Common.prototype.commonDelete = function (tablename, req, res) {
+
+    const self = this;
+
+    const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
+
+    boodskap.elasticDelete(tablename, req.body._id, function (status, result) {
+
+        if (status) {
+            res.json({
+                status: true,
+                result: result
+            });
+        } else {
+            res.json({
+                status: false,
+                message: result
+            });
+        }
+    });
+
+};
+
+
+
+
+Common.prototype.commonUpdate = function (tablename, req, res) {
+
+    const self = this;
+
+    const boodskap = new Boodskap(self.app, req['session']['sessionObj'].token);
+
+    boodskap.elasticUpdate(tablename, req.body._id, req.body.updateData, function (status, result) {
+
+
+
+        if (status) {
+            res.json({
+                status: true,
+                result: result
+            });
+        } else {
+            res.json({
+                status: false,
+                message: result
+            });
+
+        }
+    });
+};
+
+
+
 Common.prototype.commonUserAdd = function (tablename, req, res) {
 
 //   console.log("common",req.body);
@@ -264,6 +342,7 @@ Common.prototype.commonUserAdd = function (tablename, req, res) {
                 ],
                 
               }
+           
             boodskap.PlatformUserCreate(obj, function (status, result) {
       
                 if (status) {
