@@ -31,11 +31,28 @@ $(() => {
     })
 })
 $(() => {
+    var queryParams={
+        
+            "query": {
+                "bool": {
+                    "must": [{
+                        "match": {
+                            "domainKey": "CDZMKBHJUM"
+                        }
+                    }]
+                }
+            },
+            "from": 0,
+            "size": 10
+        
+    }
     $.ajax({
         "dataType": 'json',
-        "contentType": 'application/json',
-        "type": "get",
-        url: BASE_PATH + '/device/list',
+                "contentType": 'application/json',
+                "type": "POST",
+                url: BASE_PATH + '/devicedetail/listdev',  
+                "data":JSON.stringify({"data":queryParams}),
+        
         success: function (data) {
             var resultData = data.result.data;
             $("#totaldevice").html(data.result.total)
