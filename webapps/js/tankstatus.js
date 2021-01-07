@@ -409,7 +409,7 @@ function loadTankStatusList() {
             sortingJson[keyName['mData']] = { "order": oSettings.aaSorting[0][1] };
             queryParams.sort = [sortingJson];
 
-            queryParams.sort=[{"created_ts":{"order":"desc"}}];
+            // queryParams.sort=[{"created_ts":{"order":"desc"}}];
 
             queryParams['size'] = oSettings._iDisplayLength;
             queryParams['from'] = oSettings._iDisplayStart;
@@ -552,7 +552,6 @@ function status(row){
 
 }
 
-$("#status").append("<h5>Tank Level</h5><p>"+tankstat.tank_level+"</p>")   
 $("#status1").append("<h5>Status</h5><p>"+tankstat.status+"</p>")   
 $("#status2").append("<h5>Reported time</h5><p>"+ moment(tankstat.created_ts).format(DATE_TIME_FORMAT)+"</p>")  
 
@@ -630,6 +629,7 @@ function level()
     var lvl;
     var cap;
     var cal;
+    var conti;
         $.ajax({
             "dataType": 'json',
             "contentType": 'application/json',
@@ -640,19 +640,27 @@ function level()
                 // console.log('row',devid);
                 for(i=0;i<=resultData.length-1;i++){
                     if(devid==resultData[i].device_id)
-                    {          
+                    {     
+                        conti=resultData[i].tank_level    
                         // console.log(resultData);            
                         lvl=resultData[i].tank_level;
-                        cap=resultData[i].capacity;                            
+                        cap=resultData[i].capacity;  
+                        console.log(conti)                          
                         cal=((lvl/cap)*100);  
                         // console.log(Math.round(cal)); 
-                        $('.water').height(cal);                        
+                        $('.water').height(cal); 
+$("#status").html("<h5>Tank Level</h5><p>"+conti+"</p>")   
+                                           
                         break;
                     }
                 }          
     
             }
+            
         })
+
+
+
         
       
   
