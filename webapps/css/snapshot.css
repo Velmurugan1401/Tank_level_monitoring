@@ -71,14 +71,16 @@
         width: 209px;
         bottom: 44%;
         left: 50%;
-        background: -webkit-gradient(
+        /* background: -webkit-gradient(
             linear,
             left top,
             right top,
             from(#8ba7e2),
             to(#4273f0)
-          );
+          ); */
+          background-color: #299AE1;
         margin-left: -99px;
+        transition:none;
     }
     #drop
     {
@@ -129,3 +131,9 @@
 .on{
     display: block;
 }
+/* 
+@media only screen and (min-width: 1420px) {
+     canvas {
+      left:115px;
+    }
+  } */
