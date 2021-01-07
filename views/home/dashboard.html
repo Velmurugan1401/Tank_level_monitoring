@@ -98,7 +98,19 @@
             <i class="fa fa-calendar" style="color: #299AE1;"></i>&nbsp;
             <span></span> <i class="fa fa-caret-down"></i>
         </div></div>
-         
+        <!-- <p>Date: <input type="text" id="datepicker"></p> -->
+        <!-- <h3>A demonstration of how to access a Date field</h3>
+
+<input type="date" id="myDate">
+
+<p>Click the button to get the date of the date field.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<p><strong>Note:</strong> input elements with type="date" do not show as any date field/calendar in IE 11 and earlier versions.</p>
+
+<p id="demo"></p> -->
+
       </div>
       <div id="bar2"  style="width: 100%; height: 400px;">
       
@@ -108,11 +120,16 @@
   </div>
  
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script src="js/dashboard.js"></script>
 
 
 
 <script>
+    $( function() {
+    $( "#datepicker" ).datepicker();
+
+  } );
 //   $(function() {
 
 // var start = moment().subtract(29, 'days');
@@ -137,150 +154,162 @@
 // cb(start, end);
 
 // });
-$(function() {
+// function myFunction() {
+//   var x = document.getElementById("myDate").value;
+//   document.getElementById("demo").innerHTML = x;
+// }
 
-var start = moment().subtract(29, 'days');
-var end = moment();
+// $(function() {
 
-function cb(start, end) {
-    $('#reportrang span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-}
+// var start = moment().subtract(29, 'days');
+// var end = moment();
 
-$('#reportrang').daterangepicker({
-    startDate: start,
-    endDate: end,
-    ranges: {
-      //  'Today': [moment(), moment()],
-       'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-       'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-       'Last 30 Days': [moment().subtract(29, 'days'), moment()]
+// function cb(start, end) {
+//     $('#reportrang span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+// }
+
+// $('#reportrang').daterangepicker({
+//     startDate: start,
+//     endDate: end,
+//     ranges: {
+//       //  'Today': [moment(), moment()],
+//        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+//        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+//        'Last 30 Days': [moment().subtract(29, 'days'), moment()]
        
-    }
-}, cb);
+//     }
+// }, cb);
 
-cb(start, end);
+// cb(start, end);
+// let ms = Date.parse(start);
+// let ms2 = Date.parse(end);
 
-});
+// console.log(ms)
+// console.log(ms2)
+// });
+
 
   // bar cart by location tank wish
-  $("#location").mouseup(function() {
-    var open = $(this).data("isopen");
-    if(open=="velachhery") {
-        alert('hello');
-    }
-    $(this).data("isopen", !open);
-});
+//   $("#location").mouseup(function() {
+//     var open = $(this).data("isopen");
+//     if(open=="velachhery") {
+//         alert('hello');
+//     }
+//     $(this).data("isopen", !open);
+// });
+
     var data1;
 
   var data2;
-  $(()=>{
-    
-  console.log($('#location').val())
-  var lo=$('#location').val()
-  if(lo == 'velachery')
-{
-  data1=["tank1","tank2","tank3","tank4","tank5","tank6","tank7","tank8","tank9","tank10","tank11","tank12","tank13","tank14","tank15","tank16","tank17","tank18","tank19","tank20"]
-  console.log(lo)
-  data2=[10, 52, 200, 334, 390, 330, 220, 200, 334, 390,100, 252, 200, 434, 390, 530, 220, 200, 334, 390]
-}else{
-  data1=["tank1","tank2","tank3","tank4","tank5","tank6","tank7","tank8","tank9","tank10","tank11","tank12","tank13","tank14","tank15","tank16","tank17","tank18","tank19","tank20"]
-  console.log(lo)
-  data2=[10, 52, 200, 334, 390, 330, 220, 200, 334, 390,100, 252, 200, 434, 390, 530, 220, 200, 334, 390]
-}
+//   $(()=>{
+//     var d=$("#reportrang").val()
+//     console.log(d)
+//   console.log($('#location').val())
+//   var lo=$('#location').val()
+//   if(lo == 'velachery')
+// {
+//   data1=["tank1","tank2","tank3","tank4","tank5","tank6","tank7","tank8","tank9","tank10","tank11","tank12","tank13","tank14","tank15","tank16","tank17","tank18","tank19","tank20"]
+//   console.log(lo)
+//   data2=[10, 52, 200, 334, 390, 330, 220, 200, 334, 390,100, 252, 200, 434, 390, 530, 220, 200, 334, 390]
+// }else{
+//   data1=["tank1","tank2","tank3","tank4","tank5","tank6","tank7","tank8","tank9","tank10","tank11","tank12","tank13","tank14","tank15","tank16","tank17","tank18","tank19","tank20"]
+//   console.log(lo)
+//   data2=[10, 52, 200, 334, 390, 330, 220, 200, 334, 390,100, 252, 200, 434, 390, 530, 220, 200, 334, 390]
+// }
 
-})
-$(()=>{
-  console.log(data1)
-  var myCharts = echarts.init(document.getElementById('bar1'));
+// })
+// $(()=>{
+//   console.log(data1)
+//   var myCharts = echarts.init(document.getElementById('bar1'));
 
-option = {
-    color: ['#3398DB'],
-    tooltip: {
-        trigger: 'axis',
-        axisPointer: {            
-            type: 'shadow'       
-        }
-    },
-    grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
-    },
-    xAxis: [
-        {
-            type: 'category',
-             axisLabel: {
-            interval: 0,
-            rotate:30
-        },
-            data: data1,
-            axisTick: {
-                alignWithLabel: true
-            }
-        }
-    ],
-    yAxis: [
-        {
-            type: 'value'
-        }
-    ],
-    series: [
-        {
-            name: 'Consumption Level',
-            type: 'bar',
-            barWidth: '60%',
-            data: data2
-        }
-    ]
-};
-myCharts.setOption(option);
+// option = {
+//     color: ['#3398DB'],
+//     tooltip: {
+//         trigger: 'axis',
+//         axisPointer: {            
+//             type: 'shadow'       
+//         }
+//     },
+//     grid: {
+//         left: '3%',
+//         right: '4%',
+//         bottom: '3%',
+//         containLabel: true
+//     },
+//     xAxis: [
+//         {
+//             type: 'category',
+//              axisLabel: {
+//             interval: 0,
+//             rotate:30
+//         },
+//             data: data1,
+//             axisTick: {
+//                 alignWithLabel: true
+//             }
+//         }
+//     ],
+//     yAxis: [
+//         {
+//             type: 'value'
+//         }
+//     ],
+//     series: [
+//         {
+//             name: 'Consumption Level',
+//             type: 'bar',
+//             barWidth: '60%',
+//             data: data2
+//         }
+//     ]
+// };
+// myCharts.setOption(option);
 
-})
+// })
 
 
  
-var myCharts = echarts.init(document.getElementById('bar2'));
-option = {
-    color: ['#3398DB'],
-    tooltip: {
-        trigger: 'axis',
-        axisPointer: {           
-            type: 'shadow'        
-        }
-    },
-    grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
-    },
-    xAxis: [
-        {
-            type: 'category',
-             axisLabel: {
-            interval: 0,
-            rotate:30
-        },
-            data: ['POONDI', 'CHOLAVARAM', 'REDHILLS', 'CHEMBARAMBAKKAM', 'MYLAPORE', 'VEERANAM', 'NESAPAKKAM','KODAMBAKKAM A','KODAMBAKKAM B','KOYAMBEDU','AVADI','PORUR','VELACHERY','EGMORE','GUINDY','LITTLE MOUNT','KILPAUK','SAIDAPET','VADAPALANI','THIRUMANGALAM'],
-            axisTick: {
-                alignWithLabel: true
-            }
-        }
-    ],
-    yAxis: [
-        {
-            type: 'value'
-        }
-    ],
-    series: [
-        {
-            name: 'Consumption Level',
-            type: 'bar',
-            barWidth: '60%',
-            data: [10, 52, 200, 334, 390, 330, 220, 200, 334, 390,100, 252, 200, 434, 390, 530, 220, 200, 334, 390]
-        }
-    ]
-};
-myCharts.setOption(option);
+// var myCharts = echarts.init(document.getElementById('bar2'));
+// option = {
+//     color: ['#3398DB'],
+//     tooltip: {
+//         trigger: 'axis',
+//         axisPointer: {           
+//             type: 'shadow'        
+//         }
+//     },
+//     grid: {
+//         left: '3%',
+//         right: '4%',
+//         bottom: '3%',
+//         containLabel: true
+//     },
+//     xAxis: [
+//         {
+//             type: 'category',
+//              axisLabel: {
+//             interval: 0,
+//             rotate:30
+//         },
+//             data: ['POONDI', 'CHOLAVARAM', 'REDHILLS', 'CHEMBARAMBAKKAM', 'MYLAPORE', 'VEERANAM', 'NESAPAKKAM','KODAMBAKKAM A','KODAMBAKKAM B','KOYAMBEDU','AVADI','PORUR','VELACHERY','EGMORE','GUINDY','LITTLE MOUNT','KILPAUK','SAIDAPET','VADAPALANI','THIRUMANGALAM'],
+//             axisTick: {
+//                 alignWithLabel: true
+//             }
+//         }
+//     ],
+//     yAxis: [
+//         {
+//             type: 'value'
+//         }
+//     ],
+//     series: [
+//         {
+//             name: 'Consumption Level',
+//             type: 'bar',
+//             barWidth: '60%',
+//             data: [10, 52, 200, 334, 390, 330, 220, 200, 334, 390,100, 252, 200, 434, 390, 530, 220, 200, 334, 390]
+//         }
+//     ]
+// };
+// myCharts.setOption(option);
 </script> -->

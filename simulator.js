@@ -141,7 +141,7 @@ cron.schedule('*/3 * * * * *', function () {
         }, function (err, res, body) {
 
             let json = JSON.parse(body);
-            console.log(json);
+           
 
         })
     }
