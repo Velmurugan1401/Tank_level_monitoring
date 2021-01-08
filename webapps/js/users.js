@@ -14,52 +14,12 @@ $(document).ready(function () {
  
 function adduser(){
     $("#firstname,#lastname,#mobile,#emailid,#role").val('');
-//     var firstname = $("#firstname").val();
-//     var lastName = $("#lastname").val();
-//     var primaryPhone = $("#mobile").val();
-//     var email = $("#emailid").val();
-//     var roles = $("#role").val();
-//  var password=$('#Password').val();
-
-
-
-//     //Validate
-//     if (firstname === "") {
-//         $(".validate").css('display','none');
-//         return;
-
-
-//     //     alert("First  Name is Required!");
-
-//     } else if (lastName === "") {
-//         $(".validate").css('display','none');
-//         return;
-//     //     alert("Last name is Required!");
-
-//     }
-//     else if (primaryPhone === "") {
-//         $(".validate").css('display','none');
-//         return;
-//     //     alert("Mobile number  is Required!");
-
-//     }
-//     else if (email === "") {
-//         $(".validate").css('display','none');
-//         return;
-//     //     alert("Email id is Required!");
-
-//     }
-//     else if(password==="")
-//     {
-//         $(".validate").css('display','none');
-//     return;
-//     }
-
  }
 function refreshuser()
 {
     loadUsersList();
 }
+
 
 $('#full').click(function(){
     var elem = document.documentElement;
@@ -283,7 +243,7 @@ function loadUsersList() {
     var fields = [
         {
             mData: 'fname',
-            sTitle: 'Full Name',
+            sTitle: 'First Name',
             sWidth: '20%',
             // orderable: false,
             mRender: function (data, type, row) {
@@ -362,11 +322,7 @@ function loadUsersList() {
                         }}}*/
             }
         },
-        sort: [{
-            "created_ts": {
-                "order": "asc"
-            }
-        }]
+        sort: [{ "created_ts": { "order": "asc" } }]
     };
 
     Users_list = [];
@@ -470,7 +426,7 @@ function loadUsersList() {
         dom: 'l<"toolbar">frtip',
         initComplete: function () {
             // $("div.toolbar").append("<button>Datepick</button>");
-            $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button>');
+            $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"  onclick=adduser()> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button>');
             // $("div.toolbar").html('<button type="button" class="btn button1" data-toggle="modal" data-target="#myModal"> <i class="fa fa-user-plus p-1" style="color:white";"aria-hidden="true"></i>Add New User</button><i class="fa fa-refresh fa-lg p-2" aria-hidden="true"></i>');   
 
         }
