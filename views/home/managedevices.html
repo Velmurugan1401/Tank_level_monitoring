@@ -1,52 +1,60 @@
+<div class="container-fluid" style="padding-bottom: 100px">
+  <div class="row row1">
+    <div class="col-md-12">
+      <span class="title-span"></span>
+      <span class="title-span">Administration</span>
+      <span class="title-span" style="margin-left: 5px; margin-right: 5px">
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
+      </span>
+      <span class="title-span3">Manage Devices</span>
+    </div>
+  </div>
 
-<div class="container-fluid" style="padding-bottom: 100px;">
+  <div class="row row2">
+    <div class="col-md-5 mm1">
+      <span class="span12">Total Devices: </span>
+      <span id="total" style="font-weight: 500" class="totall"></span>
+    </div>
 
-  <div class="row row1" >
-        <div class="col-md-12">
-          <span class="title-span"></span>
-            <span class="title-span">Administration</span>
-            <span class="title-span" style="margin-left: 5px;margin-right: 5px;">
-              <i class="fa fa-angle-right" aria-hidden="true"></i>
-          </span>
-            <span class="title-span3">Manage devices</span>
-        </div>
+    <div class="col-md-6 mm2">
+      <div
+        id="reportrange"
+        class="calen"
+        style="
+          background: #fff;
+          margin-right: 10px;
+          border: 1px solid #ccc;
+          display: inline-block;
+          padding: 6px;
+        "
+      >
+        <i class="fa fa-calendar"></i>&nbsp; <span></span>
+        <i class="fa fa-caret-down"></i>
       </div>
-  
-      
-        <div class="row row2">
-          <div class="col-md-5 me1">
-            <div class="span12">
-            <span>Total Devices: </span>
-            <span id="total" style="font-weight: 500"></span>
-          </div> 
-        </div>
-          
-             <div class="col-md-5" style="text-align:right;margin-left: 50px;">
-              <div id="reportrange" class="calen" style="background: #fff; border: 1px solid #ccc;display: inline-block;padding: 6px; margin-top: 4px;">
-                <i class="fa fa-calendar"></i>&nbsp;
-                <span></span> <i class="fa fa-caret-down"></i>
-            </div></div>
-            <div class="col-md-auto" style="text-align:right;">
-        
-                <a class="btn ico" class="fullv" id="ex3"><i class="fa fa-expand" style="color:white;" aria-hidden="true" id="ex"></i></a>
-                <a class="btn ico" class="exp5" onclick="refreshFunction()"><i class="fa fa-repeat fa" style="color: white;" aria-hidden="true"></i></a>
-              </div>
-                </div>
-        
-       
+
+      <a class="btn ico" id="ex3"
+        ><i
+          class="fa fa-expand"
+          style="color: white"
+          aria-hidden="true"
+          id="ex"
+        ></i
+      ></a>
+      <a class="btn ico" id="ex4" onclick="refreshFunction()"
+        ><i class="fa fa-repeat fa" style="color: white" aria-hidden="true"></i
+      ></a>
+    </div>
+  </div>
+
   <div class="row row3">
     <div class="col-md-12">
       <table
         class="table table-bordered responsive"
         id="device_details"
         width="100%"
-      >
-    </table>
+      ></table>
+    </div>
   </div>
-</div>
-        
-      
-
 </div>
 <!-- end -->
 
@@ -54,34 +62,41 @@
 <script>
   function refreshFunction() {
     loadDeviceList();
-}
+  }
 </script>
- <script>
-   $(function() {
+<script>
+  $(function () {
+    var start = moment().subtract(29, "days");
+    var end = moment();
 
-var start = moment().subtract(29, 'days');
-var end = moment();
-
-function cb(start, end) {
-    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-}
-
-$('#reportrange').daterangepicker({
-    startDate: start,
-    endDate: end,
-    ranges: {
-       'Today': [moment(), moment()],
-       'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-       'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-       'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-       'This Month': [moment().startOf('month'), moment().endOf('month')],
-           'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+    function cb(start, end) {
+      $("#reportrange span").html(
+        start.format("MMMM D, YYYY") + " - " + end.format("MMMM D, YYYY")
+      );
     }
-}, cb);
 
-cb(start, end);
+    $("#reportrange").daterangepicker(
+      {
+        startDate: start,
+        endDate: end,
+        ranges: {
+          Today: [moment(), moment()],
+          Yesterday: [
+            moment().subtract(1, "days"),
+            moment().subtract(1, "days"),
+          ],
+          "Last 7 Days": [moment().subtract(6, "days"), moment()],
+          "Last 30 Days": [moment().subtract(29, "days"), moment()],
+          "This Month": [moment().startOf("month"), moment().endOf("month")],
+          "Last Month": [
+            moment().subtract(1, "month").startOf("month"),
+            moment().subtract(1, "month").endOf("month"),
+          ],
+        },
+      },
+      cb
+    );
 
-});
-  
+    cb(start, end);
+  });
 </script>
-
