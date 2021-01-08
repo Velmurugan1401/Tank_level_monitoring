@@ -359,7 +359,7 @@ function loadTankList() {
         responsive: true,
         paging: true,
         searching: true,
-        aaSorting: [[8, 'desc']],
+        aaSorting: [[4, 'desc']],
         "ordering": true,
         iDisplayLength: 10,
         lengthMenu: [[10, 50, 100], [10, 50, 100]],
