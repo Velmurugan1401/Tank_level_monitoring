@@ -103,7 +103,7 @@ console.log(endDate)
                 sWidth: '20%',
                 orderable: false,
                 mRender: function (data, type, row) {
-                    return data;
+                    return '<div class="row">' + data + 'litres'+ '</div>'
                 }
             },
     
