@@ -8,25 +8,29 @@
   padding: 20px;
 }
 .title-span3 {
-  color: mediumblue;
+  color: #299AE1;
   font-weight: 500;
 }
 .row.row2 {
-  background-color: gainsboro;
+  background-color:gainsboro;
   padding-top: 10px;
   padding-left: 20px;
-  height: 60px;
+  padding-bottom: 10px;
+}
+.mm1{
+  padding-top: 15px;
+
+
+}
+.mm2{
+  text-align: right;
+  margin-left: 86px;
 }
 .span12 {
-  margin-top: 12px;
+  padding-left: -2px;
 }
 
-/* .pick{
-  border-radius: 4px;border: 1px solid gray;
-} */
-/* .pick{
-  border-radius: 4px;border: 1px solid gray;
-} */
+
 .ico {
   background-color: #299AE1;
 }
@@ -54,7 +58,7 @@
 .dataTables_filter input, .dataTables_filter input:focus, .dataTables_length select, .dataTables_length select:focus{
   background-image: unset;
 }
-.modal-title {
+/* .modal-title {
   color: #1c3faa;
   font-weight: bolder;
 }
@@ -90,20 +94,20 @@
 
 .toolbar {
   float: right;
-}
+} */
 @media screen and (min-width: 340px) and (max-width: 767px) { 
   .me1{
       position: relative;
   }
-  .fullv{
+  #ex3{
      position: absolute;
-     left: 210px;
+     left: 160px;
      top: -40px;
     
   }
-  .exp5{
+  #ex4{
       position: absolute;
-      left: 259px;
+      left: 200px;
       top: -40px;
   }
   .calen{
@@ -111,6 +115,7 @@
   margin-bottom: 7px;
   top: 10px;
   width: 295px;
+  right: 80px;
       }
       
       .dataTables_filter{
@@ -124,14 +129,14 @@
   .me1{
       position: relative;
   }
-  .fullv{
+  #ex3{
       position: absolute;
       left: 160px;
       top: -5px;
       margin-bottom: 24px;
      
    }
-   .exp5{
+   #ex4{
       position: absolute;
       left: 211px;
       margin-bottom: 24px;
@@ -145,9 +150,9 @@
       left: -49px;
       margin-top: 23px;
       }
-      /* .dataTables_filter{
+      .dataTables_filter{
           position: relative;
           left: 172px;
           top: 5px;
-          } */
+          }
 }
