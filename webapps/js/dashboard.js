@@ -80,20 +80,20 @@ $(() => {
 })
 // BAR CHART--------------------------------------------
 $(() => {
-    var ones = moment().startOf('day').subtract(2,"day").valueOf();        
-    var onee=moment().endOf('day').subtract(2,"day").valueOf()
+    var ones = moment().startOf('day').subtract(1,"day").valueOf();        
+    var onee=moment().endOf('day').subtract(1,"day").valueOf()
     var twos = moment().startOf('day').subtract(2,"day").valueOf();        
     var twoe=moment().endOf('day').subtract(2,"day").valueOf()
     var threes = moment().startOf('day').subtract(3,"day").valueOf();        
     var three=moment().endOf('day').subtract(3,"day").valueOf()
-    var foures = moment().startOf('day').subtract(13,"day").valueOf();        
-    var fouree=moment().endOf('day').subtract(13,"day").valueOf()
-    var fives = moment().startOf('day').subtract(11,"day").valueOf();        
-    var fivee=moment().endOf('day').subtract(11,"day").valueOf()
-    var sixs = moment().startOf('day').subtract(12,"day").valueOf();        
-    var sixe=moment().endOf('day').subtract(12,"day").valueOf()
-    var sevens = moment().startOf('day').subtract(10,"day").valueOf();        
-    var sevense=moment().endOf('day').subtract(10,"day").valueOf()
+    var foures = moment().startOf('day').subtract(4,"day").valueOf();        
+    var fouree=moment().endOf('day').subtract(4,"day").valueOf()
+    var fives = moment().startOf('day').subtract(15,"day").valueOf();        
+    var fivee=moment().endOf('day').subtract(15,"day").valueOf()
+    var sixs = moment().startOf('day').subtract(16,"day").valueOf();        
+    var sixe=moment().endOf('day').subtract(16,"day").valueOf()
+    var sevens = moment().startOf('day').subtract(15,"day").valueOf();        
+    var sevense=moment().endOf('day').subtract(15,"day").valueOf()
     var queryParams={
         
             "aggs" : {
@@ -259,12 +259,12 @@ $(() => {
                 },
                 tooltip: {
                     trigger: 'axis',
-                    formatter: "Consumption : Liters"
+                    formatter: ""
                 },
                 grid: {
                     left: '3%',
                     right: '4%',
-                    bottom: '3%',
+                    bottom: '10%',
                     containLabel: true
                 },
                 xAxis: {
@@ -283,7 +283,7 @@ $(() => {
                         formatter: '{value}'
                     },
                     boundaryGap: true,
-                    data: ['day 1', 'day 2', 'day 3', 'day 4', 'day 5', 'day 5', 'day 6', 'day 7']
+                    data: ['day 1', 'day 2', 'day 3', 'day 4', 'day 5', 'day 6', 'day 7']
                 },
                 graphic: [
                     {
@@ -346,10 +346,10 @@ $(() => {
                 ],
                 series: [
                     {
-                        name: '高度(km)与气温(°C)变化关系',
+                        name: 'Liters',
                         type: 'bar',
                         smooth: true,
-                        barCategoryGap: 25,
+                        barCategoryGap: 15,
                         lineStyle: {
                             width: 3,
                             shadowColor: 'rgba(0,0,0,0.4)',
@@ -423,11 +423,11 @@ $(() => {
             var pie = [
                 {
                     value: highalert,
-                    name: 'High Alert'+" "+highalert
+                    name: 'High Alert'+"-"+highalert
                 },
                 {
                     value: lowalert,
-                    name: 'Low Alert'+" "+lowalert
+                    name: 'Low Alert'+"-"+lowalert
                 },
 
             ]
