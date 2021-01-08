@@ -1,5 +1,3 @@
-<style>
-</style>
 <div class="container-fluid" id="tankStatusCont" >
     <div class="row" id="topBarRow">
         <div class="col-md-12">
@@ -7,30 +5,29 @@
             <span class="title-span" style="margin-left: 5px;margin-right: 5px;">
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
             </span>
-            <span class="title-span" style="color: mediumblue;font-weight: 500;">Tank Status</span>
+            <span class="title-span" style="color: #299AE1;font-weight: 500;">Tank Status</span>
         </div>
     </div> 
       
-   <div class="row" id="firstRow" >
-        <div class="col-md-6" >
-            <div style="margin-top: 12px;">
-               <span>Total Tanks: </span>
-               <span id="total" style="font-weight: 500;"></span>
+<div class="row" id="firstRow" >
+    <div class="col-md-6">
+        <div style="margin-top: 12px;">
+            <span>Total Tanks: </span>
+            <span id="total" style="font-weight: 500;"></span>
         </div>
-        </div>
-        <div class="col-md-6 activ-inactive-coln">
-           <div class="float-right">
+    </div>
+    <div class="col-md-6 activ-inactive-coln">
+        <div class="float-right">
           <button type="button" class="btn tank-buttons" id="tankStatusRefresh" data-toggle="tooltip" data-placement="bottom" title="Referesh" onclick="tankStatusRef()" style="background-color:#299AE1;color: white;">
             <i class="fa fa-refresh" aria-hidden="true"></i>
-      </button></div>
+      </button>
+    </div>
 
-      <div class="float-right" style="">
-        <!-- <button type="button" class="btn tank-buttons" data-toggle="tooltip" data-placement="bottom" title="Full Screen" style="background-color:#299AE1;color: white;"> -->
-        
-        
-            <button type="button" class="btn expand tank-buttons" id="tankStatusExpand" data-toggle="tooltip" data-placement="bottom" title="Full Screen" style="background-color:#299AE1;color: white;">
-          <i class="fa fa-expand" id="expandview"style="color:white" aria-hidden="true"></i></button>
-      </div>
+    <div class="float-right">
+        <button type="button" class="btn tank-buttons" id="tankStatusExpand" data-toggle="tooltip" data-placement="bottom" title="Full Screen" style="background-color:#299AE1;color: white;">
+          <i class="fa fa-expand" id="expandview"style="color:white" aria-hidden="true"></i>
+        </button>
+    </div>
       
       
 
@@ -44,14 +41,11 @@
      </div> -->
      <!-- </div> -->
      
-
-    </div>
+   </div>
 </div>
 
-
-
-    <div class="row table-row-div">
-        <div class="col-md-12">
+<div class="row table-row-div">
+        <div class="col-md-12 col-lg-12">
             <table class="table table-bordered responsive no-wrap" id="StatusTable" cellspacing="0" width="100%">
                
             </table>
@@ -63,7 +57,7 @@
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content modal-div">
-            <div class="modal-header" style="background-color: #009B84;">
+            <div class="modal-header" style="background-color: #299AE1;">
                 <h4 class="modal-title user-add-header text-center">Delete Tank</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
@@ -79,7 +73,7 @@
          
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-success link-btn" id="" data-dismiss="modal" onclick="statusDeleteTank()">Delete</button>
+                <button type="button" class="btn btn-success link-btn" id="" style="background-color: #299AE1;"data-dismiss="modal" onclick="statusDeleteTank()">Delete</button>
             </div>
         </div>
     </div>

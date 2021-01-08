@@ -158,7 +158,7 @@ $(document).ready(function(){
     
 });
 
-$('.expand').click(function(){
+$('#tankStatusExpand').click(function(){
     var elem = document.documentElement;
     if($("#expandview").hasClass('fa fa-expand')){
        
@@ -203,8 +203,8 @@ function loadTankStatusList() {
             mData: 'tank_name',
             sTitle: 'Tank Name',
             sWidth: '15%',
-            orderable: true,
-            "className": 'sortingtable',
+            orderable: false,
+            // "className": 'sortingtable',
             mRender: function (data, type, row) {
                 if(!((row.tank_name) && (row.location))){
                    return data ? data : '-';
@@ -244,7 +244,7 @@ function loadTankStatusList() {
           mData: 'tank_level',
           sWidth: '20%',
           sTitle: 'Tank Level',
-          orderable: true,
+          orderable: false,
           "className": 'sortingtable',
           mRender: function (data, type, row) {
             var cal=(row.tank_level/row.capacity)*100;
@@ -339,8 +339,8 @@ function loadTankStatusList() {
             sTitle: 'Actions',
             orderable: false,
             mRender: function (data, type, row) {
-              var actionsHtml = '<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\');status(\''+row.device_id+'\');level(\''+row.device_id+'\')" href="#/snapshot" title="Goto Snapshot" style="margin-right:5px;" ><i class="fa fa-eye" aria-hidden="true"></i></button>'
-                          +'<button class="btn btn-default" data-target="#statusDeletemodal" data-toggle="modal" onclick="assignDeleteDeviceId(\'' + row._id + '\')"><i class="fa fa-trash icon" ></i></button>';
+              var actionsHtml = '<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\');status(\''+row.device_id+'\');level(\''+row.device_id+'\')" href="#/snapshot" title="Goto Snapshot" style="margin-right:5px;background-color:#299AE1;color:white;" ><i class="fa fa-eye" aria-hidden="true"></i></button>'
+                          +'<button class="btn btn-default" data-target="#statusDeletemodal" data-toggle="modal" onclick="assignDeleteDeviceId(\'' + row._id + '\')" title="Delete Tank" style="background-color:#299AE1;color:white;"><i class="fa fa-trash icon" ></i></button>';
                           return actionsHtml;
             
             }
@@ -647,13 +647,13 @@ function level()
                 for(i=0;i<1;i++){
                     if(resultData.tank_level=="High")
                     {
-                        $("#status1").append("<h5>Status</h5><p>High</p>")        
+                        $("#status1").append("<h5>Status</h5><p>OFF</p>")        
                       
                       
                     }
                     else if(resultData.tank_level=="Low")
                     {
-                        $("#status1").append("<h5>Status</h5><p>Low</p>") 
+                        $("#status1").append("<h5>Status</h5><p>ON</p>") 
                     }
                     else{
                         $("#status1").append("<h5>Status</h5><p>Normal</p>")
