@@ -1,12 +1,4 @@
-<style>
-  .invalid input:required:invalid {
-  background: #BE4C54;
-}
-
-/* Mark valid inputs during .invalid state */
-.invalid input:required:valid {
-  background: #17D654;
-}
+<style> 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -28,8 +20,8 @@ input::-webkit-inner-spin-button {
       <span class="title-span" style="margin-left: 5px;margin-right: 5px;">
         <i class="fa fa-angle-right" aria-hidden="true"></i>
     </span>
-      <span class="title-span" style="color: mediumblue; font-weight: 500"
-        >Users</span
+      <span class="title-span" style="color:#299AE1;font-weight: 500;"
+        >Manage Users</span
       >
     </div>
   </div>
@@ -56,7 +48,7 @@ input::-webkit-inner-spin-button {
         <div class="modal-dialog">
             
             <div class="modal-content modal-div">
-                <div class="modal-header" style="background-color: #009B84;">
+                <div class="modal-header" style="background-color: #299AE1;">
                     <h4 class="modal-title text-center" style="color: white;">Add New User</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
@@ -66,28 +58,32 @@ input::-webkit-inner-spin-button {
                   <div class="col-md-12 mb-3">
                     <label for="firstname">First name</label>
                     <input type="text" class="form-control" id="firstname" placeholder="First Name" required>
-                    <span class="validate" style="display: none;"> Please Enter first Name</span>                    
+                     <span class="validate" style="display: none;">  Enter first Name</span>  
+                     
                   </div>
               </div>
               <div class="form-row">  
                 <div class="col-md-12 mb-3">
                   <label for="lastname">Last name</label>
                   <input type="text" class="form-control" id="lastname" placeholder="Last Name" required>
-                  <span class="validate" style="display: none;"> Please Enter last Name</span>                        
+                  <span class="validate" style="display: none;">  Enter last Name</span>                        
+                   
                 </div>
             </div>
             <div class="form-row">  
               <div class="col-md-12 mb-3">
                 <label for="emailid">Email Id</label>
                 <input type="email" class="form-control" id="emailid" placeholder="Email Id" required>
-                <span class="validate" style="display: none;"> Please Enter Email id</span>                        
+                
+                <span class="validate" style="display: none;">  Enter Email id</span>                        
               </div>
           </div>
           <div class="form-row">  
             <div class="col-md-12 mb-3">
               <label for="mobile">Mobile No</label>
               <input type="tel" class="form-control" id="mobile" placeholder="Mobile No"   pattern="[789][0-9]{9}" required>
-              <span class="validate" style="display: none;"> Please Enter Mobile no</span>                     
+              
+              <span class="validate" style="display: none;">  Enter Mobile no</span>                     
             </div>
         </div>
         <div class="col-md-3 mb-3">
@@ -97,19 +93,21 @@ input::-webkit-inner-spin-button {
             <option>Admin</option>
             <option>User</option>
           </select>
-          <span class="validate" style="display: none;"> Please Choose role</span>
+          
+          <span class="validate" style="display: none;"> Choose role</span>
         </div>
                 <div class="form-row mb-3">
                   <label for="Password">Password</label>
                   <input type="password" class="form-control" id="Password" placeholder="Password" required>
-                  <span class="validate" style="display: none;"> Please Enter Password</span>
-                </div>
-               
                   
+                  <span class="validate" style="display: none;"> Enter Password</span>
+                </div>
+                
+               </form>   
                  
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-success link-btn" onclick="loadrecordUser();">Add User</button>
+              <button type="button" class="btn link-btn" onclick="loadrecordUser();"style="background-color:#299AE1;color:white;">Add User</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
@@ -137,7 +135,7 @@ input::-webkit-inner-spin-button {
   <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content modal-div">
-          <div class="modal-header" style="background-color: #009B84;">
+          <div class="modal-header" style="background-color:#299AE1;">
               <h4 class="modal-title user-add-header text-center">Delete User</h4>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
@@ -153,42 +151,10 @@ input::-webkit-inner-spin-button {
        
           <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-success link-btn" id="" data-dismiss="modal" onclick="userrecorddelete();">Delete</button>
+              <button type="button" class="btn link-btn" id="" data-dismiss="modal" onclick="userrecorddelete();"style="background-color:#299AE1;color:white;">Delete</button>
           </div>
       </div>
   </div>
 </div>
  <script src="js/users.js"></script>   
-  <!-- <script>
-      (function() {
-    'use strict';
-    window.addEventListener('load', function() {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName('needs-validation');
-      // Loop over them and prevent submission
-      var validation = Array.prototype.filter.call(forms, function(form) {
-        form.addEventListener('submit', function(event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-          form.classList.add('was-validated');
-          event.preventDefault();
-            event.stopPropagation();
-            $(document).ready(function(){
-              loadUser();
-            loadrecordUser();
-            })
-            
-          
-        }, false);
-      });
-    }, false);
-  })();
-
-   </script>
-
- 
   
-
-  -->

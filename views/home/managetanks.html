@@ -34,39 +34,57 @@
                   <!-- Modal content-->
                   <div class="modal-content modal-div">
 
-                      <div class="modal-header" style="background-color: #009B84;">
+                      <div class="modal-header" style="background-color: #299AE1;">
                           <h4 class="modal-title user-add-header text-center">Add New Tank</h4>
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
                       </div>
                       <div class="modal-body">
                         <form class="needs-validation" novalidate>
-                          <div class="form-row" style="margin-top:20px;">
-                            <div style="margin-left: 355px;"><span style="color:red; font-size: 12px;">* Required</span></div>
+                          <div class="form-row" style="margin-top:20px;">                            
                             <div class="col-md-12">
                                   <label for="usr" class="modal-txt" >Tank Name <span class=star>*</span></label>
-                                  <input type="text" class="form-control"name="usr"  id="tank_name" placeholder="Enter Tank Name" required>
-                                  <span class="validate" style="display: none;"> Please Enter Tank Name</span>
+                                  <input type="text" class="form-control" name="usr"  id="tank_name" placeholder="Ex: Tank 1" required>
+                                  <span class="validate" style="display: none;">Enter Tank Name</span>
                                  
                                 </div>
                           </div>
                           <div class="row" style="margin-top:20px;">
                             <div class="col-md-12">
+                                <label for="usr" class="modal-txt">Tank Type <span class=star>*</span></label>
+                                <!-- <input type="text" class="form-control"  id="location" placeholder="Enter Location"> -->
+                               
+                                <select class="form-select form-control" id="tank_type" aria-label="Default select example">
+                                    <option disabled value="">Choose Tank Type</option>
+                                    <option>Circle</option>
+                                    <option>Square</option>
+                                    <option>Cylinder</option>
+                                    
+    
+                                  </select>
+                                <span class="validate">Enter Location</span>
+                                
+                            </div>
+                            
+                         
+                          </div>
+                          <div class="row" style="margin-top:20px;">
+                            <div class="col-md-12">
                                 <label for="usr" class="modal-txt">Capacity <span class=star>*</span></label>
-                                <input type="number" class="form-control"  id="capacity" placeholder="Enter Capacity">
-                                <span class="validate"> Please Enter Capacity</span>  </div>
+                                <input type="number" class="form-control"  id="capacity" placeholder="Ex: 10000">
+                                <span class="validate">Enter Capacity</span>  </div>
                           </div>
                           <div class="row" style="margin-top:20px;">
                               <div class="col-md-12">
                                   <label for="usr" class="modal-txt">Min Level <span class=star>*</span></label>
-                                  <input type="number" class="form-control"  id="min_level" placeholder="Enter Capacity">
+                                  <input type="number" class="form-control"  id="min_level">
                               
-                                  <span class="validate"> Please Enter Min Level</span></div>
+                                  <span class="validate">Enter Min Level</span></div>
                             </div>
                             <div class="row" style="margin-top:20px;">
                               <div class="col-md-12">
                                   <label for="usr" class="modal-txt">Max Level <span class=star>*</span></label>
-                                  <input type="number" class="form-control"  id="max_level" placeholder="Enter Capacity">
-                                  <span class="validate"> Please Enter Max Level</span>
+                                  <input type="number" class="form-control"  id="max_level">
+                                  <span class="validate"> Enter Max Level</span>
                               </div>
                             </div>
                         <div class="row" style="margin-top:20px;">
@@ -96,15 +114,17 @@
                                   <option>Koyambedu</option>
   
                                 </select>
-                              <span class="validate"> Please Enter Location</span>
+                              <span class="validate">Enter Location</span>
                               
                           </div>
                           
                        
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button onclick="tankDetails()" type="button" class="btn btn-success link-btn"  id="examplemodal">Add Tank</button>
+                        <div class="modal-footer text-right">
+                           
+                            <button onclick="tankDetails()" type="button" class="btn" style="background-color: #299AE1;color:white" id="examplemodal">Confirm</button>
+                            <button type="button" class="btn bt" data-dismiss="modal" style=" padding-left: 20px;
+                            padding-right: 20px;">Close</button>
                         </div>
                     </div>
         </div>
@@ -117,7 +137,7 @@
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content modal-div">
-            <div class="modal-header" style="background-color: #009B84;">
+            <div class="modal-header" style="background-color: #299AE1;">
                 <h4 class="modal-title user-add-header text-center">Link Device</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
@@ -134,8 +154,9 @@
                 </div>
          
             <div class="modal-footer">
+               
+                <button onclick="clicklinkdevice()" type="button" class="btn" style="background-color: #299AE1;color: white;" data-dismiss="modal">Link</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button onclick="clicklinkdevice()" type="button" class="btn btn-success link-btn" data-dismiss="modal">Link</button>
             </div>
         </div>
     </div>
@@ -147,7 +168,7 @@
       <div class="modal-dialog">
           <!-- Modal content-->
           <div class="modal-content modal-div">
-              <div class="modal-header" style="background-color: #009B84;">
+              <div class="modal-header" style="background-color:#299AE1;">
                   <h4 class="modal-title user-add-header text-center">Link Device</h4>
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
               </div>
@@ -164,9 +185,10 @@
                   </div>
            
               <div class="modal-footer">
+                 
+                  <button onclick="clicklinkdevice1()" type="button" class="btn" style="background-color:#299AE1;color: white;" data-dismiss="modal">UnLink</button>
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button onclick="clicklinkdevice1()" type="button" class="btn btn-danger link-btn" data-dismiss="modal">UnLink</button>
-              </div>
+                </div>
           </div>
       </div>
     </div>
@@ -174,7 +196,7 @@
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content modal-div">
-          <div class="modal-header" style="background-color: #009B84;">
+          <div class="modal-header" style="background-color: #299AE1;">
               <h4 class="modal-title user-add-header text-center"> Delete Tank</h4>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
@@ -187,8 +209,9 @@
                </div>
          
             <div class="modal-footer">
+              
+                <button onclick="deleteTank()"type="button" class="btn" style="background-color: #299AE1;color:white" data-dismiss="modal">Delete</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button onclick="deleteTank()"type="button" class="btn btn-success link-btn" data-dismiss="modal">Delete</button>
             </div>
         </div>
     </div>
@@ -209,7 +232,4 @@
   
   <script src="js/managetanks.js"></script>
   <script src="js/managedevices.js"></script>
-  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVC
   

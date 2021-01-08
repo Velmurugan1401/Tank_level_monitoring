@@ -246,7 +246,7 @@ function loadTankList() {
             // "className": 'sortingtable',
             mRender: function (data, type, row) {
                 // return row.tank_name+""+row.location;
-                return '<div class="row">' + '<img src="/images/tank-1.png"style="height:30px;"width:30px">' + '&nbsp;' + '&nbsp;' + '<b>' + row.tank_name +'</b>' + '</div>'+' <br>' + '<h6>' + '<i class="fa fa-map-marker" aria-hidden="true" style="color:red"></i>' + '&nbsp;' + row.location + '&nbsp;' + '</h6>';
+                return '<div class="row">' + '<img src="/images/tank-1.png"style="height:30px;"width:30px">' + '&nbsp;' + '&nbsp;' + '<b>' + row.tank_name +'</b>' + '</div>'+' <br>' + '<h6>' + '<i class="fa fa-map-marker" aria-hidden="true" style="color:#299AE1"></i>' + '&nbsp;' + row.location + '&nbsp;' + '</h6>';
             }
         },
         {
@@ -258,33 +258,7 @@ function loadTankList() {
                 return  data ? data :'-';
             }
         },
-        {
-            mData: 'min_level',
-            sTitle: 'Min level',
-            sWidth: '20%',
-            orderable: false,
-            mRender: function (data, type, row) {
-                return  data ? data :'-';
-            }
-        },
-        {
-            mData: 'max_level',
-            sTitle: 'Max level',
-            sWidth: '20%',
-            orderable: false,
-            mRender: function (data, type, row) {
-                return  data ? data :'-';
-            }
-        },
-        {
-            mData: 'location',
-            sTitle: 'Location',
-            sWidth: '20%',
-            orderable: true,
-            mRender: function (data, type, row) {
-                return  data ? data :'-';
-            }
-        },
+       
         {
             mData: 'device_id',
             sTitle: 'Device Id',
@@ -297,10 +271,18 @@ function loadTankList() {
         {
             mData: 'capacity',
             sWidth: '20%',
-            sTitle: 'capacity',
+            sTitle: 'Capacity',
             orderable: true,
             mRender: function (data, type, row) {
-                return '<div class="row">' + '<b>' + row.capacity + '</b>' + '&nbsp;' + 'Liters' +'<span style="margin-right:50px">' + 'min -' + row.min_level +'&nbsp;'+'Liters'+'&nbsp;' + '&nbsp;' + '<h6>' +'max -' + '&nbsp;' + row.max_level + '&nbsp;'+'Liters'+'&nbsp;' + '</h6>' + '</div>';
+                return '<div class="row">' + '<b>' + row.capacity + '</b>' + '&nbsp;' + 'Liters' +'<span style="margin-right:50px">' + 'Min -' + row.min_level +'&nbsp;'+'Liters'+'&nbsp;' + '&nbsp;' + '<h6>' +'Max -' + '&nbsp;' + row.max_level + '&nbsp;'+'Liters'+'&nbsp;' + '</h6>' + '</div>';
+            }
+        },
+        {
+            mData: 'created_ts',
+            sTitle: 'Created Time', 
+            "className": 'sortingtable',    
+            mRender: function (data, type, row) {
+                return moment(data).format(DATE_TIME_FORMAT);
             }
         },
         {
@@ -321,19 +303,41 @@ function loadTankList() {
                 }
             },
         },
-        {
-            mData: 'created_ts',
-            sTitle: 'Created Time', 
-            "className": 'sortingtable',    
-            mRender: function (data, type, row) {
-                return moment(data).format(DATE_TIME_FORMAT);
-            }
-        },
+        
         {
             sTitle: 'Actions',
             mRender: function (data, type, row) {
-                var actionsHtml = '<button class="btn btn-default" data-toggle="modal" data-target="#deletemodal" onclick="adminDeleteTank(\'' + row._id + '\')" ><i class="fa fa-trash icon"></i></button>' + " " + '<button class="btn btn-default" data-toggle="modal" data-target="#exampleModal" onclick="editTank(\'' + row["_id"] + '\')"><i class="fa fa-edit"></i></button>';
+                var actionsHtml = '<button class="btn" style="background-color:#299AE1;color:white;" data-toggle="modal" data-target="#deletemodal" onclick="adminDeleteTank(\'' + row._id + '\')" ><i class="fa fa-trash icon"></i></button>' + " " + '<button class="btn"  style="background-color:#299AE1;color:white;" data-toggle="modal" data-target="#exampleModal" onclick="editTank(\'' + row["_id"] + '\')"><i class="fa fa-edit"></i></button>';
                 return actionsHtml;
+            }
+        }, {
+            mData: 'min_level',
+            sTitle: 'Min level',
+            sWidth: '20%',
+            orderable: false,
+            Visible: false,
+            mRender: function (data, type, row) {
+                return  data ? data :'-';
+            }
+        },
+        {
+            mData: 'max_level',
+            sTitle: 'Max level',
+            sWidth: '20%',
+            orderable: false,
+            Visible: false,
+            mRender: function (data, type, row) {
+                return  data ? data :'-';
+            }
+        },
+        {
+            mData: 'location',
+            sTitle: 'Location',
+            sWidth: '20%',
+            orderable: true,
+            Visible: false,
+            mRender: function (data, type, row) {
+                return  data ? data :'-';
             }
         }
     ];

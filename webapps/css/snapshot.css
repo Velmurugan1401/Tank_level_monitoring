@@ -22,14 +22,15 @@
     color: grey;    
     padding: 8px;  
 }
-/* th
-{
-    color: #009B84;
-} */
+ 
 .act
 {
     background-color: #299AE1;
     color: white;
+    padding-top:10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
  
 .content
@@ -66,74 +67,48 @@
     }
     .water
     {
-        position: absolute;
-        /* height: 30%; */
+        position: absolute;    
         width: 209px;
         bottom: 44%;
-        left: 50%;
-        /* background: -webkit-gradient(
-            linear,
-            left top,
-            right top,
-            from(#8ba7e2),
-            to(#4273f0)
-          ); */
+        left: 50%;       
           background-color: #299AE1;
         margin-left: -99px;
         transition:none;
     }
-    #drop
+    #tankname h5
     {
-              
-        /* height: 100px;
-        width: 22px;
-        background: -webkit-gradient(
-            linear,
-            left top,
-            right top,
-            from(#8ba7e2),
-            to(#4273f0)
-          );
-        
-        position: absolute;
-        border-radius: 0% 100% 100% 100%;
-        left: 114px;
-        top: 41px;
-        animation: mymove 1s infinite;
-        animation-fill-mode: forwards; */
-        /* animation-iteration-count: 5; */
-        
-            height: 158px;
-            width: 14px;
-            background: -webkit-gradient( linear, left top, right top, from(#8ba7e2), to(#4273f0) );
-            position: absolute;
-            /* border-radius: 0% 100% 100% 0%; */
-            left: 95px;
-            top: 35px;
-            /* animation: mymove 1s infinite; */
-            animation-fill-mode: forwards;
-            /* animation-iteration-count: 5; */
-    
+        color:#858C9C;
     }
-    @keyframes mymove {
-        from {top:35px;}
-        to {top: 70px; background: -webkit-gradient(
-            linear,
-            left top,
-            right top,
-            from(#8ba7e2),
-            to(#4273f0)
-          );}
-      }
-.off{
+    #Location h5{
+        color:#858C9C;
+    }
+    #device h5{
+        color:#858C9C;
+    }
+    #device2 h5{
+        color:#858C9C;
+    }
+    #status h5{
+        color:#858C9C;
+    }
+    #status1 h5{
+        color:#858C9C;
+    }
+    #status2 h5{
+        color:#858C9C;
+    }
+ .oho
+ {
+    padding-left: 25px;
+    padding-right: 25px;
+ }
+ .oh{
+    padding-left: 15px;
+    padding-right: 15px;
+ }
+ /* .off{
     display: none; 
 }
 .on{
     display: block;
-}
-/* 
-@media only screen and (min-width: 1420px) {
-     canvas {
-      left:115px;
-    }
-  } */
+} */
