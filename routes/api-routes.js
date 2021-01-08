@@ -79,7 +79,7 @@ APIRoutes.prototype.init = function () {
         self.student.performAction(req, res);
     });
     self.router.post('/tank/:action', sessionCheck, function (req, res) {
-        console.log("route",req.body);
+       
         self.tank.performAction(req, res);
     });
     self.router.post('/tankstatus/:action', sessionCheck, function (req, res) {

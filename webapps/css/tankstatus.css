@@ -61,6 +61,17 @@
     background-color:white;padding-top: 25px;border-top-left-radius: 5px;
                 border-top-right-radius: 5px;padding: 20px;
 }
+/* .tank-buttons{
+    margin-top: 0px !important;
+ } */
+
+ #tankStatusRefresh{
+   margin-right: 20px;
+ }
+
+ #tankStatusExpand{
+     margin-right: 5px;
+ }
 
 
 @media screen and (min-width: 340px) and (max-width: 767px) { 

@@ -1,6 +1,18 @@
 <link rel="stylesheet" href="css/snapshot.css" /> 
  
- 
+ <style>
+
+   .flow{
+     display:none;
+    height: 100px;
+      width: 12px;
+      background: rgb(41 154 225);
+      position: absolute;
+      top: 35px;
+      left: 72px;
+      border-top-left-radius: 17px;
+   }
+ </style>
 <div class="container-fluid">
   <div class="row" style="background-color:white;padding-top: 25px;border-top-left-radius: 5px;
   border-top-right-radius: 5px;padding: 20px;">
@@ -55,21 +67,21 @@
   border-bottom-right-radius: 5px;padding-left: 10px;padding-right:10px;padding-bottom: 20px;margin-bottom: 70px;">
     <!-- start content1 -->
     <div class="col-lg-4 col-sm-12 col-md-12 content mt-2 text-center" id="waterlevl">
+      <div class="position-relative" style="width:300px;height:350px;margin:0 auto">
       <img
         src="images/water-tank-widget-8.png"       
       />
       <span class="water"></span>
+      <div class="flow" ></div>
+    </div>
+     
       <!-- <span id="drop" class="off">
 
       </span> -->
       <!--  left: 117px;
       top: 31px;  -->
       <!-- left:94px -->
-      <canvas width="100" id="drawing-surface" style="position: absolute;
-     max-width: 100%;
-     left: 108px;
-    top: 29px;
-      transform: translateY(6px);"></canvas>
+      
     </div>
     <!-- end content1 -->
     <!-- start content2 -->
@@ -244,7 +256,7 @@
     $('#example').DataTable();
 } ); 
 </script> -->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   function Random(range) {
         return Math.floor((Math.random() * range) + 1);
   }
@@ -341,6 +353,6 @@
         context.closePath();
   };
   }
-</script>
+</script> -->
  <script src="js/tankstatus.js"></script>
-<script src="js/snapshot.js"></script> 
+<!-- <script src="js/snapshot.js"></script>  -->

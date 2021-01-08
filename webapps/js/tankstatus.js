@@ -350,17 +350,10 @@ function loadTankStatusList() {
             sTitle: 'Actions',
             orderable: false,
             mRender: function (data, type, row) {
-                if(!(row.device_id)){
-                    var actionsHtml = '<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\');status(\''+row.device_id+'\')" href="#/snapshot"  style="margin-right:5px;" ><i class="fa fa-eye" aria-hidden="true"></i></button>'
-                    +'<button class="btn btn-default" data-target="#statusDeletemodal" data-toggle="modal" onclick="assignDeleteDeviceId(\'' + row._id + '\')"><i class="fa fa-trash icon" ></i></button>';
-                    return actionsHtml;
-                }
-                else{
-              var actionsHtml = '<button class="btn btn-default"  title="Tank Linked" style="margin-right:5px;" ><i class="fa fa-link" aria-hidden="true"></i></button>'
-                          +'<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\');status(\''+row.device_id+'\');level(\''+row.device_id+'\')" href="#/snapshot" title="Goto Snapshot" style="margin-right:5px;" ><i class="fa fa-eye" aria-hidden="true"></i></button>'
+              var actionsHtml = '<button class="btn btn-default"  onclick="loadMainPage(\'/snapshot\');status(\''+row.device_id+'\');level(\''+row.device_id+'\')" href="#/snapshot" title="Goto Snapshot" style="margin-right:5px;" ><i class="fa fa-eye" aria-hidden="true"></i></button>'
                           +'<button class="btn btn-default" data-target="#statusDeletemodal" data-toggle="modal" onclick="assignDeleteDeviceId(\'' + row._id + '\')"><i class="fa fa-trash icon" ></i></button>';
                           return actionsHtml;
-               }
+            
             }
         }
     ];
@@ -379,7 +372,7 @@ function loadTankStatusList() {
     TankStatus_list = [];
 
     var tableOption = {
-        fixedHeader: true,
+        fixedHeader: false,
         responsive: true,
         paging: true,
         searching: true,
@@ -445,7 +438,7 @@ function loadTankStatusList() {
                 "contentType": 'application/json',
                 "type": "POST",
                 "url": sSource,
-                "data": JSON.stringify({"query":queryParams}),
+                "data": JSON.stringify({ "query":queryParams }),
                 success: function (data) {
 
                     var resultData = data.result.data;
@@ -552,8 +545,9 @@ function status(row){
 
 }
 
-$("#status1").append("<h5>Status</h5><p>"+tankstat.status+"</p>")   
-$("#status2").append("<h5>Reported time</h5><p>"+ moment(tankstat.created_ts).format(DATE_TIME_FORMAT)+"</p>")  
+
+// $("#status1").append("<h5>Status</h5><p>"+tankstat.status+"</p>")   
+$("#status2").append("<h5>Reported_ts</h5><p>"+ moment(tankstat.created_ts).format(DATE_TIME_FORMAT)+"</p>")  
 
 $(() => {
     var flist;
@@ -625,7 +619,9 @@ $('#offbut').on('click', function(e){
     setInterval(level,3000);
  
 function level()
-{    
+{
+  
+    var conti;
     var lvl;
     var cap;
     var cal;
@@ -648,7 +644,10 @@ function level()
                         console.log(conti)                          
                         cal=((lvl/cap)*100);  
                         // console.log(Math.round(cal)); 
-                        $('.water').height(cal); 
+                        $('.water').height((cal/2)+'%'); 
+                        let flowheight = cal/2;
+                        $('.flow').height((140 - flowheight)+'px').show();
+
 $("#status").html("<h5>Tank Level</h5><p>"+conti+"</p>")   
                                            
                         break;
@@ -665,3 +664,51 @@ $("#status").html("<h5>Tank Level</h5><p>"+conti+"</p>")
       
   
     }
+    $(() => {
+        var flist;
+        console.log("start")
+        var queryParams={
+            query:{
+                "bool": {
+                    "must": { "term": {
+                        "device_id": devid
+                    }}
+                }
+            },
+            "sort":[
+                {"reported_ts ":{"order":"desc"}}
+            ]
+            
+        }
+        $.ajax({
+            "dataType": 'json',
+            "contentType": 'application/json',
+            "type": "POST",
+            "url": BASE_PATH+'/eventtrigger/list',
+            "data":JSON.stringify({data:queryParams}),
+            success: function (data) {
+                var resultData = data.result.data.data;           
+                console.log("dara",resultData)
+                for(i=0;i<1;i++){
+                    if(resultData.tank_level=="High")
+                    {
+                        $("#status1").append("<h5>Status</h5><p>High</p>")        
+                      
+                      
+                    }
+                    else if(resultData.tank_level=="Low")
+                    {
+                        $("#status1").append("<h5>Status</h5><p>Low</p>") 
+                    }
+                    else{
+                        $("#status1").append("<h5>Status</h5><p>Normal</p>")
+                    }
+                }
+               
+                
+    
+    
+            }
+        })
+    })
+    

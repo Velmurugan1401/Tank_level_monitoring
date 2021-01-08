@@ -206,8 +206,8 @@ function tankDetails() {
 }
 $(function() {
 
-    // var start = moment().subtract(29, 'days');
-    // var end = moment();
+    var start = moment().subtract(29, 'days');
+    var end = moment();
 
     function cb(start, end) {
         $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
@@ -258,33 +258,7 @@ function loadTankList() {
                 return  data ? data :'-';
             }
         },
-        {
-            mData: 'min_level',
-            sTitle: 'Min level',
-            sWidth: '20%',
-            orderable: false,
-            mRender: function (data, type, row) {
-                return  data ? data :'-';
-            }
-        },
-        {
-            mData: 'max_level',
-            sTitle: 'Max level',
-            sWidth: '20%',
-            orderable: false,
-            mRender: function (data, type, row) {
-                return  data ? data :'-';
-            }
-        },
-        {
-            mData: 'location',
-            sTitle: 'Location',
-            sWidth: '20%',
-            orderable: true,
-            mRender: function (data, type, row) {
-                return  data ? data :'-';
-            }
-        },
+       
         {
             mData: 'device_id',
             sTitle: 'Device Id',
@@ -301,6 +275,14 @@ function loadTankList() {
             orderable: true,
             mRender: function (data, type, row) {
                 return '<div class="row">' + '<b>' + row.capacity + '</b>' + '&nbsp;' + 'Liters' +'<span style="margin-right:50px">' + 'min -' + row.min_level +'&nbsp;'+'Liters'+'&nbsp;' + '&nbsp;' + '<h6>' +'max -' + '&nbsp;' + row.max_level + '&nbsp;'+'Liters'+'&nbsp;' + '</h6>' + '</div>';
+            }
+        },
+        {
+            mData: 'created_ts',
+            sTitle: 'Created Time', 
+            "className": 'sortingtable',    
+            mRender: function (data, type, row) {
+                return moment(data).format(DATE_TIME_FORMAT);
             }
         },
         {
@@ -321,19 +303,41 @@ function loadTankList() {
                 }
             },
         },
-        {
-            mData: 'created_ts',
-            sTitle: 'Created Time', 
-            "className": 'sortingtable',    
-            mRender: function (data, type, row) {
-                return moment(data).format(DATE_TIME_FORMAT);
-            }
-        },
+        
         {
             sTitle: 'Actions',
             mRender: function (data, type, row) {
                 var actionsHtml = '<button class="btn btn-default" data-toggle="modal" data-target="#deletemodal" onclick="adminDeleteTank(\'' + row._id + '\')" ><i class="fa fa-trash icon"></i></button>' + " " + '<button class="btn btn-default" data-toggle="modal" data-target="#exampleModal" onclick="editTank(\'' + row["_id"] + '\')"><i class="fa fa-edit"></i></button>';
                 return actionsHtml;
+            }
+        }, {
+            mData: 'min_level',
+            sTitle: 'Min level',
+            sWidth: '20%',
+            orderable: false,
+            Visible: false,
+            mRender: function (data, type, row) {
+                return  data ? data :'-';
+            }
+        },
+        {
+            mData: 'max_level',
+            sTitle: 'Max level',
+            sWidth: '20%',
+            orderable: false,
+            Visible: false,
+            mRender: function (data, type, row) {
+                return  data ? data :'-';
+            }
+        },
+        {
+            mData: 'location',
+            sTitle: 'Location',
+            sWidth: '20%',
+            orderable: true,
+            Visible: false,
+            mRender: function (data, type, row) {
+                return  data ? data :'-';
             }
         }
     ];
