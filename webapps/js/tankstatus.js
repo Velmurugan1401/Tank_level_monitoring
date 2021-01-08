@@ -647,13 +647,13 @@ function level()
                 for(i=0;i<1;i++){
                     if(resultData.tank_level=="High")
                     {
-                        $("#status1").append("<h5>Status</h5><p>High</p>")        
+                        $("#status1").append("<h5>Status</h5><p>OFF</p>")        
                       
                       
                     }
                     else if(resultData.tank_level=="Low")
                     {
-                        $("#status1").append("<h5>Status</h5><p>Low</p>") 
+                        $("#status1").append("<h5>Status</h5><p>ON</p>") 
                     }
                     else{
                         $("#status1").append("<h5>Status</h5><p>Normal</p>")
