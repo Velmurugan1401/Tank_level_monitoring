@@ -98,8 +98,8 @@ console.log(endDate)
     
         var fields = [
             {
-                mData: 'deviceid',
-                sTitle: 'Device Model',
+                mData: 'tank_level',
+                sTitle: 'Tank Level',
                 sWidth: '20%',
                 orderable: false,
                 mRender: function (data, type, row) {
@@ -108,7 +108,8 @@ console.log(endDate)
             },
     
             {
-                mData: 'channel',
+                mData: 'deviceid',
+                sTitle: 'Device Id',
                 sWidth: '20%',
                 sTitle: 'Device Version',
                 orderable: false,
@@ -117,8 +118,8 @@ console.log(endDate)
                 }
             },
             {
-                mData: 'tank_level',
-                sTitle: 'Tank Level',
+                mData: 'channel',
+                sTitle: 'Channel',
                 sWidth: '20%',
                 orderable: false,
                 mRender: function (data, type, row) {

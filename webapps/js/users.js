@@ -134,39 +134,45 @@ function loadrecordUser() {
     var roles = $("#role").val();
 
     //  //Validate
-    //  if (firstname === "") {
-    //     $(".validate").css('display','block');
-    //     return;
+     if (firstname === "") {
+        $(".validate").css('display','block');
+        return;
 
 
-    // //     alert("First  Name is Required!");
+    //     alert("First  Name is Required!");
 
-    // } else if (lastName === "") {
-    //     $(".validate").css('display','block');
-    //     return;
-    // //     alert("Last name is Required!");
+    } else if (lastName === "") {
+        $(".validate").css('display','block');
+        return;
+    //     alert("Last name is Required!");
 
-    // }
-    // else if (primaryPhone === "") {
-    //     $(".validate").css('display','block');
-    //     return;
-    // //     alert("Mobile number  is Required!");
+    }
+    else if (primaryPhone === "") {
+        $(".validate").css('display','block');
+        return;
+    //     alert("Mobile number  is Required!");
 
-    // }
-    // else if (email === "") {
-    //     $(".validate").css('display','block');
-    //     return;
-    // //     alert("Email id is Required!");
+    }
+    else if (email === "") {
+        $(".validate").css('display','block');
+        return;
+    //     alert("Email id is Required!");
 
-    // }
-    // else if(password==="")
-    // {
-    //     $(".validate").css('display','block');
-    // return;
-    // }
+    }
+    else if (roles === "") {
+        $(".validate").css('display','block');
+        return;
+    //     alert("Email id is Required!");
 
-    //   else {
-        //Build Input Objects
+    }
+    else if(password==="")
+    {
+        $(".validate").css('display','block');
+    return;
+    }
+
+      else {
+        
         var input =
         {
             fname : firstname,
@@ -179,7 +185,7 @@ function loadrecordUser() {
 
 
         };
-    // }
+    }
 
     console.log("insert", input);
 
@@ -339,7 +345,7 @@ function loadUsersList() {
             orderable: false,
             mRender: function (data, type, row) {
               
-                var actionsHtml = '<button class="btn btn-default"  data-target="#userDeletemodal" data-toggle="modal" onclick="assignuserrecordid(\'' + row._id + '\',\'' + row.email + '\')"><i class="fa fa-trash"></i></button>' + '<button class="btn btn-default"  data-toggle="modal" data-target="#myModal" onclick="editUser(\'' + row._id +'\')"><i class="fa fa-pencil edit"></i>';
+                var actionsHtml = '<button class="btn"  style="background-color:#299AE1;color:white;" data-target="#userDeletemodal" data-toggle="modal" onclick="assignuserrecordid(\'' + row._id + '\',\'' + row.email + '\')"><i class="fa fa-trash"></i></button>' + '<button class="btn" style="background-color:#299AE1;color:white;"  data-toggle="modal" data-target="#myModal" onclick="editUser(\'' + row._id +'\')"><i class="fa fa-pencil edit"></i>';
                 return actionsHtml;
             }
         }

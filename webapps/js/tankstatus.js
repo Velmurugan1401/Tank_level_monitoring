@@ -135,31 +135,20 @@ function loadEventList()
                     "query": queryParams
                 }),
                 success: function (data) {
-
                     var resultData = data.result.data;            
                      resultData['draw'] = oSettings.iDraw;
                     fnCallback(resultData);
                 }
             });
-        },       
-
-        
-        initComplete: function () {          
-         
+        },               
+        initComplete: function () {        
         }
     };
-
     EventTable = $("#example").DataTable(tableOption);
-
 }
-
 $(document).ready(function(){
     loadTankStatusList();
-    // loadTankEventList();
-    // $("button").click(function(){
-    //     $("div").animate({bottom: '50px'});
-    //   });
-
+   
     $('input[name="tankactive"]').on('click', function () {
         var n = $('input[name="tankactive"]:checked').val();
        
@@ -502,8 +491,7 @@ function assignDeleteDeviceId(row,row1){
     var devid;
     var tankstat;
 function status(row){
-    devid=row
-    
+    devid=row    
     $(() => {
         $.ajax({
             "dataType": 'json',
@@ -513,25 +501,19 @@ function status(row){
             success: function (data) {                
                 var resultData = data.result.data.data;
                 // console.log("its me",resultData)
-
                 for(i=0;i<=resultData.length;i++){
                     if(row==resultData[i].device_id)
                     {
-                       dank=resultData[i];                    
-                      
+                       dank=resultData[i];                
                        break;
                     }
                 }
-              
                 $("#tankname").append("<h5>Name</h5><p>"+dank.tank_name+"</p>")   
                 $("#tankname").append("<h5>Type</h5><p>"+dank.tank_type+"</p>")   
                 $("#tankname").append("<h5>Capacity</h5><p>"+dank.capacity+"</p>")  
                 $("#Location").append("<h5>Location</h5><p>"+dank.location+"</p>") 
-                $("#Location").append("<h5>Max_level</h5><p>"+dank.max_level+"</p>")  
-                $("#Location").append("<h5>Min_level</h5><p>"+dank.min_level+"</p>")   
-                
-                   
-    
+                $("#Location").append("<h5>Max Level</h5><p>"+dank.max_level+"</p>")  
+                $("#Location").append("<h5>Min Level</h5><p>"+dank.min_level+"</p>")                  
             }
         })
     })
@@ -542,12 +524,11 @@ function status(row){
                              break   
                      }
                  }                          
-
 }
 
 
 // $("#status1").append("<h5>Status</h5><p>"+tankstat.status+"</p>")   
-$("#status2").append("<h5>Reported_ts</h5><p>"+ moment(tankstat.created_ts).format(DATE_TIME_FORMAT)+"</p>")  
+// $("#status2").append("<h5>Reported_ts</h5><p>"+ moment(tankstat.created_ts).format(DATE_TIME_FORMAT)+"</p>")  
 
 $(() => {
     var flist;
@@ -576,26 +557,17 @@ $(() => {
             for(i=0;i<=resultData.length;i++){
                 if(devid==resultData[i].id)
                 {
-                    flist=resultData[i];           
-                  
-                   break;
+                    flist=resultData[i];         
+                    break;
                 }
             }
             $("#device").append("<h5>Device Name</h5><p>"+flist.id+"</p>")   
             $("#device").append("<h5>Linked Time</h5><p>"+moment(flist.registeredStamp).format(DATE_TIME_FORMAT)+"</p>")  
            $("#device2").append("<h5>Model</h5><p>"+flist.modelId+"</p>")   
-           $("#device2").append("<h5>Version</h5><p>"+flist.version+"</p>")   
-            
-
-
+           $("#device2").append("<h5>Version</h5><p>"+flist.version+"</p>")       
         }
     })
 })   
-
-
-
-
-
 $('#onbut').on('click', function(e){
     $('.off').removeClass('off').addClass('on');
     e.preventDefault();
@@ -605,18 +577,7 @@ $('#offbut').on('click', function(e){
     e.preventDefault();
 });
 
-//tank height
-// $('#current').click(function(){
-// var capacity=dank.capacity;
-// var level=tankstat.tank_level;
-// var cal=((level/capacity)*100)/2;
-// $('#water').css('height',cal+'%');
-// });
-
-
-
- 
-    setInterval(level,3000);
+ setInterval(level,3000);
  
 function level()
 {
@@ -637,7 +598,8 @@ function level()
                 for(i=0;i<=resultData.length-1;i++){
                     if(devid==resultData[i].device_id)
                     {     
-                        conti=resultData[i].tank_level    
+                        conti=resultData[i].tank_level;
+                        repo=resultData[i].reported_ts;
                         // console.log(resultData);            
                         lvl=resultData[i].tank_level;
                         cap=resultData[i].capacity;  
@@ -647,22 +609,15 @@ function level()
                         $('.water').height((cal/2)+'%'); 
                         let flowheight = cal/2;
                         $('.flow').height((140 - flowheight)+'px').show();
-
-$("#status").html("<h5>Tank Level</h5><p>"+conti+"</p>")   
-                                           
+                        $("#status").html("<h5>Tank Level</h5><p>"+conti+"</p>")  
+                        $("#status2").html("<h5>Reported Time</h5><p>"+ moment(repo).format(DATE_TIME_FORMAT)+"</p>")                                            
                         break;
                     }
                 }          
     
             }
             
-        })
-
-
-
-        
-      
-  
+        })     
     }
     $(() => {
         var flist;
