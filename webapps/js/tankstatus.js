@@ -606,7 +606,14 @@ function level()
                         console.log(conti)                          
                         cal=((lvl/cap)*100);  
                         // console.log(Math.round(cal)); 
-                        $('.water').height((cal/2)+'%'); 
+                         if((cal/2)==50)
+                         {
+                            warningMsg("tank over flow");
+                         }  
+                         else{
+                        $('.water').height((cal/2)+'%');  
+                         }
+
                         let flowheight = cal/2;
                         $('.flow').height((140 - flowheight)+'px').show();
                         $("#status").html("<h5>Tank Level</h5><p>"+conti+"</p>")  
